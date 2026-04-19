@@ -1,0 +1,16 @@
+# Terraform
+.terraform/
+*.tfstate*
+*.tfplan
+.terraform.lock.hcl
+
+# Specific files mentioned
+destroy.tfplan
+*.txt
+
+# macOS
+.DS_Store
+
+# Other common ignores
+*.log
+crash.log

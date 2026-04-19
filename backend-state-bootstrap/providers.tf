@@ -13,7 +13,7 @@ terraform {
 
 provider "azurerm" {
   # Pega aquí el ID que copiaste
-  subscription_id = "627441e2-79b8-4c68-9943-3698d337ff77"
+  subscription_id = "e35bf934-b130-43e2-8202-61e2a4d8e670"
   
   features {}
 }
