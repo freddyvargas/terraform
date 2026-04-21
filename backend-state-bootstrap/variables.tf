@@ -21,3 +21,27 @@ variable "container_name" {
   default     = "tfstate"
   description = "Name of the blob container for Terraform state files."
 }
+
+variable "account_tier" {
+  type        = string
+  default     = "Standard"
+  description = "Tier of the storage account."
+}
+
+variable "account_replication_type" {
+  type        = string
+  default     = "LRS"
+  description = "Replication type of the storage account."
+}
+
+variable "account_kind" {
+  type        = string
+  default     = "StorageV2"
+  description = "Kind of the storage account."
+}
+
+variable "access_tier" {
+  type        = string
+  default     = "Hot"
+  description = "Access tier of the storage account."
+}

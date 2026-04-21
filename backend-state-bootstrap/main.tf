@@ -9,10 +9,10 @@ resource "azurerm_storage_account" "backend" {
   name                     = var.storage_account_name
   resource_group_name      = azurerm_resource_group.example.name
   location                 = azurerm_resource_group.example.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-  account_kind             = "StorageV2"
-  access_tier              = "Hot"
+  account_tier             = var.account_tier
+  account_replication_type = var.account_replication_type
+  account_kind             = var.account_kind
+  access_tier              = var.access_tier
 }
 
 # Create a blob container for Terraform state files
