@@ -1,4 +1,4 @@
-# Terraform Certification Scenario: Questions 2, 3, 4, 5, and 6
+# Terraform Certification Scenario: Questions 2, 3, 4, 5, 6, and 7
 
 This scenario demonstrates key Terraform concepts from the Certification 004. It uses the `azurerm` backend from the `backend-state-bootstrap` folder with the backend key: `exercises-questions-terraform-004portal.tfstate`
 
@@ -128,3 +128,36 @@ Option A is incorrect: The terraform apply command is used to apply changes, and
 Option B is incorrect: The -target flag is used to limit Terraform's operation to a specific resource or module and its dependencies, not to define an output file for the plan.
 
 Option C is incorrect: Although -generate-config-out is a valid option introduced in recent versions for automatic configuration (HCL) generation during import processes, it is not the standard syntax or general purpose for saving an infrastructure execution plan.
+
+---
+
+## Question No. 7
+
+**Question:** Exhibit:
+
+```
+Error: Saved plan is stale
+
+The given plan file can no longer be applied because the state was changed by another operation after the plan was created.
+```
+
+You have a saved execution plan containing desired changes for infrastructure managed by Terraform. After running terraform apply my.tfplan, you receive the error shown. How can you apply the desired changes? (Pick the 2 correct responses below.)
+
+**Options:**
+- A) Generate a new execution plan file with terraform plan, and apply the new plan.
+- B) Run terraform apply without the saved execution plan.
+- C) Force the apply command by adding the flag -lock=false.
+- D) Refresh the current state data using the -refresh-only flag.
+- E) Update the current plan file using the terraform state push command.
+
+**Correct Answer:** A, B
+
+**Explanation:** The "Saved plan is stale" error occurs because Terraform detects that the state file (terraform.tfstate) has been modified (either by another execution, a manual change, or a team process) after the plan file (.tfplan) was generated. Terraform uses a serial number in the state to ensure that changes are not applied based on outdated information. The technical solution is to discard the old plan and generate a new one based on the current infrastructure state, which is achieved by generating a new plan file (Option A) or running the apply command directly so that Terraform performs the refresh and planning cycle at the moment (Option B).
+
+**Explanation:**
+
+Option C is incorrect: The -lock=false flag is used to skip state locking when it is suspected that a previous lock was not released correctly, but it does not solve the version discrepancy between a saved plan and the current state.
+
+Option D is incorrect: Although -refresh-only updates the state with the reality of the infrastructure, it does not "fix" an already created plan file; the original plan will remain invalid because it was calculated on a state version that is no longer the latest.
+
+Option E is incorrect: The terraform state push command is used for manual state management (such as migrations or disaster recovery), it has no functionality to update or modify binary execution plan files.

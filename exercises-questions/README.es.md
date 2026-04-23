@@ -1,4 +1,4 @@
-# Escenario de Certificación de Terraform: Preguntas 2, 3, 4, 5 y 6
+# Escenario de Certificación de Terraform: Preguntas 2, 3, 4, 5, 6 y 7
 
 Este escenario demuestra conceptos clave de Terraform de la Certificación 004. Utiliza el backend `azurerm` de la carpeta `backend-state-bootstrap` con la clave del estado: `exercises-questions-terraform-004portal.tfstate`
 
@@ -128,3 +128,36 @@ Opción A es incorrecta: El comando terraform apply se usa para aplicar cambios,
 Opción B es incorrecta: El flag -target se utiliza para limitar la operación de Terraform a un recurso o módulo específico y sus dependencias, no para definir un archivo de salida para el plan.
 
 Opción C es incorrecta: Aunque -generate-config-out es una opción válida introducida en versiones recientes para la generación automática de configuración (HCL) durante procesos de importación, no es la sintaxis estándar ni el propósito general para guardar un plan de ejecución de infraestructura.
+
+---
+
+## Question No. 7
+
+**Pregunta:** Exhibit:
+
+```
+Error: Saved plan is stale
+
+The given plan file can no longer be applied because the state was changed by another operation after the plan was created.
+```
+
+Tienes un plan de ejecución guardado que contiene cambios deseados para la infraestructura administrada por Terraform. Después de ejecutar terraform apply my.tfplan, recibes el error mostrado. ¿Cómo puedes aplicar los cambios deseados? (Selecciona las 2 respuestas correctas.)
+
+**Opciones:**
+- A) Genera un nuevo archivo de plan de ejecución con terraform plan, y aplica el nuevo plan.
+- B) Ejecuta terraform apply sin el plan de ejecución guardado.
+- C) Fuerza el comando apply agregando el flag -lock=false.
+- D) Actualiza los datos del estado actual usando el flag -refresh-only.
+- E) Actualiza el archivo de plan actual usando el comando terraform state push.
+
+**Respuesta Correcta:** A, B
+
+**Explicación:** El error "Saved plan is stale" ocurre porque Terraform detecta que el archivo de estado (terraform.tfstate) ha sido modificado (ya sea por otra ejecución, un cambio manual o un proceso de equipo) después de que se generó el archivo de plan (.tfplan). Terraform utiliza un número de serie en el estado para garantizar que no se apliquen cambios basados en información obsoleta. La solución técnica es descartar el plan viejo y generar uno nuevo que se base en el estado actual de la infraestructura, lo cual se logra generando un nuevo archivo de plan (Opción A) o ejecutando el comando de aplicación directamente para que Terraform realice el ciclo de refresco y planificación en el momento (Opción B).
+
+**Explicación:**
+
+Opción C es incorrecta: El flag -lock=false se utiliza para omitir el bloqueo del estado cuando se sospecha que un bloqueo previo no se liberó correctamente, pero no soluciona la discrepancia de versiones entre un plan guardado y el estado actual.
+
+Opción D es incorrecta: Aunque -refresh-only actualiza el estado con la realidad de la infraestructura, no "arregla" un archivo de plan ya creado; el plan original seguirá siendo inválido porque fue calculado sobre una versión de estado que ya no es la última.
+
+Opción E es incorrecta: El comando terraform state push se utiliza para la gestión manual del estado (como migraciones o recuperaciones de desastres), no tiene ninguna funcionalidad para actualizar o modificar archivos de plan de ejecución binarios.
