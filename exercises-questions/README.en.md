@@ -1,4 +1,4 @@
-# Terraform Certification Scenario: Questions 2, 3, 4, 5, 6, and 7
+# Terraform Certification Scenario: Questions 2, 3, 4, 5, 6, 7, and 8
 
 This scenario demonstrates key Terraform concepts from the Certification 004. It uses the `azurerm` backend from the `backend-state-bootstrap` folder with the backend key: `exercises-questions-terraform-004portal.tfstate`
 
@@ -161,3 +161,28 @@ Option C is incorrect: The -lock=false flag is used to skip state locking when i
 Option D is incorrect: Although -refresh-only updates the state with the reality of the infrastructure, it does not "fix" an already created plan file; the original plan will remain invalid because it was calculated on a state version that is no longer the latest.
 
 Option E is incorrect: The terraform state push command is used for manual state management (such as migrations or disaster recovery), it has no functionality to update or modify binary execution plan files.
+
+---
+
+## Question No. 8
+
+**Question:** Which are benefits of migrating from a local state backend to a remote backend? (Pick the 2 correct responses below.)
+
+**Options:**
+- A) Guarantees that configuration drift cannot occur for the managed infrastructure.
+- B) Eliminates the need to manage credentials when deploying infrastructure to multiple cloud providers.
+- C) Faster plan and apply execution because the state is cached locally on the cloud provider.
+- D) State locking that allows multiple team members to safely work on the same infrastructure.
+- E) The ability to enable server-side encryption at rest.
+
+**Correct Answer:** D, E
+
+**Explanation:** Migrating to a remote backend offers critical advantages for security and collaborative work. First, state locking (Option D) is essential in team environments, as it prevents two people from running Terraform at the same time, which could corrupt the state file. Second, remote backends (such as AWS S3, Azure Blob Storage, or HCP Terraform) allow the use of encryption at rest (Option E), protecting sensitive information that Terraform usually stores in plain text within the state file, such as passwords or access keys.
+
+**Explanation:**
+
+Option A is incorrect: The state file only records the last known configuration; it cannot "guarantee" that drift (deviation) cannot occur, as manual changes in the cloud console can happen regardless of the backend used.
+
+Option B is incorrect: Although a remote backend manages the state, the user still needs to configure and manage provider credentials (such as AWS or Azure) to be able to create or modify actual resources on those platforms.
+
+Option C is incorrect: Generally, a remote backend is slower than a local one, as it requires network calls to download and upload the state file in each operation, unlike instant access to a file on local disk.

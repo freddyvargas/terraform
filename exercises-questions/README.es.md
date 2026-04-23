@@ -1,4 +1,4 @@
-# Escenario de Certificación de Terraform: Preguntas 2, 3, 4, 5, 6 y 7
+# Escenario de Certificación de Terraform: Preguntas 2, 3, 4, 5, 6, 7 y 8
 
 Este escenario demuestra conceptos clave de Terraform de la Certificación 004. Utiliza el backend `azurerm` de la carpeta `backend-state-bootstrap` con la clave del estado: `exercises-questions-terraform-004portal.tfstate`
 
@@ -161,3 +161,28 @@ Opción C es incorrecta: El flag -lock=false se utiliza para omitir el bloqueo d
 Opción D es incorrecta: Aunque -refresh-only actualiza el estado con la realidad de la infraestructura, no "arregla" un archivo de plan ya creado; el plan original seguirá siendo inválido porque fue calculado sobre una versión de estado que ya no es la última.
 
 Opción E es incorrecta: El comando terraform state push se utiliza para la gestión manual del estado (como migraciones o recuperaciones de desastres), no tiene ninguna funcionalidad para actualizar o modificar archivos de plan de ejecución binarios.
+
+---
+
+## Question No. 8
+
+**Pregunta:** ¿Cuáles son beneficios de migrar de un backend de estado local a un backend remoto? (Selecciona las 2 respuestas correctas.)
+
+**Opciones:**
+- A) Garantiza que el drift de configuración no pueda ocurrir para la infraestructura administrada.
+- B) Elimina la necesidad de gestionar credenciales al desplegar infraestructura a múltiples proveedores de nube.
+- C) Ejecución más rápida de plan y apply porque el estado se cachea localmente en el proveedor de nube.
+- D) Bloqueo de estado que permite a múltiples miembros del equipo trabajar de forma segura en la misma infraestructura.
+- E) La capacidad de habilitar cifrado del lado del servidor en reposo.
+
+**Respuesta Correcta:** D, E
+
+**Explicación:** Migrar a un backend remoto ofrece ventajas críticas para la seguridad y el trabajo colaborativo. Primero, el bloqueo de estado (State Locking) (Opción D) es fundamental en entornos de equipo, ya que evita que dos personas ejecuten Terraform al mismo tiempo, lo que podría corromper el archivo de estado. Segundo, los backends remotos (como AWS S3, Azure Blob Storage o HCP Terraform) permiten utilizar cifrado en reposo (Encryption at rest) (Opción E), protegiendo la información sensible que Terraform suele almacenar en texto plano dentro del archivo de estado, como contraseñas o claves de acceso.
+
+**Explicación:**
+
+Opción A es incorrecta: El archivo de estado solo registra la última configuración conocida; no puede "garantizar" que no ocurra un drift (desviación), ya que los cambios manuales en la consola de la nube pueden suceder independientemente del backend utilizado.
+
+Opción B es incorrecta: Aunque un backend remoto gestiona el estado, el usuario todavía necesita configurar y gestionar las credenciales de los proveedores (como AWS o Azure) para poder crear o modificar los recursos reales en esas plataformas.
+
+Opción C es incorrecta: Generalmente, un backend remoto es más lento que uno local, ya que requiere realizar llamadas de red para descargar y subir el archivo de estado en cada operación, a diferencia del acceso instantáneo a un archivo en el disco local.
