@@ -1,6 +1,17 @@
-# Escenario de Certificación de Terraform: Preguntas 2, 3, 4, 5, 6, 7, 8 y 9
+# Escenario de Certificación de Terraform
 
 Este escenario demuestra conceptos clave de Terraform de la Certificación 004. Utiliza el backend `azurerm` de la carpeta `backend-state-bootstrap` con la clave del estado: `exercises-questions-terraform-004portal.tfstate`
+
+## Tabla de Contenido
+
+- [Question No. 2](#question-no-2)
+- [Question No. 3](#question-no-3)
+- [Question No. 4](#question-no-4)
+- [Question No. 5](#question-no-5)
+- [Question No. 6](#question-no-6)
+- [Question No. 7](#question-no-7)
+- [Question No. 8](#question-no-8)
+- [Question No. 9](#question-no-9)
 
 ## Question No. 2
 

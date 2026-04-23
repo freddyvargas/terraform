@@ -1,6 +1,17 @@
-# Terraform Certification Scenario: Questions 2, 3, 4, 5, 6, 7, 8, and 9
+# Terraform Certification Scenario
 
 This scenario demonstrates key Terraform concepts from the Certification 004. It uses the `azurerm` backend from the `backend-state-bootstrap` folder with the backend key: `exercises-questions-terraform-004portal.tfstate`
+
+## Table of Contents
+
+- [Question No. 2](#question-no-2)
+- [Question No. 3](#question-no-3)
+- [Question No. 4](#question-no-4)
+- [Question No. 5](#question-no-5)
+- [Question No. 6](#question-no-6)
+- [Question No. 7](#question-no-7)
+- [Question No. 8](#question-no-8)
+- [Question No. 9](#question-no-9)
 
 ## Question No. 2
 
