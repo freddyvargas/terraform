@@ -1,4 +1,4 @@
-# Escenario de Certificación de Terraform: Preguntas 2, 3, 4, 5, 6, 7 y 8
+# Escenario de Certificación de Terraform: Preguntas 2, 3, 4, 5, 6, 7, 8 y 9
 
 Este escenario demuestra conceptos clave de Terraform de la Certificación 004. Utiliza el backend `azurerm` de la carpeta `backend-state-bootstrap` con la clave del estado: `exercises-questions-terraform-004portal.tfstate`
 
@@ -186,3 +186,27 @@ Opción A es incorrecta: El archivo de estado solo registra la última configura
 Opción B es incorrecta: Aunque un backend remoto gestiona el estado, el usuario todavía necesita configurar y gestionar las credenciales de los proveedores (como AWS o Azure) para poder crear o modificar los recursos reales en esas plataformas.
 
 Opción C es incorrecta: Generalmente, un backend remoto es más lento que uno local, ya que requiere realizar llamadas de red para descargar y subir el archivo de estado en cada operación, a diferencia del acceso instantáneo a un archivo en el disco local.
+
+---
+
+## Question No. 9
+
+**Pregunta:** ¿Cuál comando genera datos formateados en DOT (Document Template) para visualizar las dependencias de Terraform?
+
+**Opciones:**
+- A) terraform graph
+- B) terraform show
+- C) terraform refresh
+- D) terraform output
+
+**Respuesta Correcta:** A
+
+**Explicación:** El comando terraform graph se utiliza para generar una representación visual de la configuración de Terraform o de un plan de ejecución. Según la documentación oficial, este comando produce una salida en el lenguaje de descripción de gráficos DOT, que puede ser utilizada por herramientas como Graphviz para generar diagramas. Estos diagramas son fundamentales para entender las dependencias entre los recursos y el orden en que Terraform planea crearlos o modificarlos.
+
+**Explicación:**
+
+Opción B es incorrecta: El comando terraform show se utiliza para mostrar una versión legible por humanos de un archivo de estado o de un plan de ejecución. Aunque proporciona información detallada, no genera datos en formato DOT ni diagramas de dependencias.
+
+Opción C es incorrecta: terraform refresh tiene como objetivo actualizar el archivo de estado local con la infraestructura real que se encuentra en la nube. No tiene funciones de visualización ni generación de gráficos.
+
+Opción D es incorrecta: El comando terraform output se usa específicamente para extraer y mostrar los valores de las variables de salida que se han definido en la configuración, permitiendo consultar datos específicos del estado sin necesidad de leer todo el archivo.

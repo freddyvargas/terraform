@@ -1,4 +1,4 @@
-# Terraform Certification Scenario: Questions 2, 3, 4, 5, 6, 7, and 8
+# Terraform Certification Scenario: Questions 2, 3, 4, 5, 6, 7, 8, and 9
 
 This scenario demonstrates key Terraform concepts from the Certification 004. It uses the `azurerm` backend from the `backend-state-bootstrap` folder with the backend key: `exercises-questions-terraform-004portal.tfstate`
 
@@ -186,3 +186,27 @@ Option A is incorrect: The state file only records the last known configuration;
 Option B is incorrect: Although a remote backend manages the state, the user still needs to configure and manage provider credentials (such as AWS or Azure) to be able to create or modify actual resources on those platforms.
 
 Option C is incorrect: Generally, a remote backend is slower than a local one, as it requires network calls to download and upload the state file in each operation, unlike instant access to a file on local disk.
+
+---
+
+## Question No. 9
+
+**Question:** Which command generates DOT (Document Template) formatted data to visualize Terraform dependencies?
+
+**Options:**
+- A) terraform graph
+- B) terraform show
+- C) terraform refresh
+- D) terraform output
+
+**Correct Answer:** A
+
+**Explanation:** The terraform graph command is used to generate a visual representation of the Terraform configuration or an execution plan. According to the official documentation, this command produces output in the DOT graph description language, which can be used by tools like Graphviz to generate diagrams. These diagrams are essential for understanding dependencies between resources and the order in which Terraform plans to create or modify them.
+
+**Explanation:**
+
+Option B is incorrect: The terraform show command is used to display a human-readable version of a state file or execution plan. Although it provides detailed information, it does not generate DOT-formatted data or dependency diagrams.
+
+Option C is incorrect: terraform refresh aims to update the local state file with the actual infrastructure found in the cloud. It has no visualization or graph generation functions.
+
+Option D is incorrect: The terraform output command is specifically used to extract and display the values of output variables that have been defined in the configuration, allowing querying specific data from the state without needing to read the entire file.
