@@ -1,4 +1,4 @@
-# Terraform Certification Scenario: Questions 2, 3, and 4
+# Terraform Certification Scenario: Questions 2, 3, 4, and 5
 
 This scenario demonstrates key Terraform concepts from the Certification 004. It uses the `azurerm` backend from the `backend-state-bootstrap` folder with the backend key: `exercises-questions-terraform-004portal.tfstate`
 
@@ -70,3 +70,37 @@ Option D is incorrect: During initialization, Terraform searches for any remote 
 Option A is incorrect: Grouping a collection of configuration files that map to a state file is the definition of a module (specifically the root module), not a provider.
 
 Option E is incorrect: Although Terraform interacts with security services, the function of enforcing security and compliance policies is the responsibility of Policy as Code tools, such as Sentinel (in HCP Terraform/Enterprise) or OPA (Open Policy Agent), and not of the infrastructure providers themselves.
+
+---
+
+## Question No. 5
+
+**Question:** Exhibit:
+```
+module "network" {
+  source = "terraform-google-modules/network/google"
+}
+```
+What version of the source module does Terraform allow with the module block shown in the exhibit?
+
+**Options:**
+- A) Any version of the module > 11.0.
+- B) Any version of the module >= 11.0.
+- C) Any version of the module >= 11.0 and < 12.0.
+- D) Any version of the module >= 11.0.0 and < 11.1.0.
+
+**Correct Answer:** The latest available version (none of the provided options are strictly correct for the exhibit as shown).
+
+**Explanation:** According to the official Terraform documentation, when using a module from a registry (such as the Terraform Registry) and omitting the version argument, Terraform will automatically download the latest available version at the time terraform init is run. In the exhibit shown, the module block only contains the source argument and lacks a version constraint, so it is not limited to a specific range as mentioned in the options (unless the latest version happens to coincide with one of them).
+
+**Explanation:**
+
+Option A is incorrect: This answer would correspond to a configuration that explicitly includes version = "> 11.0". Without this line in the code, Terraform does not apply this specific constraint.
+
+Option B is incorrect: This answer would require the configuration version = ">= 11.0". Although often associated with "any version" in practice exams if 11.0 is assumed as the base, technically Terraform without constraints seeks the absolute latest version, not just those above 11.0.
+
+Option C is incorrect: This range represents the behavior of the pessimistic operator ~> 11.0. If the exhibit had version = "~> 11.0", Terraform would allow incremental updates within major version 11 (minor updates), but not version 12.0 or higher.
+
+Option D is incorrect: This range represents the behavior of the ~> 11.0.0 operator. It would only allow patches within version 11.0 (patch updates), blocking any changes in the minor version (such as 11.1.0).
+
+Note: In many certification exams, this question usually includes an additional line like version = "11.0" or similar in the exhibit. The standard behavior is to download the latest available version.

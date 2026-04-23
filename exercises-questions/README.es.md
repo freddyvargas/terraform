@@ -1,4 +1,4 @@
-# Escenario de Certificación de Terraform: Preguntas 2, 3 y 4
+# Escenario de Certificación de Terraform: Preguntas 2, 3, 4 y 5
 
 Este escenario demuestra conceptos clave de Terraform de la Certificación 004. Utiliza el backend `azurerm` de la carpeta `backend-state-bootstrap` con la clave del estado: `exercises-questions-terraform-004portal.tfstate`
 
@@ -70,3 +70,37 @@ Opción D es incorrecta: Durante la inicialización, Terraform busca cualquier m
 Opción A es incorrecta: Agrupar una colección de archivos de configuración que mapean a un archivo de estado es la definición de un módulo (específicamente el módulo raíz o root module), no de un proveedor.
 
 Opción E es incorrecta: Aunque Terraform interactúa con servicios de seguridad, la función de obligar o "hacer cumplir" (enforce) políticas de seguridad y cumplimiento es responsabilidad de herramientas de Policy as Code, como Sentinel (en HCP Terraform/Enterprise) u OPA (Open Policy Agent), y no de los proveedores de infraestructura en sí mismos.
+
+---
+
+## Question No. 5
+
+**Pregunta:** Exhibit:
+```
+module "network" {
+  source = "terraform-google-modules/network/google"
+}
+```
+¿Qué versión del módulo fuente permite Terraform con el bloque module mostrado en el exhibit?
+
+**Opciones:**
+- A) Cualquier versión del módulo > 11.0.
+- B) Cualquier versión del módulo >= 11.0.
+- C) Cualquier versión del módulo >= 11.0 y < 12.0.
+- D) Cualquier versión del módulo >= 11.0.0 y < 11.1.0.
+
+**Respuesta Correcta:** La última versión disponible (ninguna de las opciones proporcionadas es estrictamente correcta para el exhibit como se muestra).
+
+**Explicación:** Según la documentación oficial de Terraform, cuando se utiliza un módulo proveniente de un registro (como el Terraform Registry) y se omite el argumento version, Terraform descargará automáticamente la versión más reciente (latest) disponible en el momento de ejecutar terraform init. En el recorte de pantalla proporcionado, el bloque module solo contiene el argumento source y carece de una restricción de versión, por lo que no se limita a un rango específico como los mencionados en las opciones (a menos que la versión más reciente coincida casualmente con uno de ellos).
+
+**Explicación:**
+
+Opción A es incorrecta: Esta respuesta correspondería a una configuración que incluya explícitamente version = "> 11.0". Sin esta línea en el código, Terraform no aplica esta restricción específica.
+
+Opción B es incorrecta: Esta respuesta requeriría la configuración version = ">= 11.0". Aunque a menudo se asocia con "cualquier versión" en exámenes de práctica si se asume que 11.0 es la base, técnicamente Terraform sin restricciones busca la última versión absoluta, no solo las superiores a la 11.0.
+
+Opción C es incorrecta: Este rango representa el comportamiento del operador pesimista ~> 11.0. Si el exhibit tuviera version = "~> 11.0", Terraform permitiría actualizaciones incrementales dentro de la versión mayor 11 (minor updates), pero no la versión 12.0 o superior.
+
+Opción D es incorrecta: Este rango representa el comportamiento del operador ~> 11.0.0. Solo permitiría parches dentro de la versión 11.0 (patch updates), bloqueando cualquier cambio en la versión menor (como la 11.1.0).
+
+Nota: En muchos exámenes de certificación, esta pregunta suele incluir una línea adicional version = "11.0" o similar en el exhibit. El comportamiento estándar es descargar la versión más reciente disponible.
