@@ -5,6 +5,7 @@ resource "azurerm_resource_group" "example" {
 }
 
 # Create a storage account for Terraform backend
+# This account stores the remote Terraform state in Azure Blob Storage.
 resource "azurerm_storage_account" "backend" {
   name                     = var.storage_account_name
   resource_group_name      = azurerm_resource_group.example.name

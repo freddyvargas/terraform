@@ -1,3 +1,5 @@
+# Backend bootstrap input variables.
+# These values configure the Azure resource group, storage account, and container used for remote state.
 variable "resource_group_location" {
   type        = string
   default     = "eastus"
