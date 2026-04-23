@@ -1,4 +1,4 @@
-# Escenario de Certificación de Terraform: Preguntas 2, 3, 4 y 5
+# Escenario de Certificación de Terraform: Preguntas 2, 3, 4, 5 y 6
 
 Este escenario demuestra conceptos clave de Terraform de la Certificación 004. Utiliza el backend `azurerm` de la carpeta `backend-state-bootstrap` con la clave del estado: `exercises-questions-terraform-004portal.tfstate`
 
@@ -104,3 +104,27 @@ Opción C es incorrecta: Este rango representa el comportamiento del operador pe
 Opción D es incorrecta: Este rango representa el comportamiento del operador ~> 11.0.0. Solo permitiría parches dentro de la versión 11.0 (patch updates), bloqueando cualquier cambio en la versión menor (como la 11.1.0).
 
 Nota: En muchos exámenes de certificación, esta pregunta suele incluir una línea adicional version = "11.0" o similar en el exhibit. El comportamiento estándar es descargar la versión más reciente disponible.
+
+---
+
+## Question No. 6
+
+**Pregunta:** ¿Cuál es la sintaxis correcta para el comando plan?
+
+**Opciones:**
+- A) terraform apply -var-file=tfplan
+- B) terraform plan -target=tfplan
+- C) terraform plan -generate-config-out=tfplan
+- D) terraform plan -out=tfplan
+
+**Respuesta Correcta:** D
+
+**Explicación:** La sintaxis correcta para guardar un plan de ejecución en un archivo es utilizando la opción -out=path con el comando terraform plan. Según la documentación oficial, esto permite guardar el plan generado de forma determinista para que, posteriormente, pueda ser ejecutado exactamente igual mediante terraform apply <PATH>, asegurando que no haya cambios entre la fase de planificación y la de aplicación.
+
+**Explicación:**
+
+Opción A es incorrecta: El comando terraform apply se usa para aplicar cambios, y el flag -var-file se utiliza para cargar valores de variables desde un archivo externo (usualmente .tfvars), no para gestionar archivos de plan.
+
+Opción B es incorrecta: El flag -target se utiliza para limitar la operación de Terraform a un recurso o módulo específico y sus dependencias, no para definir un archivo de salida para el plan.
+
+Opción C es incorrecta: Aunque -generate-config-out es una opción válida introducida en versiones recientes para la generación automática de configuración (HCL) durante procesos de importación, no es la sintaxis estándar ni el propósito general para guardar un plan de ejecución de infraestructura.

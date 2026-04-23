@@ -1,4 +1,4 @@
-# Terraform Certification Scenario: Questions 2, 3, 4, and 5
+# Terraform Certification Scenario: Questions 2, 3, 4, 5, and 6
 
 This scenario demonstrates key Terraform concepts from the Certification 004. It uses the `azurerm` backend from the `backend-state-bootstrap` folder with the backend key: `exercises-questions-terraform-004portal.tfstate`
 
@@ -104,3 +104,27 @@ Option C is incorrect: This range represents the behavior of the pessimistic ope
 Option D is incorrect: This range represents the behavior of the ~> 11.0.0 operator. It would only allow patches within version 11.0 (patch updates), blocking any changes in the minor version (such as 11.1.0).
 
 Note: In many certification exams, this question usually includes an additional line like version = "11.0" or similar in the exhibit. The standard behavior is to download the latest available version.
+
+---
+
+## Question No. 6
+
+**Question:** What's the proper syntax for the plan command?
+
+**Options:**
+- A) terraform apply -var-file=tfplan
+- B) terraform plan -target=tfplan
+- C) terraform plan -generate-config-out=tfplan
+- D) terraform plan -out=tfplan
+
+**Correct Answer:** D
+
+**Explanation:** The correct syntax for saving an execution plan to a file is using the -out=path option with the terraform plan command. According to the official documentation, this allows saving the generated plan deterministically so that it can later be executed exactly the same way using terraform apply <PATH>, ensuring no changes occur between the planning and application phases.
+
+**Explanation:**
+
+Option A is incorrect: The terraform apply command is used to apply changes, and the -var-file flag is used to load variable values from an external file (usually .tfvars), not to manage plan files.
+
+Option B is incorrect: The -target flag is used to limit Terraform's operation to a specific resource or module and its dependencies, not to define an output file for the plan.
+
+Option C is incorrect: Although -generate-config-out is a valid option introduced in recent versions for automatic configuration (HCL) generation during import processes, it is not the standard syntax or general purpose for saving an infrastructure execution plan.
