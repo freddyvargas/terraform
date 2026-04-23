@@ -1,68 +1,72 @@
-# Terraform Certification Scenario: Question No. 2
+# Terraform Certification Scenario: Questions 2, 3, and 4
 
-This scenario demonstrates the simplest correct implementation for reusing a combined string value made from a generated `random_id` and a variable without repeating either expression.
+This scenario demonstrates key Terraform concepts from the Certification 004. It uses the `azurerm` backend from the `backend-state-bootstrap` folder with the backend key: `exercises-questions-terraform-004portal.tfstate`
 
-## Scenario
-- Uses the `azurerm` backend from the `backend-state-bootstrap` folder
-- Backend key: `exercises-questions-terraform-004portal.tfstate`
-- Demonstrates reuse of a combined string through a `local` value
+## Question No. 2
 
-## Exact question/answer from the prompt
+**Question:** You want to create a string that combines a generated random_id and a variable and reuse that string several times in your configuration. What is the simplest correct way to implement this without repeating the random_id and variable?
 
-Question No. 2
-Question: You want to create a string that combines a generated random_id and a variable and reuse that string several times in your configuration. What is the simplest correct way to implement this without repeating the random_id and variable?
-Options:
-A) Use a module.
-B) Add an output value.
-C) Add a local value.
-D) Use a data source.
-Correct Answer: C
-Explanation: La forma más sencilla y eficiente de asignar un nombre a una expresión para reutilizarla múltiples veces dentro de un mismo módulo es mediante el uso de valores locales (locals)
-. Los locals funcionan como constantes o variables temporales dentro de la configuración, permitiendo combinar valores de diferentes fuentes (como un recurso random_id y una variable de entrada) en una sola expresión centralizada. Esto mejora la legibilidad y evita la duplicación de código, facilitando el mantenimiento si la lógica de esa cadena de texto llega a cambiar en el futuro.
-Explanation:
-Opción A es incorrecta: Aunque los módulos permiten la reutilización de configuraciones completas, utilizarlos solo para combinar dos valores simples dentro de un mismo archivo resultaría en una sobreingeniería innecesaria y compleja para el objetivo planteado
-.
-Opción B es incorrecta: Un valor de salida (output) se utiliza para exponer información de un módulo hacia el exterior (al usuario o a otros módulos), no para realizar cálculos internos o combinaciones de cadenas destinadas a ser reutilizadas dentro del mismo bloque de configuración
-.
-Opción D es incorrecta: Una fuente de datos (data source) se utiliza para consultar información de infraestructuras externas a Terraform o recursos ya existentes. No es un mecanismo para realizar manipulaciones de cadenas de texto o lógica interna de variables
-.
+**Options:**
+- A) Use a module.
+- B) Add an output value.
+- C) Add a local value.
+- D) Use a data source.
+
+**Correct Answer:** C
+
+**Explanation:** The simplest and most efficient way to assign a name to an expression for reusing it multiple times within the same module is by using local values (locals). Locals function as constants or temporary variables within the configuration, allowing you to combine values from different sources (such as a random_id resource and an input variable) in a single centralized expression. This improves readability and avoids code duplication, making maintenance easier if the logic of that text string changes in the future.
+
+**Explanation:**
+
+Option A is incorrect: Although modules allow the reuse of complete configurations, using them just to combine two simple values within the same file would result in unnecessary and complex over-engineering for the stated objective.
+
+Option B is incorrect: An output value is used to expose information from a module to the outside (to the user or to other modules), not to perform internal calculations or string combinations meant to be reused within the same configuration block.
+
+Option D is incorrect: A data source is used to query information from infrastructures external to Terraform or already existing resources. It is not a mechanism for performing text string manipulations or internal variable logic.
 
 ---
 
-## Exact question/answer from the prompt
+## Question No. 3
 
-Question No. 3
-Question: Which task does terraform init not perform?
-Options:
-A) Discovers all providers used in the configuration and downloads them.
-B) Validates that values are set for all required input variables.
-C) Connects to the configured backend.
-D) Discovers any remote modules and downloads them.
-Correct Answer: B
-Explanation: El comando terraform init se utiliza exclusivamente para inicializar un directorio de trabajo que contiene archivos de configuración de Terraform
-. Su función principal es la preparación del entorno, lo cual incluye la descarga de complementos (plugins) y la configuración del backend. Sin embargo, no realiza validaciones sobre los valores de las variables de entrada; ese proceso de validación y verificación de que todas las variables requeridas tengan un valor asignado ocurre durante las etapas de terraform plan o terraform apply.
-Explanation:
-Opción A es incorrecta: Esta es una de las tareas principales de terraform init. El comando escanea la configuración, identifica los proveedores necesarios (como AWS, Azure, GCP) y descarga los binarios correspondientes en el directorio local .terraform
-.
-Opción C es incorrecta: terraform init es el comando responsable de inicializar el backend configurado en el bloque terraform. Esto incluye establecer la conexión y, si es necesario, migrar el estado existente al nuevo backend
-.
-Opción D es incorrecta: Durante la inicialización, Terraform busca cualquier módulo remoto referenciado en la configuración y descarga el código fuente de dichos módulos al directorio local para que puedan ser utilizados en la implementación
+**Question:** Which task does terraform init not perform?
+
+**Options:**
+- A) Discovers all providers used in the configuration and downloads them.
+- B) Validates that values are set for all required input variables.
+- C) Connects to the configured backend.
+- D) Discovers any remote modules and downloads them.
+
+**Correct Answer:** B
+
+**Explanation:** The terraform init command is used exclusively to initialize a working directory containing Terraform configuration files. Its main function is environment preparation, which includes downloading plugins (plugins) and configuring the backend. However, it does not perform validations on input variable values; this validation and verification process that all required variables have an assigned value occurs during the terraform plan or terraform apply stages.
+
+**Explanation:**
+
+Option A is incorrect: This is one of the main tasks of terraform init. The command scans the configuration, identifies the necessary providers (such as AWS, Azure, GCP) and downloads the corresponding binaries to the local .terraform directory.
+
+Option C is incorrect: terraform init is the command responsible for initializing the backend configured in the terraform block. This includes establishing the connection and, if necessary, migrating existing state to the new backend.
+
+Option D is incorrect: During initialization, Terraform searches for any remote modules referenced in the configuration and downloads the source code of those modules to the local directory so they can be used in the deployment.
 
 ---
 
-## Exact question/answer from the prompt
+## Question No. 4
 
-Question No. 4
-Question: What functionality do providers offer in Terraform? (Pick the 3 correct responses below.)
-Options:
-A) Group a collection of Terraform configuration files that map to a single state file.
-B) Provision resources for on-premises infrastructure services.
-C) Provision resources for public cloud infrastructure services.
-D) Interact with cloud provider APIs.
-E) Enforce security and compliance policies.
-Correct Answer: B, C, D
-Explanation: Los proveedores (providers) son la base de la extensibilidad de Terraform. Su función principal es servir como una capa de abstracción que traduce el código HCL en llamadas a APIs específicas (Opción D)
-. Gracias a esta arquitectura de plugins, Terraform puede gestionar una variedad inmensa de servicios, incluyendo tanto nubes públicas como AWS, Google Cloud o Azure (Opción C), como infraestructuras locales o on-premises como VMware, OpenStack o Kubernetes (Opción B)
-. Explanation:
-La Opción A es incorrecta: Agrupar una colección de archivos de configuración que mapean a un archivo de estado es la definición de un módulo (específicamente el módulo raíz o root module), no de un proveedor
-. La Opción E es incorrecta: Aunque Terraform interactúa con servicios de seguridad, la función de obligar o "hacer cumplir" (enforce) políticas de seguridad y cumplimiento es responsabilidad de herramientas de Policy as Code, como Sentinel (en HCP Terraform/Enterprise) o OPA (Open Policy Agent), y no de los proveedores de infraestructura en sí mismos
+**Question:** What functionality do providers offer in Terraform? (Pick the 3 correct responses below.)
+
+**Options:**
+- A) Group a collection of Terraform configuration files that map to a single state file.
+- B) Provision resources for on-premises infrastructure services.
+- C) Provision resources for public cloud infrastructure services.
+- D) Interact with cloud provider APIs.
+- E) Enforce security and compliance policies.
+
+**Correct Answer:** B, C, D
+
+**Explanation:** Providers are the foundation of Terraform's extensibility. Their main function is to serve as an abstraction layer that translates HCL code into calls to specific APIs (Option D). Thanks to this plugin architecture, Terraform can manage a vast variety of services, including both public clouds such as AWS, Google Cloud or Azure (Option C), as well as on-premises or local infrastructures such as VMware, OpenStack or Kubernetes (Option B).
+
+**Explanation:**
+
+Option A is incorrect: Grouping a collection of configuration files that map to a state file is the definition of a module (specifically the root module), not a provider.
+
+Option E is incorrect: Although Terraform interacts with security services, the function of enforcing security and compliance policies is the responsibility of Policy as Code tools, such as Sentinel (in HCP Terraform/Enterprise) or OPA (Open Policy Agent), and not of the infrastructure providers themselves.
