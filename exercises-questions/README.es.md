@@ -12,6 +12,13 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 - [Question No. 7](#question-no-7)
 - [Question No. 8](#question-no-8)
 - [Question No. 9](#question-no-9)
+- [Question No. 10](#question-no-10)
+- [Question No. 11](#question-no-11)
+- [Question No. 12](#question-no-12)
+- [Question No. 13](#question-no-13)
+- [Question No. 14](#question-no-14)
+- [Question No. 15](#question-no-15)
+- [Question No. 16](#question-no-16)
 
 ## Question No. 2
 
@@ -221,3 +228,192 @@ Opción B es incorrecta: El comando terraform show se utiliza para mostrar una v
 Opción C es incorrecta: terraform refresh tiene como objetivo actualizar el archivo de estado local con la infraestructura real que se encuentra en la nube. No tiene funciones de visualización ni generación de gráficos.
 
 Opción D es incorrecta: El comando terraform output se usa específicamente para extraer y mostrar los valores de las variables de salida que se han definido en la configuración, permitiendo consultar datos específicos del estado sin necesidad de leer todo el archivo.
+
+---
+
+## Question No. 10
+
+**Pregunta:** Which features do HCP Terraform workspaces provide that are not available in Terraform Community Edition? (Pick the 3 correct responses below.)
+
+**Opciones:**
+- A) State versions and run history.
+- B) Automatic detection of common security issues.
+- C) Store Terraform and environment variables in variable sets.
+- D) Remote execution of Terraform operations.
+- E) Store your configuration in a Version Control System (VCS).
+- F) Support for multiple cloud providers.
+
+**Respuesta Correcta:** A, C, D
+
+**Explicación:** Los workspaces de HCP Terraform incluyen capacidades de plataforma que van más allá de Terraform Community Edition. Mantienen historial completo de ejecuciones y versionado del estado (Opción A), permiten gestionar y reutilizar variables de Terraform y de entorno mediante variable sets (Opción C), y habilitan la ejecución remota de planes y applies en un entorno controlado (Opción D). Estas son funciones clave de colaboración y gobernanza propias de los workspaces de HCP Terraform.
+
+**Explicación:**
+
+Opción B es incorrecta: Aunque HCP Terraform puede integrarse con flujos de políticas y seguridad, la "detección automática de problemas comunes de seguridad" no es una capacidad base del workspace de la misma forma directa que historial de estado, variable sets o ejecución remota.
+
+Opción E es incorrecta: Almacenar la configuración en un VCS es una práctica general de desarrollo y también está disponible con Terraform Community Edition; no es exclusivo de los workspaces de HCP Terraform.
+
+Opción F es incorrecta: Terraform en sí (incluyendo Community Edition) es multi-cloud por diseño mediante providers, por lo que esta capacidad no es exclusiva de HCP Terraform workspaces.
+
+---
+
+## Question No. 11
+
+**Pregunta:** ¿Qué tipo de bloque de configuración gestiona un objeto de infraestructura con configuraciones especificadas dentro del bloque?
+
+**Opciones:**
+- A) resource
+- B) provider
+- C) data
+- D) locals
+
+**Respuesta Correcta:** A
+
+**Explicación:** El bloque `resource` es el bloque de configuración principal en Terraform utilizado para definir objetos de infraestructura que serán creados, actualizados o destruidos. Especifica el tipo de recurso, su nombre y los argumentos de configuración que definen cómo debe gestionarse la infraestructura. El bloque resource es donde declaras los recursos reales de la nube (como instancias de computación, redes, bases de datos, etc.) que Terraform provisionará y gestionará a lo largo de su ciclo de vida.
+
+**Explicación:**
+
+Opción B es incorrecta: El bloque `provider` se utiliza para configurar la conexión y autenticación con un proveedor de nube (como AWS, Azure o GCP), no para gestionar objetos individuales de infraestructura.
+
+Opción C es incorrecta: El bloque `data` es una fuente de datos (data source) que consulta información sobre infraestructura existente o fuentes de datos externas; no crea ni gestiona nuevos objetos de infraestructura.
+
+Opción D es incorrecta: El bloque `locals` define valores locales y expresiones que pueden reutilizarse dentro de la configuración por conveniencia y legibilidad, pero no gestiona ni crea objetos de infraestructura.
+
+---
+
+## Question No. 12
+
+**Pregunta:** ¿Cuál es un beneficio de usar herramientas de infraestructura como código (IaC) comparado con APIs de plataforma nativas?
+
+**Opciones:**
+- A) IaC te permite escribir cada llamada API requerida para alcanzar la configuración deseada.
+- B) IaC llama herramientas nativas de línea de comandos, que son más eficientes que las llamadas API.
+- C) Las configuraciones de IaC definen el estado actual de la infraestructura, lo que te permite identificar las llamadas API correctas para hacer cambios.
+- D) Las configuraciones de IaC definen el estado final de la infraestructura sin tener que escribir llamadas API para alcanzar la configuración deseada.
+
+**Respuesta Correcta:** D
+
+**Explicación:** El beneficio principal de usar herramientas IaC como Terraform es que declaras el estado final deseado de tu infraestructura en código, y la herramienta maneja automáticamente todas las llamadas API y pasos de orquestación necesarios para alcanzar ese estado. No necesitas escribir manualmente cada llamada API individual; en cambio, describes lo que quieres y Terraform determina cómo lograrlo. Este enfoque declarativo es más mantenible, repetible y menos propenso a errores que escribir manualmente las llamadas API.
+
+**Explicación:**
+
+Opción A es incorrecta: IaC en realidad abstrae la necesidad de escribir cada llamada API individual. Eso es lo opuesto de lo que IaC proporciona: maneja las llamadas API por ti en función de tus declaraciones.
+
+Opción B es incorrecta: IaC no inherentemente llama herramientas nativas de línea de comandos ni las hace más eficientes que las llamadas API. Las herramientas IaC típicamente usan APIs directamente para orquestación.
+
+Opción C es incorrecta: Las configuraciones de IaC definen el estado deseado final de la infraestructura (enfoque declarativo), no el estado actual. Aunque IaC puede consultar el estado actual para identificar drift, el concepto principal es declarar el estado objetivo, no analizar el estado actual para determinar llamadas API.
+
+---
+
+## Question No. 13
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Exhibit:
+
+Configuración del módulo raíz:
+```
+output vnet_id {
+  value = module.my_network.vnet_id
+}
+```
+
+Error:
+```
+Error: Reference to undeclared output value
+
+on main.tf line 12, in output vnet_id:
+12: value = module.my_network.vnet_id
+```
+
+Estás usando un módulo de networking en tu configuración de Terraform con el nombre `my_network`. Tu módulo raíz incluye la configuración mostrada. Cuando ejecutas `terraform validate`, obtienes el error mostrado. ¿Cuál opción recuperaría exitosamente este valor de tu módulo de networking?
+
+**Opciones:**
+- A) Cambia el valor referenciado a `module.my_network.outputs.vnet_id`.
+- B) Define el atributo `vnet_id` como una variable en el módulo de networking.
+- C) Cambia el valor referenciado a `my_network.outputs.vnet_id`.
+- D) Define el atributo `vnet_id` como un output en el módulo de networking.
+
+**Respuesta Correcta:** D
+
+**Explicación:** El error "Reference to undeclared output value" (Referencia a un valor de salida no declarado) ocurre porque el módulo de networking `my_network` no tiene un output llamado `vnet_id` declarado. En Terraform, solo puedes referenciar outputs de módulos que hayan sido explícitamente definidos usando el bloque `output` dentro de ese módulo. La sintaxis `module.my_network.vnet_id` es correcta para acceder a outputs de módulos, pero el módulo debe primero declarar `vnet_id` como un output. Una vez que agregues un bloque `output vnet_id` al módulo de networking, la referencia en el módulo raíz funcionará correctamente.
+
+**Explicación:**
+
+Opción A es incorrecta: La sintaxis correcta para acceder a outputs de módulos es `module.<nombre_módulo>.<nombre_output>`, no `module.<nombre_módulo>.outputs.<nombre_output>`. La sintaxis `.outputs` no es válida en Terraform.
+
+Opción B es incorrecta: Definir `vnet_id` como una variable en el módulo de networking no ayuda a recuperarlo desde el módulo raíz. Las variables son entradas a un módulo, no salidas. Para exponer un valor de un módulo, debe ser declarado como un output.
+
+Opción C es incorrecta: La forma correcta de referenciar un output de módulo es usando el prefijo `module.`. Sin el prefijo `module.`, Terraform intentaría encontrar un valor local o recurso llamado `my_network`, que no existe.
+
+---
+
+## Question No. 14
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Puedes definir múltiples bloques backend en tu configuración de Terraform para almacenar tu estado en múltiples ubicaciones.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** En Terraform, solo puedes definir un bloque backend por configuración. El bloque backend especifica dónde y cómo se almacena el estado de Terraform. Si intentas definir múltiples bloques backend en la misma configuración, Terraform retornará un error. Aunque puedes cambiar entre diferentes configuraciones de backend usando el flag `-reconfigure` durante `terraform init`, solo un backend puede estar activo a la vez en un directorio de trabajo dado. Si necesitas gestionar infraestructura en múltiples ubicaciones o entornos, el enfoque recomendado es usar workspaces separados de Terraform o directorios de configuración separados para cada destino de backend.
+
+**Explicación:**
+
+Opción A es incorrecta: Terraform solo permite un único bloque backend por configuración. Intentar definir múltiples backends resultará en un error de configuración durante la inicialización.
+
+---
+
+## Question No. 15
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Necesitas destruir todos los recursos en tu workspace de Terraform, excepto por `aws_instance.ubuntu[1]`, que quieres mantener. ¿Cómo puedes decirle a Terraform que deje de gestionar ese recurso específico sin destruirlo?
+
+**Opciones:**
+- A) Elimina el bloque de recurso de tu configuración.
+- B) Cambia el valor del argumento count en el recurso.
+- C) Ejecuta `terraform state rm aws_instance.ubuntu[1]`.
+- D) Usa un bloque moved.
+
+**Respuesta Correcta:** C
+
+**Explicación:** El comando `terraform state rm` elimina un recurso del archivo de estado de Terraform sin destruir el recurso de infraestructura actual. Esto significa que Terraform ya no rastreará ni gestionará ese recurso específico. Cuando luego ejecutes `terraform destroy`, los recursos especificados en tu configuración serán destruidos, pero el recurso eliminado del estado se dejará intacto en tu proveedor de nube. Esta es la forma más limpia de mantener un recurso vivo mientras lo eliminas de la gestión de Terraform, ya que no requiere modificar tu configuración.
+
+**Explicación:**
+
+Opción A es incorrecta: Simplemente eliminar el bloque de recurso de la configuración y ejecutar `terraform destroy` o `terraform apply` destruiría el recurso, que es lo opuesto a lo que quieres.
+
+Opción B es incorrecta: Cambiar el argumento count no evita que Terraform destruya el recurso; solo cambiaría cuáles instancias son gestionadas por el nuevo valor de count.
+
+Opción D es incorrecta: El bloque `moved` se utiliza para refactorizar y reorganizar recursos dentro del estado durante cambios de configuración, no para preservar un recurso de la destrucción.
+
+---
+
+## Question No. 16
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Actualizaste tu configuración de Terraform y necesitas obtener una vista previa de los cambios propuestos a tu infraestructura. ¿Qué comando deberías ejecutar?
+
+**Opciones:**
+- A) terraform show
+- B) terraform plan
+- C) terraform validate
+- D) terraform get
+
+**Respuesta Correcta:** B
+
+**Explicación:** El comando `terraform plan` analiza tu configuración actualizada y muestra una vista previa detallada de los cambios que Terraform haría en tu infraestructura. Esto incluye recursos que serán creados, modificados o destruidos, junto con los cambios específicos de propiedades. Ejecutar `terraform plan` antes de `terraform apply` es una mejor práctica que te permite revisar y verificar todos los cambios propuestos antes de que sean aplicados realmente a tu infraestructura.
+
+**Explicación:**
+
+Opción A es incorrecta: El comando `terraform show` muestra el estado actual de tu infraestructura o un archivo de plan guardado, pero no genera una vista previa de cambios propuestos basado en tu configuración actualizada.
+
+Opción C es incorrecta: El comando `terraform validate` solo verifica la sintaxis y estructura de tu configuración de Terraform buscando errores, pero no genera una vista previa de cambios de infraestructura.
+
+Opción D es incorrecta: El comando `terraform get` se utiliza para descargar y actualizar dependencias de módulos desde fuentes remotas; no genera una vista previa de cambios propuestos a la infraestructura.

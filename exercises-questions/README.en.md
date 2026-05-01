@@ -12,6 +12,13 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 - [Question No. 7](#question-no-7)
 - [Question No. 8](#question-no-8)
 - [Question No. 9](#question-no-9)
+- [Question No. 10](#question-no-10)
+- [Question No. 11](#question-no-11)
+- [Question No. 12](#question-no-12)
+- [Question No. 13](#question-no-13)
+- [Question No. 14](#question-no-14)
+- [Question No. 15](#question-no-15)
+- [Question No. 16](#question-no-16)
 
 ## Question No. 2
 
@@ -221,3 +228,192 @@ Option B is incorrect: The terraform show command is used to display a human-rea
 Option C is incorrect: terraform refresh aims to update the local state file with the actual infrastructure found in the cloud. It has no visualization or graph generation functions.
 
 Option D is incorrect: The terraform output command is specifically used to extract and display the values of output variables that have been defined in the configuration, allowing querying specific data from the state without needing to read the entire file.
+
+---
+
+## Question No. 10
+
+**Question:** Which features do HCP Terraform workspaces provide that are not available in Terraform Community Edition? (Pick the 3 correct responses below.)
+
+**Options:**
+- A) State versions and run history.
+- B) Automatic detection of common security issues.
+- C) Store Terraform and environment variables in variable sets.
+- D) Remote execution of Terraform operations.
+- E) Store your configuration in a Version Control System (VCS).
+- F) Support for multiple cloud providers.
+
+**Correct Answer:** A, C, D
+
+**Explanation:** HCP Terraform workspaces include platform capabilities that go beyond Terraform Community Edition. They keep a complete run history and state versioning (Option A), allow centralized management and reuse of Terraform and environment variables through variable sets (Option C), and provide remote execution of plans/applies in a controlled environment (Option D). These are core collaboration and governance features of HCP Terraform workspaces.
+
+**Explanation:**
+
+Option B is incorrect: While HCP Terraform can integrate policy and security workflows, "automatic detection of common security issues" is not a core workspace feature in the same direct way as state history, variable sets, or remote execution.
+
+Option E is incorrect: Storing configuration in a VCS is a general development practice and is also available when using Terraform Community Edition; it is not exclusive to HCP Terraform workspaces.
+
+Option F is incorrect: Terraform itself (including Community Edition) is multi-cloud by design through providers, so this capability is not unique to HCP Terraform workspaces.
+
+---
+
+## Question No. 11
+
+**Question:** What kind of configuration block will manage an infrastructure object with settings specified within the block?
+
+**Options:**
+- A) resource
+- B) provider
+- C) data
+- D) locals
+
+**Correct Answer:** A
+
+**Explanation:** The `resource` block is the primary configuration block in Terraform used to define infrastructure objects that will be created, updated, or destroyed. It specifies the resource type, name, and configuration arguments that define how the infrastructure should be managed. The resource block is where you declare the actual cloud resources (like compute instances, networks, databases, etc.) that Terraform will provision and manage throughout their lifecycle.
+
+**Explanation:**
+
+Option B is incorrect: The `provider` block is used to configure the connection and authentication settings for a cloud provider (like AWS, Azure, or GCP), not to manage individual infrastructure objects.
+
+Option C is incorrect: The `data` block is a data source that queries information about existing infrastructure or external data sources; it does not create or manage new infrastructure objects.
+
+Option D is incorrect: The `locals` block defines local values and expressions that can be reused within the configuration for convenience and readability, but it does not manage or create infrastructure objects.
+
+---
+
+## Question No. 12
+
+**Question:** Which is a benefit of using infrastructure as code (IaC) tools compared to native platform APIs?
+
+**Options:**
+- A) IaC allows you to write each API call required to reach the desired configuration.
+- B) IaC calls native command line tools, which are more efficient than API calls.
+- C) IaC configurations define the current state of infrastructure, which allows you to identify the correct API calls to make changes.
+- D) IaC configurations define the end state of infrastructure without having to write API calls to reach the desired configuration.
+
+**Correct Answer:** D
+
+**Explanation:** The primary benefit of using IaC tools like Terraform is that you declare the desired end state of your infrastructure in code, and the tool automatically handles all the necessary API calls and orchestration steps to reach that state. You don't need to manually script each individual API call; instead, you describe what you want, and Terraform figures out how to get there. This declarative approach is more maintainable, repeatable, and less error-prone than manually writing API calls.
+
+**Explanation:**
+
+Option A is incorrect: IaC actually abstracts away the need to write each individual API call. That is the opposite of what IaC provides—it handles the API calls for you based on your declarations.
+
+Option B is incorrect: IaC doesn't inherently call native command line tools or make them more efficient than API calls. IaC tools typically use APIs directly for orchestration.
+
+Option C is incorrect: IaC configurations define the desired end state of infrastructure (declarative), not the current state. While IaC can query the current state to identify drift, the main concept is declaring the target state, not analyzing current state to determine API calls.
+
+---
+
+## Question No. 13
+
+**Question Type:** Single Choice
+
+**Question:** Exhibit:
+
+Root module configuration:
+```
+output vnet_id {
+  value = module.my_network.vnet_id
+}
+```
+
+Error:
+```
+Error: Reference to undeclared output value
+
+on main.tf line 12, in output vnet_id:
+12: value = module.my_network.vnet_id
+```
+
+You are using a networking module in your Terraform configuration with the name `my_network`. Your root module includes the configuration shown. When you run `terraform validate`, you get the error shown. Which option would successfully retrieve this value from your networking module?
+
+**Options:**
+- A) Change the referenced value to `module.my_network.outputs.vnet_id`.
+- B) Define the attribute `vnet_id` as a variable in the networking module.
+- C) Change the referenced value to `my_network.outputs.vnet_id`.
+- D) Define the attribute `vnet_id` as an output in the networking module.
+
+**Correct Answer:** D
+
+**Explanation:** The error "Reference to undeclared output value" occurs because the networking module `my_network` does not have an output named `vnet_id` declared. In Terraform, you can only reference module outputs that have been explicitly defined using the `output` block within that module. The syntax `module.my_network.vnet_id` is correct for accessing module outputs, but the module must first declare `vnet_id` as an output. Once you add an `output vnet_id` block to the networking module, the reference in the root module will work correctly.
+
+**Explanation:**
+
+Option A is incorrect: The correct syntax for accessing module outputs is `module.<module_name>.<output_name>`, not `module.<module_name>.outputs.<output_name>`. The `.outputs` syntax is not valid in Terraform.
+
+Option B is incorrect: Defining `vnet_id` as a variable in the networking module does not help retrieve it from the root module. Variables are inputs to a module, not outputs. To expose a value from a module, it must be declared as an output.
+
+Option C is incorrect: The correct way to reference a module output is using the `module.` prefix. Without the `module.` prefix, Terraform would try to find a local value or resource named `my_network`, which does not exist.
+
+---
+
+## Question No. 14
+
+**Question Type:** Single Choice
+
+**Question:** You can define multiple backend blocks in your Terraform configuration to store your state in multiple locations.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** In Terraform, you can only define one backend block per configuration. The backend block specifies where and how Terraform state is stored. If you attempt to define multiple backend blocks in the same configuration, Terraform will return an error. While you can switch between different backend configurations using the `-reconfigure` flag during `terraform init`, only one backend can be active at a time in a given working directory. If you need to manage infrastructure across multiple locations or environments, the recommended approach is to use separate Terraform workspaces or separate configuration directories for each backend target.
+
+**Explanation:**
+
+Option A is incorrect: Terraform only allows a single backend block per configuration. Attempting to define multiple backends will result in a configuration error during initialization.
+
+---
+
+## Question No. 15
+
+**Question Type:** Single Choice
+
+**Question:** You need to destroy all of the resources in your Terraform workspace, except for `aws_instance.ubuntu[1]`, which you want to keep. How can you tell Terraform to stop managing that specific resource without destroying it?
+
+**Options:**
+- A) Remove the resource block from your configuration.
+- B) Change the value of the count argument on the resource.
+- C) Run `terraform state rm aws_instance.ubuntu[1]`.
+- D) Use a moved block.
+
+**Correct Answer:** C
+
+**Explanation:** The `terraform state rm` command removes a resource from the Terraform state file without destroying the actual infrastructure resource. This means that Terraform will no longer track or manage that specific resource. When you then run `terraform destroy`, the resources specified in your configuration will be destroyed, but the resource removed from state will be left untouched in your cloud provider. This is the cleanest way to keep a resource alive while removing it from Terraform management, as it doesn't require modifying your configuration.
+
+**Explanation:**
+
+Option A is incorrect: Simply removing the resource block from configuration and running `terraform destroy` or `terraform apply` would destroy the resource, which is the opposite of what you want.
+
+Option B is incorrect: Changing the count argument doesn't stop Terraform from destroying the resource; it would only change which instances are managed by the new count value.
+
+Option D is incorrect: The `moved` block is used to refactor and reorganize resources within state during configuration changes, not to preserve a resource from destruction.
+
+---
+
+## Question No. 16
+
+**Question Type:** Single Choice
+
+**Question:** You've updated your Terraform configuration, and you need to preview the proposed changes to your infrastructure. Which command should you run?
+
+**Options:**
+- A) terraform show
+- B) terraform plan
+- C) terraform validate
+- D) terraform get
+
+**Correct Answer:** B
+
+**Explanation:** The `terraform plan` command analyzes your updated configuration and displays a detailed preview of the changes that Terraform would make to your infrastructure. This includes resources that will be created, modified, or destroyed, along with the specific property changes. Running `terraform plan` before `terraform apply` is a best practice that allows you to review and verify all proposed changes before they are actually applied to your infrastructure.
+
+**Explanation:**
+
+Option A is incorrect: The `terraform show` command displays the current state of your infrastructure or a saved plan file, but it does not generate a preview of proposed changes based on your updated configuration.
+
+Option C is incorrect: The `terraform validate` command only checks the syntax and structure of your Terraform configuration for errors, but it does not generate a preview of infrastructure changes.
+
+Option D is incorrect: The `terraform get` command is used to download and update module dependencies from remote sources; it does not generate a preview of proposed changes to infrastructure.
