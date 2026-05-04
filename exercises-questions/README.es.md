@@ -19,6 +19,10 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 - [Question No. 14](#question-no-14)
 - [Question No. 15](#question-no-15)
 - [Question No. 16](#question-no-16)
+- [Question No. 17](#question-no-17)
+- [Question No. 18](#question-no-18)
+- [Question No. 19](#question-no-19)
+- [Question No. 20](#question-no-20)
 
 ## Question No. 2
 
@@ -417,3 +421,116 @@ Opción A es incorrecta: El comando `terraform show` muestra el estado actual de
 Opción C es incorrecta: El comando `terraform validate` solo verifica la sintaxis y estructura de tu configuración de Terraform buscando errores, pero no genera una vista previa de cambios de infraestructura.
 
 Opción D es incorrecta: El comando `terraform get` se utiliza para descargar y actualizar dependencias de módulos desde fuentes remotas; no genera una vista previa de cambios propuestos a la infraestructura.
+
+---
+
+## Question No. 17
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Exhibit:
+
+```
+data vsphere_datacenter dc {}
+
+resource vsphere_folder parent {
+  path = Production
+  type = vm
+
+  datacenter_id = ________
+}
+```
+
+Quieres pasar el id del data source `vsphere_datacenter` al argumento `datacenter_id` del recurso `vsphere_folder`. ¿Qué referencia usarías?
+
+**Opciones:**
+- A) `data.vsphere_datacenter.dc.id`
+- B) `vsphere_datacenter.dc.id`
+- C) `data.vsphere_datacenter.dc`
+- D) `data.de.id`
+
+**Respuesta Correcta:** A
+
+**Explicación:** En Terraform, la forma correcta de referenciar un atributo de un data source es `data.<tipo_data_source>.<nombre>.<atributo>`. Aquí, el tipo de data source es `vsphere_datacenter`, el nombre local es `dc`, y el atributo requerido es `id`, por lo tanto la expresión correcta es `data.vsphere_datacenter.dc.id`.
+
+**Explicación:**
+
+Opción B es incorrecta: Le falta el prefijo obligatorio `data.` que identifica que se trata de un data source.
+
+Opción C es incorrecta: Esto referencia el objeto completo del data source y no el atributo `id` que requiere `datacenter_id`.
+
+Opción D es incorrecta: `de` no es el nombre declarado de ningún data source en el exhibit, por lo que la referencia es inválida.
+
+---
+
+## Question No. 18
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Puedes configurar múltiples bloques cloud en tu configuración de Terraform para conectar tu workspace tanto a HCP Terraform como a tu instancia de Terraform Enterprise.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Terraform permite solo un bloque `cloud` en una configuración dada. El bloque `cloud` configura operaciones remotas para un único destino de HCP Terraform o Terraform Enterprise. No puedes definir múltiples bloques `cloud` para conectar una misma configuración a múltiples plataformas remotas de Terraform al mismo tiempo.
+
+**Explicación:**
+
+Opción A es incorrecta: No está soportado usar múltiples bloques `cloud` en la misma configuración.
+
+---
+
+## Question No. 19
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Un valor local de Terraform puede referenciar otros valores locales de Terraform.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** En Terraform, los valores locales pueden referenciar otros valores locales dentro del mismo módulo, lo cual ayuda a componer expresiones reutilizables y evitar duplicación. La única restricción es evitar dependencias circulares.
+
+**Explicación:**
+
+Opción B es incorrecta: Esta afirmación es falsa porque Terraform sí permite referencias entre valores locales.
+
+---
+
+## Question No. 20
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Exhibit:
+
+```
+resource kubernetes_namespace example {
+  name = test
+}
+```
+
+Se muestra un bloque de recurso en el exhibit. ¿Cómo referenciarías el atributo name de este recurso en HCL?
+
+**Opciones:**
+- A) kubernetes_namespace.example,name
+- B) kubernetes_namespace.test.name
+- C) data.kubernetes_namespace.name
+- D) resource.kubernetes_namespace.example.name
+
+**Respuesta Correcta:** A
+
+**Explicación:** El formato canónico de Terraform para referenciar un atributo de un recurso administrado es `<tipo_recurso>.<nombre_recurso>.<atributo>`. Para este recurso, sería `kubernetes_namespace.example.name`. La opción A es la opción intencionada porque referencia el tipo y nombre del recurso declarado.
+
+**Explicación:**
+
+Opción B es incorrecta: `test` es el valor asignado al argumento `name`, no la etiqueta del recurso en Terraform.
+
+Opción C es incorrecta: Esto usa el prefijo `data` para data sources, pero el exhibit muestra un recurso administrado, no un data source.
+
+Opción D es incorrecta: Las referencias de recursos en Terraform no usan el prefijo inicial `resource.`.
