@@ -23,6 +23,10 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 - [Question No. 18](#question-no-18)
 - [Question No. 19](#question-no-19)
 - [Question No. 20](#question-no-20)
+- [Question No. 21](#question-no-21)
+- [Question No. 22](#question-no-22)
+- [Question No. 23](#question-no-23)
+- [Question No. 24](#question-no-24)
 
 ## Question No. 2
 
@@ -534,3 +538,122 @@ Option B is incorrect: `test` is the value assigned to the `name` argument, not 
 Option C is incorrect: This uses the `data` prefix for data sources, but the exhibit shows a managed resource block, not a data source.
 
 Option D is incorrect: Terraform resource references do not use a leading `resource.` prefix.
+
+---
+
+## Question No. 21
+
+**Question Type:** Single Choice
+
+**Question:** Exhibit:
+
+```
+resource azurerm_linux_web_app app {
+  name                = example-app
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  service_plan_id     = azurerm_service_plan.plan.id
+  identity {
+    type         = UserAssigned
+    identity_ids = [azurerm_user_assigned_identity.app.id]
+  }
+}
+
+resource azurerm_role_assignment kv_access {
+  scope                = azurerm_key_vault.kv.id
+  role_definition_name = Key Vault Secrets User
+  principal_id         = azurerm_user_assigned_identity.app.principal_id
+}
+```
+
+Two resource blocks are shown: `azurerm_linux_web_app` and `azurerm_role_assignment`. When provisioned, the web app will use the role assignment during creation, so the role assignment must be created first. How do you ensure the `azurerm_role_assignment` resource is created first?
+
+**Options:**
+- A) Add a `depends_on` argument to the `azurerm_linux_web_app`.
+- B) Add a `create_before_destroy` argument to the `azurerm_role_assignment`.
+- C) Change the order of the `azurerm_linux_web_app` and `azurerm_role_assignment` blocks.
+- D) Add a `count` argument to both resources.
+
+**Correct Answer:** A
+
+**Explanation:** To guarantee creation order in Terraform when there is a required dependency, use `depends_on`. By adding `depends_on = [azurerm_role_assignment.kv_access]` to the web app resource, Terraform will explicitly create the role assignment first, then create the web app.
+
+**Explanation:**
+
+Option B is incorrect: `create_before_destroy` controls replacement behavior during updates, not initial dependency ordering between two different resources.
+
+Option C is incorrect: The order of blocks in Terraform files does not control resource creation order.
+
+Option D is incorrect: `count` controls how many instances are created, not dependency order.
+
+---
+
+## Question No. 22
+
+**Question Type:** Single Choice
+
+**Question:** Your team is collaborating on infrastructure using Terraform and wants to format code to follow Terraform language style conventions. How can you update your code to meet these requirements?
+
+**Options:**
+- A) Run `terraform fmt` to update your Terraform configurations.
+- B) Replace all tabs with spaces within your Terraform configuration files.
+- C) Run `terraform validate` prior to executing `terraform plan` or `terraform apply`.
+- D) Terraform automatically formats configuration on `terraform apply`.
+
+**Correct Answer:** A
+
+**Explanation:** `terraform fmt` is the built-in formatter for Terraform configuration files. It rewrites files to follow canonical Terraform style conventions, ensuring consistent formatting across the team.
+
+**Explanation:**
+
+Option B is incorrect: Manual whitespace replacement does not guarantee full Terraform style compliance.
+
+Option C is incorrect: `terraform validate` checks syntax and validity, but it does not format files.
+
+Option D is incorrect: `terraform apply` does not auto-format configuration files.
+
+---
+
+## Question No. 23
+
+**Question Type:** Single Choice
+
+**Question:** When using multiple configurations of the same Terraform provider, what meta-argument must you include in any non-default provider configurations?
+
+**Options:**
+- A) depends_on
+- B) alias
+- C) name
+- D) id
+
+**Correct Answer:** B
+
+**Explanation:** In Terraform, additional configurations of the same provider must use the `alias` meta-argument. This lets you define and reference multiple distinct provider instances.
+
+**Explanation:**
+
+Option A is incorrect: `depends_on` is used for dependency relationships, not to distinguish provider configurations.
+
+Option C is incorrect: `name` is not the meta-argument used for non-default provider instances.
+
+Option D is incorrect: `id` is not a provider configuration meta-argument.
+
+---
+
+## Question No. 24
+
+**Question Type:** Single Choice
+
+**Question:** When declaring a variable, setting the `sensitive` argument to true will prevent the value from being stored in the state file.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Marking a variable as `sensitive = true` only affects how Terraform displays values in CLI output and logs. It does not prevent the value from being stored in state. Sensitive data can still be present in the state file, so state protection (encryption, access control, secure backend) is still required.
+
+**Explanation:**
+
+Option A is incorrect: Sensitive values are still stored in state; they are just redacted in many outputs.

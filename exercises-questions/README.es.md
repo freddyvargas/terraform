@@ -23,6 +23,10 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 - [Question No. 18](#question-no-18)
 - [Question No. 19](#question-no-19)
 - [Question No. 20](#question-no-20)
+- [Question No. 21](#question-no-21)
+- [Question No. 22](#question-no-22)
+- [Question No. 23](#question-no-23)
+- [Question No. 24](#question-no-24)
 
 ## Question No. 2
 
@@ -534,3 +538,122 @@ Opción B es incorrecta: `test` es el valor asignado al argumento `name`, no la 
 Opción C es incorrecta: Esto usa el prefijo `data` para data sources, pero el exhibit muestra un recurso administrado, no un data source.
 
 Opción D es incorrecta: Las referencias de recursos en Terraform no usan el prefijo inicial `resource.`.
+
+---
+
+## Question No. 21
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Exhibit:
+
+```
+resource azurerm_linux_web_app app {
+  name                = example-app
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  service_plan_id     = azurerm_service_plan.plan.id
+  identity {
+    type         = UserAssigned
+    identity_ids = [azurerm_user_assigned_identity.app.id]
+  }
+}
+
+resource azurerm_role_assignment kv_access {
+  scope                = azurerm_key_vault.kv.id
+  role_definition_name = Key Vault Secrets User
+  principal_id         = azurerm_user_assigned_identity.app.principal_id
+}
+```
+
+Se muestran dos bloques de recurso: `azurerm_linux_web_app` y `azurerm_role_assignment`. Al aprovisionar, la web app usara el role assignment durante la creacion, por lo que el role assignment debe crearse primero. ¿Como aseguras que el recurso `azurerm_role_assignment` se cree primero?
+
+**Opciones:**
+- A) Agregar un argumento `depends_on` a `azurerm_linux_web_app`.
+- B) Agregar un argumento `create_before_destroy` a `azurerm_role_assignment`.
+- C) Cambiar el orden de los bloques `azurerm_linux_web_app` y `azurerm_role_assignment`.
+- D) Agregar un argumento `count` a ambos recursos.
+
+**Respuesta Correcta:** A
+
+**Explicacion:** Para garantizar el orden de creacion en Terraform cuando existe una dependencia requerida, se usa `depends_on`. Al agregar `depends_on = [azurerm_role_assignment.kv_access]` al recurso de la web app, Terraform creara primero el role assignment y luego la web app.
+
+**Explicacion:**
+
+Opcion B es incorrecta: `create_before_destroy` controla el comportamiento de reemplazo durante actualizaciones, no el orden de dependencia inicial entre recursos distintos.
+
+Opcion C es incorrecta: El orden de los bloques en archivos Terraform no controla el orden de creacion de recursos.
+
+Opcion D es incorrecta: `count` controla cuantas instancias se crean, no el orden de dependencias.
+
+---
+
+## Question No. 22
+
+**Tipo de Pregunta:** Opcion Unica
+
+**Pregunta:** Tu equipo colabora en infraestructura usando Terraform y quiere dar formato al codigo para seguir las convenciones de estilo del lenguaje Terraform. ¿Como puedes actualizar tu codigo para cumplir estos requisitos?
+
+**Opciones:**
+- A) Ejecutar `terraform fmt` para actualizar tus configuraciones Terraform.
+- B) Reemplazar todos los tabs por espacios en tus archivos de configuracion Terraform.
+- C) Ejecutar `terraform validate` antes de ejecutar `terraform plan` o `terraform apply`.
+- D) Terraform formatea automaticamente la configuracion en `terraform apply`.
+
+**Respuesta Correcta:** A
+
+**Explicacion:** `terraform fmt` es el formateador integrado para archivos de configuracion Terraform. Reescribe los archivos para seguir el estilo canonico de Terraform y asegurar formato consistente en el equipo.
+
+**Explicacion:**
+
+Opcion B es incorrecta: Reemplazar espacios o tabs manualmente no garantiza cumplimiento completo del estilo Terraform.
+
+Opcion C es incorrecta: `terraform validate` verifica sintaxis y validez, pero no formatea archivos.
+
+Opcion D es incorrecta: `terraform apply` no formatea automaticamente archivos de configuracion.
+
+---
+
+## Question No. 23
+
+**Tipo de Pregunta:** Opcion Unica
+
+**Pregunta:** Al usar multiples configuraciones del mismo provider de Terraform, ¿que meta-argumento debes incluir en cualquier configuracion no predeterminada del provider?
+
+**Opciones:**
+- A) depends_on
+- B) alias
+- C) name
+- D) id
+
+**Respuesta Correcta:** B
+
+**Explicacion:** En Terraform, las configuraciones adicionales del mismo provider deben usar el meta-argumento `alias`. Esto permite definir y referenciar multiples instancias distintas del provider.
+
+**Explicacion:**
+
+Opcion A es incorrecta: `depends_on` se usa para relaciones de dependencia, no para distinguir configuraciones de provider.
+
+Opcion C es incorrecta: `name` no es el meta-argumento usado para instancias no predeterminadas de provider.
+
+Opcion D es incorrecta: `id` no es un meta-argumento de configuracion de provider.
+
+---
+
+## Question No. 24
+
+**Tipo de Pregunta:** Opcion Unica
+
+**Pregunta:** Al declarar una variable, establecer el argumento `sensitive` en true evitara que el valor se almacene en el archivo de estado.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicacion:** Marcar una variable como `sensitive = true` solo afecta como Terraform muestra valores en la salida de CLI y logs. No evita que el valor se almacene en el estado. Los datos sensibles aun pueden estar en el archivo de estado, por lo que sigue siendo necesario proteger el estado (cifrado, control de acceso, backend seguro).
+
+**Explicacion:**
+
+Opcion A es incorrecta: Los valores sensibles se siguen almacenando en el estado; solo se ocultan en muchas salidas.
