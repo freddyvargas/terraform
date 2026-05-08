@@ -27,6 +27,12 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 - [Question No. 22](#question-no-22)
 - [Question No. 23](#question-no-23)
 - [Question No. 24](#question-no-24)
+- [Question No. 25](#question-no-25)
+- [Question No. 26](#question-no-26)
+- [Question No. 27](#question-no-27)
+- [Question No. 28](#question-no-28)
+- [Question No. 29](#question-no-29)
+- [Question No. 30](#question-no-30)
 
 ## Question No. 2
 
@@ -657,3 +663,147 @@ Opcion D es incorrecta: `id` no es un meta-argumento de configuracion de provide
 **Explicacion:**
 
 Opcion A es incorrecta: Los valores sensibles se siguen almacenando en el estado; solo se ocultan en muchas salidas.
+
+---
+
+## Question No. 25
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** El registro privado de HCP Terraform mantiene las configuraciones de módulos confidenciales dentro de tu organización.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** El registro privado de HCP Terraform está diseñado para alojar y compartir módulos de Terraform internamente dentro de una organización. A diferencia del Terraform Registry público, los módulos almacenados en el registro privado solo son accesibles para los miembros de esa organización, manteniendo las configuraciones confidenciales y evitando la exposición externa.
+
+**Explicación:**
+
+Opción B es incorrecta: El registro privado restringe explícitamente el acceso al interior de la organización, por lo que los módulos no están disponibles públicamente.
+
+---
+
+## Question No. 26
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál de las siguientes opciones no es una forma de ejecutar terraform destroy?
+
+**Opciones:**
+- A) terraform destroy
+- B) Todas estas opciones ejecutan terraform destroy
+- C) terraform plan -destroy
+- D) terraform destroy -auto-approve
+
+**Respuesta Correcta:** C
+
+**Explicación:** `terraform plan -destroy` genera un plan de ejecución de destrucción pero **no** ejecuta la destrucción. Solo muestra una vista previa de lo que sería destruido. Para destruir recursos realmente se necesita `terraform destroy` (con o sin `-auto-approve`) o `terraform apply` con un plan de destrucción guardado.
+
+**Explicación:**
+
+Opción A es incorrecta: `terraform destroy` es el comando estándar para destruir todos los recursos administrados.
+
+Opción B es incorrecta: No todas las opciones ejecutan una destrucción real; la opción C solo produce un plan.
+
+Opción D es incorrecta: `terraform destroy -auto-approve` es un comando de destrucción válido que omite el prompt de confirmación.
+
+---
+
+## Question No. 27
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** El comando terraform output muestra los outputs de los módulos hijo.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** El comando `terraform output` solo muestra los valores de salida definidos en el módulo **raíz**. Los outputs de módulos hijo no se exponen directamente a menos que el módulo raíz los reexporte explícitamente mediante sus propios bloques output que referencian los outputs del módulo hijo.
+
+**Explicación:**
+
+Opción A es incorrecta: Los outputs de módulos hijo son privados al módulo raíz a menos que se surfaceen explícitamente mediante bloques output a nivel de raíz.
+
+---
+
+## Question No. 28
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Tienes una configuración simple de Terraform que contiene una VM en un proveedor de nube. Ejecutas `terraform apply` y la VM se crea exitosamente. ¿Qué sucederá si ejecutas `terraform apply` nuevamente de inmediato sin cambiar ningún código de Terraform?
+
+**Opciones:**
+- A) Terraform terminará y recreará la VM.
+- B) Terraform creará otra VM duplicada.
+- C) Terraform aplicará la VM al archivo de estado.
+- D) Terraform no tomará ninguna acción.
+
+**Respuesta Correcta:** D
+
+**Explicación:** Terraform es declarativo e idempotente. Después del primer `terraform apply`, el archivo de estado registra la VM existente. Un `terraform apply` posterior sin cambios en el código compara el estado deseado (configuración) con el estado actual (archivo de estado + infraestructura real), no encuentra diferencias y no toma ninguna acción.
+
+**Explicación:**
+
+Opción A es incorrecta: Terraform no recrea recursos innecesariamente; solo los reemplaza cuando los cambios de configuración lo requieren.
+
+Opción B es incorrecta: Terraform gestiona los recursos declarados en la configuración, no crea duplicados arbitrarios.
+
+Opción C es incorrecta: La VM ya está representada en el archivo de estado desde el primer apply; no se necesita ninguna actualización.
+
+---
+
+## Question No. 29
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Estás creando una configuración de Terraform reutilizable y quieres incluir una etiqueta `billing_dept` opcional para que tu equipo de Finanzas pueda rastrear el gasto específico por equipo en los recursos. ¿Cuál de las siguientes declaraciones de la variable `billing_dept` logrará esto?
+
+**Opciones:**
+- A) `variable billing_dept { type = default}`
+- B) `variable billing_dept { default =}`
+- C) `variable billing_dept { type = optional(string)}`
+- D) `variable billing_dept { optional = true}`
+
+**Respuesta Correcta:** B
+
+**Explicación:** Para hacer una variable opcional en Terraform, se proporciona un valor `default`. Cuando una variable tiene un `default`, los que la llaman no están obligados a suministrarla. Un default vacío (`default = ""`) o nulo (`default = null`) son patrones comunes para etiquetas de cadena opcionales.
+
+**Explicación:**
+
+Opción A es incorrecta: `type = default` no es sintaxis HCL válida; `default` es un argumento separado, no un tipo.
+
+Opción C es incorrecta: `optional()` es un modificador de tipo usado dentro de restricciones de tipo **object** para marcar atributos específicos del objeto como opcionales, no para declarar variables de nivel superior como opcionales.
+
+Opción D es incorrecta: `optional = true` no es un argumento reconocido para declaraciones de variables.
+
+---
+
+## Question No. 30
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál de estos flujos de trabajo está habilitado únicamente por el uso de Infraestructura como Código?
+
+**Opciones:**
+- A) Escalado automático de recursos basado en la carga de la aplicación.
+- B) Control de acceso basado en roles de los recursos de nube.
+- C) Optimización de costos del despliegue de infraestructura.
+- D) Revisar los cambios propuestos para detectar posibles problemas de seguridad.
+
+**Respuesta Correcta:** D
+
+**Explicación:** IaC habilita flujos de trabajo de revisión de código, que permiten a los equipos inspeccionar los cambios de infraestructura propuestos (mediante pull requests, por ejemplo) antes de aplicarlos. Esto hace posible revisar cambios por problemas de seguridad, cumplimiento y corrección como parte de un pipeline estándar de desarrollo. Las otras opciones son capacidades proporcionadas por plataformas de nube o herramientas de terceros de forma independiente a IaC.
+
+**Explicación:**
+
+Opción A es incorrecta: El autoescalado es una característica de la plataforma de nube (por ejemplo, Auto Scaling Groups, VMSS) que opera en tiempo de ejecución, independientemente de si se usa IaC.
+
+Opción B es incorrecta: El control de acceso basado en roles (RBAC) es una característica del proveedor de nube y de gestión de identidades disponible sin IaC.
+
+Opción C es incorrecta: La optimización de costos puede lograrse mediante herramientas nativas de la nube, dashboards de facturación y políticas, todo sin IaC.

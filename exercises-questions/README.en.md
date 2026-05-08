@@ -27,6 +27,12 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 - [Question No. 22](#question-no-22)
 - [Question No. 23](#question-no-23)
 - [Question No. 24](#question-no-24)
+- [Question No. 25](#question-no-25)
+- [Question No. 26](#question-no-26)
+- [Question No. 27](#question-no-27)
+- [Question No. 28](#question-no-28)
+- [Question No. 29](#question-no-29)
+- [Question No. 30](#question-no-30)
 
 ## Question No. 2
 
@@ -657,3 +663,147 @@ Option D is incorrect: `id` is not a provider configuration meta-argument.
 **Explanation:**
 
 Option A is incorrect: Sensitive values are still stored in state; they are just redacted in many outputs.
+
+---
+
+## Question No. 25
+
+**Question Type:** Single Choice
+
+**Question:** The HCP Terraform private registry keeps the module configurations confidential within your organization.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** The HCP Terraform private registry is designed to host and share Terraform modules internally within an organization. Unlike the public Terraform Registry, modules stored in the private registry are only accessible to members of that organization, keeping configurations confidential and preventing external exposure.
+
+**Explanation:**
+
+Option B is incorrect: The private registry explicitly restricts access to within the organization, so modules are not publicly available.
+
+---
+
+## Question No. 26
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following is not a way to trigger terraform destroy?
+
+**Options:**
+- A) terraform destroy
+- B) All of these will trigger terraform destroy
+- C) terraform plan -destroy
+- D) terraform destroy -auto-approve
+
+**Correct Answer:** C
+
+**Explanation:** `terraform plan -destroy` generates a destroy execution plan but does **not** execute the destruction. It only previews what would be destroyed. To actually destroy resources, you need `terraform destroy` (with or without `-auto-approve`) or `terraform apply` with a saved destroy plan.
+
+**Explanation:**
+
+Option A is incorrect: `terraform destroy` is the standard command to destroy all managed resources.
+
+Option B is incorrect: Not all options trigger an actual destroy; option C only produces a plan.
+
+Option D is incorrect: `terraform destroy -auto-approve` is a valid destroy command that skips the confirmation prompt.
+
+---
+
+## Question No. 27
+
+**Question Type:** Single Choice
+
+**Question:** The terraform output command shows outputs from child modules.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** The `terraform output` command only shows the output values defined in the **root** module. Child module outputs are not directly exposed unless the root module explicitly re-exports them using its own output blocks that reference the child module outputs.
+
+**Explanation:**
+
+Option A is incorrect: Child module outputs are private to the root module unless explicitly surfaced via root-level output blocks.
+
+---
+
+## Question No. 28
+
+**Question Type:** Single Choice
+
+**Question:** You have a simple Terraform configuration containing one VM (virtual machine) in a cloud provider. You run `terraform apply` and the VM is created successfully. What will happen if you run `terraform apply` again immediately afterwards without changing any Terraform code?
+
+**Options:**
+- A) Terraform will terminate and recreate the VM.
+- B) Terraform will create another duplicate VM.
+- C) Terraform will apply the VM to the state file.
+- D) Terraform will take no action.
+
+**Correct Answer:** D
+
+**Explanation:** Terraform is declarative and idempotent. After the first `terraform apply`, the state file records the existing VM. A subsequent `terraform apply` with no code changes compares the desired state (configuration) to the current state (state file + real infrastructure), finds no differences, and takes no action.
+
+**Explanation:**
+
+Option A is incorrect: Terraform does not recreate resources unnecessarily; it only replaces them when configuration changes require it.
+
+Option B is incorrect: Terraform manages resources declared in configuration, not arbitrary duplicates.
+
+Option C is incorrect: The VM is already represented in the state file from the first apply; no update is needed.
+
+---
+
+## Question No. 29
+
+**Question Type:** Single Choice
+
+**Question:** You are creating a reusable Terraform configuration and want to include an optional `billing_dept` tag so your Finance team can track team-specific spending on resources. Which of the following `billing_dept` variable declarations will achieve this?
+
+**Options:**
+- A) `variable billing_dept { type = default}`
+- B) `variable billing_dept { default =}`
+- C) `variable billing_dept { type = optional(string)}`
+- D) `variable billing_dept { optional = true}`
+
+**Correct Answer:** B
+
+**Explanation:** To make a variable optional in Terraform, provide a `default` value. When a variable has a `default`, callers are not required to supply it. An empty default (`default = ""`) or a null default (`default = null`) are common patterns for optional string tags.
+
+**Explanation:**
+
+Option A is incorrect: `type = default` is not valid HCL syntax; `default` is a separate argument, not a type.
+
+Option C is incorrect: `optional()` is a type modifier used inside **object** type constraints to mark specific object attributes as optional, not for declaring top-level variables as optional.
+
+Option D is incorrect: `optional = true` is not a recognized argument for variable declarations.
+
+---
+
+## Question No. 30
+
+**Question Type:** Single Choice
+
+**Question:** Which of these workflows is only enabled by the use of Infrastructure as Code?
+
+**Options:**
+- A) Automatic scaling of resources based on application load.
+- B) Role-based access control of cloud resources.
+- C) Cost optimization of infrastructure deployment.
+- D) Reviewing the proposed changes for potential security issues.
+
+**Correct Answer:** D
+
+**Explanation:** IaC enables code review workflows, which allow teams to inspect proposed infrastructure changes (via pull requests, for example) before they are applied. This makes it possible to review changes for security issues, compliance, and correctness as part of a standard development pipeline. The other options are capabilities provided by cloud platforms or third-party tools independently of IaC.
+
+**Explanation:**
+
+Option A is incorrect: Autoscaling is a cloud platform feature (e.g., Auto Scaling Groups, VMSS) that operates at runtime, independent of whether IaC is used.
+
+Option B is incorrect: Role-based access control (RBAC) is a cloud provider and identity management feature available without IaC.
+
+Option C is incorrect: Cost optimization can be achieved through cloud-native tools, billing dashboards, and policies, all without IaC.
