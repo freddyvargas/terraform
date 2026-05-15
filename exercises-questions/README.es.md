@@ -63,6 +63,16 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 - [Question No. 58](#question-no-58)
 - [Question No. 59](#question-no-59)
 - [Question No. 60](#question-no-60)
+- [Question No. 61](#question-no-61)
+- [Question No. 62](#question-no-62)
+- [Question No. 63](#question-no-63)
+- [Question No. 64](#question-no-64)
+- [Question No. 65](#question-no-65)
+- [Question No. 66](#question-no-66)
+- [Question No. 67](#question-no-67)
+- [Question No. 68](#question-no-68)
+- [Question No. 69](#question-no-69)
+- [Question No. 70](#question-no-70)
 
 ## Question No. 2
 
@@ -1663,3 +1673,267 @@ Opción D es incorrecta: `templatefile` espera un archivo plantilla y un mapa de
 **Explicación:**
 
 Opción A es incorrecta: Terraform no impone una regla de "mismo usuario" para aplicar planes guardados.
+
+---
+
+## Question No. 61
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Un desarrollador lanzó una VM fuera del flujo de Terraform y terminó con dos servidores con el mismo nombre. No tiene claro cuál VM está gestionada por Terraform, pero sí tiene una lista de todos los IDs activos de VM. ¿Qué método puedes usar para determinar qué instancia gestiona Terraform?
+
+**Opciones:**
+- A) Modificar la configuración Terraform para agregar un bloque import para ambas máquinas virtuales.
+- B) Ejecutar terraform apply -refresh para identificar los IDs de máquina virtual que Terraform ya gestiona.
+- C) Ejecutar terraform state rm en ambas VMs y luego terraform apply para recrear la correcta.
+- D) Ejecutar terraform state list para encontrar los nombres de todas las VMs y luego terraform state show para cada una para identificar qué VM ID gestiona Terraform.
+
+**Respuesta Correcta:** D
+
+**Explicación:** La forma más segura de identificar qué gestiona Terraform es inspeccionar el estado. `terraform state list` muestra las direcciones gestionadas y `terraform state show` expone atributos, incluidos IDs, permitiendo compararlos con los IDs activos de VM.
+
+**Explicación:**
+
+Opción A es incorrecta: Importar ambas es innecesario y puede provocar conflictos de estado para recursos ya gestionados.
+
+Opción B es incorrecta: Refresh/apply no es el método directo de inspección para mapear IDs gestionados con precisión.
+
+Opción C es incorrecta: Quitar recursos del estado es destructivo para el tracking y no es necesario para identificación.
+
+---
+
+## Question No. 62
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Si uno de tus módulos usa un valor local, puedes exponer ese valor a los consumidores del módulo definiendo un output de Terraform en la configuración del módulo.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** Un valor local puede ser referenciado por un bloque `output` dentro del módulo, y ese output queda disponible para los consumidores vía `module.<nombre>.<output>`.
+
+**Explicación:**
+
+Opción B es incorrecta: Los outputs de módulo son precisamente el mecanismo para exponer valores internos (incluyendo locals) a los callers.
+
+---
+
+## Question No. 63
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Si un módulo declara una variable sin valor por defecto, debes pasar el valor de esa variable dentro del bloque module cuando llamas al módulo en tu configuración.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** Las variables de entrada de módulo sin default son obligatorias. Si el caller no las define, Terraform falla con error de argumento/input requerido faltante.
+
+**Explicación:**
+
+Opción B es incorrecta: Las variables requeridas deben suministrarse a menos que exista default.
+
+---
+
+## Question No. 64
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Un bloque cloud siempre se mapea a un único workspace de HCP Terraform/Terraform Cloud.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Un bloque `cloud` puede mapear a un workspace único por nombre o a múltiples workspaces por tags. Por lo tanto, no siempre se mapea exactamente a uno.
+
+**Explicación:**
+
+Opción A es incorrecta: El mapeo por tags permite múltiples workspaces.
+
+---
+
+## Question No. 65
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál de las siguientes opciones debes agregar en el bloque required_providers para definir una restricción de versión del provider?
+
+**Opciones:**
+- A) version
+- B) version = '3.1'
+- C) version: 3.1
+- D) version - 3.1
+
+**Respuesta Correcta:** B
+
+**Explicación:** En `required_providers`, las restricciones de versión se asignan al argumento `version`. Entre las opciones dadas, `version = '3.1'` es la forma válida de asignación.
+
+**Explicación:**
+
+Opción A es incorrecta: No tiene valor asignado.
+
+Opción C es incorrecta: La sintaxis con dos puntos no es válida para asignación de argumentos en Terraform.
+
+Opción D es incorrecta: La sintaxis con guion es inválida.
+
+---
+
+## Question No. 66
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Modificaste tu configuración Terraform para corregir un typo en el ID del recurso, renombrándolo de photoes a photos. ¿Qué configuración agregarás para actualizar el ID en estado sin destruir el recurso existente?
+
+Configuración original:
+```
+resource 'aws_s3_bucket' 'photoes' {
+  bucket_prefix = 'images'
+}
+```
+
+Configuración actualizada:
+```
+resource 'aws_s3_bucket' 'photos' {
+  bucket_prefix = 'images'
+}
+```
+
+**Opciones:**
+- A)
+```
+moved {
+  from = aws_s3_bucket.photoes
+  to   = aws_s3_bucket.photos
+}
+```
+- B)
+```
+moved {
+  bucket.photoes = aws_s3_bucket.photos
+}
+```
+- C)
+```
+moved {
+  aws_s3_bucket.photoes = aws_s3_bucket.photos
+}
+```
+- D) None. Terraform will automatically update the resource ID.
+
+**Respuesta Correcta:** A
+
+**Explicación:** El bloque `moved` correcto usa direcciones explícitas `from` y `to`. Esto remapea el estado desde la dirección vieja a la nueva sin reemplazo.
+
+**Explicación:**
+
+Opción B es incorrecta: Sintaxis inválida para moved y formato de dirección incorrecto.
+
+Opción C es incorrecta: Sintaxis inválida porque faltan argumentos `from`/`to`.
+
+Opción D es incorrecta: Terraform no infiere automáticamente renombres arbitrarios de direcciones.
+
+---
+
+## Question No. 67
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Cuando usas un backend que requiere autenticación, la mejor práctica es:
+
+**Opciones:**
+- A) Ejecutar todos tus comandos Terraform en un servidor o contenedor compartido.
+- B) Configurar credenciales de autenticación en archivos de configuración Terraform y almacenarlas en un control de versiones privado.
+- C) Usar variables de entorno para configurar credenciales de autenticación fuera de tu configuración Terraform.
+- D) Ninguna de las anteriores.
+
+**Respuesta Correcta:** C
+
+**Explicación:** Las credenciales deben mantenerse fuera de los archivos de configuración y fuera de VCS. Variables de entorno (o gestores de secretos) son la práctica recomendada para autenticación de backend.
+
+**Explicación:**
+
+Opción A es incorrecta: Un entorno compartido no es en sí una práctica de gestión segura de credenciales.
+
+Opción B es incorrecta: Guardar credenciales en repositorios de código es inseguro.
+
+Opción D es incorrecta: La opción C sí es la práctica recomendada.
+
+---
+
+## Question No. 68
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Cuando ejecutas terraform apply, Terraform CLI imprimirá valores de output tanto del módulo raíz como de todos los módulos hijo.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Terraform muestra outputs del módulo raíz. Los outputs de módulos hijo solo se muestran si se reexponen mediante outputs del módulo raíz.
+
+**Explicación:**
+
+Opción A es incorrecta: Los outputs de módulos hijo no se imprimen automáticamente salvo que se surfaceen en raíz.
+
+---
+
+## Question No. 69
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué tipo de información puedes encontrar en Terraform Registry al usar módulos publicados?
+
+**Opciones:**
+- A) Variables de entrada requeridas.
+- B) Outputs.
+- C) Variables de entrada opcionales y valores por defecto.
+- D) Todas las anteriores.
+
+**Respuesta Correcta:** D
+
+**Explicación:** Las páginas de módulos en Registry normalmente documentan inputs requeridos/opcionales (incluyendo defaults) y outputs.
+
+**Explicación:**
+
+Opción A es incorrecta: Sí está incluida, pero no es la respuesta completa.
+
+Opción B es incorrecta: Sí está incluida, pero no es la respuesta completa.
+
+Opción C es incorrecta: Sí está incluida, pero no es la respuesta completa.
+
+---
+
+## Question No. 70
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Cuál de las siguientes acciones puedes hacer con terraform plan? (Selecciona 2 respuestas correctas)
+
+**Opciones:**
+- A) Programar Terraform para ejecutarse en un horario futuro.
+- B) Ver el plan de ejecución y validar si los cambios coinciden con tus expectativas.
+- C) Guardar un plan de ejecución generado para aplicarlo después.
+- D) Ejecutar un plan en un workspace diferente.
+
+**Respuesta Correcta:** B, C
+
+**Explicación:** `terraform plan` permite previsualizar acciones y, con `-out`, guardar un archivo de plan para aplicarlo más tarde.
+
+**Explicación:**
+
+Opción A es incorrecta: La programación se maneja con orquestadores/pipelines externos, no con plan directamente.
+
+Opción D es incorrecta: La ejecución de planes se hace con `terraform apply`; el targeting de workspace es otro concepto.

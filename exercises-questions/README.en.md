@@ -63,6 +63,16 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 - [Question No. 58](#question-no-58)
 - [Question No. 59](#question-no-59)
 - [Question No. 60](#question-no-60)
+- [Question No. 61](#question-no-61)
+- [Question No. 62](#question-no-62)
+- [Question No. 63](#question-no-63)
+- [Question No. 64](#question-no-64)
+- [Question No. 65](#question-no-65)
+- [Question No. 66](#question-no-66)
+- [Question No. 67](#question-no-67)
+- [Question No. 68](#question-no-68)
+- [Question No. 69](#question-no-69)
+- [Question No. 70](#question-no-70)
 
 ## Question No. 2
 
@@ -1663,3 +1673,267 @@ Option D is incorrect: `templatefile` expects a template file and variables map 
 **Explanation:**
 
 Option A is incorrect: Terraform does not enforce a same-user-only rule for applying saved plans.
+
+---
+
+## Question No. 61
+
+**Question Type:** Single Choice
+
+**Question:** A developer launched a VM outside of the Terraform workflow and ended up with two servers with the same name. They are unsure which VM is managed with Terraform, but they do have a list of all active VM IDs. Which method could you use to determine which instance Terraform manages?
+
+**Options:**
+- A) Modify the Terraform configuration to add an import block for both virtual machines.
+- B) Run a terraform apply -refresh to identify the virtual machine IDs that are already managed by Terraform.
+- C) Run terraform state rm on both VMs, then terraform apply to recreate the correct one.
+- D) Run terraform state list to find the names of all VMs, then run terraform state show for each of them to find which VM ID Terraform manages.
+
+**Correct Answer:** D
+
+**Explanation:** The safest way to identify what Terraform currently manages is to inspect state. `terraform state list` shows managed addresses and `terraform state show` reveals their attributes, including IDs, letting you match against active VM IDs.
+
+**Explanation:**
+
+Option A is incorrect: Importing both resources is unnecessary and can create state conflicts for already managed resources.
+
+Option B is incorrect: Refresh/apply is not the direct inspection method for mapping exact managed IDs.
+
+Option C is incorrect: Removing resources from state is destructive to tracking and unnecessary for identification.
+
+---
+
+## Question No. 62
+
+**Question Type:** Single Choice
+
+**Question:** If one of your modules uses a local value, you can expose that value to callers of the module by defining a Terraform output in the module's configuration.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** A local value can be referenced by an `output` block inside the module, and that output becomes available to callers via `module.<name>.<output>`.
+
+**Explanation:**
+
+Option B is incorrect: Module outputs are exactly how internal module values (including locals) are exposed to callers.
+
+---
+
+## Question No. 63
+
+**Question Type:** Single Choice
+
+**Question:** If a module declares a variable without a default value, you must pass the value of the variable within the module block when you call the module in your configuration.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** Module input variables without defaults are required. If not provided by the caller, Terraform fails with a missing required argument/input error.
+
+**Explanation:**
+
+Option B is incorrect: Required module variables must be set unless a default exists.
+
+---
+
+## Question No. 64
+
+**Question Type:** Single Choice
+
+**Question:** One cloud block always maps to a single HCP Terraform/Terraform Cloud workspace.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** A `cloud` block can map to a single named workspace or to multiple workspaces using tags. Therefore, it does not always map to exactly one workspace.
+
+**Explanation:**
+
+Option A is incorrect: The tags-based workspace mapping supports multiple workspaces.
+
+---
+
+## Question No. 65
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following should you add in the required_providers block to define a provider version constraint?
+
+**Options:**
+- A) version
+- B) version = '3.1'
+- C) version: 3.1
+- D) version - 3.1
+
+**Correct Answer:** B
+
+**Explanation:** In `required_providers`, version constraints are assigned to the `version` argument. Among the provided options, `version = '3.1'` is the valid constraint assignment form.
+
+**Explanation:**
+
+Option A is incorrect: It lacks an assigned value.
+
+Option C is incorrect: Colon syntax is not valid for Terraform argument assignment.
+
+Option D is incorrect: Hyphen syntax is invalid.
+
+---
+
+## Question No. 66
+
+**Question Type:** Single Choice
+
+**Question:** You modified your Terraform configuration to fix a typo in the resource ID by renaming it from photoes to photos. What configuration will you add to update the resource ID in state without destroying the existing resource?
+
+Original configuration:
+```
+resource 'aws_s3_bucket' 'photoes' {
+  bucket_prefix = 'images'
+}
+```
+
+Updated configuration:
+```
+resource 'aws_s3_bucket' 'photos' {
+  bucket_prefix = 'images'
+}
+```
+
+**Options:**
+- A) 
+```
+moved {
+  from = aws_s3_bucket.photoes
+  to   = aws_s3_bucket.photos
+}
+```
+- B)
+```
+moved {
+  bucket.photoes = aws_s3_bucket.photos
+}
+```
+- C)
+```
+moved {
+  aws_s3_bucket.photoes = aws_s3_bucket.photos
+}
+```
+- D) None. Terraform will automatically update the resource ID.
+
+**Correct Answer:** A
+
+**Explanation:** The correct `moved` block uses explicit `from` and `to` addresses. This remaps state from old resource address to new resource address without replacement.
+
+**Explanation:**
+
+Option B is incorrect: Invalid moved block syntax and wrong address format.
+
+Option C is incorrect: Invalid moved block syntax because it lacks `from`/`to` arguments.
+
+Option D is incorrect: Terraform does not automatically infer arbitrary address renames.
+
+---
+
+## Question No. 67
+
+**Question Type:** Single Choice
+
+**Question:** When you use a backend that requires authentication, it is best practice to:
+
+**Options:**
+- A) Run all of your Terraform commands on a shared server or container.
+- B) Configure the authentication credentials in your Terraform configuration files, and store them in a private version control system.
+- C) Use environment variables to configure authentication credentials outside of your Terraform configuration.
+- D) None of the above.
+
+**Correct Answer:** C
+
+**Explanation:** Credentials should be kept out of configuration files and VCS. Environment variables (or secret managers) are standard best practice for backend authentication.
+
+**Explanation:**
+
+Option A is incorrect: Shared runtime location is not a credential-management best practice by itself.
+
+Option B is incorrect: Storing credentials in code repositories is insecure.
+
+Option D is incorrect: Option C is the recommended pattern.
+
+---
+
+## Question No. 68
+
+**Question Type:** Single Choice
+
+**Question:** When you run terraform apply, the Terraform CLI will print output values from both the root module and any child modules.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Terraform displays root module outputs. Child module outputs are shown only if re-exposed through root module output blocks.
+
+**Explanation:**
+
+Option A is incorrect: Child outputs are not automatically printed unless surfaced at root.
+
+---
+
+## Question No. 69
+
+**Question Type:** Single Choice
+
+**Question:** What type of information can be found on the Terraform Registry when using published modules?
+
+**Options:**
+- A) Required input variables.
+- B) Outputs.
+- C) Optional input variables and default values.
+- D) All of the above.
+
+**Correct Answer:** D
+
+**Explanation:** Module registry pages typically document required/optional inputs (including defaults) and outputs.
+
+**Explanation:**
+
+Option A is incorrect: This is included, but not the full answer.
+
+Option B is incorrect: This is included, but not the full answer.
+
+Option C is incorrect: This is included, but not the full answer.
+
+---
+
+## Question No. 70
+
+**Question Type:** Multiple Choice
+
+**Question:** Which of the following can you do with terraform plan? (Pick 2 correct responses)
+
+**Options:**
+- A) Schedule Terraform to run at a planned time in the future.
+- B) View the execution plan and check if the changes match your expectations.
+- C) Save a generated execution plan to apply later.
+- D) Execute a plan in a different workspace.
+
+**Correct Answer:** B, C
+
+**Explanation:** `terraform plan` lets you preview intended actions and, with `-out`, save a plan file for later apply.
+
+**Explanation:**
+
+Option A is incorrect: Scheduling is handled by external orchestrators/pipelines, not by plan itself.
+
+Option D is incorrect: Executing plans is done with `terraform apply`; workspace targeting is a separate concern.
