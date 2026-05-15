@@ -83,6 +83,16 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 - [Question No. 78](#question-no-78)
 - [Question No. 79](#question-no-79)
 - [Question No. 80](#question-no-80)
+- [Question No. 81](#question-no-81)
+- [Question No. 82](#question-no-82)
+- [Question No. 83](#question-no-83)
+- [Question No. 84](#question-no-84)
+- [Question No. 85](#question-no-85)
+- [Question No. 86](#question-no-86)
+- [Question No. 87](#question-no-87)
+- [Question No. 88](#question-no-88)
+- [Question No. 89](#question-no-89)
+- [Question No. 90](#question-no-90)
 
 ## Question No. 2
 
@@ -2193,3 +2203,257 @@ Option D is incorrect: Reviewing diffs (code changes) is an IaC advantage that e
 **Explanation:**
 
 Option B is incorrect: `terraform validate` does confirm syntax and basic correctness of configuration files.
+
+---
+
+## Question No. 81
+
+**Question Type:** Single Choice
+
+**Question:** Which argument can you use to prevent unexpected updates to a module's configuration when calling Terraform Registry modules?
+
+**Options:**
+- A) source
+- B) count
+- C) version
+- D) lifecycle
+
+**Correct Answer:** C
+
+**Explanation:** Specifying the `version` argument in a module block pins the module to a particular version or version constraint from the Terraform Registry, preventing unexpected updates when newer versions are published.
+
+**Explanation:**
+
+Option A is incorrect: `source` specifies where the module comes from, not which version to use.
+
+Option B is incorrect: `count` controls how many instances of a module are created.
+
+Option D is incorrect: `lifecycle` is a meta-argument for resources that controls create/destroy behavior, not module version pinning.
+
+---
+
+## Question No. 82
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following is available only in HCP Terraform workspaces and not in Terraform CLI?
+
+**Options:**
+- A) Dry runs with terraform plan.
+- B) Secure variable storage.
+- C) Using one workspace's state as a data source for another.
+- D) Support for multiple cloud providers.
+
+**Correct Answer:** B
+
+**Explanation:** HCP Terraform provides encrypted, secure variable storage with access controls. Terraform CLI stores variables in plain `.tfvars` files or environment variables without built-in secure vault functionality.
+
+**Explanation:**
+
+Option A is incorrect: `terraform plan` (dry runs) is available in both Terraform CLI and HCP Terraform.
+
+Option C is incorrect: Referencing another workspace's state via `terraform_remote_state` is available with CLI backends as well.
+
+Option D is incorrect: Multi-provider support is a core Terraform feature available in both CLI and HCP Terraform.
+
+---
+
+## Question No. 83
+
+**Question Type:** Single Choice
+
+**Question:** What command can you run to generate DOT (Graphviz) formatted data to visualize Terraform dependencies?
+
+**Options:**
+- A) terraform refresh
+- B) terraform graph
+- C) terraform output
+- D) terraform show
+
+**Correct Answer:** B
+
+**Explanation:** `terraform graph` produces a DOT-format dependency graph of Terraform resources and modules, which can be rendered with Graphviz tools such as `dot`.
+
+**Explanation:**
+
+Option A is incorrect: `terraform refresh` updates the state to match real infrastructure; it produces no graph output.
+
+Option C is incorrect: `terraform output` prints output values from state.
+
+Option D is incorrect: `terraform show` displays a human-readable view of the state or plan file.
+
+---
+
+## Question No. 84
+
+**Question Type:** Single Choice
+
+**Question:** A Terraform backend determines how Terraform loads state and stores updates when you execute which command?
+
+**Options:**
+- A) apply
+- B) destroy
+- C) Both of these are correct.
+- D) Neither of these are correct.
+
+**Correct Answer:** C
+
+**Explanation:** The backend governs state loading and storage for any operation that reads or writes state. Both `terraform apply` and `terraform destroy` interact with the backend because both modify the state file.
+
+**Explanation:**
+
+Option A is incorrect: While apply does use the backend, selecting only apply is incomplete.
+
+Option B is incorrect: While destroy does use the backend, selecting only destroy is incomplete.
+
+Option D is incorrect: Both apply and destroy use the backend for state management.
+
+---
+
+## Question No. 85
+
+**Question Type:** Single Choice
+
+**Question:** terraform apply will fail if you have not run terraform plan first to update the plan output.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** `terraform apply` can be run directly without a preceding `terraform plan`. When invoked without a saved plan file, it performs its own implicit plan and prompts for confirmation before applying.
+
+**Explanation:**
+
+Option A is incorrect: `terraform apply` does not require a prior `terraform plan`; it generates its own plan internally when no saved plan is provided.
+
+---
+
+## Question No. 86
+
+**Question Type:** Single Choice
+
+**Question:** When you initialize Terraform, where does it cache modules from the public Terraform Registry?
+
+**Options:**
+- A) In the /tmp directory.
+- B) In the .terraform sub-directory.
+- C) In memory.
+- D) They are not cached.
+
+**Correct Answer:** B
+
+**Explanation:** `terraform init` downloads and caches all required modules (and providers) into the `.terraform` subdirectory of the working directory.
+
+**Explanation:**
+
+Option A is incorrect: Terraform does not use `/tmp` for module caching.
+
+Option C is incorrect: Modules are written to disk, not kept only in memory.
+
+Option D is incorrect: Modules are cached locally in `.terraform` to avoid re-downloading on every run.
+
+---
+
+## Question No. 87
+
+**Question Type:** Multiple Choice
+
+**Question:** Which of the following is true about terraform apply? (Pick 2 correct responses)
+
+**Options:**
+- A) You must pass the output of a terraform plan command to it.
+- B) By default, it does not refresh your state file to reflect the current infrastructure configuration.
+- C) Depending on provider specification, Terraform may need to destroy and recreate your infrastructure resources.
+- D) You cannot target specific resources for the operation.
+- E) It only operates on infrastructure defined in the current working directory or workspace.
+
+**Correct Answer:** C, E
+
+**Explanation:** Some resource changes (e.g., immutable attributes) require destroy-then-recreate cycles as defined by the provider schema. Additionally, `terraform apply` only manages resources declared in the current configuration's working directory or selected workspace.
+
+**Explanation:**
+
+Option A is incorrect: A saved plan file is optional; `terraform apply` can generate its own plan implicitly.
+
+Option B is incorrect: By default, `terraform apply` does refresh state before planning (unless `-refresh=false` is set).
+
+Option D is incorrect: You can target specific resources using the `-target` flag.
+
+---
+
+## Question No. 88
+
+**Question Type:** Single Choice
+
+**Question:** You have just developed a new Terraform configuration for two virtual machines with a cloud provider. You would like to create the infrastructure for the first time. Which Terraform command should you run first?
+
+**Options:**
+- A) terraform apply
+- B) terraform init
+- C) terraform plan
+- D) terraform show
+
+**Correct Answer:** B
+
+**Explanation:** `terraform init` must be run before any other command in a new configuration. It downloads required providers and modules into the `.terraform` directory, making the configuration ready for plan and apply.
+
+**Explanation:**
+
+Option A is incorrect: `terraform apply` will fail if providers have not been downloaded first by `terraform init`.
+
+Option C is incorrect: `terraform plan` also requires initialization before it can run.
+
+Option D is incorrect: `terraform show` is used to inspect existing state or plan files, not to initialize.
+
+---
+
+## Question No. 89
+
+**Question Type:** Multiple Choice
+
+**Question:** What functionality do providers offer in Terraform? (Pick 3 correct responses)
+
+**Options:**
+- A) Interact with cloud provider APIs.
+- B) Provision resources for on-premises infrastructure services.
+- C) Group a collection of Terraform configuration files that map to a single state file.
+- D) Provision resources for public cloud infrastructure services.
+- E) Enforce security and compliance policies.
+
+**Correct Answer:** A, B, D
+
+**Explanation:** Terraform providers act as plugins that communicate with service APIs. They can target public cloud platforms (AWS, Azure, GCP), on-premises systems (VMware, Kubernetes on-prem), and other hosted services by wrapping their APIs.
+
+**Explanation:**
+
+Option C is incorrect: Grouping configuration files into a workspace/state is a Terraform workspace concept, not a provider responsibility.
+
+Option E is incorrect: Security and compliance policy enforcement is handled by tools such as Sentinel or OPA, not providers.
+
+---
+
+## Question No. 90
+
+**Question Type:** Single Choice
+
+**Question:** Which command does not cause Terraform to refresh its state?
+
+**Options:**
+- A) terraform state list
+- B) terraform plan
+- C) terraform apply
+- D) terraform destroy
+
+**Correct Answer:** A
+
+**Explanation:** `terraform state list` reads the existing state file to list resources but does not trigger a refresh against the real infrastructure. Commands like `plan`, `apply`, and `destroy` perform a state refresh by default before executing.
+
+**Explanation:**
+
+Option B is incorrect: `terraform plan` refreshes state by default before generating a plan.
+
+Option C is incorrect: `terraform apply` refreshes state by default before applying changes.
+
+Option D is incorrect: `terraform destroy` also refreshes state before destroying resources.

@@ -83,6 +83,16 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 - [Question No. 78](#question-no-78)
 - [Question No. 79](#question-no-79)
 - [Question No. 80](#question-no-80)
+- [Question No. 81](#question-no-81)
+- [Question No. 82](#question-no-82)
+- [Question No. 83](#question-no-83)
+- [Question No. 84](#question-no-84)
+- [Question No. 85](#question-no-85)
+- [Question No. 86](#question-no-86)
+- [Question No. 87](#question-no-87)
+- [Question No. 88](#question-no-88)
+- [Question No. 89](#question-no-89)
+- [Question No. 90](#question-no-90)
 
 ## Question No. 2
 
@@ -2193,3 +2203,257 @@ Opción D es incorrecta: Revisar diffs (cambios de código) es una ventaja de Ia
 **Explicación:**
 
 Opción B es incorrecta: `terraform validate` sí confirma la sintaxis y correctitud básica de los archivos de configuración.
+
+---
+
+## Question No. 81
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué argumento puedes usar para evitar actualizaciones inesperadas en la configuración de un módulo al llamar módulos del Terraform Registry?
+
+**Opciones:**
+- A) source
+- B) count
+- C) version
+- D) lifecycle
+
+**Respuesta Correcta:** C
+
+**Explicación:** Especificar el argumento `version` en un bloque de módulo fija el módulo a una versión o restricción de versión específica del Terraform Registry, evitando actualizaciones inesperadas cuando se publican versiones más nuevas.
+
+**Explicación:**
+
+Opción A es incorrecta: `source` especifica el origen del módulo, no qué versión usar.
+
+Opción B es incorrecta: `count` controla cuántas instancias del módulo se crean.
+
+Opción D es incorrecta: `lifecycle` es un meta-argumento de recursos que controla el comportamiento de creación/destrucción, no el anclaje de versiones de módulos.
+
+---
+
+## Question No. 82
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál de las siguientes está disponible únicamente en los workspaces de HCP Terraform y no en Terraform CLI?
+
+**Opciones:**
+- A) Ejecuciones de prueba con terraform plan.
+- B) Almacenamiento seguro de variables.
+- C) Usar el estado de un workspace como fuente de datos para otro.
+- D) Soporte para múltiples proveedores cloud.
+
+**Respuesta Correcta:** B
+
+**Explicación:** HCP Terraform proporciona almacenamiento cifrado y seguro de variables con controles de acceso. Terraform CLI almacena variables en archivos `.tfvars` o variables de entorno sin funcionalidad de vault seguro incorporada.
+
+**Explicación:**
+
+Opción A es incorrecta: `terraform plan` (ejecuciones de prueba) está disponible tanto en Terraform CLI como en HCP Terraform.
+
+Opción C es incorrecta: Referenciar el estado de otro workspace mediante `terraform_remote_state` también está disponible con backends de CLI.
+
+Opción D es incorrecta: El soporte multi-proveedor es una característica central de Terraform disponible en CLI y HCP Terraform.
+
+---
+
+## Question No. 83
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué comando puedes ejecutar para generar datos en formato DOT (Graphviz) y visualizar las dependencias de Terraform?
+
+**Opciones:**
+- A) terraform refresh
+- B) terraform graph
+- C) terraform output
+- D) terraform show
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform graph` produce un grafo de dependencias en formato DOT de los recursos y módulos de Terraform, que puede ser renderizado con herramientas como `dot` de Graphviz.
+
+**Explicación:**
+
+Opción A es incorrecta: `terraform refresh` actualiza el estado para reflejar la infraestructura real; no produce salida de grafo.
+
+Opción C es incorrecta: `terraform output` imprime los valores de salida del estado.
+
+Opción D es incorrecta: `terraform show` muestra una vista legible del estado o archivo de plan.
+
+---
+
+## Question No. 84
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Un backend de Terraform determina cómo carga y almacena actualizaciones del estado cuando ejecutas cuál comando?
+
+**Opciones:**
+- A) apply
+- B) destroy
+- C) Ambos son correctos.
+- D) Ninguno de estos es correcto.
+
+**Respuesta Correcta:** C
+
+**Explicación:** El backend gobierna la carga y almacenamiento del estado para cualquier operación que lo lea o escriba. Tanto `terraform apply` como `terraform destroy` interactúan con el backend porque ambos modifican el state file.
+
+**Explicación:**
+
+Opción A es incorrecta: Aunque apply usa el backend, seleccionar solo apply es incompleto.
+
+Opción B es incorrecta: Aunque destroy usa el backend, seleccionar solo destroy es incompleto.
+
+Opción D es incorrecta: Tanto apply como destroy usan el backend para gestión del estado.
+
+---
+
+## Question No. 85
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** terraform apply fallará si no has ejecutado terraform plan primero para actualizar la salida del plan.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform apply` puede ejecutarse directamente sin un `terraform plan` previo. Cuando se invoca sin un archivo de plan guardado, realiza su propio plan implícito y solicita confirmación antes de aplicar.
+
+**Explicación:**
+
+Opción A es incorrecta: `terraform apply` no requiere un `terraform plan` previo; genera su propio plan internamente cuando no se proporciona un plan guardado.
+
+---
+
+## Question No. 86
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Cuando inicializas Terraform, ¿dónde almacena en caché los módulos del Terraform Registry público?
+
+**Opciones:**
+- A) En el directorio /tmp.
+- B) En el subdirectorio .terraform.
+- C) En memoria.
+- D) No se almacenan en caché.
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform init` descarga y almacena en caché todos los módulos (y providers) requeridos en el subdirectorio `.terraform` del directorio de trabajo.
+
+**Explicación:**
+
+Opción A es incorrecta: Terraform no usa `/tmp` para el caché de módulos.
+
+Opción C es incorrecta: Los módulos se escriben en disco, no se mantienen solo en memoria.
+
+Opción D es incorrecta: Los módulos se almacenan localmente en `.terraform` para evitar re-descargarlos en cada ejecución.
+
+---
+
+## Question No. 87
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Cuál de las siguientes afirmaciones sobre terraform apply es verdadera? (Selecciona 2 respuestas correctas)
+
+**Opciones:**
+- A) Debes pasarle la salida de un comando terraform plan.
+- B) Por defecto, no actualiza tu state file para reflejar la configuración actual de la infraestructura.
+- C) Dependiendo de la especificación del provider, Terraform puede necesitar destruir y recrear tus recursos de infraestructura.
+- D) No puedes apuntar a recursos específicos para la operación.
+- E) Solo opera en infraestructura definida en el directorio de trabajo actual o workspace.
+
+**Respuesta Correcta:** C, E
+
+**Explicación:** Algunos cambios de recursos (p.ej., atributos inmutables) requieren ciclos de destruir-y-recrear según el esquema del provider. Además, `terraform apply` solo gestiona recursos declarados en la configuración del directorio de trabajo actual o workspace seleccionado.
+
+**Explicación:**
+
+Opción A es incorrecta: Un archivo de plan guardado es opcional; `terraform apply` puede generar su propio plan implícitamente.
+
+Opción B es incorrecta: Por defecto, `terraform apply` sí refresca el estado antes de planificar (a menos que se use `-refresh=false`).
+
+Opción D es incorrecta: Puedes apuntar a recursos específicos usando el flag `-target`.
+
+---
+
+## Question No. 88
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Acabas de desarrollar una nueva configuración de Terraform para dos máquinas virtuales con un proveedor cloud. Deseas crear la infraestructura por primera vez. ¿Cuál comando de Terraform debes ejecutar primero?
+
+**Opciones:**
+- A) terraform apply
+- B) terraform init
+- C) terraform plan
+- D) terraform show
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform init` debe ejecutarse antes que cualquier otro comando en una nueva configuración. Descarga los providers y módulos requeridos al directorio `.terraform`, preparando la configuración para plan y apply.
+
+**Explicación:**
+
+Opción A es incorrecta: `terraform apply` fallará si los providers no han sido descargados primero por `terraform init`.
+
+Opción C es incorrecta: `terraform plan` también requiere inicialización antes de poder ejecutarse.
+
+Opción D es incorrecta: `terraform show` se usa para inspeccionar estado o archivos de plan existentes, no para inicializar.
+
+---
+
+## Question No. 89
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Qué funcionalidad ofrecen los providers en Terraform? (Selecciona 3 respuestas correctas)
+
+**Opciones:**
+- A) Interactuar con APIs de proveedores cloud.
+- B) Aprovisionar recursos para servicios de infraestructura on-premises.
+- C) Agrupar una colección de archivos de configuración de Terraform que mapean a un único state file.
+- D) Aprovisionar recursos para servicios de infraestructura cloud pública.
+- E) Aplicar políticas de seguridad y cumplimiento.
+
+**Respuesta Correcta:** A, B, D
+
+**Explicación:** Los providers de Terraform actúan como plugins que se comunican con APIs de servicios. Pueden apuntar a plataformas cloud públicas (AWS, Azure, GCP), sistemas on-premises (VMware, Kubernetes on-prem) y otros servicios hospedados encapsulando sus APIs.
+
+**Explicación:**
+
+Opción C es incorrecta: Agrupar archivos de configuración en un workspace/estado es un concepto de workspace de Terraform, no responsabilidad del provider.
+
+Opción E es incorrecta: La aplicación de políticas de seguridad y cumplimiento se maneja con herramientas como Sentinel u OPA, no con providers.
+
+---
+
+## Question No. 90
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué comando NO provoca que Terraform refresque su estado?
+
+**Opciones:**
+- A) terraform state list
+- B) terraform plan
+- C) terraform apply
+- D) terraform destroy
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform state list` lee el state file existente para listar recursos pero no activa un refresco contra la infraestructura real. Comandos como `plan`, `apply` y `destroy` realizan un refresco de estado por defecto antes de ejecutarse.
+
+**Explicación:**
+
+Opción B es incorrecta: `terraform plan` refresca el estado por defecto antes de generar un plan.
+
+Opción C es incorrecta: `terraform apply` refresca el estado por defecto antes de aplicar cambios.
+
+Opción D es incorrecta: `terraform destroy` también refresca el estado antes de destruir recursos.
