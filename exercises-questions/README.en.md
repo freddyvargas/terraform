@@ -53,6 +53,16 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 - [Question No. 48](#question-no-48)
 - [Question No. 49](#question-no-49)
 - [Question No. 50](#question-no-50)
+- [Question No. 51](#question-no-51)
+- [Question No. 52](#question-no-52)
+- [Question No. 53](#question-no-53)
+- [Question No. 54](#question-no-54)
+- [Question No. 55](#question-no-55)
+- [Question No. 56](#question-no-56)
+- [Question No. 57](#question-no-57)
+- [Question No. 58](#question-no-58)
+- [Question No. 59](#question-no-59)
+- [Question No. 60](#question-no-60)
 
 ## Question No. 2
 
@@ -1364,3 +1374,292 @@ Option B is incorrect: Terraform never deletes your configuration files as part 
 Option C is incorrect: Destroy targets managed resources in state, not everything in the provider account.
 
 Option D is incorrect: Destroy removes infrastructure resources; deleting state is a separate operation.
+
+---
+
+## Question No. 51
+
+**Question Type:** Single Choice
+
+**Question:** Refer to the exhibit.
+
+```
+resource "aws_instance" "web" {
+  count = 2
+  name  = "terraform-${count.index}"
+}
+```
+
+A resource block is shown in the Exhibit space of this page. How would you reference the name value of the second instance of this resource?
+
+**Options:**
+- A) `aws_instance.web[2].name`
+- B) `aws_instance.web.*.name`
+- C) `aws_instance.web[1].name`
+- D) `aws_instance.web[]`
+- E) `element(aws_instance.web, 2)`
+
+**Correct Answer:** C
+
+**Explanation:** Resources created with `count` are indexed from zero. With `count = 2`, instances are `[0]` and `[1]`, so the second instance is `aws_instance.web[1]`. Its name attribute is referenced as `aws_instance.web[1].name`.
+
+**Explanation:**
+
+Option A is incorrect: Index 2 would refer to a third instance, which does not exist.
+
+Option B is incorrect: This is a splat expression returning all names, not the second instance only.
+
+Option D is incorrect: Empty index syntax is invalid.
+
+Option E is incorrect: `element` here is incomplete/incorrect for directly selecting the resource attribute value.
+
+---
+
+## Question No. 52
+
+**Question Type:** Single Choice
+
+**Question:** You have a simple Terraform configuration containing one virtual machine (VM) in a cloud provider. You run terraform apply and the VM is created successfully. What will happen if you delete the VM using the cloud provider console, then run terraform apply again without changing any Terraform code?
+
+**Options:**
+- A) Terraform will recreate the VM.
+- B) Terraform will report an error.
+- C) Terraform will remove the VM from the state file.
+- D) Terraform will not make any changes.
+
+**Correct Answer:** A
+
+**Explanation:** Terraform compares desired state (configuration) with real infrastructure. If the VM was deleted outside Terraform, drift exists and Terraform will plan/apply actions to recreate the missing managed resource.
+
+**Explanation:**
+
+Option B is incorrect: This drift scenario is usually remediated by recreation, not a hard failure.
+
+Option C is incorrect: Terraform does not simply remove desired resources from state when they are missing; it tries to reconcile to desired state.
+
+Option D is incorrect: There is a detected difference, so Terraform will plan changes.
+
+---
+
+## Question No. 53
+
+**Question Type:** Single Choice
+
+**Question:** Refer to the exhibit.
+
+```
+resource "azurerm_resource_group" "dev" {
+  name     = "test"
+  location = "westus"
+}
+```
+
+A resource block is shown in the Exhibit space of this page. What is the Terraform resource name of that resource block?
+
+**Options:**
+- A) azurerm
+- B) azurerm_resource_group
+- C) ev
+- D) test
+
+**Correct Answer:** B
+
+**Explanation:** In a resource block, the first label is the resource type (commonly referred to as the resource name in many exam questions): `azurerm_resource_group`. The second label is the local instance name (`dev`), and `test` is an argument value.
+
+**Explanation:**
+
+Option A is incorrect: `azurerm` is the provider namespace prefix, not the full resource type.
+
+Option C is incorrect: `ev` is not present as a valid label in the block.
+
+Option D is incorrect: `test` is the value of the `name` argument, not the resource type/label.
+
+---
+
+## Question No. 54
+
+**Question Type:** Single Choice
+
+**Question:** Exhibit:
+
+```
+provider "aws" {
+  region = "us-east-1"
+}
+
+provider "aws" {
+  alias  = "west"
+  region = "us-west-2"
+}
+```
+
+You need to deploy resources into two different regions in the same Terraform configuration. To do this, you declare multiple provider configurations as shown in the Exhibit space on this page.
+
+What meta-argument do you need to configure in a resource block to deploy the resource to the us-west-2 AWS region?
+
+**Options:**
+- A) `provider = aws.west`
+- B) `alias = aws.west`
+- C) `provider = west`
+- D) `alias = west`
+
+**Correct Answer:** A
+
+**Explanation:** To select a non-default provider configuration for a resource, use the `provider` meta-argument with `<provider>.<alias>`, which here is `aws.west`.
+
+**Explanation:**
+
+Option B is incorrect: `alias` is declared in provider blocks, not resource blocks.
+
+Option C is incorrect: The provider reference must include both provider name and alias (`aws.west`).
+
+Option D is incorrect: `alias` is not a resource meta-argument.
+
+---
+
+## Question No. 55
+
+**Question Type:** Multiple Choice
+
+**Question:** You want to use API tokens and other secrets within your team's Terraform workspaces. Where does HashiCorp recommend you store these sensitive values? (Pick 3)
+
+**Options:**
+- A) In a plaintext document on a shared drive.
+- B) In a terraform.tfvars file, checked into version control.
+- C) In a terraform.tfvars file, securely managed and shared with your team.
+- D) In an HCP Terraform/Terraform Cloud variable, with the sensitive option checked.
+- E) In HashiCorp Vault.
+
+**Correct Answer:** C, D, E
+
+**Explanation:** Secure tfvars handling (outside VCS), sensitive workspace variables in HCP Terraform/Terraform Cloud, and dedicated secret managers like HashiCorp Vault are recommended patterns.
+
+**Explanation:**
+
+Option A is incorrect: Plaintext shared documents are not secure storage for secrets.
+
+Option B is incorrect: Secrets should not be committed to version control.
+
+---
+
+## Question No. 56
+
+**Question Type:** Single Choice
+
+**Question:** When you use a backend that requires authentication, it is best practice to:
+
+**Options:**
+- A) Run all Terraform commands on a shared server or container.
+- B) Configure the authentication credentials in your Terraform configuration files, and store them in version control.
+- C) Use environment variables to configure authentication credentials outside of your Terraform configuration.
+- D) None of the above.
+
+**Correct Answer:** C
+
+**Explanation:** Credentials should be kept out of Terraform code and out of VCS. Environment variables (or external secret stores) are standard secure patterns for backend auth.
+
+**Explanation:**
+
+Option A is incorrect: Shared execution environments do not by themselves address secure credential handling.
+
+Option B is incorrect: Storing credentials in code/version control is insecure.
+
+Option D is incorrect: Option C is a valid best practice.
+
+---
+
+## Question No. 57
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following should you add in the required_providers block to define a provider version constraint?
+
+**Options:**
+- A) `version ~> 3.1`
+- B) `version >= 3.1`
+- C) `version = ">= 3.1"`
+
+**Correct Answer:** C
+
+**Explanation:** In `required_providers`, version constraints must be assigned as a string expression, for example `version = ">= 3.1"`.
+
+**Explanation:**
+
+Option A is incorrect: Missing assignment/operator context as valid HCL argument syntax.
+
+Option B is incorrect: Missing assignment and string formatting expected in provider constraint declarations.
+
+---
+
+## Question No. 58
+
+**Question Type:** Single Choice
+
+**Question:** You are tasked with making a change to an infrastructure stack running in a public cloud using HCP Terraform/Terraform Cloud. Which pattern follows IaC best practices?
+
+**Options:**
+- A) Make the change via the public cloud API endpoint.
+- B) Submit a pull request and wait for an approved merge of the proposed changes.
+- C) Clone the repository containing your infrastructure code and then run the code.
+- D) Use the public cloud console to make the change after approval.
+- E) Make the change programmatically via the cloud CLI.
+
+**Correct Answer:** B
+
+**Explanation:** IaC best practice is change-through-code with review and approval workflows (PR + merge), producing an auditable and repeatable process.
+
+**Explanation:**
+
+Option A is incorrect: Direct API changes bypass review/governance workflows.
+
+Option C is incorrect: Running code directly is not the primary governance pattern unless coupled with reviewed/approved workflow.
+
+Option D is incorrect: Console changes introduce drift and bypass IaC controls.
+
+Option E is incorrect: Direct CLI changes bypass the desired code-review pipeline.
+
+---
+
+## Question No. 59
+
+**Question Type:** Single Choice
+
+**Question:** You're writing a Terraform configuration that needs to read input from a local file called id_rsa.pub. Which built-in Terraform function can you use to import the file's contents as a string?
+
+**Options:**
+- A) `fileset('id_rsa.pub')`
+- B) `file('id_rsa.pub')`
+- C) `filebase64('id_rsa.pub')`
+- D) `templatefile('id_rsa.pub')`
+
+**Correct Answer:** B
+
+**Explanation:** The `file()` function reads a file and returns its contents as a string.
+
+**Explanation:**
+
+Option A is incorrect: `fileset` returns a set of matching file names, not file content.
+
+Option C is incorrect: `filebase64` returns base64-encoded content, not plain string content.
+
+Option D is incorrect: `templatefile` expects a template file and variables map for rendering.
+
+---
+
+## Question No. 60
+
+**Question Type:** Single Choice
+
+**Question:** Only the user that generated a terraform plan may apply it.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** A saved plan file can be applied by another user/environment with proper access and compatible context; Terraform does not require it to be applied by the same human who created it.
+
+**Explanation:**
+
+Option A is incorrect: Terraform does not enforce a same-user-only rule for applying saved plans.

@@ -53,6 +53,16 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 - [Question No. 48](#question-no-48)
 - [Question No. 49](#question-no-49)
 - [Question No. 50](#question-no-50)
+- [Question No. 51](#question-no-51)
+- [Question No. 52](#question-no-52)
+- [Question No. 53](#question-no-53)
+- [Question No. 54](#question-no-54)
+- [Question No. 55](#question-no-55)
+- [Question No. 56](#question-no-56)
+- [Question No. 57](#question-no-57)
+- [Question No. 58](#question-no-58)
+- [Question No. 59](#question-no-59)
+- [Question No. 60](#question-no-60)
 
 ## Question No. 2
 
@@ -1364,3 +1374,292 @@ Opción B es incorrecta: Terraform nunca elimina tus archivos de configuración 
 Opción C es incorrecta: Destroy apunta a recursos gestionados en estado, no a todo lo que existe en la cuenta del provider.
 
 Opción D es incorrecta: Destroy elimina recursos de infraestructura; borrar el estado es una operación separada.
+
+---
+
+## Question No. 51
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Refer to the exhibit.
+
+```
+resource "aws_instance" "web" {
+  count = 2
+  name  = "terraform-${count.index}"
+}
+```
+
+Se muestra un bloque de recurso en el espacio Exhibit. ¿Cómo referenciarías el valor `name` de la segunda instancia de este recurso?
+
+**Opciones:**
+- A) `aws_instance.web[2].name`
+- B) `aws_instance.web.*.name`
+- C) `aws_instance.web[1].name`
+- D) `aws_instance.web[]`
+- E) `element(aws_instance.web, 2)`
+
+**Respuesta Correcta:** C
+
+**Explicación:** Los recursos creados con `count` se indexan desde cero. Con `count = 2`, las instancias son `[0]` y `[1]`, así que la segunda instancia es `aws_instance.web[1]`. Su atributo name se referencia como `aws_instance.web[1].name`.
+
+**Explicación:**
+
+Opción A es incorrecta: El índice 2 referiría a una tercera instancia, que no existe.
+
+Opción B es incorrecta: Es una expresión splat que devuelve todos los nombres, no solo el de la segunda instancia.
+
+Opción D es incorrecta: La sintaxis de índice vacío es inválida.
+
+Opción E es incorrecta: `element` aquí está incompleto/incorrecto para seleccionar directamente el valor del atributo del recurso.
+
+---
+
+## Question No. 52
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Tienes una configuración simple de Terraform con una VM en un proveedor cloud. Ejecutas terraform apply y la VM se crea correctamente. ¿Qué pasa si borras la VM desde la consola del proveedor y luego ejecutas terraform apply de nuevo sin cambiar código Terraform?
+
+**Opciones:**
+- A) Terraform recreará la VM.
+- B) Terraform reportará un error.
+- C) Terraform eliminará la VM del state file.
+- D) Terraform no hará cambios.
+
+**Respuesta Correcta:** A
+
+**Explicación:** Terraform compara el estado deseado (configuración) con la infraestructura real. Si la VM fue eliminada fuera de Terraform, existe drift y Terraform planificará/aplicará acciones para recrear el recurso gestionado faltante.
+
+**Explicación:**
+
+Opción B es incorrecta: Este tipo de drift normalmente se corrige con recreación, no con un fallo definitivo.
+
+Opción C es incorrecta: Terraform no elimina simplemente recursos deseados del estado cuando faltan; intenta reconciliar al estado deseado.
+
+Opción D es incorrecta: Existe diferencia detectada, por lo tanto Terraform planificará cambios.
+
+---
+
+## Question No. 53
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Refer to the exhibit.
+
+```
+resource "azurerm_resource_group" "dev" {
+  name     = "test"
+  location = "westus"
+}
+```
+
+Se muestra un bloque de recurso en el espacio Exhibit. ¿Cuál es el nombre del recurso Terraform de ese bloque?
+
+**Opciones:**
+- A) azurerm
+- B) azurerm_resource_group
+- C) ev
+- D) test
+
+**Respuesta Correcta:** B
+
+**Explicación:** En un bloque resource, la primera etiqueta es el tipo de recurso (frecuentemente llamado resource name en este tipo de examen): `azurerm_resource_group`. La segunda etiqueta es el nombre local de instancia (`dev`) y `test` es un valor de argumento.
+
+**Explicación:**
+
+Opción A es incorrecta: `azurerm` es el prefijo/namespace del provider, no el tipo completo de recurso.
+
+Opción C es incorrecta: `ev` no aparece como etiqueta válida en el bloque.
+
+Opción D es incorrecta: `test` es el valor del argumento `name`, no el tipo/etiqueta del recurso.
+
+---
+
+## Question No. 54
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Exhibit:
+
+```
+provider "aws" {
+  region = "us-east-1"
+}
+
+provider "aws" {
+  alias  = "west"
+  region = "us-west-2"
+}
+```
+
+Necesitas desplegar recursos en dos regiones diferentes en la misma configuración Terraform. Para hacerlo, declaras múltiples configuraciones de provider como se muestra en el Exhibit.
+
+¿Qué meta-argumento debes configurar en un bloque resource para desplegar el recurso en la región AWS us-west-2?
+
+**Opciones:**
+- A) `provider = aws.west`
+- B) `alias = aws.west`
+- C) `provider = west`
+- D) `alias = west`
+
+**Respuesta Correcta:** A
+
+**Explicación:** Para seleccionar una configuración no predeterminada de provider en un resource, se usa el meta-argumento `provider` con `<provider>.<alias>`, que aquí es `aws.west`.
+
+**Explicación:**
+
+Opción B es incorrecta: `alias` se declara en bloques provider, no en bloques resource.
+
+Opción C es incorrecta: La referencia del provider debe incluir nombre y alias (`aws.west`).
+
+Opción D es incorrecta: `alias` no es un meta-argumento de resource.
+
+---
+
+## Question No. 55
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** Quieres usar API tokens y otros secretos dentro de los workspaces Terraform de tu equipo. ¿Dónde recomienda HashiCorp almacenar estos valores sensibles? (Pick 3)
+
+**Opciones:**
+- A) En un documento de texto plano en un disco compartido.
+- B) En un archivo terraform.tfvars, versionado en control de código.
+- C) En un archivo terraform.tfvars, gestionado de forma segura y compartido con tu equipo.
+- D) En una variable de HCP Terraform/Terraform Cloud con la opción sensitive activada.
+- E) En HashiCorp Vault.
+
+**Respuesta Correcta:** C, D, E
+
+**Explicación:** Las prácticas recomendadas incluyen tfvars gestionados de forma segura (fuera de VCS), variables sensibles en HCP Terraform/Terraform Cloud y gestores de secretos dedicados como HashiCorp Vault.
+
+**Explicación:**
+
+Opción A es incorrecta: Documentos en texto plano compartidos no son almacenamiento seguro de secretos.
+
+Opción B es incorrecta: Los secretos no deben versionarse en control de código.
+
+---
+
+## Question No. 56
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Cuando usas un backend que requiere autenticación, la mejor práctica es:
+
+**Opciones:**
+- A) Ejecutar todos los comandos Terraform en un servidor o contenedor compartido.
+- B) Configurar las credenciales de autenticación en archivos de configuración Terraform y almacenarlas en control de código.
+- C) Usar variables de entorno para configurar credenciales fuera de tu configuración Terraform.
+- D) Ninguna de las anteriores.
+
+**Respuesta Correcta:** C
+
+**Explicación:** Las credenciales deben mantenerse fuera del código Terraform y fuera de VCS. Variables de entorno (o gestores externos de secretos) son patrones seguros estándar para autenticación de backend.
+
+**Explicación:**
+
+Opción A es incorrecta: Un entorno compartido no resuelve por sí mismo la gestión segura de credenciales.
+
+Opción B es incorrecta: Guardar credenciales en código/control de versiones es inseguro.
+
+Opción D es incorrecta: La opción C sí es una buena práctica.
+
+---
+
+## Question No. 57
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál de las siguientes opciones deberías agregar en el bloque required_providers para definir una restricción de versión del provider?
+
+**Opciones:**
+- A) `version ~> 3.1`
+- B) `version >= 3.1`
+- C) `version = ">= 3.1"`
+
+**Respuesta Correcta:** C
+
+**Explicación:** En `required_providers`, las restricciones de versión se asignan como expresión de cadena, por ejemplo `version = ">= 3.1"`.
+
+**Explicación:**
+
+Opción A es incorrecta: Falta la asignación/contexto de argumento válido en sintaxis HCL.
+
+Opción B es incorrecta: Falta la asignación y el formato de cadena esperado para declarar restricciones de versión de provider.
+
+---
+
+## Question No. 58
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Debes realizar un cambio en un stack de infraestructura en nube pública usando HCP Terraform/Terraform Cloud. ¿Qué patrón sigue las mejores prácticas de IaC?
+
+**Opciones:**
+- A) Hacer el cambio vía endpoint API de la nube pública.
+- B) Enviar un pull request y esperar merge aprobado de los cambios propuestos.
+- C) Clonar el repositorio de infraestructura y luego ejecutar el código.
+- D) Usar la consola cloud para hacer el cambio después de aprobación.
+- E) Hacer el cambio programáticamente vía CLI cloud.
+
+**Respuesta Correcta:** B
+
+**Explicación:** La mejor práctica IaC es cambio-vía-código con workflow de revisión y aprobación (PR + merge), lo que produce un proceso auditable y repetible.
+
+**Explicación:**
+
+Opción A es incorrecta: Cambios directos por API evitan revisión/gobernanza.
+
+Opción C es incorrecta: Ejecutar código directamente no es el patrón principal de gobernanza si no pasa por revisión/aprobación.
+
+Opción D es incorrecta: Cambios por consola introducen drift y evitan controles IaC.
+
+Opción E es incorrecta: Cambios directos por CLI evitan el pipeline deseado de revisión de código.
+
+---
+
+## Question No. 59
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Estás escribiendo una configuración Terraform que necesita leer entrada desde un archivo local llamado id_rsa.pub. ¿Qué función built-in de Terraform puedes usar para importar el contenido del archivo como string?
+
+**Opciones:**
+- A) `fileset('id_rsa.pub')`
+- B) `file('id_rsa.pub')`
+- C) `filebase64('id_rsa.pub')`
+- D) `templatefile('id_rsa.pub')`
+
+**Respuesta Correcta:** B
+
+**Explicación:** La función `file()` lee un archivo y devuelve su contenido como string.
+
+**Explicación:**
+
+Opción A es incorrecta: `fileset` devuelve un conjunto de nombres de archivos coincidentes, no el contenido.
+
+Opción C es incorrecta: `filebase64` devuelve el contenido codificado en base64, no texto plano.
+
+Opción D es incorrecta: `templatefile` espera un archivo plantilla y un mapa de variables para renderizar.
+
+---
+
+## Question No. 60
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Solo el usuario que generó un terraform plan puede aplicarlo.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Un plan guardado puede ser aplicado por otro usuario/entorno con acceso adecuado y contexto compatible; Terraform no exige que lo aplique exactamente la misma persona que lo creó.
+
+**Explicación:**
+
+Opción A es incorrecta: Terraform no impone una regla de "mismo usuario" para aplicar planes guardados.
