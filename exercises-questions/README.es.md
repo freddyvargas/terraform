@@ -33,6 +33,26 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 - [Question No. 28](#question-no-28)
 - [Question No. 29](#question-no-29)
 - [Question No. 30](#question-no-30)
+- [Question No. 31](#question-no-31)
+- [Question No. 32](#question-no-32)
+- [Question No. 33](#question-no-33)
+- [Question No. 34](#question-no-34)
+- [Question No. 35](#question-no-35)
+- [Question No. 36](#question-no-36)
+- [Question No. 37](#question-no-37)
+- [Question No. 38](#question-no-38)
+- [Question No. 39](#question-no-39)
+- [Question No. 40](#question-no-40)
+- [Question No. 41](#question-no-41)
+- [Question No. 42](#question-no-42)
+- [Question No. 43](#question-no-43)
+- [Question No. 44](#question-no-44)
+- [Question No. 45](#question-no-45)
+- [Question No. 46](#question-no-46)
+- [Question No. 47](#question-no-47)
+- [Question No. 48](#question-no-48)
+- [Question No. 49](#question-no-49)
+- [Question No. 50](#question-no-50)
 
 ## Question No. 2
 
@@ -807,3 +827,540 @@ Opción A es incorrecta: El autoescalado es una característica de la plataforma
 Opción B es incorrecta: El control de acceso basado en roles (RBAC) es una característica del proveedor de nube y de gestión de identidades disponible sin IaC.
 
 Opción C es incorrecta: La optimización de costos puede lograrse mediante herramientas nativas de la nube, dashboards de facturación y políticas, todo sin IaC.
+
+---
+
+## Question No. 31
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Exhibit:
+
+```
+resource 'aws_instance' 'example' {
+  ami           = 'ami-0a123456789abcdef'
+  instance_type = 't3.micro'
+}
+```
+
+Estás actualizando un módulo hijo con el bloque de recurso mostrado en el exhibit. El atributo `public_ip` del recurso debe ser accesible para el módulo padre. ¿Cómo cumples este requisito?
+
+**Opciones:**
+- A) Crear un output en el módulo hijo.
+- B) Agregar un data source al módulo padre.
+- C) Agregar un bloque import al módulo padre.
+- D) Crear un valor local en el módulo hijo.
+
+**Respuesta Correcta:** A
+
+**Explicación:** Para hacer que valores de un módulo hijo estén disponibles al módulo padre, debes declarar un bloque `output` en el módulo hijo. Luego el módulo padre puede referenciar `module.<nombre_hijo>.<nombre_output>`. Exponer `public_ip` de esta forma es el patrón estándar de interfaz de módulos en Terraform.
+
+**Explicación:**
+
+Opción B es incorrecta: Un data source en el padre no expone atributos de un recurso definido dentro de la interfaz del módulo hijo.
+
+Opción C es incorrecta: Los bloques import se usan para incorporar infraestructura existente al estado, no para exponer valores del módulo hijo.
+
+Opción D es incorrecta: Los valores locales son internos al módulo y no son accesibles desde el módulo padre.
+
+---
+
+## Question No. 32
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Corregiste un typo en el nombre de un recurso, cambiándolo de `aws_s3_bucket.photoes` a `aws_s3_bucket.photos`. Quieres actualizar el estado de Terraform para que el recurso existente sea reconocido con el nuevo nombre, sin destruirlo ni recrearlo. ¿Qué configuración debes usar?
+
+**Opciones:**
+- A) Remover el recurso anterior de tu configuración y volver a importarlo.
+- B) Ejecutar `terraform apply -refresh-only`.
+- C) No hacer nada --- Terraform actualizará el estado automáticamente.
+- D) Agregar un bloque moved a tu configuración.
+
+**Respuesta Correcta:** D
+
+**Explicación:** Un bloque `moved` le indica a Terraform que un objeto rastreado en una dirección fue renombrado a otra dirección. Esto actualiza el mapeo del estado de forma segura sin destruir y recrear el recurso de infraestructura.
+
+**Explicación:**
+
+Opción A es incorrecta: Reimportar es innecesario y más propenso a errores para un simple renombre en configuración.
+
+Opción B es incorrecta: `-refresh-only` actualiza el estado con valores reales, pero no remapea direcciones de recursos.
+
+Opción C es incorrecta: Terraform no infiere automáticamente renombres arbitrarios de direcciones sin guía explícita.
+
+---
+
+## Question No. 33
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué argumento puedes establecer en un bloque module para evitar que Terraform actualice la configuración del módulo durante una operación init o get?
+
+**Opciones:**
+- A) version
+- B) lifecycle
+- C) count
+- D) source
+
+**Respuesta Correcta:** A
+
+**Explicación:** Establecer el argumento `version` (normalmente con una versión exacta) restringe qué release de módulo puede usar Terraform, evitando actualizaciones no intencionadas del módulo durante `terraform init` o `terraform get`.
+
+**Explicación:**
+
+Opción B es incorrecta: `lifecycle` no está soportado para bloques module.
+
+Opción C es incorrecta: `count` controla la cantidad de instancias del módulo, no sus actualizaciones de versión.
+
+Opción D es incorrecta: `source` identifica de dónde proviene el módulo, pero por sí solo no fija una versión específica del módulo.
+
+---
+
+## Question No. 34
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Por qué usarías el flag `-replace` con `terraform apply`?
+
+**Opciones:**
+- A) Quieres forzar a Terraform a destruir un recurso en el próximo apply.
+- B) Quieres que Terraform ignore un recurso en el próximo apply.
+- C) Quieres forzar a Terraform a destruir y recrear un recurso en el próximo apply.
+- D) Quieres que Terraform destruya toda la infraestructura en tu workspace.
+
+**Respuesta Correcta:** C
+
+**Explicación:** El flag `-replace` marca una instancia específica de recurso para reemplazo, lo que significa que Terraform la destruirá y luego la recreará durante el apply.
+
+**Explicación:**
+
+Opción A es incorrecta: `-replace` no significa solo destruir; significa reemplazar (destruir + crear).
+
+Opción B es incorrecta: Ignorar cambios de recursos se maneja mediante lifecycle o cambios en configuración, no con `-replace`.
+
+Opción D es incorrecta: Destruir toda la infraestructura se hace con `terraform destroy`.
+
+---
+
+## Question No. 35
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Tu configuración de Terraform declara una variable. Quieres forzar que su valor cumpla requisitos específicos y bloquear la operación de Terraform si no se cumplen. ¿Qué debes agregar en tu configuración?
+
+**Opciones:**
+- A) Agregar un check block de nivel superior.
+- B) Agregar un validation block al bloque variable.
+- C) Agregar un validation block de nivel superior.
+- D) Agregar un check block dentro del bloque variable.
+
+**Respuesta Correcta:** B
+
+**Explicación:** Usa un bloque `validation` dentro del bloque `variable` para imponer restricciones de entrada. Si la condición falla, Terraform genera un error y detiene la operación.
+
+**Explicación:**
+
+Opción A es incorrecta: Los bloques `check` de nivel superior no son el mecanismo estándar para validar entradas de variables en el momento de declaración.
+
+Opción C es incorrecta: No existe un bloque `validation` de nivel superior en la sintaxis de Terraform.
+
+Opción D es incorrecta: `check` no se anida dentro de bloques variable para validación de inputs.
+
+---
+
+## Question No. 36
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Exhibit:
+
+```
+variable 'sizes' {
+  type        = list(string)
+  description = 'Valid server sizes'
+  default     = ['small', 'medium', 'large']
+}
+```
+
+Se muestra una declaración de variable en el exhibit. ¿Cuál es la forma correcta de obtener el valor `medium` de esta variable?
+
+**Opciones:**
+- A) `var.sizes[0]`
+- B) `var.sizes[1]`
+- C) `var.sizes[2]`
+- D) `var.sizes[3]`
+
+**Respuesta Correcta:** B
+
+**Explicación:** Las listas en Terraform están indexadas desde cero. Para `['small', 'medium', 'large']`, el índice 0 es `small`, el índice 1 es `medium` y el índice 2 es `large`.
+
+**Explicación:**
+
+Opción A es incorrecta: El índice 0 retorna `small`.
+
+Opción C es incorrecta: El índice 2 retorna `large`.
+
+Opción D es incorrecta: El índice 3 está fuera de rango para esta lista de 3 elementos.
+
+---
+
+## Question No. 37
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Qué dos pasos son requeridos para aprovisionar nueva infraestructura en el workflow de Terraform? (Selecciona las 2 respuestas correctas.)
+
+**Opciones:**
+- A) Import
+- B) Apply
+- C) Validate
+- D) Plan
+- E) Init
+
+**Respuesta Correcta:** B, E
+
+**Explicación:** Para aprovisionar infraestructura nueva con Terraform, debes inicializar el directorio de trabajo (`terraform init`) y luego aplicar la configuración (`terraform apply`). `plan` es recomendado pero no estrictamente obligatorio para ejecutar el aprovisionamiento.
+
+**Explicación:**
+
+Opción A es incorrecta: `import` es para incorporar recursos existentes al estado, no es requerido para aprovisionamiento nuevo.
+
+Opción C es incorrecta: `validate` es útil para revisión sintáctica, pero no obligatorio para aprovisionar.
+
+Opción D es incorrecta: `plan` es buena práctica, pero apply puede ejecutarse sin correr plan explícitamente antes.
+
+---
+
+## Question No. 38
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Exhibit:
+
+```
+data 'aws_ami' 'web' {
+  most_recent = true
+  owners      = ['self']
+  tags = {
+    Name = 'web-server'
+  }
+}
+```
+
+Se muestra un data source en el exhibit. ¿Cómo referenciarías el atributo `id` de este data source?
+
+**Opciones:**
+- A) `aws_ami.web.id`
+- B) `web.id`
+- C) `data.aws_ami.web.id`
+- D) `data.web.id`
+
+**Respuesta Correcta:** C
+
+**Explicación:** Las referencias de data source siguen el patrón `data.<tipo>.<nombre>.<atributo>`. Por lo tanto, el atributo `id` se referencia como `data.aws_ami.web.id`.
+
+**Explicación:**
+
+Opción A es incorrecta: Ese formato es para recursos administrados, no para data sources.
+
+Opción B es incorrecta: Omite el prefijo `data` y también el tipo del data source.
+
+Opción D es incorrecta: Omite el tipo de data source `aws_ami`.
+
+---
+
+## Question No. 39
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál es una ventaja de la infraestructura inmutable?
+
+**Opciones:**
+- A) Actualizaciones in-place de infraestructura
+- B) Actualizaciones de infraestructura más rápidas
+- C) Actualizaciones automáticas de infraestructura
+- D) Actualizaciones de infraestructura menos complejas
+
+**Respuesta Correcta:** B
+
+**Explicación:** La infraestructura inmutable reemplaza componentes existentes por nuevas versiones en lugar de mutarlos in-place. Esto con frecuencia permite despliegues más rápidos y seguros al promover artefactos de despliegue consistentes y repetibles.
+
+**Explicación:**
+
+Opción A es incorrecta: Las actualizaciones in-place son lo opuesto a los principios de infraestructura inmutable.
+
+Opción C es incorrecta: La inmutabilidad no vuelve automáticamente las actualizaciones automáticas.
+
+Opción D es incorrecta: La complejidad puede desplazarse, pero la ventaja más reconocida aquí es la rapidez y seguridad del enfoque de reemplazo.
+
+---
+
+## Question No. 40
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál es un beneficio del archivo de estado de Terraform?
+
+**Opciones:**
+- A) Un state file puede programar tareas recurrentes de infraestructura.
+- B) Un state file es el estado deseado expresado por los archivos de código Terraform.
+- C) Un state file es una fuente de verdad para recursos aprovisionados con Terraform.
+- D) Un state file es una fuente de verdad para recursos aprovisionados con una consola pública de nube.
+
+**Respuesta Correcta:** C
+
+**Explicación:** El estado de Terraform rastrea los objetos reales de infraestructura administrados por Terraform y los mapea a direcciones de configuración. Actúa como registro autoritativo de Terraform para recursos gestionados, permitiendo diffs, planes y actualizaciones precisas.
+
+**Explicación:**
+
+Opción A es incorrecta: Programar tareas recurrentes está fuera del propósito de los state files.
+
+Opción B es incorrecta: El estado deseado se define en el código de configuración, no en el state file.
+
+Opción D es incorrecta: El estado es autoritativo para objetos gestionados por Terraform, no una fuente universal de verdad para recursos creados directamente en consolas de nube.
+
+---
+
+## Question No. 41
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Tu equipo suele usar llamadas API para crear y administrar infraestructura en la nube. ¿En qué se diferencia Terraform de los enfoques convencionales de gestión de infraestructura?
+
+**Opciones:**
+- A) Terraform describe infraestructura con configuraciones repetibles y versionadas que especifican el estado deseado.
+- B) Terraform es solo un wrapper de las APIs del proveedor, por lo que casi no hay diferencia frente a llamarlas directamente.
+- C) Terraform reemplaza las APIs del proveedor con sus propios protocolos, habilitando despliegues automáticos.
+- D) Terraform impone infraestructura mediante scripts imperativos para asegurar el orden correcto de tareas.
+
+**Respuesta Correcta:** A
+
+**Explicación:** Terraform es declarativo. Defines el estado final deseado en archivos de configuración versionados, y Terraform calcula los pasos de ejecución para llegar a ese estado. Esto habilita repetibilidad, revisión de cambios y despliegues consistentes.
+
+**Explicación:**
+
+Opción B es incorrecta: Terraform sí usa APIs, pero su modelo declarativo y manejo de estado lo diferencian de scripts API directos.
+
+Opción C es incorrecta: Terraform no reemplaza APIs del proveedor; los providers invocan esas APIs.
+
+Opción D es incorrecta: Terraform no se basa principalmente en scripting imperativo; es un sistema declarativo de estado deseado.
+
+---
+
+## Question No. 42
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Tu equipo adopta AWS CloudFormation como método estandarizado para aprovisionar recursos de nube pública. ¿Qué escenario representa un desafío para tu equipo?
+
+**Opciones:**
+- A) Construir una base de código reutilizable que pueda desplegar recursos en cualquier región de AWS.
+- B) Administrar un nuevo stack de aplicación construido sobre servicios nativos de AWS.
+- C) Automatizar un proceso de aprovisionamiento manual basado en consola web.
+- D) Desplegar nueva infraestructura en Microsoft Azure.
+
+**Respuesta Correcta:** D
+
+**Explicación:** AWS CloudFormation es específico de AWS. Desplegar en Microsoft Azure requiere otra herramienta o plataforma IaC (por ejemplo, Terraform, Bicep o ARM), por eso ese escenario representa el principal desafío.
+
+**Explicación:**
+
+Opción A es incorrecta: CloudFormation soporta patrones multi-región dentro de AWS.
+
+Opción B es incorrecta: Gestionar stacks AWS-nativos es el caso de uso principal de CloudFormation.
+
+Opción C es incorrecta: CloudFormation puede automatizar infraestructura que antes era manual en AWS.
+
+---
+
+## Question No. 43
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Qué parámetros requiere el bloque import? (Selecciona las 2 respuestas correctas.)
+
+**Opciones:**
+- A) El ID del recurso
+- B) Provider
+- C) La dirección objetivo del recurso
+- D) Backend
+
+**Respuesta Correcta:** A, C
+
+**Explicación:** Los bloques import de Terraform requieren `id` (identificador del recurso en el proveedor) y `to` (dirección objetivo del recurso en la configuración). Estos dos valores indican qué objeto existente importar y dónde mapearlo en el estado.
+
+**Explicación:**
+
+Opción B es incorrecta: La selección del provider se infiere de la configuración del recurso objetivo y no es un parámetro obligatorio del bloque import.
+
+Opción D es incorrecta: La configuración de backend no forma parte de los parámetros del bloque import.
+
+---
+
+## Question No. 44
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Habilitaste logging nivel DEBUG para Terraform y quieres enviar los logs a un archivo. ¿Qué acción debes tomar?
+
+**Opciones:**
+- A) Establecer la variable de entorno `TF_LOG_PATH`.
+- B) Actualizar el archivo de configuración de Terraform CLI.
+- C) Agregar un argumento path al bloque terraform.
+- D) Ejecutar el comando terraform output.
+
+**Respuesta Correcta:** A
+
+**Explicación:** `TF_LOG_PATH` indica a Terraform dónde escribir los logs. Combinada con `TF_LOG` (por ejemplo `DEBUG`), envía los logs al archivo especificado.
+
+**Explicación:**
+
+Opción B es incorrecta: Esta no es la forma de dirigir la salida de logs de ejecución a un archivo.
+
+Opción C es incorrecta: El bloque terraform no tiene un argumento path genérico para logging.
+
+Opción D es incorrecta: `terraform output` muestra outputs del módulo raíz, no logs.
+
+---
+
+## Question No. 45
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Dónde especificas la configuración de almacenamiento remoto de estado en Terraform?
+
+**Opciones:**
+- A) En el bloque resource
+- B) En el bloque provider
+- C) En el bloque data
+- D) En el bloque terraform
+
+**Respuesta Correcta:** D
+
+**Explicación:** El almacenamiento remoto de estado se configura en un bloque `backend` anidado bajo el bloque de nivel superior `terraform`.
+
+**Explicación:**
+
+Opción A es incorrecta: Los bloques resource definen objetos de infraestructura administrada.
+
+Opción B es incorrecta: Los bloques provider configuran autenticación y comportamiento del provider.
+
+Opción C es incorrecta: Los bloques data leen información externa o existente.
+
+---
+
+## Question No. 46
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** El parámetro `-refresh-only` actualizará tu archivo de estado cuando se use con `terraform plan`.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform plan -refresh-only` crea un plan que *propone* actualizaciones de estado/output según la infraestructura real, pero plan por sí solo no persiste esos cambios en el estado. El estado se actualiza cuando se aplica ese plan.
+
+**Explicación:**
+
+Opción A es incorrecta: Hacer plan únicamente no confirma cambios en el estado.
+
+---
+
+## Question No. 47
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Ejecutar terraform fmt sin flags en un directorio con archivos Terraform solo revisará el formato de esos archivos, pero nunca cambiará su contenido.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Por defecto, `terraform fmt` reescribe archivos en sitio al formato canónico. Para solo verificar formato sin modificar archivos, se usan opciones de chequeo como `-check`.
+
+**Explicación:**
+
+Opción A es incorrecta: El comportamiento por defecto de `terraform fmt` sí modifica archivos cuando hace falta formateo.
+
+---
+
+## Question No. 48
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** Quieres usar API tokens y otros secretos dentro de los workspaces Terraform de tu equipo. ¿Dónde recomienda HashiCorp almacenar estos valores sensibles? (Selecciona 3 respuestas correctas.)
+
+**Opciones:**
+- A) En un documento de texto plano en un disco compartido.
+- B) En un archivo terraform.tfvars versionado en control de código fuente.
+- C) En un archivo terraform.tfvars gestionado de forma segura y compartido con tu equipo.
+- D) En una variable de HCP Terraform/Terraform Cloud con la opción sensitive activada.
+- E) En HashiCorp Vault.
+
+**Respuesta Correcta:** C, D, E
+
+**Explicación:** Las opciones recomendadas para secretos incluyen tfvars gestionados de forma segura (fuera de VCS), variables sensibles de workspace en HCP Terraform/Terraform Cloud y gestores de secretos dedicados como HashiCorp Vault.
+
+**Explicación:**
+
+Opción A es incorrecta: Documentos en texto plano compartidos no son un almacenamiento seguro para secretos.
+
+Opción B es incorrecta: Versionar secretos en control de código fuente no es recomendable.
+
+---
+
+## Question No. 49
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál de las siguientes NO es una acción que realiza terraform init?
+
+**Opciones:**
+- A) Inicializar un backend configurado.
+- B) Crear archivos de configuración de plantilla.
+- C) Cargar los plugins de provider requeridos.
+- D) Obtener el código fuente de todos los módulos referenciados.
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform init` inicializa backend, descarga/instala plugins de provider requeridos y obtiene el código fuente de módulos. No crea plantillas de archivos de configuración Terraform.
+
+**Explicación:**
+
+Opción A es incorrecta: La inicialización del backend es una acción central de init.
+
+Opción C es incorrecta: La instalación de plugins de provider es una acción central de init.
+
+Opción D es incorrecta: La descarga de módulos es una acción central de init.
+
+---
+
+## Question No. 50
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué hace terraform destroy?
+
+**Opciones:**
+- A) Destruye toda la infraestructura en el archivo de estado de Terraform.
+- B) Destruye todos los archivos de código Terraform del directorio actual, dejando intacto el state file.
+- C) Destruye toda la infraestructura en el provider configurado.
+- D) Destruye el state file de Terraform, dejando intacta la infraestructura.
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform destroy` elimina todos los recursos actualmente gestionados en el estado activo para ese workspace/configuración. No destruye todos los recursos de toda la cuenta del provider, ni elimina archivos de código Terraform.
+
+**Explicación:**
+
+Opción B es incorrecta: Terraform nunca elimina tus archivos de configuración como parte de destroy.
+
+Opción C es incorrecta: Destroy apunta a recursos gestionados en estado, no a todo lo que existe en la cuenta del provider.
+
+Opción D es incorrecta: Destroy elimina recursos de infraestructura; borrar el estado es una operación separada.

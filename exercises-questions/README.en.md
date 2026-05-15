@@ -33,6 +33,26 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 - [Question No. 28](#question-no-28)
 - [Question No. 29](#question-no-29)
 - [Question No. 30](#question-no-30)
+- [Question No. 31](#question-no-31)
+- [Question No. 32](#question-no-32)
+- [Question No. 33](#question-no-33)
+- [Question No. 34](#question-no-34)
+- [Question No. 35](#question-no-35)
+- [Question No. 36](#question-no-36)
+- [Question No. 37](#question-no-37)
+- [Question No. 38](#question-no-38)
+- [Question No. 39](#question-no-39)
+- [Question No. 40](#question-no-40)
+- [Question No. 41](#question-no-41)
+- [Question No. 42](#question-no-42)
+- [Question No. 43](#question-no-43)
+- [Question No. 44](#question-no-44)
+- [Question No. 45](#question-no-45)
+- [Question No. 46](#question-no-46)
+- [Question No. 47](#question-no-47)
+- [Question No. 48](#question-no-48)
+- [Question No. 49](#question-no-49)
+- [Question No. 50](#question-no-50)
 
 ## Question No. 2
 
@@ -807,3 +827,540 @@ Option A is incorrect: Autoscaling is a cloud platform feature (e.g., Auto Scali
 Option B is incorrect: Role-based access control (RBAC) is a cloud provider and identity management feature available without IaC.
 
 Option C is incorrect: Cost optimization can be achieved through cloud-native tools, billing dashboards, and policies, all without IaC.
+
+---
+
+## Question No. 31
+
+**Question Type:** Single Choice
+
+**Question:** Exhibit:
+
+```
+resource 'aws_instance' 'example' {
+  ami           = 'ami-0a123456789abcdef'
+  instance_type = 't3.micro'
+}
+```
+
+You are updating a child module with the resource block shown in the exhibit. The `public_ip` attribute of the resource needs to be accessible to the parent module. How do you meet this requirement?
+
+**Options:**
+- A) Create an output in the child module.
+- B) Add a data source to the parent module.
+- C) Add an import block to the parent module.
+- D) Create a local value in the child module.
+
+**Correct Answer:** A
+
+**Explanation:** To make values from a child module available to the parent module, you must declare an `output` block in the child module. The parent module can then reference `module.<child_name>.<output_name>`. Exposing `public_ip` this way is the standard Terraform module interface pattern.
+
+**Explanation:**
+
+Option B is incorrect: A parent-level data source does not expose attributes from a resource defined inside the child module interface.
+
+Option C is incorrect: Import blocks are used for bringing existing infrastructure into state, not for exposing child module values.
+
+Option D is incorrect: Local values are only internal to the module and are not accessible from the parent module.
+
+---
+
+## Question No. 32
+
+**Question Type:** Single Choice
+
+**Question:** You corrected a typo in a resource name, changing it from `aws_s3_bucket.photoes` to `aws_s3_bucket.photos`. You want to update the Terraform state so that the existing resource is recognized under the new name, without destroying and recreating it. Which configuration should you use?
+
+**Options:**
+- A) Remove the old resource from your configuration and re-import it.
+- B) Run `terraform apply -refresh-only`.
+- C) Do nothing --- Terraform will automatically update the state.
+- D) Add a moved block to your configuration.
+
+**Correct Answer:** D
+
+**Explanation:** A `moved` block tells Terraform that an object tracked at one address has been renamed to another address. This updates state mapping safely without destroying and recreating the infrastructure resource.
+
+**Explanation:**
+
+Option A is incorrect: Re-importing is unnecessary and more error-prone for a simple in-configuration rename.
+
+Option B is incorrect: `-refresh-only` updates state with real-world values but does not remap resource addresses.
+
+Option C is incorrect: Terraform does not automatically infer arbitrary address renames without explicit guidance.
+
+---
+
+## Question No. 33
+
+**Question Type:** Single Choice
+
+**Question:** Which argument can you set on a module block to prevent Terraform from updating the module's configuration during an init or get operation?
+
+**Options:**
+- A) version
+- B) lifecycle
+- C) count
+- D) source
+
+**Correct Answer:** A
+
+**Explanation:** Setting the `version` argument (typically to an exact version) constrains which module release Terraform can use, preventing unintended module updates during `terraform init` or `terraform get`.
+
+**Explanation:**
+
+Option B is incorrect: `lifecycle` is not supported for module blocks.
+
+Option C is incorrect: `count` controls module instance quantity, not module version updates.
+
+Option D is incorrect: `source` identifies where the module comes from but does not, by itself, pin a specific module version.
+
+---
+
+## Question No. 34
+
+**Question Type:** Single Choice
+
+**Question:** Why would you use the `-replace` flag for `terraform apply`?
+
+**Options:**
+- A) You want to force Terraform to destroy a resource on the next apply.
+- B) You want Terraform to ignore a resource on the next apply.
+- C) You want to force Terraform to destroy and recreate a resource on the next apply.
+- D) You want Terraform to destroy all the infrastructure in your workspace.
+
+**Correct Answer:** C
+
+**Explanation:** The `-replace` flag marks a specific resource instance for replacement, which means Terraform will destroy it and then recreate it during apply.
+
+**Explanation:**
+
+Option A is incorrect: `-replace` does not mean destroy-only; it means replace (destroy + create).
+
+Option B is incorrect: Ignoring resource changes is handled through lifecycle or configuration changes, not `-replace`.
+
+Option D is incorrect: Destroying all infrastructure is done with `terraform destroy`.
+
+---
+
+## Question No. 35
+
+**Question Type:** Single Choice
+
+**Question:** Your Terraform configuration declares a variable. You want to enforce that its value meets your specific requirements, and you want to block the Terraform operation if it does not. What should you add to your configuration?
+
+**Options:**
+- A) Add a top-level check block.
+- B) Add a validation block to the variable block.
+- C) Add a top-level validation block.
+- D) Add a check block to the variable block.
+
+**Correct Answer:** B
+
+**Explanation:** Use a `validation` block inside the `variable` block to enforce input constraints. If the condition fails, Terraform raises an error and stops the operation.
+
+**Explanation:**
+
+Option A is incorrect: Top-level `check` blocks are not the standard mechanism for validating variable inputs at declaration time.
+
+Option C is incorrect: There is no top-level `validation` block in Terraform syntax.
+
+Option D is incorrect: `check` is not nested inside variable blocks for variable input validation.
+
+---
+
+## Question No. 36
+
+**Question Type:** Single Choice
+
+**Question:** Exhibit:
+
+```
+variable 'sizes' {
+  type        = list(string)
+  description = 'Valid server sizes'
+  default     = ['small', 'medium', 'large']
+}
+```
+
+A variable declaration is shown in the exhibit. Which is the correct way to get the value of `medium` from this variable?
+
+**Options:**
+- A) `var.sizes[0]`
+- B) `var.sizes[1]`
+- C) `var.sizes[2]`
+- D) `var.sizes[3]`
+
+**Correct Answer:** B
+
+**Explanation:** Terraform lists are zero-indexed. For `['small', 'medium', 'large']`, index 0 is `small`, index 1 is `medium`, and index 2 is `large`.
+
+**Explanation:**
+
+Option A is incorrect: Index 0 returns `small`.
+
+Option C is incorrect: Index 2 returns `large`.
+
+Option D is incorrect: Index 3 is out of range for this 3-item list.
+
+---
+
+## Question No. 37
+
+**Question Type:** Multiple Choice
+
+**Question:** Which two steps are required to provision new infrastructure in the Terraform workflow? (Pick the 2 correct responses below.)
+
+**Options:**
+- A) Import
+- B) Apply
+- C) Validate
+- D) Plan
+- E) Init
+
+**Correct Answer:** B, E
+
+**Explanation:** To provision new infrastructure with Terraform, you must initialize the working directory (`terraform init`) and then apply the configuration (`terraform apply`). `plan` is recommended but not strictly required to perform provisioning.
+
+**Explanation:**
+
+Option A is incorrect: `import` is for bringing existing resources into state, not required for new provisioning.
+
+Option C is incorrect: `validate` is useful for syntax checks but not mandatory for provisioning.
+
+Option D is incorrect: `plan` is a best practice step, but apply can run without explicitly running plan first.
+
+---
+
+## Question No. 38
+
+**Question Type:** Single Choice
+
+**Question:** Exhibit:
+
+```
+data 'aws_ami' 'web' {
+  most_recent = true
+  owners      = ['self']
+  tags = {
+    Name = 'web-server'
+  }
+}
+```
+
+A data source is shown in the exhibit. How do you reference the `id` attribute of this data source?
+
+**Options:**
+- A) `aws_ami.web.id`
+- B) `web.id`
+- C) `data.aws_ami.web.id`
+- D) `data.web.id`
+
+**Correct Answer:** C
+
+**Explanation:** Data source references follow the pattern `data.<type>.<name>.<attribute>`. Therefore, the `id` attribute is referenced as `data.aws_ami.web.id`.
+
+**Explanation:**
+
+Option A is incorrect: This format is for managed resources, not data sources.
+
+Option B is incorrect: It omits both the `data` prefix and data source type.
+
+Option D is incorrect: It omits the data source type `aws_ami`.
+
+---
+
+## Question No. 39
+
+**Question Type:** Single Choice
+
+**Question:** What is an advantage of immutable infrastructure?
+
+**Options:**
+- A) In-place infrastructure upgrades
+- B) Quicker infrastructure upgrades
+- C) Automatic infrastructure upgrades
+- D) Less complex infrastructure upgrades
+
+**Correct Answer:** B
+
+**Explanation:** Immutable infrastructure replaces existing components with new versions rather than mutating them in place. This often enables faster and safer rollout patterns by promoting consistent, repeatable deployment artifacts.
+
+**Explanation:**
+
+Option A is incorrect: In-place upgrades are the opposite of immutable infrastructure principles.
+
+Option C is incorrect: Immutability does not inherently make upgrades automatic.
+
+Option D is incorrect: Complexity can shift but the key recognized advantage here is faster, safer replacement-based upgrades.
+
+---
+
+## Question No. 40
+
+**Question Type:** Single Choice
+
+**Question:** Which is a benefit of the Terraform state file?
+
+**Options:**
+- A) A state file can schedule recurring infrastructure tasks.
+- B) A state file is the desired state expressed by the Terraform code files.
+- C) A state file is a source of truth for resources provisioned with Terraform.
+- D) A state file is a source of truth for resources provisioned with a public cloud console.
+
+**Correct Answer:** C
+
+**Explanation:** Terraform state tracks the real infrastructure objects managed by Terraform and maps them to configuration addresses. It acts as Terraform's authoritative record for managed resources, enabling accurate diffing, planning, and updates.
+
+**Explanation:**
+
+Option A is incorrect: Scheduling recurring tasks is outside the purpose of state files.
+
+Option B is incorrect: Desired state is defined in configuration code, not in the state file.
+
+Option D is incorrect: State is authoritative for Terraform-managed objects, not a universal source of truth for resources created directly in cloud consoles.
+
+---
+
+## Question No. 41
+
+**Question Type:** Single Choice
+
+**Question:** Your team often uses API calls to create and manage cloud infrastructure. In what ways does Terraform differ from conventional infrastructure management approaches?
+
+**Options:**
+- A) Terraform describes infrastructure with version-controlled, repeatable configurations that specify the desired state.
+- B) Terraform is merely a wrapper for cloud provider APIs, so there is little to no difference in calling the API directly.
+- C) Terraform replaces cloud provider APIs with its own protocols, enabling automated deployments.
+- D) Terraform enforces infrastructure through imperative scripts to ensure tasks are completed in the proper order.
+
+**Correct Answer:** A
+
+**Explanation:** Terraform is declarative. You define the desired end state in version-controlled configuration files, and Terraform computes execution steps to reach that state. This enables repeatability, reviewability, and consistent deployments.
+
+**Explanation:**
+
+Option B is incorrect: Terraform does use provider APIs, but its declarative model and state management are major differences from direct API scripting.
+
+Option C is incorrect: Terraform does not replace provider APIs; providers call those APIs.
+
+Option D is incorrect: Terraform is not primarily imperative scripting; it is a declarative desired-state system.
+
+---
+
+## Question No. 42
+
+**Question Type:** Single Choice
+
+**Question:** Your team adopts AWS CloudFormation as the standardized method for provisioning public cloud resources. Which scenario presents a challenge for your team?
+
+**Options:**
+- A) Building a reusable code base that can deploy resources into any AWS region.
+- B) Managing a new application stack built on AWS-native services.
+- C) Automating a manual, web console-based provisioning process.
+- D) Deploying new infrastructure into Microsoft Azure.
+
+**Correct Answer:** D
+
+**Explanation:** AWS CloudFormation is AWS-specific. Deploying to Microsoft Azure requires a different IaC tool or platform (for example, Terraform, Bicep, ARM templates), so cross-cloud provisioning to Azure is the key challenge here.
+
+**Explanation:**
+
+Option A is incorrect: CloudFormation supports multi-region AWS deployment patterns.
+
+Option B is incorrect: Managing AWS-native stacks is CloudFormation's primary use case.
+
+Option C is incorrect: CloudFormation can automate infrastructure that was previously manual in AWS.
+
+---
+
+## Question No. 43
+
+**Question Type:** Multiple Choice
+
+**Question:** Which parameters does the import block require? (Pick the 2 correct responses below.)
+
+**Options:**
+- A) The resource ID
+- B) Provider
+- C) The target resource address
+- D) Backend
+
+**Correct Answer:** A, C
+
+**Explanation:** Terraform import blocks require `id` (the provider-specific resource identifier) and `to` (the target resource address in configuration). These two values tell Terraform what existing object to import and where to map it in state.
+
+**Explanation:**
+
+Option B is incorrect: Provider selection is inferred from the target resource configuration and is not a required import block parameter.
+
+Option D is incorrect: Backend configuration is unrelated to import block parameters.
+
+---
+
+## Question No. 44
+
+**Question Type:** Single Choice
+
+**Question:** You've enabled DEBUG-level logging for Terraform, and you'd like to send the log data to a file. Which action should you take?
+
+**Options:**
+- A) Set the `TF_LOG_PATH` environment variable.
+- B) Update the Terraform CLI configuration file.
+- C) Add a path argument to the terraform block.
+- D) Run the terraform output command.
+
+**Correct Answer:** A
+
+**Explanation:** `TF_LOG_PATH` tells Terraform where to write log output. Combined with `TF_LOG` (for example `DEBUG`), it sends logs to the specified file.
+
+**Explanation:**
+
+Option B is incorrect: This is not how Terraform directs runtime log output to a file.
+
+Option C is incorrect: The terraform block has no generic path argument for logging.
+
+Option D is incorrect: `terraform output` displays root module outputs, not logs.
+
+---
+
+## Question No. 45
+
+**Question Type:** Single Choice
+
+**Question:** Where in your Terraform configuration do you specify remote state storage settings?
+
+**Options:**
+- A) The resource block
+- B) The provider block
+- C) The data block
+- D) The terraform block
+
+**Correct Answer:** D
+
+**Explanation:** Remote state storage is configured in a `backend` block nested under the top-level `terraform` block.
+
+**Explanation:**
+
+Option A is incorrect: Resource blocks define managed infrastructure objects.
+
+Option B is incorrect: Provider blocks configure provider authentication and behavior.
+
+Option C is incorrect: Data blocks read external or existing information.
+
+---
+
+## Question No. 46
+
+**Question Type:** Single Choice
+
+**Question:** The `-refresh-only` parameter will update your state file when used with `terraform plan`.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** `terraform plan -refresh-only` creates a plan that *proposes* state/output updates based on real infrastructure, but plan by itself does not persist those updates to state. The state is updated when that plan is applied.
+
+**Explanation:**
+
+Option A is incorrect: Planning alone does not commit state changes.
+
+---
+
+## Question No. 47
+
+**Question Type:** Single Choice
+
+**Question:** Running terraform fmt without any flags in a directory with Terraform configuration files will check the formatting of those files, but will never change their contents.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** By default, `terraform fmt` rewrites files in place to canonical format. To only check formatting without changing files, use check-oriented options such as `-check`.
+
+**Explanation:**
+
+Option A is incorrect: Default `terraform fmt` behavior does modify files when formatting changes are needed.
+
+---
+
+## Question No. 48
+
+**Question Type:** Multiple Choice
+
+**Question:** You want to use API tokens and other secrets within your team's Terraform workspaces. Where does HashiCorp recommend you store these sensitive values? (Pick 3 correct responses)
+
+**Options:**
+- A) In a plaintext document on a shared drive.
+- B) In a terraform.tfvars file, checked into version control.
+- C) In a terraform.tfvars file, securely managed and shared with your team.
+- D) In an HCP Terraform/Terraform Cloud variable, with the sensitive option checked.
+- E) In HashiCorp Vault.
+
+**Correct Answer:** C, D, E
+
+**Explanation:** Recommended secret storage options include secure tfvars handling (outside VCS), sensitive workspace variables in HCP Terraform/Terraform Cloud, and dedicated secret managers like HashiCorp Vault.
+
+**Explanation:**
+
+Option A is incorrect: Plaintext shared documents are not secure secret storage.
+
+Option B is incorrect: Checking secrets into version control is not recommended.
+
+---
+
+## Question No. 49
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following is not an action performed by terraform init?
+
+**Options:**
+- A) Initialize a configured backend.
+- B) Create template configuration files.
+- C) Load required provider plugins.
+- D) Retrieve the source code for all referenced modules.
+
+**Correct Answer:** B
+
+**Explanation:** `terraform init` initializes backend settings, downloads/installs required provider plugins, and fetches module source code. It does not scaffold or create template Terraform configuration files.
+
+**Explanation:**
+
+Option A is incorrect: Backend initialization is a core init action.
+
+Option C is incorrect: Provider plugin installation is a core init action.
+
+Option D is incorrect: Module download is a core init action.
+
+---
+
+## Question No. 50
+
+**Question Type:** Single Choice
+
+**Question:** What does terraform destroy do?
+
+**Options:**
+- A) Destroys all infrastructure in the Terraform state file.
+- B) Destroys all Terraform code files in the current directory, leaving the state file intact.
+- C) Destroys all infrastructure in the configured Terraform provider.
+- D) Destroys the Terraform state file, leaving the infrastructure intact.
+
+**Correct Answer:** A
+
+**Explanation:** `terraform destroy` removes all resources currently managed in the active state for the workspace/configuration. It does not destroy all resources in the entire provider account, and it does not delete Terraform source code files.
+
+**Explanation:**
+
+Option B is incorrect: Terraform never deletes your configuration files as part of destroy.
+
+Option C is incorrect: Destroy targets managed resources in state, not everything in the provider account.
+
+Option D is incorrect: Destroy removes infrastructure resources; deleting state is a separate operation.
