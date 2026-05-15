@@ -73,6 +73,16 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 - [Question No. 68](#question-no-68)
 - [Question No. 69](#question-no-69)
 - [Question No. 70](#question-no-70)
+- [Question No. 71](#question-no-71)
+- [Question No. 72](#question-no-72)
+- [Question No. 73](#question-no-73)
+- [Question No. 74](#question-no-74)
+- [Question No. 75](#question-no-75)
+- [Question No. 76](#question-no-76)
+- [Question No. 77](#question-no-77)
+- [Question No. 78](#question-no-78)
+- [Question No. 79](#question-no-79)
+- [Question No. 80](#question-no-80)
 
 ## Question No. 2
 
@@ -1937,3 +1947,249 @@ Option C is incorrect: This is included, but not the full answer.
 Option A is incorrect: Scheduling is handled by external orchestrators/pipelines, not by plan itself.
 
 Option D is incorrect: Executing plans is done with `terraform apply`; workspace targeting is a separate concern.
+
+---
+
+## Question No. 71
+
+**Question Type:** Single Choice
+
+**Question:** What task does the terraform import command perform?
+
+**Options:**
+- A) Imports resources from one Terraform state file to another.
+- B) Imports existing resources into Terraform's state file.
+- C) Imports a new Terraform module into Terraform's state file.
+- D) Imports all infrastructure from the configured cloud provider.
+- E) Imports provider configuration from one state file to another.
+
+**Correct Answer:** B
+
+**Explanation:** `terraform import` maps an existing real-world resource to a Terraform resource address and records it in state, allowing Terraform to begin managing it.
+
+**Explanation:**
+
+Option A is incorrect: Import does not move resources between state files.
+
+Option C is incorrect: Modules are downloaded via `terraform init`, not imported.
+
+Option D is incorrect: Import targets specific named resources, not all infrastructure at once.
+
+Option E is incorrect: Provider configuration is not moved between state files via import.
+
+---
+
+## Question No. 72
+
+**Question Type:** Single Choice
+
+**Question:** What is the purpose of the terraform.lock.hcl file in Terraform?
+
+**Options:**
+- A) There is no such file.
+- B) Storing references to workspaces, which are locked.
+- C) Preventing Terraform runs from occurring.
+- D) Tracking specific provider dependencies.
+
+**Correct Answer:** D
+
+**Explanation:** The `.terraform.lock.hcl` file records the exact provider versions and checksums selected during `terraform init`. It ensures consistent provider versions across team members and CI runs.
+
+**Explanation:**
+
+Option A is incorrect: The file does exist and is created by `terraform init`.
+
+Option B is incorrect: It does not store workspace lock references.
+
+Option C is incorrect: It does not prevent Terraform from running.
+
+---
+
+## Question No. 73
+
+**Question Type:** Single Choice
+
+**Question:** What is a Terraform provider not responsible for?
+
+**Options:**
+- A) Provisioning infrastructure in multiple cloud providers.
+- B) Managing actions to take based on resource differences.
+- C) Managing resources and data sources based on an API.
+- D) Understanding API interactions with a hosted service.
+
+**Correct Answer:** B
+
+**Explanation:** Determining what actions to take based on resource differences (plan/apply logic) is Terraform core's responsibility, not the provider's. Providers are responsible for translating resource configurations into API calls.
+
+**Explanation:**
+
+Option A is incorrect: A single provider can be scoped to one cloud, but provisioning across multiple providers is achievable by using multiple providers; however the provider itself does not span multi-cloud natively.
+
+Option C is incorrect: Managing resources and data sources via API is exactly the provider's role.
+
+Option D is incorrect: Understanding API interactions with its service is the provider's role.
+
+---
+
+## Question No. 74
+
+**Question Type:** Single Choice
+
+**Question:** You have developed a new cloud-based service that uses proprietary APIs and want to use Terraform to create, manage, and delete users from the service. How can Terraform interact with the service?
+
+**Options:**
+- A) Terraform can manage users for any service that is hosted on a public cloud provider.
+- B) Develop and publish a custom provider to interact with the service using its proprietary APIs.
+
+**Correct Answer:** B
+
+**Explanation:** Terraform's provider plugin architecture allows anyone to write a custom provider that wraps proprietary APIs. Once published, the provider enables Terraform to manage those resources.
+
+**Explanation:**
+
+Option A is incorrect: Terraform does not automatically manage arbitrary services just because they run on a public cloud; a provider must explicitly support the service's API.
+
+---
+
+## Question No. 75
+
+**Question Type:** Single Choice
+
+**Question:** By default, if you do not define a backend for your configuration, where does Terraform store information about the resources that it manages?
+
+**Options:**
+- A) A subdirectory of your home directory named .terraform.d
+- B) A file in your configuration's directory named terraform.tfstate
+- C) A file in your configuration's directory named .terraform.lock.hcl
+- D) A subdirectory of your configuration named .terraform
+
+**Correct Answer:** B
+
+**Explanation:** Without a configured backend, Terraform uses the local backend and stores state in `terraform.tfstate` in the working directory.
+
+**Explanation:**
+
+Option A is incorrect: `.terraform.d` stores CLI configuration and plugins, not workspace state.
+
+Option C is incorrect: `.terraform.lock.hcl` records provider version locks, not state.
+
+Option D is incorrect: The `.terraform` subdirectory holds provider plugins and modules, not state.
+
+---
+
+## Question No. 76
+
+**Question Type:** Multiple Choice
+
+**Question:** Which of the following locations can Terraform use as a private source for modules? (Pick 2 correct responses)
+
+**Options:**
+- A) Public repository on GitHub.
+- B) Public Terraform Registry.
+- C) Internally hosted VCS (Version Control System) platform.
+- D) Private repository on GitHub.
+
+**Correct Answer:** C, D
+
+**Explanation:** Terraform supports private module sources including private Git repositories (such as private GitHub repos) and internally hosted VCS platforms (GitLab, Bitbucket, Azure DevOps, etc.).
+
+**Explanation:**
+
+Option A is incorrect: A public GitHub repo is a public source, not private.
+
+Option B is incorrect: The public Terraform Registry is a public source, not private.
+
+---
+
+## Question No. 77
+
+**Question Type:** Single Choice
+
+**Question:** What is modified when executing Terraform in refresh-only mode?
+
+**Options:**
+- A) Your Terraform configuration.
+- B) Your Terraform plan.
+- C) Your state file.
+- D) Your cloud infrastructure.
+
+**Correct Answer:** C
+
+**Explanation:** `terraform apply -refresh-only` updates the state file to reflect the real current state of managed resources without making any infrastructure changes.
+
+**Explanation:**
+
+Option A is incorrect: Refresh-only mode never modifies configuration files.
+
+Option B is incorrect: A plan is an ephemeral artifact; refresh-only modifies state.
+
+Option D is incorrect: Refresh-only does not create, update, or destroy cloud resources.
+
+---
+
+## Question No. 78
+
+**Question Type:** Single Choice
+
+**Question:** Terraform requires the Go runtime as a prerequisite for installation.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Terraform is distributed as a single pre-compiled binary. End users do not need the Go runtime or any other runtime to install or run Terraform.
+
+**Explanation:**
+
+Option A is incorrect: Go is required to build Terraform from source, but not to install or run the pre-built binary.
+
+---
+
+## Question No. 79
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following is not an advantage of using Infrastructure as Code (IaC) operations?
+
+**Options:**
+- A) Self-service infrastructure deployment.
+- B) Modify a count parameter to scale resources.
+- C) API-driven workflows.
+- D) Troubleshoot via a Linux diff command.
+- E) Public cloud console configuration workflows.
+
+**Correct Answer:** E
+
+**Explanation:** Public cloud console workflows are manual, GUI-driven operations, the opposite of IaC's programmatic approach. They introduce drift, are not version-controlled, and are not repeatable in the same way IaC is.
+
+**Explanation:**
+
+Option A is incorrect: Self-service deployment is a recognized IaC advantage.
+
+Option B is incorrect: Scaling via code parameters is an IaC advantage.
+
+Option C is incorrect: API-driven workflows are an IaC advantage.
+
+Option D is incorrect: Reviewing diffs (code changes) is an IaC advantage that enables auditability.
+
+---
+
+## Question No. 80
+
+**Question Type:** Single Choice
+
+**Question:** terraform validate confirms the syntax of Terraform files.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** `terraform validate` checks the configuration for syntax errors and internal consistency (valid argument names, types, required fields, etc.) without accessing any remote services or state.
+
+**Explanation:**
+
+Option B is incorrect: `terraform validate` does confirm syntax and basic correctness of configuration files.
