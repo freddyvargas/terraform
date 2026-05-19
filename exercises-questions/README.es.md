@@ -58,7 +58,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-50">Question No. 50</a><br>
 <a href="#question-no-51">Question No. 51</a>
 </td>
-<td valign="top" width="50%">
+<td valign="top" width="33%">
 <a href="#question-no-52">Question No. 52</a><br>
 <a href="#question-no-53">Question No. 53</a><br>
 <a href="#question-no-54">Question No. 54</a><br>
@@ -108,7 +108,9 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-98">Question No. 98</a><br>
 <a href="#question-no-99">Question No. 99</a><br>
 <a href="#question-no-100">Question No. 100</a><br>
-<a href="#question-no-101">Question No. 101</a><br>
+<a href="#question-no-101">Question No. 101</a>
+</td>
+<td valign="top" width="33%">
 <a href="#question-no-102">Question No. 102</a><br>
 <a href="#question-no-103">Question No. 103</a><br>
 <a href="#question-no-104">Question No. 104</a><br>
@@ -127,7 +129,38 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-117">Question No. 117</a><br>
 <a href="#question-no-118">Question No. 118</a><br>
 <a href="#question-no-119">Question No. 119</a><br>
-<a href="#question-no-120">Question No. 120</a>
+<a href="#question-no-120">Question No. 120</a><br>
+<a href="#question-no-121">Question No. 121</a><br>
+<a href="#question-no-122">Question No. 122</a><br>
+<a href="#question-no-123">Question No. 123</a><br>
+<a href="#question-no-124">Question No. 124</a><br>
+<a href="#question-no-125">Question No. 125</a><br>
+<a href="#question-no-126">Question No. 126</a><br>
+<a href="#question-no-127">Question No. 127</a><br>
+<a href="#question-no-128">Question No. 128</a><br>
+<a href="#question-no-129">Question No. 129</a><br>
+<a href="#question-no-130">Question No. 130</a><br>
+<a href="#question-no-131">Question No. 131</a><br>
+<a href="#question-no-132">Question No. 132</a><br>
+<a href="#question-no-133">Question No. 133</a><br>
+<a href="#question-no-134">Question No. 134</a><br>
+<a href="#question-no-135">Question No. 135</a><br>
+<a href="#question-no-136">Question No. 136</a><br>
+<a href="#question-no-137">Question No. 137</a><br>
+<a href="#question-no-138">Question No. 138</a><br>
+<a href="#question-no-139">Question No. 139</a><br>
+<a href="#question-no-140">Question No. 140</a><br>
+<a href="#question-no-141">Question No. 141</a><br>
+<a href="#question-no-142">Question No. 142</a><br>
+<a href="#question-no-143">Question No. 143</a><br>
+<a href="#question-no-144">Question No. 144</a><br>
+<a href="#question-no-145">Question No. 145</a><br>
+<a href="#question-no-146">Question No. 146</a><br>
+<a href="#question-no-147">Question No. 147</a><br>
+<a href="#question-no-148">Question No. 148</a><br>
+<a href="#question-no-149">Question No. 149</a><br>
+<a href="#question-no-150">Question No. 150</a><br>
+<a href="#question-no-151">Question No. 151</a>
 </td>
 </tr>
 </table>
@@ -3235,3 +3268,747 @@ Opción A es incorrecta: Terraform puede resolver un módulo de Registry sin una
 Opción D es incorrecta: Los valores sensibles no deben committearse en control de versiones.
 
 Opción E es incorrecta: Documentos de texto plano compartidos no son una práctica aceptable de gestión de secretos.
+
+---
+
+## Question No. 121
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** La configuración de Terraform solo puede llamar módulos desde el registro público.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Terraform puede usar módulos desde múltiples orígenes: rutas locales, repositorios VCS, registros privados y el Terraform Registry público.
+
+**Explicación:**
+
+Opción A es incorrecta: El registro público es solo una de varias fuentes de módulos soportadas.
+
+---
+
+## Question No. 122
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** Usaste Terraform para crear un entorno efímero de desarrollo en la nube y ahora quieres destruir toda la infraestructura descrita por tu configuración Terraform. Para mayor seguridad, primero quieres ver toda la infraestructura que Terraform eliminará.
+
+¿Qué comando debes usar para mostrar todos los recursos que serán eliminados? (Selecciona 2 respuestas correctas)
+
+**Opciones:**
+- A) Ejecutar `terraform destroy`. Esto mostrará todos los recursos que serán eliminados antes de pedir aprobación.
+- B) Ejecutar `terraform plan -destroy`.
+- C) Ejecutar `terraform state rm *`.
+
+**Respuesta Correcta:** A, B
+
+**Explicación:** Tanto `terraform destroy` (interactivo) como `terraform plan -destroy` muestran el plan de eliminaciones antes de confirmar cambios.
+
+**Explicación:**
+
+Opción C es incorrecta: `terraform state rm` solo elimina recursos del estado de Terraform; no destruye infraestructura.
+
+---
+
+## Question No. 123
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Cuáles de estos son beneficios de usar Sentinel con HCP Terraform/Terraform Cloud? (Selecciona 3 respuestas correctas)
+
+**Opciones:**
+- A) Puedes forzar una lista de AMIs de AWS aprobadas.
+- B) Las políticas Sentinel pueden escribirse en HashiCorp Configuration Language (HCL).
+- C) Puedes hacer check-out y check-in de claves de acceso cloud.
+- D) Policy-as-code puede reforzar buenas prácticas de seguridad.
+
+**Respuesta Correcta:** A, B, D
+
+**Explicación:** Sentinel habilita gobernanza con policy-as-code para ejecuciones, incluyendo controles como allowlists y reglas de seguridad.
+
+**Explicación:**
+
+Opción C es incorrecta: El manejo de claves es una función de secret management, no una capacidad de Sentinel.
+
+---
+
+## Question No. 124
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál de estas afirmaciones sobre workspaces de HCP Terraform/Terraform Cloud es falsa?
+
+**Opciones:**
+- A) Pueden almacenar credenciales cloud de forma segura.
+- B) Tienen controles de acceso basados en roles.
+- C) Los planes y applies pueden dispararse por integraciones con sistemas de control de versiones.
+- D) Debes usar la CLI para cambiar entre workspaces.
+
+**Respuesta Correcta:** D
+
+**Explicación:** HCP Terraform ofrece UI web y API para seleccionar/administrar workspaces; no es obligatorio hacerlo solo por CLI.
+
+**Explicación:**
+
+Opción A es incorrecta: El manejo seguro de credenciales está soportado.
+
+Opción B es incorrecta: RBAC está soportado.
+
+Opción C es incorrecta: Los runs disparados por VCS son una capacidad central.
+
+---
+
+## Question No. 125
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Cuáles de estas acciones están prohibidas cuando el state file de Terraform está bloqueado? (Selecciona 3 respuestas correctas)
+
+**Opciones:**
+- A) terraform apply
+- B) terraform state list
+- C) terraform destroy
+- D) terraform fmt
+
+**Respuesta Correcta:** A, B, C
+
+**Explicación:** Cuando el estado está bloqueado, las operaciones dependientes de estado se bloquean para evitar riesgos de concurrencia.
+
+**Explicación:**
+
+Opción D es incorrecta: `terraform fmt` solo formatea archivos y no requiere acceso al estado.
+
+---
+
+## Question No. 126
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Cuáles de estas son features de HCP Terraform/Terraform Cloud? (Selecciona 2 respuestas correctas)
+
+**Opciones:**
+- A) Backups automáticos de configuración y estado.
+- B) Almacenamiento de estado remoto.
+- C) Visualización automatizada de despliegue de infraestructura.
+- D) Interfaz de usuario web (UI).
+
+**Respuesta Correcta:** B, D
+
+**Explicación:** Las capacidades centrales de HCP Terraform incluyen estado remoto gestionado y UI web para runs, gobernanza y colaboración.
+
+**Explicación:**
+
+Opción A es incorrecta: No se expresa como feature núcleo independiente en este contexto.
+
+Opción C es incorrecta: Esa redacción no corresponde a una feature canónica esperada en esta pregunta.
+
+---
+
+## Question No. 127
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Terraform cifra los valores sensibles almacenados en tu state file.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Marcar un valor como `sensitive` lo oculta en salida CLI/UI, pero puede seguir estando en el estado. El cifrado depende de la configuración del backend/almacenamiento.
+
+**Explicación:**
+
+Opción A es incorrecta: Enmascarar sensibilidad no equivale a cifrado automático del estado.
+
+---
+
+## Question No. 128
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál es el provider para este recurso?
+
+```hcl
+resource "aws_vpc" "main" {
+  name = "test"
+}
+```
+
+**Opciones:**
+- A) Vpc
+- B) Test
+- C) Main
+- D) aws
+
+**Respuesta Correcta:** D
+
+**Explicación:** En `aws_vpc`, `aws` es el prefijo del provider y `vpc` es el tipo de recurso.
+
+**Explicación:**
+
+Opción A es incorrecta: VPC es el segmento del tipo de recurso.
+
+Opción B es incorrecta: `test` es un valor usado dentro del bloque.
+
+Opción C es incorrecta: `main` es el nombre local del recurso.
+
+---
+
+## Question No. 129
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Todos los módulos publicados en el Terraform Module Registry oficial han sido verificados por HashiCorp.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** No todos los módulos públicos del registry están verificados por HashiCorp; la verificación se indica de manera separada para ciertos publicadores/módulos.
+
+**Explicación:**
+
+Opción A es incorrecta: La verificación no es universal para todos los módulos publicados.
+
+---
+
+## Question No. 130
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Tienes una lista de números que representa la cantidad de cores CPU libres en cada cluster virtual: numcpus = [18, 3, 7, 11, 2]
+
+¿Qué función de Terraform podrías usar para seleccionar el número más grande de la lista?
+
+**Opciones:**
+- A) top(numcpus)
+- B) max(numcpus)
+- C) ceil (numcpus)
+- D) hight[numcpus]
+
+**Respuesta Correcta:** B
+
+**Explicación:** `max(...)` devuelve el mayor valor numérico entre los argumentos proporcionados.
+
+**Explicación:**
+
+Opción A es incorrecta: `top` no es una función de Terraform.
+
+Opción C es incorrecta: `ceil` redondea un número individual hacia arriba, no selecciona el máximo de una lista.
+
+Opción D es incorrecta: No es sintaxis válida de función en Terraform.
+
+---
+
+## Question No. 131
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Múltiples miembros del equipo colaboran en infraestructura usando Terraform y quieren dar formato al código Terraform siguiendo la convención estándar de estilo de Terraform.
+
+¿Cómo deben asegurar que el código cumpla las convenciones?
+
+**Opciones:**
+- A) Terraform formatea automáticamente la configuración en terraform apply
+- B) Ejecutar terraform validate antes de terraform plan o terraform apply
+- C) Usar terraform fmt
+- D) Reemplazar todos los tabs por espacios
+
+**Respuesta Correcta:** C
+
+**Explicación:** `terraform fmt` es el formateador canónico que aplica convenciones de estilo Terraform de manera consistente.
+
+**Explicación:**
+
+Opción A es incorrecta: `terraform apply` no auto-formatea archivos.
+
+Opción B es incorrecta: `terraform validate` revisa correctitud, no formato de estilo.
+
+Opción D es incorrecta: Reemplazos manuales son incompletos y poco confiables frente a `terraform fmt`.
+
+---
+
+## Question No. 132
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cómo puede ayudar terraform plan en el proceso de desarrollo?
+
+**Opciones:**
+- A) Inicializa el directorio de trabajo que contiene los archivos de configuración Terraform
+- B) Valida tus expectativas contra el plan de ejecución sin modificar permanentemente el estado
+- C) Formatea tus archivos de configuración Terraform
+- D) Reconcilia el estado de Terraform contra recursos desplegados y modifica permanentemente el estado usando el estado actual de los recursos desplegados
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform plan` previsualiza acciones para validar intención antes de hacer cambios en infraestructura.
+
+**Explicación:**
+
+Opción A es incorrecta: La inicialización se hace con `terraform init`.
+
+Opción C es incorrecta: El formateo se hace con `terraform fmt`.
+
+Opción D es incorrecta: Eso describe comportamiento de reconciliación de estado tipo refresh, no el propósito de plan.
+
+---
+
+## Question No. 133
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Puedes acceder a estado almacenado con backend local usando el data source terraform_remote_state.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform_remote_state` soporta backend local cuando se configura con la ruta correcta del state local.
+
+**Explicación:**
+
+Opción B es incorrecta: El estado de backend local puede leerse así cuando se configura correctamente.
+
+---
+
+## Question No. 134
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Todos los tipos de backend estándar soportan state locking, y operaciones remotas como plan, apply y destroy.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Las capacidades de backend varían. No todos los backends soportan locking, y la ejecución remota es específica de ciertos backends/flujos.
+
+**Explicación:**
+
+Opción A es incorrecta: Las features no son uniformes entre todos los tipos de backend.
+
+---
+
+## Question No. 135
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Un output de Terraform con el argumento 'sensitive' en true no almacenará ese valor en el state file.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Outputs sensibles se ocultan en la visualización, pero sus valores pueden seguir presentes en estado.
+
+**Explicación:**
+
+Opción A es incorrecta: `sensitive = true` controla visibilidad, no omisión en almacenamiento del estado.
+
+---
+
+## Question No. 136
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Quieres definir múltiples discos de datos como bloques anidados dentro del bloque resource para una máquina virtual. ¿Qué feature de Terraform te ayuda a definir esos bloques usando valores de una variable?
+
+**Opciones:**
+- A) Local values
+- B) Count arguments
+- C) Collection functions
+- D) Dynamic blocks
+
+**Respuesta Correcta:** D
+
+**Explicación:** Los bloques `dynamic` se usan para generar estructuras de bloques anidados a partir de colecciones de entrada.
+
+**Explicación:**
+
+Opción A es incorrecta: Locals guardan valores computados pero no generan directamente instancias de bloques anidados.
+
+Opción B es incorrecta: `count` aplica a recursos/módulos completos, no a cualquier bloque anidado arbitrario.
+
+Opción C es incorrecta: Las funciones transforman datos, pero no declaran por sí solas sintaxis repetida de bloques anidados.
+
+---
+
+## Question No. 137
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuándo crea Terraform el archivo .terraform.lock.hc1?
+
+**Opciones:**
+- A) Después de tu primer terraform plan
+- B) Después de tu primer terraform apply
+- C) Después de tu primer terraform init
+- D) Cuando habilitas state locking
+
+**Respuesta Correcta:** C
+
+**Explicación:** El archivo de lock de dependencias se crea/actualiza durante `terraform init` cuando se resuelven selecciones de providers.
+
+**Explicación:**
+
+Opción A es incorrecta: Plan depende de selección de providers ya inicializada.
+
+Opción B es incorrecta: Apply no es el disparador de creación del lock file.
+
+Opción D es incorrecta: El state locking no está relacionado con la creación del lock de dependencias.
+
+---
+
+## Question No. 138
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué está destinado a detectar terraform plan -refresh-only?
+
+**Opciones:**
+- A) Cambios en código de configuración Terraform
+- B) State files corruptos
+- C) Drift del state file
+- D) State files vacíos
+
+**Respuesta Correcta:** C
+
+**Explicación:** El modo refresh-only compara el estado registrado con la infraestructura real para detectar y reconciliar drift.
+
+**Explicación:**
+
+Opción A es incorrecta: Detectar cambios de código corresponde al diff normal de plan, no al objetivo de refresh-only.
+
+Opción B es incorrecta: No es un escáner de corrupción.
+
+Opción D es incorrecta: No está orientado específicamente a detectar estados vacíos.
+
+---
+
+## Question No. 139
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Cuáles de estas son features de Terraform Cloud? Elige dos respuestas correctas.
+
+**Opciones:**
+- A) Una interfaz de usuario web (UI)
+- B) Visualización automatizada de despliegue de infraestructura
+- C) Backups automáticos
+- D) Almacenamiento de estado remoto
+
+**Respuesta Correcta:** A, D
+
+**Explicación:** Terraform Cloud ofrece UI web y almacenamiento de estado remoto gestionado como capacidades centrales de colaboración.
+
+**Explicación:**
+
+Opción B es incorrecta: No es una feature canónica en este contexto de examen.
+
+Opción C es incorrecta: Aunque existen versiones de estado, esta opción no es el par principal esperado aquí.
+
+---
+
+## Question No. 140
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué hace terraform import?
+
+**Opciones:**
+- A) Importa recursos existentes al state file
+- B) Importa toda la infraestructura de un proveedor cloud dado
+- C) Importa un módulo nuevo de Terraform
+- D) Importa copias limpias de recursos tainted
+- E) Ninguna de las anteriores
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform import` mapea un recurso real existente a una dirección Terraform en el estado.
+
+**Explicación:**
+
+Opción B es incorrecta: Import apunta a recursos específicos, no a toda la infraestructura.
+
+Opción C es incorrecta: La descarga de módulos se hace con `terraform init`.
+
+Opción D es incorrecta: Los flujos de taint/replace no están relacionados con import.
+
+Opción E es incorrecta: La opción A es correcta.
+
+---
+
+## Question No. 141
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué comando de Terraform verifica que la sintaxis de tu configuración sea correcta?
+
+**Opciones:**
+- A) terraform validate
+- B) terraform init
+- C) terraform show
+- D) terraform fmt
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform validate` realiza verificaciones de sintaxis y consistencia interna de los archivos de configuración.
+
+**Explicación:**
+
+Opción B es incorrecta: `init` inicializa providers/módulos/backend.
+
+Opción C es incorrecta: `show` renderiza salida de state/plan.
+
+Opción D es incorrecta: `fmt` formatea estilo, no valida semántica.
+
+---
+
+## Question No. 142
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** terraform validate reporta errores de chequeo de sintaxis para cuál de los siguientes casos?
+
+**Opciones:**
+- A) El código contiene tabs para indentación en lugar de espacios
+- B) Falta un valor para una variable
+- C) El state file no coincide con la infraestructura actual
+- D) Ninguna de las anteriores
+
+**Respuesta Correcta:** D
+
+**Explicación:** `terraform validate` verifica estructura y semántica de configuración, no estilo de indentación, completitud de valores en runtime o drift de infraestructura.
+
+**Explicación:**
+
+Opción A es incorrecta: El estilo de indentación es tema de formateo, no falla de validate por sí solo.
+
+Opción B es incorrecta: Valores faltantes en runtime suelen aparecer en contexto de plan/apply.
+
+Opción C es incorrecta: El drift se detecta vía refresh/plan contra infraestructura real.
+
+---
+
+## Question No. 143
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Infrastructure as Code (IaC) puede almacenarse en un sistema de control de versiones junto con el código de aplicación.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** Almacenar IaC en control de versiones es una práctica base para colaboración, trazabilidad e historial de cambios.
+
+**Explicación:**
+
+Opción B es incorrecta: IaC se gestiona común y correctamente en repositorios VCS.
+
+---
+
+## Question No. 144
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿En qué parte de tu configuración Terraform especificas un backend de estado?
+
+**Opciones:**
+- A) En el bloque resource
+- B) En el bloque data source
+- C) En el bloque terraform
+- D) En el bloque provider
+
+**Respuesta Correcta:** C
+
+**Explicación:** La configuración de backend se declara en el bloque de nivel superior `terraform`.
+
+**Explicación:**
+
+Opción A es incorrecta: Bloques resource definen objetos de infraestructura.
+
+Opción B es incorrecta: Bloques data source leen datos existentes.
+
+Opción D es incorrecta: Bloques provider configuran autenticación/comportamiento del proveedor.
+
+---
+
+## Question No. 145
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** En un workspace Terraform Cloud enlazado a un repositorio de control de versiones, los speculative plan runs se inician automáticamente cuando haces merge o commit de cambios al control de versiones.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** Los workspaces Terraform Cloud conectados a VCS disparan runs automáticamente desde cambios entrantes del repositorio.
+
+**Explicación:**
+
+Opción B es incorrecta: El disparo automático de runs es comportamiento esperado en este modelo de integración.
+
+---
+
+## Question No. 146
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál de los siguientes argumentos es requerido al declarar un output de Terraform?
+
+**Opciones:**
+- A) value
+- B) description
+- C) default
+- D) sensitive
+
+**Respuesta Correcta:** A
+
+**Explicación:** El único argumento requerido en un bloque output es `value`.
+
+**Explicación:**
+
+Opción B es incorrecta: `description` es metadato opcional.
+
+Opción C es incorrecta: `default` corresponde a bloques variable, no output.
+
+Opción D es incorrecta: `sensitive` es opcional.
+
+---
+
+## Question No. 147
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Estás escribiendo una configuración Terraform que necesita leer entrada desde un archivo local llamado id_rsa.pub . ¿Qué función built-in de Terraform puedes usar para importar el contenido del archivo como string?
+
+**Opciones:**
+- A) file('id_rsa.pub')
+- B) templaTefil('id_rsa.pub')
+- C) filebase64('id_rsa.pub')
+- D) fileset<'id_rsa.pub')
+
+**Respuesta Correcta:** A
+
+**Explicación:** `file("...")` retorna el contenido del archivo como string sin codificar.
+
+**Explicación:**
+
+Opción B es incorrecta: El nombre/sintaxis de la función es inválido.
+
+Opción C es incorrecta: `filebase64` devuelve contenido codificado en Base64, no texto plano.
+
+Opción D es incorrecta: `fileset` devuelve rutas que coinciden con un patrón, no el contenido del archivo.
+
+---
+
+## Question No. 148
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Mientras intentas desplegar recursos en tu proveedor cloud con Terraform, notas comportamiento extraño y respuestas lentas. Para troubleshooting decides activar debugging en Terraform. ¿Qué variables de entorno deben configurarse para volver más verboso el logging de Terraform?
+
+**Opciones:**
+- A) TF_LOG_PAIH
+- B) TF_LOG
+- C) TF_VAR_log_path
+- D) TF_VAR_log_level
+
+**Respuesta Correcta:** B
+
+**Explicación:** La verbosidad de debug de Terraform se controla con la variable de entorno `TF_LOG` (por ejemplo `TRACE`, `DEBUG`, etc.).
+
+**Explicación:**
+
+Opción A es incorrecta: Es una variable mal escrita/inválida.
+
+Opción C es incorrecta: `TF_VAR_*` se usa para pasar variables de entrada, no para controles de logging interno.
+
+Opción D es incorrecta: `TF_VAR_*` no controla la verbosidad de logs internos de Terraform.
+
+---
+
+## Question No. 149
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Antes de poder usar un backend remoto, primero debes ejecutar terra-form init.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** La inicialización y/o migración de backend se gestiona con `terraform init`.
+
+**Explicación:**
+
+Opción B es incorrecta: Terraform requiere inicialización para configurar y usar backend.
+
+---
+
+## Question No. 150
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Por qué usarías el flag -replace en terraform apply?
+
+**Opciones:**
+- A) Quieres que Terraform ignore un recurso en el próximo apply
+- B) Quieres que Terraform destruya toda la infraestructura en tu workspace
+- C) Quieres forzar que Terraform destruya un recurso en el próximo apply
+- D) Quieres forzar que Terraform destruya y recree un recurso en el próximo apply
+
+**Respuesta Correcta:** D
+
+**Explicación:** La opción `-replace` fuerza el reemplazo de una instancia específica de recurso durante apply.
+
+**Explicación:**
+
+Opción A es incorrecta: Ignorar recursos se maneja de otra forma (por ejemplo lifecycle o estrategias de estado).
+
+Opción B es incorrecta: El teardown completo se realiza con flujos de destroy.
+
+Opción C es incorrecta: Reemplazo implica destruir y recrear, no solo destruir.
+
+---
+
+## Question No. 151
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** terraform plan actualiza tu state file.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform plan` previsualiza cambios previstos y no aplica modificaciones de infraestructura.
+
+**Explicación:**
+
+Opción A es incorrecta: Plan es para previsualización/validación, no ejecución de cambios.

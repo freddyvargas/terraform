@@ -58,7 +58,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-50">Question No. 50</a><br>
 <a href="#question-no-51">Question No. 51</a>
 </td>
-<td valign="top" width="50%">
+<td valign="top" width="33%">
 <a href="#question-no-52">Question No. 52</a><br>
 <a href="#question-no-53">Question No. 53</a><br>
 <a href="#question-no-54">Question No. 54</a><br>
@@ -108,7 +108,9 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-98">Question No. 98</a><br>
 <a href="#question-no-99">Question No. 99</a><br>
 <a href="#question-no-100">Question No. 100</a><br>
-<a href="#question-no-101">Question No. 101</a><br>
+<a href="#question-no-101">Question No. 101</a>
+</td>
+<td valign="top" width="33%">
 <a href="#question-no-102">Question No. 102</a><br>
 <a href="#question-no-103">Question No. 103</a><br>
 <a href="#question-no-104">Question No. 104</a><br>
@@ -127,7 +129,38 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-117">Question No. 117</a><br>
 <a href="#question-no-118">Question No. 118</a><br>
 <a href="#question-no-119">Question No. 119</a><br>
-<a href="#question-no-120">Question No. 120</a>
+<a href="#question-no-120">Question No. 120</a><br>
+<a href="#question-no-121">Question No. 121</a><br>
+<a href="#question-no-122">Question No. 122</a><br>
+<a href="#question-no-123">Question No. 123</a><br>
+<a href="#question-no-124">Question No. 124</a><br>
+<a href="#question-no-125">Question No. 125</a><br>
+<a href="#question-no-126">Question No. 126</a><br>
+<a href="#question-no-127">Question No. 127</a><br>
+<a href="#question-no-128">Question No. 128</a><br>
+<a href="#question-no-129">Question No. 129</a><br>
+<a href="#question-no-130">Question No. 130</a><br>
+<a href="#question-no-131">Question No. 131</a><br>
+<a href="#question-no-132">Question No. 132</a><br>
+<a href="#question-no-133">Question No. 133</a><br>
+<a href="#question-no-134">Question No. 134</a><br>
+<a href="#question-no-135">Question No. 135</a><br>
+<a href="#question-no-136">Question No. 136</a><br>
+<a href="#question-no-137">Question No. 137</a><br>
+<a href="#question-no-138">Question No. 138</a><br>
+<a href="#question-no-139">Question No. 139</a><br>
+<a href="#question-no-140">Question No. 140</a><br>
+<a href="#question-no-141">Question No. 141</a><br>
+<a href="#question-no-142">Question No. 142</a><br>
+<a href="#question-no-143">Question No. 143</a><br>
+<a href="#question-no-144">Question No. 144</a><br>
+<a href="#question-no-145">Question No. 145</a><br>
+<a href="#question-no-146">Question No. 146</a><br>
+<a href="#question-no-147">Question No. 147</a><br>
+<a href="#question-no-148">Question No. 148</a><br>
+<a href="#question-no-149">Question No. 149</a><br>
+<a href="#question-no-150">Question No. 150</a><br>
+<a href="#question-no-151">Question No. 151</a>
 </td>
 </tr>
 </table>
@@ -3235,3 +3268,747 @@ Option A is incorrect: Terraform can resolve a registry module without an explic
 Option D is incorrect: Sensitive values should not be committed to version control.
 
 Option E is incorrect: Plaintext shared documents are not an acceptable secret management practice.
+
+---
+
+## Question No. 121
+
+**Question Type:** Single Choice
+
+**Question:** Terraform configuration can only call modules from the public registry.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Terraform can source modules from many locations: local paths, VCS repositories, private registries, and the public Terraform Registry.
+
+**Explanation:**
+
+Option A is incorrect: Public registry is only one of several supported module sources.
+
+---
+
+## Question No. 122
+
+**Question Type:** Multiple Choice
+
+**Question:** You used Terraform to create an ephemeral development environment in the cloud and are now ready to destroy all the infrastructure described by your Terraform configuration. To be safe, you would like to first see all the infrastructure that Terraform will delete.
+
+Which command should you use to show all the resources that will be deleted? (Pick the 2 correct responses)
+
+**Options:**
+- A) Run `terraform destroy`. This will output all the resources that will be deleted before prompting for approval.
+- B) Run `terraform plan -destroy`.
+- C) Run `terraform state rm *`.
+
+**Correct Answer:** A, B
+
+**Explanation:** Both `terraform destroy` (interactive) and `terraform plan -destroy` show the planned deletions before changes are finalized.
+
+**Explanation:**
+
+Option C is incorrect: `terraform state rm` only removes resources from Terraform state; it does not destroy infrastructure.
+
+---
+
+## Question No. 123
+
+**Question Type:** Multiple Choice
+
+**Question:** Which of these are benefits of using Sentinel with HCP Terraform/Terraform Cloud? (Pick the 3 correct responses)
+
+**Options:**
+- A) You can enforce a list of approved AWS AMIs.
+- B) Sentinel policies can be written in HashiCorp Configuration Language (HCL).
+- C) You can check out and check in cloud access keys.
+- D) Policy-as-code can enforce security best practices.
+
+**Correct Answer:** A, B, D
+
+**Explanation:** Sentinel enables policy-as-code governance for runs, including controls such as allowlists and security guardrails.
+
+**Explanation:**
+
+Option C is incorrect: Key checkout/check-in is secret management functionality, not a Sentinel capability.
+
+---
+
+## Question No. 124
+
+**Question Type:** Single Choice
+
+**Question:** Which of these statements about HCP Terraform/Terraform Cloud workspaces is false?
+
+**Options:**
+- A) They can securely store cloud credentials.
+- B) They have role-based access controls.
+- C) Plans and applies can be triggered via version control system integrations.
+- D) You must use the CLI to switch between workspaces.
+
+**Correct Answer:** D
+
+**Explanation:** HCP Terraform provides a web UI and API for workspace selection and management; CLI-only switching is not required.
+
+**Explanation:**
+
+Option A is incorrect: Secure credential handling is supported.
+
+Option B is incorrect: RBAC is supported.
+
+Option C is incorrect: VCS-triggered runs are a core capability.
+
+---
+
+## Question No. 125
+
+**Question Type:** Multiple Choice
+
+**Question:** Which of these actions are forbidden when the Terraform state file is locked? (Pick the 3 correct responses)
+
+**Options:**
+- A) terraform apply
+- B) terraform state list
+- C) terraform destroy
+- D) terraform fmt
+
+**Correct Answer:** A, B, C
+
+**Explanation:** When state is locked, state-dependent operations are blocked to prevent concurrent modification risks.
+
+**Explanation:**
+
+Option D is incorrect: `terraform fmt` only formats files and does not require state access.
+
+---
+
+## Question No. 126
+
+**Question Type:** Multiple Choice
+
+**Question:** Which of these are features of HCP Terraform/Terraform Cloud? (Pick the 2 correct responses)
+
+**Options:**
+- A) Automatic backups of configuration and state.
+- B) Remote state storage.
+- C) Automated infrastructure deployment visualization.
+- D) A web-based user interface (UI).
+
+**Correct Answer:** B, D
+
+**Explanation:** HCP Terraform's core features include managed remote state and a web UI for runs, governance, and collaboration.
+
+**Explanation:**
+
+Option A is incorrect: Not expressed as a core standalone feature in this context.
+
+Option C is incorrect: This phrasing is not a canonical feature in the expected answer set.
+
+---
+
+## Question No. 127
+
+**Question Type:** Single Choice
+
+**Question:** Terraform encrypts sensitive values stored in your state file.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Marking a value as `sensitive` redacts it in CLI/UI output, but it can still exist in state. Encryption depends on backend/storage configuration.
+
+**Explanation:**
+
+Option A is incorrect: Sensitivity masking is not equivalent to automatic encryption of state contents.
+
+---
+
+## Question No. 128
+
+**Question Type:** Single Choice
+
+**Question:** What is the provider for this resource?
+
+```hcl
+resource "aws_vpc" "main" {
+  name = "test"
+}
+```
+
+**Options:**
+- A) Vpc
+- B) Test
+- C) Main
+- D) aws
+
+**Correct Answer:** D
+
+**Explanation:** In `aws_vpc`, `aws` is the provider prefix and `vpc` is the resource type.
+
+**Explanation:**
+
+Option A is incorrect: VPC is the resource type segment.
+
+Option B is incorrect: `test` is a value used in the block.
+
+Option C is incorrect: `main` is the local resource name.
+
+---
+
+## Question No. 129
+
+**Question Type:** Single Choice
+
+**Question:** All modules published on the official Terraform Module Registry have been verified by HashiCorp.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Not all public registry modules are HashiCorp-verified; verification is indicated separately for specific publishers/modules.
+
+**Explanation:**
+
+Option A is incorrect: Verification is not universal across every published module.
+
+---
+
+## Question No. 130
+
+**Question Type:** Single Choice
+
+**Question:** You have a list of numbers that represents the number of free CPU cores on each virtual cluster: numcpus = [18, 3, 7, 11, 2]
+
+What Terraform function could you use to select the largest number from the list?
+
+**Options:**
+- A) top(numcpus)
+- B) max(numcpus)
+- C) ceil(numcpus)
+- D) hight[numcpus]
+
+**Correct Answer:** B
+
+**Explanation:** `max(...)` returns the greatest numeric value among the provided arguments.
+
+**Explanation:**
+
+Option A is incorrect: `top` is not a Terraform function.
+
+Option C is incorrect: `ceil` rounds a single number upward, not selects max from a list.
+
+Option D is incorrect: This is not valid Terraform function syntax.
+
+---
+
+## Question No. 131
+
+**Question Type:** Single Choice
+
+**Question:** Multiple team members are collaborating on infrastructure using Terraform and want to format the Terraform code following standard Terraform-style convention.
+
+How should they ensure the code satisfies conventions?
+
+**Options:**
+- A) Terraform automatically formats configuration on terraform apply
+- B) Run terraform validate prior to executing terraform plan or terraform apply
+- C) Use terraform fmt
+- D) Replace all tabs with spaces
+
+**Correct Answer:** C
+
+**Explanation:** `terraform fmt` is the canonical formatter that enforces Terraform style conventions consistently.
+
+**Explanation:**
+
+Option A is incorrect: `terraform apply` does not auto-format files.
+
+Option B is incorrect: `terraform validate` checks correctness, not style formatting.
+
+Option D is incorrect: Manual replacements are incomplete and unreliable compared to `terraform fmt`.
+
+---
+
+## Question No. 132
+
+**Question Type:** Single Choice
+
+**Question:** How can terraform plan aid in the development process?
+
+**Options:**
+- A) Initializes your working directory containing your Terraform configuration files
+- B) Validates your expectations against the execution plan without permanently modifying state
+- C) Formats your Terraform configuration files
+- D) Reconciles Terraform's state against deployed resources and permanently modifies state using the current status of deployed resources
+
+**Correct Answer:** B
+
+**Explanation:** `terraform plan` previews actions so you can validate intent before making infrastructure changes.
+
+**Explanation:**
+
+Option A is incorrect: Initialization is done by `terraform init`.
+
+Option C is incorrect: Formatting is done by `terraform fmt`.
+
+Option D is incorrect: This describes refresh-style state reconciliation behavior, not the purpose of plan.
+
+---
+
+## Question No. 133
+
+**Question Type:** Single Choice
+
+**Question:** You can access state stored with the local backend by using terraform_remote_state data source.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** `terraform_remote_state` supports the local backend when configured with the appropriate local state path.
+
+**Explanation:**
+
+Option B is incorrect: Local backend state can be read this way when configured correctly.
+
+---
+
+## Question No. 134
+
+**Question Type:** Single Choice
+
+**Question:** All standard backend types support state locking, and remote operations like plan, apply, and destroy.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Backend capabilities differ. Not all backends support locking, and remote execution is specific to certain backends/workflows.
+
+**Explanation:**
+
+Option A is incorrect: Backend features are not uniform across all backend types.
+
+---
+
+## Question No. 135
+
+**Question Type:** Single Choice
+
+**Question:** A Terraform output that sets the 'sensitive' argument to true will not store that value in the state file.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Sensitive outputs are redacted in display, but their values can still be present in state.
+
+**Explanation:**
+
+Option A is incorrect: `sensitive = true` controls visibility, not omission from state storage.
+
+---
+
+## Question No. 136
+
+**Question Type:** Single Choice
+
+**Question:** You want to define multiple data disks as nested blocks inside the resource block for a virtual machine. What Terraform feature would help you define the blocks using the values in a variable?
+
+**Options:**
+- A) Local values
+- B) Count arguments
+- C) Collection functions
+- D) Dynamic blocks
+
+**Correct Answer:** D
+
+**Explanation:** `dynamic` blocks are used to generate nested block structures from input collections.
+
+**Explanation:**
+
+Option A is incorrect: Locals can hold computed values but do not directly generate nested block instances.
+
+Option B is incorrect: `count` applies to whole resources/modules, not arbitrary nested block generation.
+
+Option C is incorrect: Functions transform data but do not declare repeated nested block syntax by themselves.
+
+---
+
+## Question No. 137
+
+**Question Type:** Single Choice
+
+**Question:** When does Terraform create the .terraform.lock.hcl file?
+
+**Options:**
+- A) After your first terraform plan
+- B) After your first terraform apply
+- C) After your first terraform init
+- D) When you enable state locking
+
+**Correct Answer:** C
+
+**Explanation:** The dependency lock file is created/updated during `terraform init` when provider selections are resolved.
+
+**Explanation:**
+
+Option A is incorrect: Plan relies on already initialized provider selection.
+
+Option B is incorrect: Apply is not the creation trigger for the lock file.
+
+Option D is incorrect: State locking is unrelated to dependency lock file creation.
+
+---
+
+## Question No. 138
+
+**Question Type:** Single Choice
+
+**Question:** What is terraform plan -refresh-only intended to detect?
+
+**Options:**
+- A) Terraform configuration code changes
+- B) Corrupt state files
+- C) State file drift
+- D) Empty state files
+
+**Correct Answer:** C
+
+**Explanation:** Refresh-only mode compares recorded state with real infrastructure to surface and reconcile drift.
+
+**Explanation:**
+
+Option A is incorrect: Code change detection is standard plan diff behavior, not the purpose of refresh-only mode.
+
+Option B is incorrect: It is not a corruption scanner.
+
+Option D is incorrect: It is not specifically intended for empty state detection.
+
+---
+
+## Question No. 139
+
+**Question Type:** Multiple Choice
+
+**Question:** Which of these are features of Terraform Cloud? Choose two correct answers.
+
+**Options:**
+- A) A web-based user interface (UI)
+- B) Automated infrastructure deployment visualization
+- C) Automatic backups
+- D) Remote state storage
+
+**Correct Answer:** A, D
+
+**Explanation:** Terraform Cloud offers a web UI and managed remote state storage as core collaboration capabilities.
+
+**Explanation:**
+
+Option B is incorrect: Not a canonical feature name in this exam context.
+
+Option C is incorrect: While state versions exist, this option is not the expected core pairing here.
+
+---
+
+## Question No. 140
+
+**Question Type:** Single Choice
+
+**Question:** What does terraform import do?
+
+**Options:**
+- A) Imports existing resources into the state file
+- B) Imports all infrastructure from a given cloud provider
+- C) Imports a new Terraform module
+- D) Imports clean copies of tainted resources
+- E) None of the above
+
+**Correct Answer:** A
+
+**Explanation:** `terraform import` maps an existing real resource to a Terraform address in state.
+
+**Explanation:**
+
+Option B is incorrect: Import targets specific resources, not all infrastructure.
+
+Option C is incorrect: Module retrieval is done by `terraform init`.
+
+Option D is incorrect: Taint/replace workflows are unrelated to import.
+
+Option E is incorrect: Option A is correct.
+
+---
+
+## Question No. 141
+
+**Question Type:** Single Choice
+
+**Question:** Which Terraform command checks that your configuration syntax is correct?
+
+**Options:**
+- A) terraform validate
+- B) terraform init
+- C) terraform show
+- D) terraform fmt
+
+**Correct Answer:** A
+
+**Explanation:** `terraform validate` performs syntax and internal consistency checks for configuration files.
+
+**Explanation:**
+
+Option B is incorrect: `init` initializes providers/modules/backend.
+
+Option C is incorrect: `show` renders state/plan output.
+
+Option D is incorrect: `fmt` formats style, not semantic validation.
+
+---
+
+## Question No. 142
+
+**Question Type:** Single Choice
+
+**Question:** terraform validate reports syntax check errors for which of the following?
+
+**Options:**
+- A) Code contains tabs for indentation instead of spaces
+- B) There is a missing value for a variable
+- C) The state file does not match the current infrastructure
+- D) None of the above
+
+**Correct Answer:** D
+
+**Explanation:** `terraform validate` checks configuration structure and semantics, not indentation style, runtime variable assignment completeness, or infrastructure drift.
+
+**Explanation:**
+
+Option A is incorrect: Indentation style is formatter concern, not validate failure by itself.
+
+Option B is incorrect: Missing runtime variable values are usually surfaced during plan/apply execution context.
+
+Option C is incorrect: Drift is detected via refresh/plan against real infrastructure.
+
+---
+
+## Question No. 143
+
+**Question Type:** Single Choice
+
+**Question:** Infrastructure as Code (IaC) can be stored in a version control system along with application code.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** Storing IaC in version control is a foundational best practice for collaboration, traceability, and change history.
+
+**Explanation:**
+
+Option B is incorrect: IaC is commonly and correctly managed in VCS repositories.
+
+---
+
+## Question No. 144
+
+**Question Type:** Single Choice
+
+**Question:** Where in your Terraform configuration do you specify a state backend?
+
+**Options:**
+- A) The resource block
+- B) The data source block
+- C) The terraform block
+- D) The provider block
+
+**Correct Answer:** C
+
+**Explanation:** Backend configuration is declared in the top-level `terraform` block.
+
+**Explanation:**
+
+Option A is incorrect: Resource blocks define infrastructure objects.
+
+Option B is incorrect: Data source blocks read existing data.
+
+Option D is incorrect: Provider blocks configure provider authentication/behavior.
+
+---
+
+## Question No. 145
+
+**Question Type:** Single Choice
+
+**Question:** In a Terraform Cloud workspace linked to a version control repository, speculative plan runs start automatically when you merge or commit changes to version control.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** VCS-connected Terraform Cloud workspaces automatically trigger runs from incoming repository changes.
+
+**Explanation:**
+
+Option B is incorrect: Automatic run triggering is expected behavior in this integration model.
+
+---
+
+## Question No. 146
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following arguments are required when declaring a Terraform output?
+
+**Options:**
+- A) value
+- B) description
+- C) default
+- D) sensitive
+
+**Correct Answer:** A
+
+**Explanation:** The only required argument in an output block is `value`.
+
+**Explanation:**
+
+Option B is incorrect: `description` is optional metadata.
+
+Option C is incorrect: `default` is for variable blocks, not output blocks.
+
+Option D is incorrect: `sensitive` is optional.
+
+---
+
+## Question No. 147
+
+**Question Type:** Single Choice
+
+**Question:** You're writing a Terraform configuration that needs to read input from a local file called id_rsa.pub . Which built-in Terraform function can you use to import the file's contents as a string?
+
+**Options:**
+- A) file('id_rsa.pub')
+- B) templaTefil('id_rsa.pub')
+- C) filebase64('id_rsa.pub')
+- D) fileset<'id_rsa.pub')
+
+**Correct Answer:** A
+
+**Explanation:** `file("...")` returns file contents as a raw string.
+
+**Explanation:**
+
+Option B is incorrect: The function name/syntax is invalid.
+
+Option C is incorrect: `filebase64` returns Base64-encoded content, not plain string text.
+
+Option D is incorrect: `fileset` returns matching file paths for a pattern, not file content.
+
+---
+
+## Question No. 148
+
+**Question Type:** Single Choice
+
+**Question:** While attempting to deploy resources into your cloud provider using Terraform, you begin to see some odd behavior and experience slow responses. In order to troubleshoot you decide to turn on Terraform debugging. Which environment variables must be configured to make Terraform's logging more verbose?
+
+**Options:**
+- A) TF_LOG_PAIH
+- B) TF_LOG
+- C) TF_VAR_log_path
+- D) TF_VAR_log_level
+
+**Correct Answer:** B
+
+**Explanation:** Terraform debug verbosity is controlled by the `TF_LOG` environment variable (for example `TRACE`, `DEBUG`, etc.).
+
+**Explanation:**
+
+Option A is incorrect: This is a misspelled/invalid variable.
+
+Option C is incorrect: `TF_VAR_*` passes input variables, not Terraform logging controls.
+
+Option D is incorrect: `TF_VAR_*` is not used to control Terraform internal log verbosity.
+
+---
+
+## Question No. 149
+
+**Question Type:** Single Choice
+
+**Question:** Before you can use a remote backend, you must first execute terra-form init.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** Backend initialization and migration steps are handled via `terraform init`.
+
+**Explanation:**
+
+Option B is incorrect: Terraform requires initialization to configure and use backend settings.
+
+---
+
+## Question No. 150
+
+**Question Type:** Single Choice
+
+**Question:** Why would you use the -replace flag for terraform apply?
+
+**Options:**
+- A) You want Terraform to ignore a resource on the next apply
+- B) You want Terraform to destroy all the infrastructure in your workspace
+- C) You want to force Terraform to destroy a resource on the next apply
+- D) You want to force Terraform to destroy and recreate a resource on the next apply
+
+**Correct Answer:** D
+
+**Explanation:** The `-replace` option forces replacement of a specific resource instance during apply.
+
+**Explanation:**
+
+Option A is incorrect: Ignoring resources is handled differently (for example lifecycle or state strategies).
+
+Option B is incorrect: Full teardown is done with destroy workflows.
+
+Option C is incorrect: Replacement means destroy then recreate, not destroy-only.
+
+---
+
+## Question No. 151
+
+**Question Type:** Single Choice
+
+**Question:** terraform plan updates your state file.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** `terraform plan` previews intended changes and does not apply infrastructure modifications.
+
+**Explanation:**
+
+Option A is incorrect: Plan is for preview/validation, not execution of changes.
