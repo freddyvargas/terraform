@@ -107,7 +107,27 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-97">Question No. 97</a><br>
 <a href="#question-no-98">Question No. 98</a><br>
 <a href="#question-no-99">Question No. 99</a><br>
-<a href="#question-no-100">Question No. 100</a>
+<a href="#question-no-100">Question No. 100</a><br>
+<a href="#question-no-101">Question No. 101</a><br>
+<a href="#question-no-102">Question No. 102</a><br>
+<a href="#question-no-103">Question No. 103</a><br>
+<a href="#question-no-104">Question No. 104</a><br>
+<a href="#question-no-105">Question No. 105</a><br>
+<a href="#question-no-106">Question No. 106</a><br>
+<a href="#question-no-107">Question No. 107</a><br>
+<a href="#question-no-108">Question No. 108</a><br>
+<a href="#question-no-109">Question No. 109</a><br>
+<a href="#question-no-110">Question No. 110</a><br>
+<a href="#question-no-111">Question No. 111</a><br>
+<a href="#question-no-112">Question No. 112</a><br>
+<a href="#question-no-113">Question No. 113</a><br>
+<a href="#question-no-114">Question No. 114</a><br>
+<a href="#question-no-115">Question No. 115</a><br>
+<a href="#question-no-116">Question No. 116</a><br>
+<a href="#question-no-117">Question No. 117</a><br>
+<a href="#question-no-118">Question No. 118</a><br>
+<a href="#question-no-119">Question No. 119</a><br>
+<a href="#question-no-120">Question No. 120</a>
 </td>
 </tr>
 </table>
@@ -2716,3 +2736,502 @@ Option D is incorrect: `terraform init` initializes the working directory and in
 **Explanation:**
 
 Option A is incorrect: Terraform expects configuration files to already exist or be created by the user or another scaffolding tool.
+
+---
+
+## Question No. 101
+
+**Question Type:** Single Choice
+
+**Question:** Which statement describes a goal of Infrastructure as Code (IaC)?
+
+**Options:**
+- A) A pipeline process to test and deliver software.
+- B) Write once, run anywhere.
+- C) The programmatic configuration of resources.
+- D) Defining a vendor-agnostic API.
+
+**Correct Answer:** C
+
+**Explanation:** A primary IaC goal is to define, provision, and manage infrastructure through code in a repeatable and auditable way.
+
+**Explanation:**
+
+Option A is incorrect: That describes CI/CD pipeline practices, not IaC's core goal.
+
+Option B is incorrect: This is a portability slogan, not the central IaC objective.
+
+Option D is incorrect: IaC tools can still be provider-specific and do not require defining a vendor-agnostic API.
+
+---
+
+## Question No. 102
+
+**Question Type:** Single Choice
+
+**Question:** You have a simple Terraform configuration containing one virtual machine (VM) in a cloud provider. You run terraform apply and the VM is created successfully. What will happen if you terraform apply again immediately afterward without changing any Terraform code?
+
+**Options:**
+- A) Terraform will terminate and recreate the VM.
+- B) Terraform will create another duplicate VM.
+- C) Terraform will apply the VM to the state file.
+- D) Nothing
+
+**Correct Answer:** D
+
+**Explanation:** Terraform is declarative and idempotent. If configuration and infrastructure already match, a second `terraform apply` results in no changes.
+
+**Explanation:**
+
+Option A is incorrect: Terraform will not recreate a resource unless a change requires replacement.
+
+Option B is incorrect: Terraform does not duplicate managed resources when no configuration change exists.
+
+Option C is incorrect: The resource was already tracked in state after the first apply.
+
+---
+
+## Question No. 103
+
+**Question Type:** Single Choice
+
+**Question:** A resource block is shown in the Exhibit space of this page. What is the Terraform resource name of the resource block?
+
+**Options:**
+- A) test
+- B) google
+- C) compute_instance
+- D) main
+
+**Correct Answer:** A
+
+**Explanation:** In a resource declaration like `resource "google_compute_instance" "test" { ... }`, the resource name is the second label (`test`).
+
+**Explanation:**
+
+Option B is incorrect: `google` is part of the provider/type namespace, not the resource's local name.
+
+Option C is incorrect: `compute_instance` is part of the resource type, not the resource name.
+
+Option D is incorrect: `main` is not the declared local name in the exhibit pattern.
+
+---
+
+## Question No. 104
+
+**Question Type:** Single Choice
+
+**Question:** You use a cloud provider account that is shared with other team members. You previously used Terraform to create a load balancer that listens on port 80. After application changes, you updated the Terraform code to change the port to 443.
+
+You run terraform plan and see that the execution plan shows the port changing from 80 to 443 like you intended and step away to grab some coffee.
+
+In the meantime, another team member manually changes the load balancer port to 443 through the cloud provider console before you get back to your desk.
+
+What will happen when you run terraform apply upon returning to your desk?
+
+**Options:**
+- A) Terraform will recreate the load balancer.
+- B) Terraform will fail with an error because the state file is no longer accurate.
+- C) Terraform will change the load balancer port to 80, and then change it back to 443.
+- D) Terraform will not make any changes to the load balancer and will update the state file to reflect the manual change.
+
+**Correct Answer:** D
+
+**Explanation:** During apply, Terraform refreshes state before making changes. Since the real resource already matches desired configuration (443), no action is required; state is updated to current reality.
+
+**Explanation:**
+
+Option A is incorrect: Recreation is unnecessary when the current and desired settings already match.
+
+Option B is incorrect: Drift is handled through refresh, not an automatic failure in this scenario.
+
+Option C is incorrect: Terraform does not perform a needless flip-flop when desired state is already present.
+
+---
+
+## Question No. 105
+
+**Question Type:** Single Choice
+
+**Question:** Terraform variables and outputs that set the description argument will store that description in the state file.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** The `description` argument is documentation metadata in configuration. Terraform state stores resource instances and output values, not variable/output descriptions as managed state data.
+
+**Explanation:**
+
+Option A is incorrect: Descriptions help humans understand configuration, but are not stored as stateful infrastructure values.
+
+---
+
+## Question No. 106
+
+**Question Type:** Single Choice
+
+**Question:** terraform validate uses provider APIs to verify your infrastructure settings.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** `terraform validate` performs static checks on configuration syntax and internal consistency. It does not call provider APIs or inspect live infrastructure.
+
+**Explanation:**
+
+Option A is incorrect: Provider/API interaction happens during plan/apply/refresh flows, not validate.
+
+---
+
+## Question No. 107
+
+**Question Type:** Single Choice
+
+**Question:** Before you can use a new backend or HCP Terraform/Terraform Cloud integration, you must first execute terraform init.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** Backend and cloud integration setup is initialized through `terraform init`, which configures backend settings and prepares the working directory.
+
+**Explanation:**
+
+Option B is incorrect: Terraform requires initialization before using a new backend configuration.
+
+---
+
+## Question No. 108
+
+**Question Type:** Single Choice
+
+**Question:** Using the terraform state rm command against a resource will destroy it.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** `terraform state rm` removes the resource binding from state only. It does not destroy the actual remote infrastructure object.
+
+**Explanation:**
+
+Option A is incorrect: The command affects Terraform state tracking, not the underlying resource lifecycle.
+
+---
+
+## Question No. 109
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following is not a way to trigger terraform destroy?
+
+**Options:**
+- A) Using the destroy command with auto-approve.
+- B) Passing --destroy at the end of a plan request.
+- C) Running terraform destroy from the correct directory and then typing yes when prompted in the CLI.
+
+**Correct Answer:** B
+
+**Explanation:** Destroy mode for planning is `terraform plan -destroy` (single hyphen flag style), and `terraform destroy` itself executes destruction. The presented `--destroy at the end of a plan request` wording is not the standard valid method.
+
+**Explanation:**
+
+Option A is incorrect: `terraform destroy -auto-approve` is a valid way to trigger destruction.
+
+Option C is incorrect: Running `terraform destroy` and confirming is the standard interactive flow.
+
+---
+
+## Question No. 110
+
+**Question Type:** Multiple Choice
+
+**Question:** Which of these are features of HCP Terraform/Terraform Cloud? Pick the 2 correct responses below.
+
+**Options:**
+- A) Automated infrastructure deployment visualization.
+- B) A web-based user interface (UI).
+- C) Automatic backups of configuration and state.
+- D) Remote state storage.
+
+**Correct Answer:** B, D
+
+**Explanation:** HCP Terraform provides a web UI for team workflows and managed remote state storage for collaboration and consistency.
+
+**Explanation:**
+
+Option A is incorrect: This is not a core named feature in the way presented.
+
+Option C is incorrect: State versioning exists, but "automatic backups of configuration and state" is not the canonical feature pairing expected here.
+
+---
+
+## Question No. 111
+
+**Question Type:** Single Choice
+
+**Question:** Which command(s) adds existing resources in a public cloud into Terraform state?
+
+**Options:**
+- A) terraform init
+- B) terraform plan
+- C) terraform refresh
+- D) terraform import
+- E) All of these
+
+**Correct Answer:** D
+
+**Explanation:** `terraform import` is the command specifically designed to map existing infrastructure resources into Terraform state.
+
+**Explanation:**
+
+Option A is incorrect: `terraform init` initializes the working directory.
+
+Option B is incorrect: `terraform plan` previews changes.
+
+Option C is incorrect: `terraform refresh` updates state for resources already managed by state.
+
+Option E is incorrect: Only one option in the list performs import into state.
+
+---
+
+## Question No. 112
+
+**Question Type:** Single Choice
+
+**Question:** In a HCP Terraform/Terraform Cloud workspace linked to a version control repository, speculative plan runs start automatically when you merge or commit changes to version control.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** In VCS-connected workspaces, incoming code changes trigger runs automatically, including speculative planning behavior for proposed changes.
+
+**Explanation:**
+
+Option B is incorrect: Automatic run triggering is a core behavior of VCS-driven workflows.
+
+---
+
+## Question No. 113
+
+**Question Type:** Single Choice
+
+**Question:** What is the Terraform style convention for indenting a nesting level compared to the one above it?
+
+**Options:**
+- A) With two spaces.
+- B) With four spaces.
+- C) With three spaces.
+- D) With a tab.
+
+**Correct Answer:** A
+
+**Explanation:** Terraform style conventions and formatter output use two spaces for each indentation level in HCL.
+
+**Explanation:**
+
+Option B is incorrect: Four spaces are not Terraform's default style convention.
+
+Option C is incorrect: Three spaces are not used by Terraform formatting standards.
+
+Option D is incorrect: Tabs are not the style convention produced by `terraform fmt`.
+
+---
+
+## Question No. 114
+
+**Question Type:** Single Choice
+
+**Question:** A module block is shown in the Exhibit space of this page. When you use a module block to reference a module from the Terraform Registry such as the one in the example, how do you specify version 1.0.0 of the module?
+
+**Options:**
+- A) Append ?ref=v1.0.0 argument to the source path.
+- B) You cannot. Modules stored on the public Terraform Registry do not support versioning.
+- C) Add a version = '1.0.0' attribute to the module block.
+- D) Nothing. Modules stored on the public Terraform module Registry always default to version 1.0.0.
+
+**Correct Answer:** C
+
+**Explanation:** Registry modules are versioned via the `version` argument in the module block, e.g. `version = "1.0.0"`.
+
+**Explanation:**
+
+Option A is incorrect: `?ref=` syntax applies to VCS sources, not Terraform Registry modules.
+
+Option B is incorrect: Registry modules support semantic versions.
+
+Option D is incorrect: Registry modules do not default universally to 1.0.0.
+
+---
+
+## Question No. 115
+
+**Question Type:** Single Choice
+
+**Question:** When do you need to explicitly execute Terraform in refresh-only mode?
+
+**Options:**
+- A) Before every terraform plan.
+- B) Before every terraform apply.
+- C) Before every terraform import.
+- D) None of the above.
+
+**Correct Answer:** D
+
+**Explanation:** Refresh-only mode is a specialized operation used when you intentionally want to sync state with real infrastructure without changing resources. It is not required before routine plan/apply/import workflows.
+
+**Explanation:**
+
+Option A is incorrect: `terraform plan` refreshes state by default.
+
+Option B is incorrect: `terraform apply` also refreshes state by default before applying changes.
+
+Option C is incorrect: Importing resources does not require a prior refresh-only run.
+
+---
+
+## Question No. 116
+
+**Question Type:** Single Choice
+
+**Question:** Which method for sharing Terraform modules fulfills the following criteria:
+
+Keeps the module configurations confidential within your organization.
+
+Supports Terraform's semantic version constraints.
+
+Provides a browsable directory of your modules.
+
+**Options:**
+- A) A Git repository containing your modules.
+- B) Public Terraform module registry.
+- C) A subfolder within your workspace.
+- D) HCP Terraform/Terraform Cloud private registry.
+
+**Correct Answer:** D
+
+**Explanation:** The HCP Terraform private registry provides private module publishing with semantic versioning and a browsable module catalog for organizations.
+
+**Explanation:**
+
+Option A is incorrect: A Git repo can host modules, but it does not natively provide the same private registry browsing/version workflow.
+
+Option B is incorrect: Public registry is not confidential.
+
+Option C is incorrect: A local subfolder is not a private registry with catalog/version management features.
+
+---
+
+## Question No. 117
+
+**Question Type:** Single Choice
+
+**Question:** What is the provider for the resource shown in the Exhibit?
+
+```hcl
+resource "aws_vpc" "main" {
+  name = "test"
+}
+```
+
+**Options:**
+- A) VPC
+- B) test
+- C) main
+- D) aws
+
+**Correct Answer:** D
+
+**Explanation:** In `aws_vpc`, the provider prefix is `aws` and the resource type is `vpc`. The provider is therefore AWS.
+
+**Explanation:**
+
+Option A is incorrect: VPC is the resource type portion, not the provider.
+
+Option B is incorrect: `test` is a value assigned in the block.
+
+Option C is incorrect: `main` is the local resource name.
+
+---
+
+## Question No. 118
+
+**Question Type:** Single Choice
+
+**Question:** Your root module contains a variable named num_servers. Which is the correct way to pass its value to a child module with an input named servers?
+
+**Options:**
+- A) servers = num_servers
+- B) servers = var(num_servers)
+- C) servers = var.num_servers
+- D) servers = ${var.num_servers}
+
+**Correct Answer:** C
+
+**Explanation:** In modern HCL expressions, root module variables are referenced as `var.<name>`, so the correct assignment is `servers = var.num_servers`.
+
+**Explanation:**
+
+Option A is incorrect: Unqualified `num_servers` is not the proper variable reference syntax.
+
+Option B is incorrect: `var()` function syntax does not exist in Terraform.
+
+Option D is incorrect: Interpolation-only syntax is legacy and unnecessary in current HCL expression contexts.
+
+---
+
+## Question No. 119
+
+**Question Type:** Single Choice
+
+**Question:** When you include a module block in your configuration that references a module from the Terraform Registry, the 'version' attribute is required.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** The `version` argument is optional for registry modules, though pinning versions is strongly recommended to avoid unexpected upgrades.
+
+**Explanation:**
+
+Option A is incorrect: Terraform can resolve a registry module without an explicit version constraint.
+
+---
+
+## Question No. 120
+
+**Question Type:** Multiple Choice
+
+**Question:** You want to use API tokens and other secrets within your team's Terraform workspaces. Where does HashiCorp recommend you store these sensitive values? (Pick the 3 correct responses)
+
+**Options:**
+- A) In an HCP Terraform/Terraform Cloud variable, with the sensitive option checked.
+- B) In HashiCorp Vault.
+- C) In a terraform.tfvars file, securely managed and shared with your team.
+- D) In a terraform.tfvars file, checked into your version control system.
+- E) In a plaintext document on a shared drive.
+
+**Correct Answer:** A, B, C
+
+**Explanation:** Recommended secure approaches include sensitive workspace variables and secret managers like Vault. If tfvars is used, it must be handled securely outside version control with strong access controls.
+
+**Explanation:**
+
+Option D is incorrect: Sensitive values should not be committed to version control.
+
+Option E is incorrect: Plaintext shared documents are not an acceptable secret management practice.
