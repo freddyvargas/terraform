@@ -97,7 +97,17 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-87">Question No. 87</a><br>
 <a href="#question-no-88">Question No. 88</a><br>
 <a href="#question-no-89">Question No. 89</a><br>
-<a href="#question-no-90">Question No. 90</a>
+<a href="#question-no-90">Question No. 90</a><br>
+<a href="#question-no-91">Question No. 91</a><br>
+<a href="#question-no-92">Question No. 92</a><br>
+<a href="#question-no-93">Question No. 93</a><br>
+<a href="#question-no-94">Question No. 94</a><br>
+<a href="#question-no-95">Question No. 95</a><br>
+<a href="#question-no-96">Question No. 96</a><br>
+<a href="#question-no-97">Question No. 97</a><br>
+<a href="#question-no-98">Question No. 98</a><br>
+<a href="#question-no-99">Question No. 99</a><br>
+<a href="#question-no-100">Question No. 100</a>
 </td>
 </tr>
 </table>
@@ -2465,3 +2475,244 @@ Option B is incorrect: `terraform plan` refreshes state by default before genera
 Option C is incorrect: `terraform apply` refreshes state by default before applying changes.
 
 Option D is incorrect: `terraform destroy` also refreshes state before destroying resources.
+
+---
+
+## Question No. 91
+
+**Question Type:** Single Choice
+
+**Question:** terraform init retrieves and caches the configuration for all remote modules.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** `terraform init` downloads and caches referenced remote modules into the `.terraform` directory so the working directory has the module code required for planning and applying.
+
+**Explanation:**
+
+Option B is incorrect: Fetching remote modules is one of the primary responsibilities of `terraform init`.
+
+---
+
+## Question No. 92
+
+**Question Type:** Single Choice
+
+**Question:** You just upgraded the version of a provider in an existing Terraform project. What do you need to do to install the new provider?
+
+**Options:**
+- A) Run terraform refresh.
+- B) Run terraform init -upgrade.
+- C) Run terraform apply -upgrade.
+- D) Upgrade your version of Terraform.
+
+**Correct Answer:** B
+
+**Explanation:** `terraform init -upgrade` tells Terraform to ignore the previously selected provider versions and install the newest versions allowed by the configuration constraints.
+
+**Explanation:**
+
+Option A is incorrect: `terraform refresh` updates state from real infrastructure and does not install providers.
+
+Option C is incorrect: `terraform apply` has no `-upgrade` flag for provider installation.
+
+Option D is incorrect: Upgrading the Terraform CLI itself is unrelated to downloading a newer provider version.
+
+---
+
+## Question No. 93
+
+**Question Type:** Single Choice
+
+**Question:** A child module can always access variables declared in its parent module.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Child modules do not implicitly inherit parent module variables. A parent module must explicitly pass values into a child module through module input arguments.
+
+**Explanation:**
+
+Option A is incorrect: Module variable scope is isolated; values must be passed explicitly.
+
+---
+
+## Question No. 94
+
+**Question Type:** Single Choice
+
+**Question:** A resource block is shown in the Exhibit section of this page. How would you reference the attribute name of this resource in HCL?
+
+**Options:**
+- A) resource.kubernetes_namespace.example.name
+- B) kubernetes_namespace.example.name
+- C) data.kubernetes.namespace.name
+- D) kubernetes_namespace.test.name
+
+**Correct Answer:** B
+
+**Explanation:** Resource attributes in HCL are referenced with the pattern `resource_type.resource_name.attribute`. For a resource of type `kubernetes_namespace` named `example`, the correct reference is `kubernetes_namespace.example.name`.
+
+**Explanation:**
+
+Option A is incorrect: HCL references do not start with the literal `resource.` prefix.
+
+Option C is incorrect: That is not the correct syntax or naming for a data source reference.
+
+Option D is incorrect: The resource name must match the declared local name, which is `example` in the exhibit.
+
+---
+
+## Question No. 95
+
+**Question Type:** Single Choice
+
+**Question:** terraform apply is failing with the following error. What next step should you take to determine the root cause of the problem?
+
+```yaml
+Error loading state: AccessDenied: Access Denied
+status code: 403, request id: 288766CE5CCA24A0, host id: web.example.com
+```
+
+**Options:**
+- A) Run terraform login to reauthenticate with the provider.
+- B) Set TF_LOG=DEBUG.
+- C) Review /var/log/terraform.log for error messages.
+- D) Review syslog for Terraform error messages.
+
+**Correct Answer:** B
+
+**Explanation:** Setting `TF_LOG=DEBUG` enables detailed Terraform diagnostic logging, which is the standard next step when you need more context to diagnose authentication, backend, or provider access problems.
+
+**Explanation:**
+
+Option A is incorrect: `terraform login` is for Terraform Cloud/HCP Terraform credentials, not a general fix for all provider or backend 403 errors.
+
+Option C is incorrect: Terraform does not automatically write logs to `/var/log/terraform.log` unless explicitly configured.
+
+Option D is incorrect: Terraform does not log to syslog by default.
+
+---
+
+## Question No. 96
+
+**Question Type:** Single Choice
+
+**Question:** A senior admin accidentally deleted some of your cloud instances. What will Terraform do when you run terraform apply?
+
+**Options:**
+- A) Tear down the entire workspace's infrastructure and rebuild it.
+- B) Build a completely brand new set of infrastructure.
+- C) Rebuild only the instances that were deleted.
+- D) Stop and generate an error message about the missing instances.
+
+**Correct Answer:** C
+
+**Explanation:** After refreshing state, Terraform detects that the missing instances no longer exist and plans to recreate only the resources needed to bring actual infrastructure back in line with the configuration.
+
+**Explanation:**
+
+Option A is incorrect: Terraform does not rebuild everything unless the plan requires it.
+
+Option B is incorrect: Terraform reconciles drift against the existing state; it does not create an entirely separate environment by default.
+
+Option D is incorrect: Missing managed resources are normally treated as drift to correct, not as a fatal condition.
+
+---
+
+## Question No. 97
+
+**Question Type:** Single Choice
+
+**Question:** Terraform installs its providers during which phase?
+
+**Options:**
+- A) Plan
+- B) Init
+- C) Refresh
+- D) All of the above
+
+**Correct Answer:** B
+
+**Explanation:** Provider plugins are downloaded and installed during `terraform init`, which prepares the working directory before planning or applying.
+
+**Explanation:**
+
+Option A is incorrect: `terraform plan` uses already installed providers.
+
+Option C is incorrect: Refresh operations rely on installed providers but do not install them.
+
+Option D is incorrect: Provider installation is specifically part of initialization.
+
+---
+
+## Question No. 98
+
+**Question Type:** Single Choice
+
+**Question:** terraform destroy is the only way to remove infrastructure.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Infrastructure can also be removed by changing configuration and running `terraform apply`, by deleting resources manually outside Terraform, or by using targeted operations. `terraform destroy` is only one way to remove managed resources.
+
+**Explanation:**
+
+Option A is incorrect: Terraform-managed infrastructure can be removed through other workflows besides a full destroy.
+
+---
+
+## Question No. 99
+
+**Question Type:** Single Choice
+
+**Question:** You created infrastructure outside the Terraform workflow that you now want to manage using Terraform. Which command brings the infrastructure into Terraform state?
+
+**Options:**
+- A) terraform get
+- B) terraform refresh
+- C) terraform import
+- D) terraform init
+
+**Correct Answer:** C
+
+**Explanation:** `terraform import` associates an existing external resource with a Terraform resource address and records it in state so Terraform can manage it.
+
+**Explanation:**
+
+Option A is incorrect: `terraform get` retrieves modules.
+
+Option B is incorrect: `terraform refresh` updates state for resources Terraform is already tracking.
+
+Option D is incorrect: `terraform init` initializes the working directory and installs dependencies.
+
+---
+
+## Question No. 100
+
+**Question Type:** Single Choice
+
+**Question:** terraform init creates an example main.tf file in the current directory.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** `terraform init` initializes an existing configuration directory. It does not scaffold sample Terraform files or create an example `main.tf` automatically.
+
+**Explanation:**
+
+Option A is incorrect: Terraform expects configuration files to already exist or be created by the user or another scaffolding tool.

@@ -97,7 +97,17 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-87">Question No. 87</a><br>
 <a href="#question-no-88">Question No. 88</a><br>
 <a href="#question-no-89">Question No. 89</a><br>
-<a href="#question-no-90">Question No. 90</a>
+<a href="#question-no-90">Question No. 90</a><br>
+<a href="#question-no-91">Question No. 91</a><br>
+<a href="#question-no-92">Question No. 92</a><br>
+<a href="#question-no-93">Question No. 93</a><br>
+<a href="#question-no-94">Question No. 94</a><br>
+<a href="#question-no-95">Question No. 95</a><br>
+<a href="#question-no-96">Question No. 96</a><br>
+<a href="#question-no-97">Question No. 97</a><br>
+<a href="#question-no-98">Question No. 98</a><br>
+<a href="#question-no-99">Question No. 99</a><br>
+<a href="#question-no-100">Question No. 100</a>
 </td>
 </tr>
 </table>
@@ -2465,3 +2475,244 @@ Opción B es incorrecta: `terraform plan` refresca el estado por defecto antes d
 Opción C es incorrecta: `terraform apply` refresca el estado por defecto antes de aplicar cambios.
 
 Opción D es incorrecta: `terraform destroy` también refresca el estado antes de destruir recursos.
+
+---
+
+## Question No. 91
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** terraform init recupera y almacena en caché la configuración de todos los módulos remotos.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform init` descarga y almacena en caché los módulos remotos referenciados dentro del directorio `.terraform`, para que el directorio de trabajo tenga el código de módulos necesario para planificar y aplicar.
+
+**Explicación:**
+
+Opción B es incorrecta: Obtener módulos remotos es una de las responsabilidades principales de `terraform init`.
+
+---
+
+## Question No. 92
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Acabas de actualizar la versión de un provider en un proyecto Terraform existente. ¿Qué debes hacer para instalar el nuevo provider?
+
+**Opciones:**
+- A) Ejecutar terraform refresh.
+- B) Ejecutar terraform init -upgrade.
+- C) Ejecutar terraform apply -upgrade.
+- D) Actualizar tu versión de Terraform.
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform init -upgrade` indica a Terraform que ignore las versiones de provider previamente seleccionadas e instale las versiones más nuevas permitidas por las restricciones definidas en la configuración.
+
+**Explicación:**
+
+Opción A es incorrecta: `terraform refresh` actualiza el estado desde la infraestructura real y no instala providers.
+
+Opción C es incorrecta: `terraform apply` no tiene un flag `-upgrade` para instalación de providers.
+
+Opción D es incorrecta: Actualizar el binario de Terraform no está relacionado con descargar una versión más nueva del provider.
+
+---
+
+## Question No. 93
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Un módulo hijo siempre puede acceder a las variables declaradas en su módulo padre.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Los módulos hijo no heredan implícitamente las variables del módulo padre. El módulo padre debe pasar explícitamente los valores al módulo hijo mediante argumentos de entrada del módulo.
+
+**Explicación:**
+
+Opción A es incorrecta: El alcance de las variables entre módulos está aislado; los valores deben pasarse explícitamente.
+
+---
+
+## Question No. 94
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Se muestra un bloque resource en la sección Exhibit de esta página. ¿Cómo referenciarías el atributo name de este recurso en HCL?
+
+**Opciones:**
+- A) resource.kubernetes_namespace.example.name
+- B) kubernetes_namespace.example.name
+- C) data.kubernetes.namespace.name
+- D) kubernetes_namespace.test.name
+
+**Respuesta Correcta:** B
+
+**Explicación:** Los atributos de recursos en HCL se referencian con el patrón `tipo_recurso.nombre_recurso.atributo`. Para un recurso de tipo `kubernetes_namespace` llamado `example`, la referencia correcta es `kubernetes_namespace.example.name`.
+
+**Explicación:**
+
+Opción A es incorrecta: Las referencias HCL no comienzan con el prefijo literal `resource.`.
+
+Opción C es incorrecta: Esa no es la sintaxis ni el nombre correcto para una referencia de data source.
+
+Opción D es incorrecta: El nombre local del recurso debe coincidir con el declarado, que en el exhibit es `example`.
+
+---
+
+## Question No. 95
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** terraform apply está fallando con el siguiente error. ¿Qué siguiente paso deberías tomar para determinar la causa raíz del problema?
+
+```yaml
+Error loading state: AccessDenied: Access Denied
+status code: 403, request id: 288766CE5CCA24A0, host id: web.example.com
+```
+
+**Opciones:**
+- A) Ejecutar terraform login para reautenticarte con el provider.
+- B) Configurar TF_LOG=DEBUG.
+- C) Revisar /var/log/terraform.log para mensajes de error.
+- D) Revisar syslog para mensajes de error de Terraform.
+
+**Respuesta Correcta:** B
+
+**Explicación:** Configurar `TF_LOG=DEBUG` habilita logging detallado de diagnóstico de Terraform, que es el siguiente paso estándar cuando necesitas más contexto para diagnosticar problemas de autenticación, backend o acceso del provider.
+
+**Explicación:**
+
+Opción A es incorrecta: `terraform login` es para credenciales de Terraform Cloud/HCP Terraform, no una corrección general para todos los errores 403 de provider o backend.
+
+Opción C es incorrecta: Terraform no escribe logs automáticamente en `/var/log/terraform.log` salvo que se configure explícitamente.
+
+Opción D es incorrecta: Terraform no registra en syslog por defecto.
+
+---
+
+## Question No. 96
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Un administrador senior eliminó accidentalmente algunas de tus instancias cloud. ¿Qué hará Terraform cuando ejecutes terraform apply?
+
+**Opciones:**
+- A) Derribar toda la infraestructura del workspace y reconstruirla.
+- B) Construir un conjunto completamente nuevo de infraestructura.
+- C) Reconstruir solo las instancias que fueron eliminadas.
+- D) Detenerse y generar un error sobre las instancias faltantes.
+
+**Respuesta Correcta:** C
+
+**Explicación:** Tras refrescar el estado, Terraform detecta que las instancias faltantes ya no existen y planifica recrear solo los recursos necesarios para alinear nuevamente la infraestructura real con la configuración.
+
+**Explicación:**
+
+Opción A es incorrecta: Terraform no reconstruye todo a menos que el plan lo requiera.
+
+Opción B es incorrecta: Terraform reconcilia drift contra el estado existente; no crea un entorno totalmente separado por defecto.
+
+Opción D es incorrecta: Los recursos gestionados faltantes normalmente se tratan como drift a corregir, no como una condición fatal.
+
+---
+
+## Question No. 97
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Durante qué fase instala Terraform sus providers?
+
+**Opciones:**
+- A) Plan
+- B) Init
+- C) Refresh
+- D) Todas las anteriores
+
+**Respuesta Correcta:** B
+
+**Explicación:** Los plugins de providers se descargan e instalan durante `terraform init`, que prepara el directorio de trabajo antes de planificar o aplicar.
+
+**Explicación:**
+
+Opción A es incorrecta: `terraform plan` usa providers ya instalados.
+
+Opción C es incorrecta: Las operaciones de refresh dependen de providers instalados, pero no los instalan.
+
+Opción D es incorrecta: La instalación de providers forma parte específicamente de la inicialización.
+
+---
+
+## Question No. 98
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** terraform destroy es la única forma de eliminar infraestructura.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** La infraestructura también puede eliminarse cambiando la configuración y ejecutando `terraform apply`, borrando recursos manualmente fuera de Terraform o usando operaciones dirigidas. `terraform destroy` es solo una de las formas de remover recursos gestionados.
+
+**Explicación:**
+
+Opción A es incorrecta: La infraestructura gestionada por Terraform puede eliminarse mediante otros flujos además de un destroy completo.
+
+---
+
+## Question No. 99
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Creaste infraestructura fuera del flujo de Terraform que ahora quieres gestionar con Terraform. ¿Qué comando incorpora esa infraestructura al estado de Terraform?
+
+**Opciones:**
+- A) terraform get
+- B) terraform refresh
+- C) terraform import
+- D) terraform init
+
+**Respuesta Correcta:** C
+
+**Explicación:** `terraform import` asocia un recurso externo existente con una dirección de recurso Terraform y lo registra en estado para que Terraform pueda gestionarlo.
+
+**Explicación:**
+
+Opción A es incorrecta: `terraform get` recupera módulos.
+
+Opción B es incorrecta: `terraform refresh` actualiza el estado para recursos que Terraform ya está rastreando.
+
+Opción D es incorrecta: `terraform init` inicializa el directorio de trabajo e instala dependencias.
+
+---
+
+## Question No. 100
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** terraform init crea un archivo main.tf de ejemplo en el directorio actual.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform init` inicializa un directorio de configuración existente. No genera archivos Terraform de ejemplo ni crea automáticamente un `main.tf`.
+
+**Explicación:**
+
+Opción A es incorrecta: Terraform espera que los archivos de configuración ya existan o sean creados por el usuario u otra herramienta de scaffolding.
