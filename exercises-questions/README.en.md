@@ -6,7 +6,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 
 <table>
 <tr>
-<td valign="top" width="50%">
+<td valign="top" width="25%">
 <a href="#question-no-2">Question No. 2</a><br>
 <a href="#question-no-3">Question No. 3</a><br>
 <a href="#question-no-4">Question No. 4</a><br>
@@ -58,7 +58,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-50">Question No. 50</a><br>
 <a href="#question-no-51">Question No. 51</a>
 </td>
-<td valign="top" width="33%">
+<td valign="top" width="25%">
 <a href="#question-no-52">Question No. 52</a><br>
 <a href="#question-no-53">Question No. 53</a><br>
 <a href="#question-no-54">Question No. 54</a><br>
@@ -110,7 +110,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-100">Question No. 100</a><br>
 <a href="#question-no-101">Question No. 101</a>
 </td>
-<td valign="top" width="33%">
+<td valign="top" width="25%">
 <a href="#question-no-102">Question No. 102</a><br>
 <a href="#question-no-103">Question No. 103</a><br>
 <a href="#question-no-104">Question No. 104</a><br>
@@ -161,6 +161,58 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-149">Question No. 149</a><br>
 <a href="#question-no-150">Question No. 150</a><br>
 <a href="#question-no-151">Question No. 151</a>
+</td>
+<td valign="top" width="25%">
+<a href="#question-no-152">Question No. 152</a><br>
+<a href="#question-no-153">Question No. 153</a><br>
+<a href="#question-no-154">Question No. 154</a><br>
+<a href="#question-no-155">Question No. 155</a><br>
+<a href="#question-no-156">Question No. 156</a><br>
+<a href="#question-no-157">Question No. 157</a><br>
+<a href="#question-no-158">Question No. 158</a><br>
+<a href="#question-no-159">Question No. 159</a><br>
+<a href="#question-no-160">Question No. 160</a><br>
+<a href="#question-no-161">Question No. 161</a><br>
+<a href="#question-no-162">Question No. 162</a><br>
+<a href="#question-no-163">Question No. 163</a><br>
+<a href="#question-no-164">Question No. 164</a><br>
+<a href="#question-no-165">Question No. 165</a><br>
+<a href="#question-no-166">Question No. 166</a><br>
+<a href="#question-no-167">Question No. 167</a><br>
+<a href="#question-no-168">Question No. 168</a><br>
+<a href="#question-no-169">Question No. 169</a><br>
+<a href="#question-no-170">Question No. 170</a><br>
+<a href="#question-no-171">Question No. 171</a><br>
+<a href="#question-no-172">Question No. 172</a><br>
+<a href="#question-no-173">Question No. 173</a><br>
+<a href="#question-no-174">Question No. 174</a><br>
+<a href="#question-no-175">Question No. 175</a><br>
+<a href="#question-no-176">Question No. 176</a><br>
+<a href="#question-no-177">Question No. 177</a><br>
+<a href="#question-no-178">Question No. 178</a><br>
+<a href="#question-no-179">Question No. 179</a><br>
+<a href="#question-no-180">Question No. 180</a><br>
+<a href="#question-no-181">Question No. 181</a><br>
+<a href="#question-no-182">Question No. 182</a><br>
+<a href="#question-no-183">Question No. 183</a><br>
+<a href="#question-no-184">Question No. 184</a><br>
+<a href="#question-no-185">Question No. 185</a><br>
+<a href="#question-no-186">Question No. 186</a><br>
+<a href="#question-no-187">Question No. 187</a><br>
+<a href="#question-no-188">Question No. 188</a><br>
+<a href="#question-no-189">Question No. 189</a><br>
+<a href="#question-no-190">Question No. 190</a><br>
+<a href="#question-no-191">Question No. 191</a><br>
+<a href="#question-no-192">Question No. 192</a><br>
+<a href="#question-no-193">Question No. 193</a><br>
+<a href="#question-no-194">Question No. 194</a><br>
+<a href="#question-no-195">Question No. 195</a><br>
+<a href="#question-no-196">Question No. 196</a><br>
+<a href="#question-no-197">Question No. 197</a><br>
+<a href="#question-no-198">Question No. 198</a><br>
+<a href="#question-no-199">Question No. 199</a><br>
+<a href="#question-no-200">Question No. 200</a><br>
+<a href="#question-no-201">Question No. 201</a>
 </td>
 </tr>
 </table>
@@ -4012,3 +4064,1233 @@ Option C is incorrect: Replacement means destroy then recreate, not destroy-only
 **Explanation:**
 
 Option A is incorrect: Plan is for preview/validation, not execution of changes.
+
+---
+
+## Question No. 152
+
+**Question Type:** Single Choice
+
+**Question:** Define the purpose of state in Terraform.
+
+**Options:**
+- A) State maps real world resources to your configuration and keeps track of metadata
+- B) State lets you enforce resource configurations that relate to compliance policies
+- C) State stores variables and lets you quickly reuse existing code
+- D) State codifies the dependencies of related resources
+
+**Correct Answer:** A
+
+**Explanation:** Terraform state is the mapping between configuration and real infrastructure, including metadata and resource IDs.
+
+**Explanation:**
+
+Option B is incorrect: Compliance policies are enforced by governance tools/policies, not by state itself.
+
+Option C is incorrect: Variables are configuration inputs, not the purpose of state.
+
+Option D is incorrect: Dependencies are derived from configuration references and graph analysis.
+
+---
+
+## Question No. 153
+
+**Question Type:** Single Choice
+
+**Question:** Which of these actions will prevent two Terraform runs from changing the same state file at the same time?
+
+**Options:**
+- A) Refresh the state after running Terraform
+- B) Delete the state before running Terraform
+- C) Configure state locking for your state backend
+- D) Run Terraform with parallelism set to 1
+
+**Correct Answer:** C
+
+**Explanation:** State locking prevents concurrent operations from modifying the same state simultaneously.
+
+**Explanation:**
+
+Option A is incorrect: Refresh does not provide mutual exclusion.
+
+Option B is incorrect: Deleting state is destructive and unrelated to concurrency control.
+
+Option D is incorrect: Parallelism controls resource operations in one run, not cross-run locking.
+
+---
+
+## Question No. 154
+
+**Question Type:** Single Choice
+
+**Question:** Which type of block fetches or computes information for use elsewhere in a Terraform configuration?
+
+**Options:**
+- A) data
+- B) local
+- C) resource
+- D) provider
+
+**Correct Answer:** A
+
+**Explanation:** `data` blocks fetch read-only information from providers for use in other expressions.
+
+**Explanation:**
+
+Option B is incorrect: Locals compute values but do not fetch external data.
+
+Option C is incorrect: Resource blocks manage infrastructure objects.
+
+Option D is incorrect: Provider blocks configure provider behavior/authentication.
+
+---
+
+## Question No. 155
+
+**Question Type:** Single Choice
+
+**Question:** Changing the Terraform backend from the default 'local' backend to a different one after performing your first terraform apply is:
+
+**Options:**
+- A) Optional
+- B) Impossible
+- C) Mandatory
+- D) Discouraged
+
+**Correct Answer:** A
+
+**Explanation:** Backend migration is possible and optional; if you change backend, Terraform can migrate state with `terraform init`.
+
+**Explanation:**
+
+Option B is incorrect: It is possible to migrate backend/state.
+
+Option C is incorrect: You are not required to change from local backend.
+
+Option D is incorrect: It is a normal supported workflow.
+
+---
+
+## Question No. 156
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following is not a valid source path for specifying a module?
+
+**Options:**
+- A) source = 'github.com/hashicorp/example'
+- B) source = './module?version=v1.6.0'
+- C) source = 'hashicorp/consul/aws'
+- D) source = './module'
+
+**Correct Answer:** B
+
+**Explanation:** Version query parameters are not valid for local paths. Local sources use plain relative/absolute paths.
+
+**Explanation:**
+
+Option A is incorrect: GitHub VCS source syntax is valid.
+
+Option C is incorrect: Registry source syntax is valid.
+
+Option D is incorrect: Local relative source is valid.
+
+---
+
+## Question No. 157
+
+**Question Type:** Multiple Choice
+
+**Question:** What are some benefits of using Sentinel with Terraform Cloud/Terraform Cloud? Choose three correct answers.
+
+**Options:**
+- A) You can restrict specific resource configurations, such as disallowing the use of CIDR=0.0.0.0/0.
+- B) You can check out and check in cloud access keys
+- C) Sentinel Policies can be written in HashiCorp Configuration Language (HCL)
+- D) Policy-as-code can enforce security best practices
+- E) You can enforce a list of approved AWS AMIs
+
+**Correct Answer:** A, D, E
+
+**Explanation:** Sentinel is policy-as-code for governance and can enforce security constraints and allowlists.
+
+**Explanation:**
+
+Option B is incorrect: Key checkout/check-in is secret-management functionality, not Sentinel.
+
+Option C is incorrect: Sentinel uses its own policy language, not HCL.
+
+---
+
+## Question No. 158
+
+**Question Type:** Multiple Choice
+
+**Question:** Which of the following are advantages of using infrastructure as code (IaC) instead of provisioning with a graphical user interface (GUI)? Choose two correct answers.
+
+**Options:**
+- A) Prevents manual modifications to your resources
+- B) Lets you version, reuse, and share infrastructure configuration
+- C) Secures your credentials
+- D) Provisions the same resources at a lower cost
+- E) Reduces risk of operator error
+
+**Correct Answer:** B, E
+
+**Explanation:** IaC improves repeatability, reusability, collaboration, and reduces manual human error.
+
+**Explanation:**
+
+Option A is incorrect: IaC cannot fully prevent manual out-of-band changes.
+
+Option C is incorrect: Credential security depends on secret-handling approach, not IaC alone.
+
+Option D is incorrect: IaC does not inherently change cloud pricing.
+
+---
+
+## Question No. 159
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following is not true of Terraform providers?
+
+**Options:**
+- A) An individual person can write a Terraform Provider
+- B) A community of users can maintain a provider
+- C) HashiCorp maintains some providers
+- D) Cloud providers and infrastructure vendors can write, maintain, or collaborate on Terraform providers
+- E) providers
+- F) None of the above
+
+**Correct Answer:** F
+
+**Explanation:** All substantive statements about provider authorship/maintenance are true.
+
+**Explanation:**
+
+Option A is incorrect: Individuals can create providers.
+
+Option B is incorrect: Communities can maintain providers.
+
+Option C is incorrect: HashiCorp maintains a subset of providers.
+
+Option D is incorrect: Vendors commonly maintain or contribute providers.
+
+---
+
+## Question No. 160
+
+**Question Type:** Single Choice
+
+**Question:** The Terraform binary version and provider versions must match each other in a single configuration.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Terraform CLI and providers have separate versioning; provider constraints are declared independently.
+
+**Explanation:**
+
+Option A is incorrect: They do not need to be numerically matched version-to-version.
+
+---
+
+## Question No. 161
+
+**Question Type:** Single Choice
+
+**Question:** Which of these is true about Terraform's plugin-based architecture?
+
+**Options:**
+- A) Terraform can only source providers from the internet
+- B) Every provider in a configuration has its own state file for its resources
+- C) You can create a provider for your API if none exists
+- D) All providers are part of the Terraform core binary
+
+**Correct Answer:** C
+
+**Explanation:** Terraform providers are plugins, and custom providers can be created for unsupported APIs.
+
+**Explanation:**
+
+Option A is incorrect: Providers can also be installed from local mirrors/private registries.
+
+Option B is incorrect: State is per workspace/state, not per provider.
+
+Option D is incorrect: Providers are external plugins, not all embedded in core.
+
+---
+
+## Question No. 162
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following is not a benefit of adopting infrastructure as code?
+
+**Options:**
+- A) Versioning
+- B) A Graphical User Interface
+- C) Reusability of code
+- D) Automation
+
+**Correct Answer:** B
+
+**Explanation:** IaC is code-driven automation, not a GUI-based approach.
+
+**Explanation:**
+
+Option A is incorrect: Versioning is a key IaC benefit.
+
+Option C is incorrect: Reusability is a key IaC benefit.
+
+Option D is incorrect: Automation is a key IaC benefit.
+
+---
+
+## Question No. 163
+
+**Question Type:** Single Choice
+
+**Question:** Which task does terraform init not perform?
+
+**Options:**
+- A) Validates all required variables are present
+- B) Sources any modules and copies the configuration locally
+- C) Connects to the backend
+- D) Sources all providers used in the configuration and downloads them
+
+**Correct Answer:** A
+
+**Explanation:** `terraform init` sets up backend/modules/providers but does not validate all required runtime variable values.
+
+**Explanation:**
+
+Option B is incorrect: Module source initialization is part of init.
+
+Option C is incorrect: Backend initialization is part of init.
+
+Option D is incorrect: Provider installation is part of init.
+
+---
+
+## Question No. 164
+
+**Question Type:** Single Choice
+
+**Question:** Any user can publish modules to the public Terraform Module Registry.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** Any user can publish public modules if requirements for source/repository integration are met.
+
+**Explanation:**
+
+Option B is incorrect: Publishing is not limited to HashiCorp-only authors.
+
+---
+
+## Question No. 165
+
+**Question Type:** Single Choice
+
+**Question:** Which of these commands makes your code more human readable?
+
+**Options:**
+- A) Terraform validate
+- B) Terraform output
+- C) Terraform show
+- D) Terraform fmt
+
+**Correct Answer:** D
+
+**Explanation:** `terraform fmt` formats configuration into canonical style, improving readability.
+
+**Explanation:**
+
+Option A is incorrect: Validate checks configuration correctness, not formatting.
+
+Option B is incorrect: Output prints values.
+
+Option C is incorrect: Show renders state/plan details.
+
+---
+
+## Question No. 166
+
+**Question Type:** Single Choice
+
+**Question:** Terraform configuration (including any module references) can contain only one Terraform provider type.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** A single configuration can use multiple providers and provider aliases.
+
+**Explanation:**
+
+Option A is incorrect: Terraform supports multi-provider configurations.
+
+---
+
+## Question No. 167
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following module source paths does not specify a remote module?
+
+**Options:**
+- A) Source = "module/consul"
+- B) Source = "github.com/micorp/example"
+- C) Source = "git@github.com:hasicorp/example.git"
+- D) Source = "hasicorp/consul/aws"
+
+**Correct Answer:** A
+
+**Explanation:** `module/consul` is interpreted as a local path-style reference, not an explicit remote module source.
+
+**Explanation:**
+
+Option B is incorrect: GitHub path indicates remote VCS source.
+
+Option C is incorrect: Git SSH URL indicates remote source.
+
+Option D is incorrect: Registry-style source indicates remote module.
+
+---
+
+## Question No. 168
+
+**Question Type:** Single Choice
+
+**Question:** How could you reference an attribute from the vsphere_datacenter data source for use with the datacenter_id argument within the vsphere_folder resource in the following configuration?
+
+**Options:**
+- A) data.vsphere_datacenter.DC.id
+- B) vsphere_datacenter.dc.id
+- C) data,dc,id
+- D) data.vsphere_datacenter,dc
+
+**Correct Answer:** A
+
+**Explanation:** Data source references use `data.<type>.<name>.<attribute>` format.
+
+**Explanation:**
+
+Option B is incorrect: It omits the `data.` prefix.
+
+Option C is incorrect: Comma-separated format is invalid syntax.
+
+Option D is incorrect: Comma usage makes the reference invalid.
+
+---
+
+## Question No. 169
+
+**Question Type:** Single Choice
+
+**Question:** Terraform providers are part of the Terraform core binary.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Providers are external plugins downloaded separately from Terraform core.
+
+**Explanation:**
+
+Option A is incorrect: Core and providers are separate components.
+
+---
+
+## Question No. 170
+
+**Question Type:** Single Choice
+
+**Question:** HashiCorp Configuration Language (HCL) supports user-defined functions.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** HCL provides built-in functions but does not support user-defined custom functions.
+
+**Explanation:**
+
+Option A is incorrect: User-defined function declaration is not a feature in Terraform/HCL.
+
+---
+
+## Question No. 171
+
+**Question Type:** Single Choice
+
+**Question:** A developer on your team is going to leaf down an existing deployment managed by Terraform and deploy a new one. However, there is a server resource named aws_instant.ubuntu[1] they would like to keep. What command should they use to tell Terraform to stop managing that specific resource?
+
+**Options:**
+- A) Terraform plan rm:aws_instance.ubuntu[1]
+- B) Terraform state rm:aws_instance.ubuntu[1]
+- C) Terraform apply rm:aws_instance.ubuntu[1]
+- D) Terraform destory rm:aws_instance.ubuntu[1]
+
+**Correct Answer:** B
+
+**Explanation:** `terraform state rm <address>` removes a resource from state without destroying the real object.
+
+**Explanation:**
+
+Option A is incorrect: No such `plan rm` command exists.
+
+Option C is incorrect: No such `apply rm` command exists.
+
+Option D is incorrect: No such `destroy rm` command exists.
+
+---
+
+## Question No. 172
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following is not a key principle of infrastructure as code?
+
+**Options:**
+- A) Self-describing infrastructure
+- B) Idempotence
+- C) Versioned infrastructure
+- D) Golden images
+
+**Correct Answer:** D
+
+**Explanation:** Golden images are an infrastructure strategy, not a core IaC principle.
+
+**Explanation:**
+
+Option A is incorrect: Self-describing infrastructure aligns with IaC practices.
+
+Option B is incorrect: Idempotence is a central IaC principle.
+
+Option C is incorrect: Versioning is a central IaC principle.
+
+---
+
+## Question No. 173
+
+**Question Type:** Single Choice
+
+**Question:** Your risk management organization requires that new AWS S3 buckets must be private and encrypted at rest. How can Terraform Cloud automatically and proactively enforce this security control?
+
+**Options:**
+- A) Auditing cloud storage buckets with a vulnerability scanning tool
+- B) By adding variables to each Terraform Cloud workspace to ensure these settings are always enabled
+- C) With an S3 module with proper settings for buckets
+- D) With a Sentinel policy, which runs before every apply
+
+**Correct Answer:** D
+
+**Explanation:** Sentinel policies can enforce mandatory controls in run workflows before apply.
+
+**Explanation:**
+
+Option A is incorrect: Auditing is detective, not preventive enforcement in the Terraform workflow.
+
+Option B is incorrect: Variables alone do not enforce mandatory policy compliance.
+
+Option C is incorrect: Modules help standardize, but policy enforcement is done by governance controls.
+
+---
+
+## Question No. 174
+
+**Question Type:** Single Choice
+
+**Question:** What is the name of the default file where Terraform stores the state?
+
+**Options:**
+- A) terraform.tfstate
+
+**Correct Answer:** A
+
+**Explanation:** Local backend default state file is named `terraform.tfstate`.
+
+---
+
+## Question No. 175
+
+**Question Type:** Multiple Choice
+
+**Question:** Which two steps are required to provision new infrastructure in the Terraform workflow? Choose two correct answers.
+
+**Options:**
+- A) Plan
+- B) Import
+- C) Validate
+- D) Init
+- E) apply
+
+**Correct Answer:** D, E
+
+**Explanation:** You must initialize first (`init`) and then execute creation (`apply`) to provision resources.
+
+**Explanation:**
+
+Option A is incorrect: Plan is highly recommended but not strictly required for provisioning.
+
+Option B is incorrect: Import is for existing resources, not provisioning new ones.
+
+Option C is incorrect: Validate is recommended but not required for execution.
+
+---
+
+## Question No. 176
+
+**Question Type:** Single Choice
+
+**Question:** You add a new provider to your configuration and immediately run terraform apply in the CD using the local backend. Why does the apply fail?
+
+**Options:**
+- A) The Terraform CD needs you to log into Terraform Cloud first
+- B) Terraform requires you to manually run terraform plan first
+- C) Terraform needs to install the necessary plugins first
+- D) Terraform needs you to format your code according to best practices first
+
+**Correct Answer:** C
+
+**Explanation:** After adding a provider, Terraform must run initialization to install provider plugins before apply can succeed.
+
+**Explanation:**
+
+Option A is incorrect: Local backend does not require Terraform Cloud login for this case.
+
+Option B is incorrect: Plan is optional for apply.
+
+Option D is incorrect: Formatting is unrelated to provider plugin installation.
+
+---
+
+## Question No. 177
+
+**Question Type:** Single Choice
+
+**Question:** Which Terraform collection type should you use to store key/value pairs?
+
+**Options:**
+- A) Set
+- B) Map
+- C) Tuple
+- D) list
+
+**Correct Answer:** B
+
+**Explanation:** `map` is the Terraform collection type for key/value associations.
+
+**Explanation:**
+
+Option A is incorrect: Set stores unique unordered values, not key/value pairs.
+
+Option C is incorrect: Tuple is an ordered sequence of potentially mixed types.
+
+Option D is incorrect: List is ordered values, no keys.
+
+---
+
+## Question No. 178
+
+**Question Type:** Single Choice
+
+**Question:** In Terraform HCL, an object type of object({name=string, age=number}) would match this value.
+
+**Options:**
+- A) Option A
+- B) Option B
+- C) Option C
+- D) Option D
+
+**Correct Answer:** B
+
+**Explanation:** The valid match is the object where `name` is a quoted string and `age` is numeric.
+
+**Explanation:**
+
+Option A is incorrect: `age` is not numeric.
+
+Option C is incorrect: `name` and `age` values are invalid for the declared types.
+
+Option D is incorrect: `name` is not quoted as a string.
+
+---
+
+## Question No. 179
+
+**Question Type:** Single Choice
+
+**Question:** Which provider authentication method prevents credentials from being stored in the state file?
+
+**Options:**
+- A) Using environment variables
+- B) Specifying the login credentials in the provider block
+- C) Setting credentials as Terraform variables
+- D) None of the above
+
+**Correct Answer:** A
+
+**Explanation:** Environment variables keep secrets out of static configuration files and are the preferred secure mechanism in many workflows.
+
+**Explanation:**
+
+Option B is incorrect: Hardcoding credentials in provider blocks is not recommended.
+
+Option C is incorrect: Passing secrets as variables can still expose them depending on usage/state/output.
+
+Option D is incorrect: A is a valid secure approach.
+
+---
+
+## Question No. 180
+
+**Question Type:** Single Choice
+
+**Question:** Terraform can only manage resource dependencies if you set them explicitly with the depends_on argument.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Terraform infers most dependencies automatically from expression references; `depends_on` is for explicit additional dependency control.
+
+**Explanation:**
+
+Option A is incorrect: Explicit `depends_on` is not required for all dependencies.
+
+---
+
+## Question No. 181
+
+**Question Type:** Single Choice
+
+**Question:** You should run terraform fmt to rewrite all Terraform configurations within the current working directory to conform to Terraform-style conventions.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** `terraform fmt` formats the current directory by default; recursive formatting of subdirectories requires `-recursive`.
+
+**Explanation:**
+
+Option A is incorrect: The statement overstates default behavior without `-recursive`.
+
+---
+
+## Question No. 182
+
+**Question Type:** Single Choice
+
+**Question:** What value does the Terraform Cloud private registry provide over the public Terraform Module Registry?
+
+**Options:**
+- A) The ability to share modules publicly with any user of Terraform
+- B) The ability to restrict modules to members of Terraform Cloud or Enterprise organizations
+- C) The ability to tag modules by version or release
+- D) The ability to share modules with public Terraform users and members of Terraform Cloud Organizations
+
+**Correct Answer:** B
+
+**Explanation:** Private registry allows organization-scoped access control for modules.
+
+**Explanation:**
+
+Option A is incorrect: That describes public sharing, not private-registry value.
+
+Option C is incorrect: Versioning exists in both contexts.
+
+Option D is incorrect: Private registry is not for unrestricted public sharing.
+
+---
+
+## Question No. 183
+
+**Question Type:** Single Choice
+
+**Question:** When should you run terraform init?
+
+**Options:**
+- A) Every time you run terraform apply
+- B) Before you start coding a new Terraform project
+- C) After you run terraform plan for the time in a new terraform project and before you run terraform apply
+- D) After you start coding a new terraform project and before you run terraform plan for the first time.
+
+**Correct Answer:** D
+
+**Explanation:** Run `terraform init` after creating configuration files and before first plan/apply.
+
+**Explanation:**
+
+Option A is incorrect: Re-running init each apply is unnecessary unless init-related changes occur.
+
+Option B is incorrect: Init requires an actual configuration directory context.
+
+Option C is incorrect: Plan cannot run successfully before initialization.
+
+---
+
+## Question No. 184
+
+**Question Type:** Single Choice
+
+**Question:** You can configure Terraform to log to a file using the TF_LOG environment variable.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** `TF_LOG` sets log verbosity; file output path is configured with `TF_LOG_PATH`.
+
+**Explanation:**
+
+Option A is incorrect: TF_LOG alone does not specify log file destination.
+
+---
+
+## Question No. 185
+
+**Question Type:** Multiple Choice
+
+**Question:** You have used Terraform to create an ephemeral development environment in the cloud and are now ready to destroy all the Infrastructure described by your Terraform configuration. To be safe, you would like to first see all the infrastructure that Terraform will delete.
+
+Which command should you use to show all of the resources that will be deleted? Choose two correct answers.
+
+**Options:**
+- A) Run terraform state rm
+- B) Run terraform show -destroy
+- C) Run terraform destroy and it will first output all the resource that will be deleted before prompting for approval
+- D) Run terraform plan -destroy
+
+**Correct Answer:** C, D
+
+**Explanation:** `terraform destroy` shows the delete plan before approval and `terraform plan -destroy` previews full deletion.
+
+**Explanation:**
+
+Option A is incorrect: `state rm` detaches resources from state, it does not destroy infrastructure.
+
+Option B is incorrect: `terraform show -destroy` is not the standard workflow command for planning destroys.
+
+---
+
+## Question No. 186
+
+**Question Type:** Single Choice
+
+**Question:** Which configuration consistency errors does terraform validate report?
+
+**Options:**
+- A) Terraform module isn't the latest version
+- B) Differences between local and remote state
+- C) Declaring a resource identifier more than once
+- D) A mix of spaces and tabs in configuration files
+
+**Correct Answer:** C
+
+**Explanation:** `terraform validate` catches configuration-level issues such as duplicate identifiers and invalid constructs.
+
+**Explanation:**
+
+Option A is incorrect: Validate does not enforce latest module versions.
+
+Option B is incorrect: Drift/state differences are runtime concerns.
+
+Option D is incorrect: Formatting style concerns are handled by `terraform fmt`.
+
+---
+
+## Question No. 187
+
+**Question Type:** Single Choice
+
+**Question:** You are writing a child Terraform module that provisions an AWS instance. You want to reference the IP address returned by the child module in the root configuration. You name the instance resource 'main'.
+
+Which of these is the correct way to define the output value?
+
+**Options:**
+- A) Option A
+- B) Option B
+- C) Option C
+- D) Option D
+
+**Correct Answer:** N/A (options not visible in source image)
+
+**Explanation:** The expected Terraform expression pattern is usually `value = aws_instance.main.<ip_attribute>` (for example `public_ip`), but the screenshot does not show actual option content.
+
+---
+
+## Question No. 188
+
+**Question Type:** Single Choice
+
+**Question:** Terraform configuration can only import modules from the public registry.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Modules can be sourced from local paths, VCS URLs, private registries, and public registry.
+
+**Explanation:**
+
+Option A is incorrect: Public registry is not the only source.
+
+---
+
+## Question No. 189
+
+**Question Type:** Single Choice
+
+**Question:** Which is the best way to specify a tag of v1.0.0 when referencing a module stored in Git (for example. Git::https://example.com/vpc.git)?
+
+**Options:**
+- A) Append pref=v1.0.0 argument to the source path
+- B) Add version = "1.0.0" parameter to module block
+- C) Nothing modules stored on GitHub always default to version 1.0.0
+
+**Correct Answer:** A
+
+**Explanation:** For VCS module sources, you pin revisions/tags using `?ref=` on the source URL.
+
+**Explanation:**
+
+Option B is incorrect: `version` argument is for registry modules, not generic Git URLs.
+
+Option C is incorrect: Git sources do not default to `1.0.0`.
+
+---
+
+## Question No. 190
+
+**Question Type:** Single Choice
+
+**Question:** When should you use the force-unlock command?
+
+**Options:**
+- A) You have a high priority change
+- B) Automatic unlocking failed
+- C) apply failed due to a state lock
+- D) You see a status message that you cannot acquire the lock
+
+**Correct Answer:** D
+
+**Explanation:** Use `force-unlock` only when a lock is stale and Terraform cannot acquire it.
+
+**Explanation:**
+
+Option A is incorrect: Priority does not justify bypassing lock safety.
+
+Option B is incorrect: This can be related, but the actionable trigger is stale lock acquisition failure.
+
+Option C is incorrect: Not all lock errors should be force-unlocked; verify stale-lock condition first.
+
+---
+
+## Question No. 191
+
+**Question Type:** Single Choice
+
+**Question:** Which of these statements about Terraform Cloud workspaces is false?
+
+**Options:**
+- A) They have role-based access controls
+- B) You must use the CLI to switch between workspaces
+- C) Plans and applies can be triggered via version control system integrations
+- D) They can securely store cloud credentials
+
+**Correct Answer:** B
+
+**Explanation:** Workspace switching/management can be done in UI/API; CLI-only is false.
+
+**Explanation:**
+
+Option A is incorrect: RBAC is supported.
+
+Option C is incorrect: VCS-triggered runs are supported.
+
+Option D is incorrect: Secure credential storage is supported.
+
+---
+
+## Question No. 192
+
+**Question Type:** Multiple Choice
+
+**Question:** Which of these are secure options for storing secrets for connecting to a Terraform remote backend? Choose two correct answers.
+
+**Options:**
+- A) A variable file
+- B) Defined in Environment variables
+- C) Inside the backend block within the Terraform configuration
+- D) Defined in a connection configuration outside of Terraform
+
+**Correct Answer:** B, D
+
+**Explanation:** Secure practice is keeping secrets out of committed Terraform config/state by using environment variables or external secure connection management.
+
+**Explanation:**
+
+Option A is incorrect: Variable files are often unsafe unless strongly protected and excluded from VCS.
+
+Option C is incorrect: Hardcoding backend secrets in configuration is not secure.
+
+---
+
+## Question No. 193
+
+**Question Type:** Multiple Choice
+
+**Question:** Which are forbidden actions when the terraform state file is locked? Choose three correct answers.
+
+**Options:**
+- A) Terraform state list
+- B) Terraform destroy
+- C) Terraform validate
+- D) Terraform validate
+- E) Terraform fmt
+- F) Terraform apply
+
+**Correct Answer:** A, B, F
+
+**Explanation:** Lock-sensitive operations that read/write managed resources/state are blocked while lock is held.
+
+**Explanation:**
+
+Option C is incorrect: Validate does not require backend state lock.
+
+Option D is incorrect: Same reason as C.
+
+Option E is incorrect: Fmt only changes local formatting.
+
+---
+
+## Question No. 194
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following methods, used to provision resources into a public cloud, demonstrates the concept of infrastructure as code?
+
+**Options:**
+- A) curl commands manually run from a terminal
+- B) A sequence of REST requests you pass to a public cloud API endpoint
+- C) A script that contains a series of public cloud CLI commands
+- D) A series of commands you enter into a public cloud console
+
+**Correct Answer:** C
+
+**Explanation:** Scripted, repeatable, versionable provisioning via code (such as CLI scripts) demonstrates IaC principles better than ad-hoc manual commands.
+
+**Explanation:**
+
+Option A is incorrect: Manual one-off commands are not robust IaC workflow.
+
+Option B is incorrect: Could be automated, but this option is less directly framed as maintainable IaC in exam context.
+
+Option D is incorrect: Manual console actions are not IaC.
+
+---
+
+## Question No. 195
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following should you put into the required_providers block?
+
+**Options:**
+- A) version >= 3.1
+- B) version = ">= 3.1"
+- C) version ~> 3.1
+
+**Correct Answer:** B
+
+**Explanation:** Provider version constraints in `required_providers` use quoted string syntax like `version = ">= 3.1"`.
+
+**Explanation:**
+
+Option A is incorrect: Missing assignment/quoted constraint expression format.
+
+Option C is incorrect: Missing `=` and quotes in shown form.
+
+---
+
+## Question No. 196
+
+**Question Type:** Multiple Choice
+
+**Question:** When using Terraform to deploy resources into Azure, which scenarios are true regarding state files? (Choose two.)
+
+**Options:**
+- A) When you change a Terraform-managed resource via the Azure Cloud Console, Terraform updates the state file to reflect the change during the next plan or apply
+- B) Changing resources via the Azure Cloud Console records the change in the current state file
+- C) When you change a resource via the Azure Cloud Console, Terraform records the changes in a new state file
+- D) Changing resources via the Azure Cloud Console does not update current state file
+
+**Correct Answer:** A, D
+
+**Explanation:** Out-of-band console changes do not immediately update Terraform state; state is reconciled on subsequent refresh/plan/apply.
+
+**Explanation:**
+
+Option B is incorrect: Console actions do not directly write Terraform state.
+
+Option C is incorrect: Terraform does not create a new state file for this.
+
+---
+
+## Question No. 197
+
+**Question Type:** Single Choice
+
+**Question:** Which option cannot be used to keep secrets out of Terraform configuration files?
+
+**Options:**
+- A) A Terraform provider
+- B) Environment variables
+- C) A -var flag
+- D) secure string
+
+**Correct Answer:** D
+
+**Explanation:** `secure string` is not a Terraform mechanism for secret injection/handling.
+
+**Explanation:**
+
+Option A is incorrect: Providers can support external auth mechanisms.
+
+Option B is incorrect: Environment variables are a common secure pattern.
+
+Option C is incorrect: Runtime `-var` can keep secrets out of static files.
+
+---
+
+## Question No. 198
+
+**Question Type:** Single Choice
+
+**Question:** If you manually destroy infrastructure, what is the best practice reflecting this change in Terraform?
+
+**Options:**
+- A) Run terraform refresh
+- B) It will happen automatically
+- C) Manually update the state file
+- D) Run terraform import
+
+**Correct Answer:** A
+
+**Explanation:** Refreshing/replanning reconciles state with real infrastructure after out-of-band changes.
+
+**Explanation:**
+
+Option B is incorrect: State does not update instantly without Terraform operations.
+
+Option C is incorrect: Manual state edits are risky and discouraged.
+
+Option D is incorrect: Import is for adding existing resources into state.
+
+---
+
+## Question No. 199
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following commands would you use to access all of the attributes and details of a resource managed by Terraform?
+
+**Options:**
+- A) terraform state list 'provider_type.name'
+- B) terraform state show 'provider_type.name'
+- C) terraform get 'provider_type.name'
+- D) terraform state list
+
+**Correct Answer:** B
+
+**Explanation:** `terraform state show <address>` prints detailed state attributes for one managed resource.
+
+**Explanation:**
+
+Option A is incorrect: List only enumerates addresses.
+
+Option C is incorrect: Get is module retrieval, not state inspection.
+
+Option D is incorrect: List without address still only returns resource addresses.
+
+---
+
+## Question No. 200
+
+**Question Type:** Single Choice
+
+**Question:** You are working on some new application features and you want to spin up a copy of your production deployment to perform some quick tests. In order to avoid having to configure a new state backend, what open source Terraform feature would allow you create multiple states but still be associated with your current code?
+
+**Options:**
+- A) Terraform data sources
+- B) Terraform local values
+- C) Terraform modules
+- D) Terraform workspaces
+- E) None of the above
+
+**Correct Answer:** D
+
+**Explanation:** Workspaces allow multiple state instances for the same configuration.
+
+**Explanation:**
+
+Option A is incorrect: Data sources read existing infrastructure data.
+
+Option B is incorrect: Locals are computed expressions within one configuration.
+
+Option C is incorrect: Modules organize/reuse code but do not create isolated states by themselves.
+
+Option E is incorrect: Workspaces are exactly designed for this use case.
+
+---
+
+## Question No. 201
+
+**Question Type:** Multiple Choice
+
+**Question:** Which of the following does terraform apply change after you approve the execution plan? (Choose two.)
+
+**Options:**
+- A) Cloud infrastructure
+- B) The .terraform directory
+- C) The execution plan
+- D) State file
+- E) Terraform code
+
+**Correct Answer:** A, D
+
+**Explanation:** `terraform apply` changes real infrastructure and updates state to reflect resulting resource reality.
+
+**Explanation:**
+
+Option B is incorrect: `.terraform` may contain plugins/modules but is not the primary change target after plan approval.
+
+Option C is incorrect: The saved/previewed plan is an input artifact, not the end-state target.
+
+Option E is incorrect: Terraform source code is not modified by apply.
