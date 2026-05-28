@@ -234,7 +234,27 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-218">Question No. 218</a><br>
 <a href="#question-no-219">Question No. 219</a><br>
 <a href="#question-no-220">Question No. 220</a><br>
-<a href="#question-no-221">Question No. 221</a>
+<a href="#question-no-221">Question No. 221</a><br>
+<a href="#question-no-222">Question No. 222</a><br>
+<a href="#question-no-223">Question No. 223</a><br>
+<a href="#question-no-224">Question No. 224</a><br>
+<a href="#question-no-225">Question No. 225</a><br>
+<a href="#question-no-226">Question No. 226</a><br>
+<a href="#question-no-227">Question No. 227</a><br>
+<a href="#question-no-228">Question No. 228</a><br>
+<a href="#question-no-229">Question No. 229</a><br>
+<a href="#question-no-230">Question No. 230</a><br>
+<a href="#question-no-231">Question No. 231</a><br>
+<a href="#question-no-232">Question No. 232</a><br>
+<a href="#question-no-233">Question No. 233</a><br>
+<a href="#question-no-234">Question No. 234</a><br>
+<a href="#question-no-235">Question No. 235</a><br>
+<a href="#question-no-236">Question No. 236</a><br>
+<a href="#question-no-237">Question No. 237</a><br>
+<a href="#question-no-238">Question No. 238</a><br>
+<a href="#question-no-239">Question No. 239</a><br>
+<a href="#question-no-240">Question No. 240</a><br>
+<a href="#question-no-241">Question No. 241</a>
 </td>
 </tr>
 </table>
@@ -5636,6 +5656,357 @@ Opción E es incorrecta: Workspaces sí cubre este caso.
 **Respuesta Correcta:** B
 
 **Explicación:** `terraform validate` puede ejecutarse sin inicialización; solo verifica sintaxis y estructura de configuración.
+
+---
+
+## Question No. 222
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Un módulo siempre puede referirse a todas las variables declaradas en su módulo padre.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Los módulos tienen encapsulación; los módulos hijo no pueden acceder automáticamente a las variables del módulo padre a menos que se pasen explícitamente como argumentos de módulo.
+
+---
+
+## Question No. 223
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál de los siguientes NO es un tipo de colección válido de Terraform?
+
+**Opciones:**
+- A) Tree
+- B) Map
+- C) List
+- D) set
+
+**Respuesta Correcta:** A
+
+**Explicación:** Los tipos de colección de Terraform son list, map, set y tuple. Tree no es un tipo de colección válido.
+
+---
+
+## Question No. 224
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Quieres saber desde qué rutas Terraform está cargando providers referenciados en tu configuración de Terraform. Necesitas habilitar mensajes de registro adicionales para descubrir esto. ¿Cuál de los siguientes lograría esto?
+
+**Opciones:**
+- A) Establecer verbose para cada provider en tu configuración de Terraform
+- B) Establecer la variable de entorno TF_LOG_TRACE
+- C) Establecer la variable de entorno TF_LOG_PATH
+- D) Establecer la variable de entorno TF_log_TRACE
+
+**Respuesta Correcta:** C
+
+**Explicación:** La variable de entorno `TF_LOG_PATH` habilita el registro que muestra rutas de carga de providers e información de diagnóstico.
+
+---
+
+## Question No. 225
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué comando de Terraform siempre causa que el archivo de estado se actualice con cambios que podrían haber sido realizados fuera de Terraform?
+
+**Opciones:**
+- A) Terraform plan --refresh-only
+- B) Terraform show --json
+- C) Terraform apply --lock-false
+- D) Terraform plan target-state
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform plan --refresh-only` consulta explícitamente recursos remotos y actualiza el estado sin modificar infraestructura.
+
+---
+
+## Question No. 226
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cómo determina Terraform las dependencias entre recursos?
+
+**Opciones:**
+- A) Terraform requiere que las dependencias de recursos se definan como módulos y se obtengan en orden
+- B) Terraform construye automáticamente un gráfico de recursos basado en provisioners de recursos, meta-parámetros especiales y el archivo de estado (si está presente)
+- C) Terraform requiere que los recursos en una configuración se listen en el orden en que serán creados para determinar dependencias
+- D) Terraform requiere que todas las dependencias entre recursos se especifiquen usando el parámetro depends_on
+
+**Respuesta Correcta:** B
+
+**Explicación:** Terraform analiza referencias de recursos y meta-argumentos para determinar automáticamente el gráfico de dependencias sin ordenamiento explícito.
+
+---
+
+## Question No. 227
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** El __________ determina cómo Terraform crea, actualiza o elimina recursos.
+
+**Opciones:**
+- A) Configuración de Terraform
+- B) Provisioner de Terraform
+- C) Provider de Terraform
+- D) Núcleo de Terraform
+
+**Respuesta Correcta:** C
+
+**Explicación:** Los providers implementan operaciones del ciclo de vida de recursos y determinan las llamadas API específicas usadas para operaciones CRUD.
+
+---
+
+## Question No. 228
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál de los siguientes comandos se utilizaría para acceder a todos los atributos y detalles de un recurso gestionado por Terraform?
+
+**Opciones:**
+- A) Terraform state show 'provider_type_name'
+- B) Terraform state list
+- C) Terraform get provider_type_name
+- D) Terraform state list provider_type_name
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform state show` muestra todos los atributos y metadatos para un recurso específico del archivo de estado.
+
+---
+
+## Question No. 229
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Cuáles son ejemplos de infraestructura como código? Elige dos respuestas correctas.
+
+**Opciones:**
+- A) Imágenes de máquina virtual clonadas
+- B) Archivos de configuración versionados
+- C) Registros de base de datos de gestión de cambios
+- D) Dockerfile
+
+**Respuesta Correcta:** B, D
+
+**Explicación:** Los ejemplos de IaC incluyen archivos de configuración versionados y definiciones de contenedores como Dockerfiles; imágenes VM y registros de bases de datos no son IaC basado en código.
+
+---
+
+## Question No. 230
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál método para compartir configuraciones de Terraform cumple los siguientes criterios: 1) Mantiene las configuraciones confidenciales dentro de tu organización 2) Soporta restricciones de versión semántica de Terraform 3) Proporciona un directorio navegable
+
+**Opciones:**
+- A) Subcarpeta dentro de un workspace
+- B) Repositorio git genérico
+- C) Registro privado de Terraform Cloud
+- D) Registro de módulo público de Terraform
+
+**Respuesta Correcta:** C
+
+**Explicación:** El registro privado de Terraform Cloud cumple los tres criterios: confidencialidad, soporte de versiones semánticas e interfaz navegable.
+
+---
+
+## Question No. 231
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cómo especificas la versión de un módulo al publicarlo en el Registro Público de Módulos Terraform?
+
+**Opciones:**
+- A) Configurarlo en el código Terraform del módulo
+- B) Mencionarlo en la página de configuración del módulo en el Registro de Módulos Terraform
+- C) El Registro de Módulos Terraform no soporta versiones de módulos
+- D) Etiquetar un release en el repositorio asociado
+
+**Respuesta Correcta:** D
+
+**Explicación:** Las versiones del módulo se gestionan mediante etiquetas git en el repositorio asociado; el registro detecta e indexa automáticamente los releases.
+
+---
+
+## Question No. 232
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** El Registro Público de Módulos Terraform es gratuito de usar.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** El Registro Público de Módulos Terraform es gratuito para que cualquiera lo use y publique módulos.
+
+---
+
+## Question No. 233
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Ejecutar terraform fmt sin flags en un directorio con archivos de configuración Terraform verifica el formato de esos archivos sin cambiar su contenido.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform fmt` sin flags aplica cambios de formato. Usa `terraform fmt -check` para verificar el formato sin modificar archivos.
+
+---
+
+## Question No. 234
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué hace este código? terraform { required_providers { aws = '>=3.0' }}
+
+**Opciones:**
+- A) Requiere cualquier versión del provider de AWS > = 3.0 y <4.0
+- B) Requiere cualquier versión del provider de AWS >=3.0
+- C) Requiere cualquier versión del provider de AWS > = 3.0 release mayor. como 4.1
+- D) Requiere cualquier versión del provider de AWS > 3.0
+
+**Respuesta Correcta:** B
+
+**Explicación:** `>= 3.0` significa versión 3.0 o superior sin restricción de límite superior.
+
+---
+
+## Question No. 235
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué logra el bloqueo de estado?
+
+**Opciones:**
+- A) Prevenir eliminación accidental Prevenir eliminación accidental del archivo de estado
+- B) Bloquea comandos de Terraform de modificar, el archivo de estado
+- C) Copia el archivo de estado de memoria a disco
+- D) Cifra cualquier credencial almacenada en el archivo de estado
+
+**Respuesta Correcta:** B
+
+**Explicación:** El bloqueo de estado previene modificaciones concurrentes al bloquear operaciones de Terraform mientras otra operación mantiene el bloqueo.
+
+---
+
+## Question No. 236
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Cuáles parámetros requiere terraform import? Elige dos respuestas correctas.
+
+**Opciones:**
+- A) Provider
+- B) Resource ID
+- C) Resource address
+- D) Path
+
+**Respuesta Correcta:** A, C
+
+**Explicación:** `terraform import` requiere el tipo de provider/recurso (A) y la dirección/identificador del recurso (C) para identificar e importar recursos existentes.
+
+---
+
+## Question No. 237
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Modificaste tu configuración de Terraform y ejecutaste Terraform plan para revisar los cambios. Simultáneamente, tu compañero de equipo modificó manualmente el componente de infraestructura en el que estabas trabajando. Dado que ya ejecutaste terraform plan localmente, el plan de ejecución para terraform apply será el mismo.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform apply` realiza una actualización fresca antes de la ejecución, detectando cambios externos realizados después de que se generó el plan.
+
+---
+
+## Question No. 238
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Tienes una configuración de Terraform que define una única máquina virtual sin referencias a ella. Has ejecutado terraform apply para crear el recurso, y luego eliminaste la definición de recurso de tu archivo de configuración de Terraform. ¿Qué sucederá cuando ejecutes terraform apply en el directorio de trabajo nuevamente?
+
+**Opciones:**
+- A) Terraform eliminará la máquina virtual del archivo de estado, pero el recurso seguirá existiendo
+- B) Nada
+- C) Terraform te pedirá que confirmes que deseas destruir toda la infraestructura
+- D) Terraform destruirá la máquina virtual
+
+**Respuesta Correcta:** A
+
+**Explicación:** Eliminar un recurso de la configuración deja el recurso físico huérfano; Terraform lo elimina del estado pero deja la infraestructura intacta.
+
+---
+
+## Question No. 239
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Cómo puede un sistema basado en tickets ralentizar el aprovisionamiento de infraestructura y limitar la capacidad de escala? Elige dos respuestas correctas.
+
+**Opciones:**
+- A) Los usuarios finales tienen que solicitar cambios de infraestructura
+- B) Los sistemas basados en tickets generan un rastro de auditoría completo del proceso de solicitud y cumplimiento
+- C) Los usuarios pueden acceder al catálogo de recursos aprobados desde una lista desplegable en un formulario de solicitud
+- D) Cuantos más recursos necesita tu organización, más tickets tiene que procesar tu equipo de infraestructura
+
+**Respuesta Correcta:** A, D
+
+**Explicación:** Tanto A como D representan cuellos de botella: procesos de aprobación manual y procesamiento lineal de tickets limitan la velocidad y escalabilidad del aprovisionamiento de infraestructura.
+
+---
+
+## Question No. 240
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Has creado una configuración main.tf de Terraform que consiste en un servidor de aplicación, una base de datos y un balanceador de carga. Ejecutaste terraform apply y Terraform creó todos los recursos exitosamente. Ahora te das cuenta de que no necesitas el balanceador de carga, así que ejecutas terraform destroy sin flags. ¿Qué sucederá?
+
+**Opciones:**
+- A) Terraform te preguntará cuál recurso deseas destruir
+- B) Terraform destruirá el servidor de aplicación porque se lista primero en el código
+- C) Terraform te pedirá que confirmes que deseas destruir toda la infraestructura
+- D) Terraform destruirá el archivo main, tf
+- E) Terraform destruirá inmediatamente toda la infraestructura
+
+**Respuesta Correcta:** C
+
+**Explicación:** `terraform destroy` sin flags muestra un plan y solicita confirmación antes de destruir cualquier recurso.
+
+---
+
+## Question No. 241
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Los nombres de variables de Terraform se guardan en el archivo de estado.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** Los nombres de variables y sus valores resueltos se almacenan en el archivo de estado para referencia y reutilización.
 
 ## Question No. 201
 

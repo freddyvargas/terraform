@@ -234,7 +234,27 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-218">Question No. 218</a><br>
 <a href="#question-no-219">Question No. 219</a><br>
 <a href="#question-no-220">Question No. 220</a><br>
-<a href="#question-no-221">Question No. 221</a>
+<a href="#question-no-221">Question No. 221</a><br>
+<a href="#question-no-222">Question No. 222</a><br>
+<a href="#question-no-223">Question No. 223</a><br>
+<a href="#question-no-224">Question No. 224</a><br>
+<a href="#question-no-225">Question No. 225</a><br>
+<a href="#question-no-226">Question No. 226</a><br>
+<a href="#question-no-227">Question No. 227</a><br>
+<a href="#question-no-228">Question No. 228</a><br>
+<a href="#question-no-229">Question No. 229</a><br>
+<a href="#question-no-230">Question No. 230</a><br>
+<a href="#question-no-231">Question No. 231</a><br>
+<a href="#question-no-232">Question No. 232</a><br>
+<a href="#question-no-233">Question No. 233</a><br>
+<a href="#question-no-234">Question No. 234</a><br>
+<a href="#question-no-235">Question No. 235</a><br>
+<a href="#question-no-236">Question No. 236</a><br>
+<a href="#question-no-237">Question No. 237</a><br>
+<a href="#question-no-238">Question No. 238</a><br>
+<a href="#question-no-239">Question No. 239</a><br>
+<a href="#question-no-240">Question No. 240</a><br>
+<a href="#question-no-241">Question No. 241</a>
 </td>
 </tr>
 </table>
@@ -5659,6 +5679,357 @@ Option E is incorrect: Workspaces are exactly designed for this use case.
 **Correct Answer:** B
 
 **Explanation:** `terraform validate` can run without initialization; it only checks syntax and configuration structure.
+
+---
+
+## Question No. 222
+
+**Question Type:** Single Choice
+
+**Question:** A module can always refer to all variables declared in its parent module.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Modules have encapsulation; child modules cannot automatically access parent module variables unless explicitly passed as module arguments.
+
+---
+
+## Question No. 223
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following is not a valid Terraform collection type?
+
+**Options:**
+- A) Tree
+- B) Map
+- C) List
+- D) set
+
+**Correct Answer:** A
+
+**Explanation:** Terraform collection types are list, map, set, and tuple. Tree is not a valid collection type.
+
+---
+
+## Question No. 224
+
+**Question Type:** Single Choice
+
+**Question:** You want to know from which paths Terraform is loading providers referenced in your Terraform configuration. You need to enable additional logging messages to find this out. Which of the following would achieve this?
+
+**Options:**
+- A) Set verbose for each provider in your Terraform configuration
+- B) Set the environment variable TF_LOG_TRACE
+- C) Set the environment variable TF_LOG_PATH
+- D) Set the environment variable TF_log_TRACE
+
+**Correct Answer:** C
+
+**Explanation:** `TF_LOG_PATH` environment variable enables logging that shows provider loading paths and other diagnostic information.
+
+---
+
+## Question No. 225
+
+**Question Type:** Single Choice
+
+**Question:** What Terraform command always causes a state file to be updated with changes that might have been made outside of Terraform?
+
+**Options:**
+- A) Terraform plan --refresh-only
+- B) Terraform show --json
+- C) Terraform apply --lock-false
+- D) Terraform plan target-state
+
+**Correct Answer:** A
+
+**Explanation:** `terraform plan --refresh-only` explicitly queries remote resources and updates state without modifying infrastructure.
+
+---
+
+## Question No. 226
+
+**Question Type:** Single Choice
+
+**Question:** How does Terraform determine dependencies between resources?
+
+**Options:**
+- A) Terraform requires resource dependencies to be defined as modules and sourced in order
+- B) Terraform automatically builds a resource graph based on resources provisioners, special meta-parameters, and the state file (if present)
+- C) Terraform requires resources in a configuration to be listed in the order they will be created to determine dependencies
+- D) Terraform requires all dependencies between resources to be specified using the depends_on parameter
+
+**Correct Answer:** B
+
+**Explanation:** Terraform analyzes resource references and meta-arguments to automatically determine the dependency graph without explicit ordering.
+
+---
+
+## Question No. 227
+
+**Question Type:** Single Choice
+
+**Question:** The __________ determines how Terraform creates, updates, or delete resources.
+
+**Options:**
+- A) Terraform configuration
+- B) Terraform provisioner
+- C) Terraform provider
+- D) Terraform core
+
+**Correct Answer:** C
+
+**Explanation:** Providers implement resource lifecycle operations and determine the specific API calls used for CRUD operations.
+
+---
+
+## Question No. 228
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following command would be used to access all of the attributes and details of a resource managed by Terraform?
+
+**Options:**
+- A) Terraform state show 'provider_type_name'
+- B) Terraform state list
+- C) Terraform get provider_type_name
+- D) Terraform state list provider_type_name
+
+**Correct Answer:** A
+
+**Explanation:** `terraform state show` displays all attributes and metadata for a specific resource from the state file.
+
+---
+
+## Question No. 229
+
+**Question Type:** Multiple Choice
+
+**Question:** Which are examples of infrastructure as code? Choose two correct answers.
+
+**Options:**
+- A) Cloned virtual machine images
+- B) Versioned configuration files
+- C) Change management database records
+- D) Dockerfile
+
+**Correct Answer:** B, D
+
+**Explanation:** IaC examples include versioned configuration files and container definitions like Dockerfiles; VM images and database records are not code-based IaC.
+
+---
+
+## Question No. 230
+
+**Question Type:** Single Choice
+
+**Question:** Which method for sharing Terraform configurations fulfills the following criteria: 1) Keeps the configurations confidential within your organization 2) Support Terraform's semantic version constraints 3) Provides a browsable directory
+
+**Options:**
+- A) Subfolder within a workspace
+- B) Generic git repository
+- C) Terraform Cloud private registry
+- D) Public Terraform module registry
+
+**Correct Answer:** C
+
+**Explanation:** Terraform Cloud private registry meets all three criteria: confidentiality, semantic versioning support, and browsable interface.
+
+---
+
+## Question No. 231
+
+**Question Type:** Single Choice
+
+**Question:** How do you specify a module's version when publishing it to the public terraform Module Registry?
+
+**Options:**
+- A) Configuration it in the module's Terraform code
+- B) Mention it on the module's configuration page on the Terraform Module Registry
+- C) The Terraform Module Registry does not support versioning modules
+- D) Tag a release in the associated repo
+
+**Correct Answer:** D
+
+**Explanation:** Module versions are managed by git tags in the associated repository; the registry auto-detects and indexes releases.
+
+---
+
+## Question No. 232
+
+**Question Type:** Single Choice
+
+**Question:** The public Terraform Module Registry is free to use.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** The public Terraform Module Registry is free for anyone to use and publish modules to.
+
+---
+
+## Question No. 233
+
+**Question Type:** Single Choice
+
+**Question:** Running terraform fmt without any flags in a directory with Terraform configuration files check the formatting of those files without changing their contents.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** `terraform fmt` without flags applies formatting changes. Use `terraform fmt -check` to verify formatting without modifying files.
+
+---
+
+## Question No. 234
+
+**Question Type:** Single Choice
+
+**Question:** What does this code do? terraform { required_providers { aws = '>=3.0' }}
+
+**Options:**
+- A) Requires any version of the AWS provider > = 3.0 and <4.0
+- B) Requires any version of the AWS provider >=3.0
+- C) Requires any version of the AWS provider > = 3.0 major release. like 4.1
+- D) Requires any version of the AWS provider > 3.0
+
+**Correct Answer:** B
+
+**Explanation:** `>= 3.0` means version 3.0 or greater with no upper bound constraint.
+
+---
+
+## Question No. 235
+
+**Question Type:** Single Choice
+
+**Question:** What does state locking accomplish?
+
+**Options:**
+- A) Prevent accidental Prevent accident deletion of the state file
+- B) Blocks Terraform commands from modifying, the state file
+- C) Copies the state file from memory to disk
+- D) Encrypts any credentials stored within the state file
+
+**Correct Answer:** B
+
+**Explanation:** State locking prevents concurrent modifications by blocking Terraform operations while another operation holds the lock.
+
+---
+
+## Question No. 236
+
+**Question Type:** Multiple Choice
+
+**Question:** Which parameters does terraform import require? Choose two correct answers.
+
+**Options:**
+- A) Provider
+- B) Resource ID
+- C) Resource address
+- D) Path
+
+**Correct Answer:** A, C
+
+**Explanation:** `terraform import` requires the provider/resource type (A) and the resource address/identifier (C) to identify and import existing resources.
+
+---
+
+## Question No. 237
+
+**Question Type:** Single Choice
+
+**Question:** You modified your Terraform configuration and ran Terraform plan to review the changes. Simultaneously, your teammate manually modified the infrastructure component you are working on. Since you already ran terraform plan locally, the execution plan for terraform apply will be the same.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** `terraform apply` performs a fresh refresh before execution, detecting external changes made after the plan was generated.
+
+---
+
+## Question No. 238
+
+**Question Type:** Single Choice
+
+**Question:** You have a Terraform configuration that defines a single virtual machine with no references to it. You have run terraform apply to create the resource, and then removed the resource definition from your Terraform configuration file. What will happen you run terraform apply in the working directory again?
+
+**Options:**
+- A) Terraform will remove the virtual machine from the state file, but the resource will still exist
+- B) Nothing
+- C) Terraform will prompt you to confirm that you want to destroy all the infrastructure
+- D) Terraform will destroy the virtual machine
+
+**Correct Answer:** A
+
+**Explanation:** Removing a resource from configuration leaves the physical resource orphaned; Terraform removes it from state but leaves the infrastructure intact.
+
+---
+
+## Question No. 239
+
+**Question Type:** Multiple Choice
+
+**Question:** How can a ticket-based system slow down infrastructure provisioning and limit the ability to scale? Choose two correct answers.
+
+**Options:**
+- A) End-users have to request infrastructure changes
+- B) Ticket based systems generate a full audit trail of the request and fulfillment process
+- C) Users can access catalog of approved resources from drop down list in a request form
+- D) The more resources your organization needs, the more tickets your infrastructure team has to process
+
+**Correct Answer:** A, D
+
+**Explanation:** Both A and D represent bottlenecks: manual approval processes and linear ticket processing limit infrastructure provisioning speed and scalability.
+
+---
+
+## Question No. 240
+
+**Question Type:** Single Choice
+
+**Question:** You have created a main.tf Terraform configuration consisting of an application server, a database and a load balanced. You ran terraform apply and Terraform created all of the resources successfully. Now you realize that you do not actually need the load balancer, so you run terraform destroy without any flags. What will happen?
+
+**Options:**
+- A) Terraform will prompt you to pick which resource you want to destroy
+- B) Terraform will destroy the application server because it is listed first in the code
+- C) Terraform will prompt you to confirm that you want to destroy all the infrastructure
+- D) Terraform will destroy the main, tf file
+- E) Terraform will immediately destroy all the infrastructure
+
+**Correct Answer:** C
+
+**Explanation:** `terraform destroy` without flags shows a plan and prompts for confirmation before destroying any resources.
+
+---
+
+## Question No. 241
+
+**Question Type:** Single Choice
+
+**Question:** Terraform variable names are saved in the state file.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** Variable names and their resolved values are stored in the state file for reference and reuse.
 
 Option B is incorrect: `.terraform` may contain plugins/modules but is not the primary change target after plan approval.
 
