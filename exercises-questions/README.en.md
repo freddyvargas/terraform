@@ -6,7 +6,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 
 <table>
 <tr>
-<td valign="top" width="25%">
+<td valign="top" width="20%">
 <a href="#question-no-2">Question No. 2</a><br>
 <a href="#question-no-3">Question No. 3</a><br>
 <a href="#question-no-4">Question No. 4</a><br>
@@ -58,7 +58,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-50">Question No. 50</a><br>
 <a href="#question-no-51">Question No. 51</a>
 </td>
-<td valign="top" width="25%">
+<td valign="top" width="20%">
 <a href="#question-no-52">Question No. 52</a><br>
 <a href="#question-no-53">Question No. 53</a><br>
 <a href="#question-no-54">Question No. 54</a><br>
@@ -110,7 +110,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-100">Question No. 100</a><br>
 <a href="#question-no-101">Question No. 101</a>
 </td>
-<td valign="top" width="25%">
+<td valign="top" width="20%">
 <a href="#question-no-102">Question No. 102</a><br>
 <a href="#question-no-103">Question No. 103</a><br>
 <a href="#question-no-104">Question No. 104</a><br>
@@ -162,7 +162,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-150">Question No. 150</a><br>
 <a href="#question-no-151">Question No. 151</a>
 </td>
-<td valign="top" width="25%">
+<td valign="top" width="20%">
 <a href="#question-no-152">Question No. 152</a><br>
 <a href="#question-no-153">Question No. 153</a><br>
 <a href="#question-no-154">Question No. 154</a><br>
@@ -213,6 +213,28 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-199">Question No. 199</a><br>
 <a href="#question-no-200">Question No. 200</a><br>
 <a href="#question-no-201">Question No. 201</a>
+</td>
+<td valign="top" width="20%">
+<a href="#question-no-202">Question No. 202</a><br>
+<a href="#question-no-203">Question No. 203</a><br>
+<a href="#question-no-204">Question No. 204</a><br>
+<a href="#question-no-205">Question No. 205</a><br>
+<a href="#question-no-206">Question No. 206</a><br>
+<a href="#question-no-207">Question No. 207</a><br>
+<a href="#question-no-208">Question No. 208</a><br>
+<a href="#question-no-209">Question No. 209</a><br>
+<a href="#question-no-210">Question No. 210</a><br>
+<a href="#question-no-211">Question No. 211</a><br>
+<a href="#question-no-212">Question No. 212</a><br>
+<a href="#question-no-213">Question No. 213</a><br>
+<a href="#question-no-214">Question No. 214</a><br>
+<a href="#question-no-215">Question No. 215</a><br>
+<a href="#question-no-216">Question No. 216</a><br>
+<a href="#question-no-217">Question No. 217</a><br>
+<a href="#question-no-218">Question No. 218</a><br>
+<a href="#question-no-219">Question No. 219</a><br>
+<a href="#question-no-220">Question No. 220</a><br>
+<a href="#question-no-221">Question No. 221</a>
 </td>
 </tr>
 </table>
@@ -5287,7 +5309,356 @@ Option E is incorrect: Workspaces are exactly designed for this use case.
 
 **Explanation:** `terraform apply` changes real infrastructure and updates state to reflect resulting resource reality.
 
-**Explanation:**
+---
+
+## Question No. 202
+
+**Question Type:** Single Choice
+
+**Question:** One remote backend configuration always maps to a single remote workspace.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** A remote backend can support multiple workspaces for different environments or configurations.
+
+---
+
+## Question No. 203
+
+**Question Type:** Single Choice
+
+**Question:** You have multiple team members collaborating on infrastructure as code (IaC) using Terraform, and want to apply formatting standards for readability. How can you format Terraform HCL (HashiCorp Configuration Language) code according to standard Terraform style convention?
+
+**Options:**
+- A) Run the terraform fmt command during the code linting phase of your CI/CD process
+- B) Designate one person in each team to review and format everyone's code
+- C) Manually apply two spaces indentation and align equal sign '=' characters in every Terraform file (*.tf)
+- D) Write a shell script to transform Terraform files using tools such as AWK, Python, and sed
+
+**Correct Answer:** A
+
+**Explanation:** `terraform fmt` is the standard tool for applying Terraform formatting conventions automatically and consistently.
+
+---
+
+## Question No. 204
+
+**Question Type:** Single Choice
+
+**Question:** A provider configuration block is required in every Terraform configuration.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Provider blocks are optional if no resources requiring provider configuration are declared.
+
+---
+
+## Question No. 205
+
+**Question Type:** Single Choice
+
+**Question:** How is terraform import run?
+
+**Options:**
+- A) As a part of terraform init
+- B) As a part of terraform plan
+- C) As a part of terraform refresh
+- D) By an explicit call
+- E) All of the above
+
+**Correct Answer:** D
+
+**Explanation:** `terraform import` must be run explicitly as a separate command to import existing resources into state.
+
+---
+
+## Question No. 206
+
+**Question Type:** Single Choice
+
+**Question:** A terraform apply can not ________ infrastructure.
+
+**Options:**
+- A) change
+- B) destroy
+- C) provision
+- D) import
+
+**Correct Answer:** D
+
+**Explanation:** `terraform apply` executes changes but does not import existing resources; import requires explicit `terraform import` command.
+
+---
+
+## Question No. 207
+
+**Question Type:** Single Choice
+
+**Question:** If a module declares a variable with a default, that variable must also be defined within the module.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** A module variable with a default value is optional; it does not require explicit definition in module calls.
+
+---
+
+## Question No. 208
+
+**Question Type:** Single Choice
+
+**Question:** How would you output returned values from a child module in the Terraform CLI output?
+
+**Options:**
+- A) Declare the output in the root configuration
+- B) Declare the output in the child module
+- C) Declare the output in both the root and child module
+- D) None of the above
+
+**Correct Answer:** C
+
+**Explanation:** Module outputs must be declared in the child module, and root-level outputs can reference them for CLI display.
+
+---
+
+## Question No. 209
+
+**Question Type:** Single Choice
+
+**Question:** You've used Terraform to deploy a virtual machine and a database. You want to replace this virtual machine instance with an identical one without affecting the database. What is the best way to achieve this using Terraform?
+
+**Options:**
+- A) Use the terraform state rm command to remove the VM from state file
+- B) Use the terraform taint command targeting the VMs then run terraform plan and terraform apply
+- C) Use the terraform apply command targeting the VM resources only
+- D) Delete the Terraform VM resources from your Terraform code then run terraform plan and terraform apply
+
+**Correct Answer:** B
+
+**Explanation:** `terraform taint` marks a resource for destruction and recreation, allowing clean replacement without affecting other resources.
+
+---
+
+## Question No. 210
+
+**Question Type:** Single Choice
+
+**Question:** You have to initialize a Terraform backend before it can be configured.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** `terraform init` must be executed to configure and initialize the backend before use.
+
+---
+
+## Question No. 211
+
+**Question Type:** Single Choice
+
+**Question:** What is a key benefit of the Terraform state file?
+
+**Options:**
+- A) A state file can schedule recurring infrastructure tasks
+- B) A state file is a source of truth for resources provisioned with Terraform
+- C) A state file is a source of truth for resources provisioned with a public cloud console
+- D) A state file is the desired state expressed by the Terraform code files
+
+**Correct Answer:** B
+
+**Explanation:** State file maps Terraform code to actual provisioned resources, serving as the authoritative record.
+
+---
+
+## Question No. 212
+
+**Question Type:** Single Choice
+
+**Question:** You add a new resource to an existing Terraform configuration, but do not update the version constraint in the configuration. The existing and new resources use the same provider. The working contains a .terraform.lock.hcl file. How will Terraform choose which version of the provider to use?
+
+**Options:**
+- A) Terraform will use the version recorded in your lock file
+- B) Terraform will use the latest version of the provider for the new resource and the version recorded in the lock file to manage existing resources
+- C) Terraform will check your state file to determine the provider version to use
+- D) Terraform will use the latest version of the provider available at the time you provision your new resource
+
+**Correct Answer:** A
+
+**Explanation:** The lock file ensures consistent provider versions across all resources; Terraform uses the locked version for both existing and new resources.
+
+---
+
+## Question No. 213
+
+**Question Type:** Single Choice
+
+**Question:** When using a remote backend or terraform Cloud integration, where does Terraform save resource state?
+
+**Options:**
+- A) In an environment variable
+- B) On the disk
+- C) In the remote backend or Terraform Cloud
+- D) In memory
+
+**Correct Answer:** C
+
+**Explanation:** Remote backends and Terraform Cloud manage state in their own storage, not locally.
+
+---
+
+## Question No. 214
+
+**Question Type:** Single Choice
+
+**Question:** If a DevOps team adopts AWS CloudFormation as their standardized method for provisioning public cloud resources, which of the following scenarios poses a challenge for this team?
+
+**Options:**
+- A) The team is asked to manage a new application stack built on AWS-native services
+- B) The organization decides to expand into Azure wishes to deploy new infrastructure
+- C) The team is asked to build a reusable code based that can deploy resources into any AWS region
+- D) The DevOps team is tasked with automating a manual, web console-based provisioning.
+
+**Correct Answer:** B
+
+**Explanation:** CloudFormation is AWS-specific; multi-cloud scenarios (e.g., expanding to Azure) require different IaC tools or approaches.
+
+---
+
+## Question No. 215
+
+**Question Type:** Single Choice
+
+**Question:** Which command lets you experiment with terraform expressions?
+
+**Options:**
+- A) Terraform console
+- B) Terraform validate
+- C) Terraform env
+- D) Terraform test
+
+**Correct Answer:** A
+
+**Explanation:** `terraform console` provides an interactive REPL for evaluating and testing Terraform expressions.
+
+---
+
+## Question No. 216
+
+**Question Type:** Single Choice
+
+**Question:** Select the command that doesn't cause Terraform to refresh its state.
+
+**Options:**
+- A) Terraform destroy
+- B) Terraform apply
+- C) Terraform plan
+- D) Terraform state list
+
+**Correct Answer:** D
+
+**Explanation:** `terraform state list` is a read-only operation that does not query remote state; it does not trigger refresh.
+
+---
+
+## Question No. 217
+
+**Question Type:** Single Choice
+
+**Question:** Where can Terraform not load a provider from?
+
+**Options:**
+- A) Plugins directory
+- B) Provider plugin cache
+- C) Official HashiCorp Distribution on releases.hashicorp.com
+- D) Source code
+
+**Correct Answer:** D
+
+**Explanation:** Terraform loads compiled provider binaries, not source code; source code must be compiled first.
+
+---
+
+## Question No. 218
+
+**Question Type:** Single Choice
+
+**Question:** Where does the Terraform local backend store its state?
+
+**Options:**
+- A) In the terraform file
+- B) In the /tmp directory
+- C) In the terraform.tfstate file
+- D) In the user's terraform.state file
+
+**Correct Answer:** C
+
+**Explanation:** Local backend stores state in `terraform.tfstate` file in the working directory.
+
+---
+
+## Question No. 219
+
+**Question Type:** Single Choice
+
+**Question:** You are using a networking module in your Terraform configuration with the name label my-network. In your main configuration you have the following code: When you run terraform validate, you get an error. What must you do to successfully retrieve this value from your networking module?
+
+**Options:**
+- A) Change the reference value to my-network.outputs.vnet_id
+- B) Define the attribute vnet_id as a variable in the networking module
+- C) Define the attribute vnet_id as an output in the networking module
+- D) Change the reference value module.my.network.outputs.vnet_id
+
+**Correct Answer:** C
+
+**Explanation:** Module outputs must be declared in the child module before they can be referenced in the root configuration.
+
+---
+
+## Question No. 220
+
+**Question Type:** Single Choice
+
+**Question:** What type of block is used to construct a collection of nested configuration blocks?
+
+**Options:**
+- A) Dynamic
+- B) For_each
+- C) Nesting
+- D) repeated
+
+**Correct Answer:** A
+
+**Explanation:** `dynamic` blocks generate nested blocks dynamically based on input values or collections.
+
+---
+
+## Question No. 221
+
+**Question Type:** Single Choice
+
+**Question:** You must initialize your working directory before running terraform validate.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** `terraform validate` can run without initialization; it only checks syntax and configuration structure.
 
 Option B is incorrect: `.terraform` may contain plugins/modules but is not the primary change target after plan approval.
 

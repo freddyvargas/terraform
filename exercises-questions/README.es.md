@@ -6,7 +6,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 
 <table>
 <tr>
-<td valign="top" width="25%">
+<td valign="top" width="20%">
 <a href="#question-no-2">Question No. 2</a><br>
 <a href="#question-no-3">Question No. 3</a><br>
 <a href="#question-no-4">Question No. 4</a><br>
@@ -58,7 +58,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-50">Question No. 50</a><br>
 <a href="#question-no-51">Question No. 51</a>
 </td>
-<td valign="top" width="25%">
+<td valign="top" width="20%">
 <a href="#question-no-52">Question No. 52</a><br>
 <a href="#question-no-53">Question No. 53</a><br>
 <a href="#question-no-54">Question No. 54</a><br>
@@ -110,7 +110,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-100">Question No. 100</a><br>
 <a href="#question-no-101">Question No. 101</a>
 </td>
-<td valign="top" width="25%">
+<td valign="top" width="20%">
 <a href="#question-no-102">Question No. 102</a><br>
 <a href="#question-no-103">Question No. 103</a><br>
 <a href="#question-no-104">Question No. 104</a><br>
@@ -162,7 +162,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-150">Question No. 150</a><br>
 <a href="#question-no-151">Question No. 151</a>
 </td>
-<td valign="top" width="25%">
+<td valign="top" width="20%">
 <a href="#question-no-152">Question No. 152</a><br>
 <a href="#question-no-153">Question No. 153</a><br>
 <a href="#question-no-154">Question No. 154</a><br>
@@ -213,6 +213,28 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-199">Question No. 199</a><br>
 <a href="#question-no-200">Question No. 200</a><br>
 <a href="#question-no-201">Question No. 201</a>
+</td>
+<td valign="top" width="20%">
+<a href="#question-no-202">Question No. 202</a><br>
+<a href="#question-no-203">Question No. 203</a><br>
+<a href="#question-no-204">Question No. 204</a><br>
+<a href="#question-no-205">Question No. 205</a><br>
+<a href="#question-no-206">Question No. 206</a><br>
+<a href="#question-no-207">Question No. 207</a><br>
+<a href="#question-no-208">Question No. 208</a><br>
+<a href="#question-no-209">Question No. 209</a><br>
+<a href="#question-no-210">Question No. 210</a><br>
+<a href="#question-no-211">Question No. 211</a><br>
+<a href="#question-no-212">Question No. 212</a><br>
+<a href="#question-no-213">Question No. 213</a><br>
+<a href="#question-no-214">Question No. 214</a><br>
+<a href="#question-no-215">Question No. 215</a><br>
+<a href="#question-no-216">Question No. 216</a><br>
+<a href="#question-no-217">Question No. 217</a><br>
+<a href="#question-no-218">Question No. 218</a><br>
+<a href="#question-no-219">Question No. 219</a><br>
+<a href="#question-no-220">Question No. 220</a><br>
+<a href="#question-no-221">Question No. 221</a>
 </td>
 </tr>
 </table>
@@ -5265,6 +5287,355 @@ Opción C es incorrecta: Módulos organizan código, no aíslan estado por sí s
 Opción E es incorrecta: Workspaces sí cubre este caso.
 
 ---
+
+## Question No. 202
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Una configuración de backend remoto siempre mapea a un único workspace remoto.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Un backend remoto puede soportar múltiples workspaces para diferentes entornos o configuraciones.
+
+---
+
+## Question No. 203
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Tienes múltiples miembros del equipo colaborando en infraestructura como código (IaC) usando Terraform, y quieres aplicar estándares de formato para legibilidad. ¿Cómo puedes dar formato al código Terraform HCL (HashiCorp Configuration Language) siguiendo la convención estándar de estilo Terraform?
+
+**Opciones:**
+- A) Ejecutar el comando terraform fmt durante la fase de linting de código en tu proceso CI/CD
+- B) Designar una persona en cada equipo para revisar y formatear el código de todos
+- C) Aplicar manualmente indentación de dos espacios y alinear el carácter '=' en cada archivo Terraform (*.tf)
+- D) Escribir un script shell para transformar archivos Terraform usando herramientas como AWK, Python y sed
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform fmt` es la herramienta estándar para aplicar convenciones de formateo Terraform automáticamente y de forma consistente.
+
+---
+
+## Question No. 204
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Un bloque de configuración de provider es requerido en cada configuración Terraform.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Los bloques de provider son opcionales si no se declaran recursos que requieran configuración de provider.
+
+---
+
+## Question No. 205
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cómo se ejecuta terraform import?
+
+**Opciones:**
+- A) Como parte de terraform init
+- B) Como parte de terraform plan
+- C) Como parte de terraform refresh
+- D) Por una llamada explícita
+- E) Todas las anteriores
+
+**Respuesta Correcta:** D
+
+**Explicación:** `terraform import` debe ejecutarse explícitamente como un comando separado para importar recursos existentes al estado.
+
+---
+
+## Question No. 206
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Un terraform apply no puede ________ infraestructura.
+
+**Opciones:**
+- A) cambiar
+- B) destruir
+- C) provisionar
+- D) importar
+
+**Respuesta Correcta:** D
+
+**Explicación:** `terraform apply` ejecuta cambios pero no importa recursos existentes; la importación requiere el comando explícito `terraform import`.
+
+---
+
+## Question No. 207
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Si un módulo declara una variable con valor por defecto, esa variable debe también ser definida dentro del módulo.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Una variable de módulo con un valor por defecto es opcional; no requiere redeclaración en llamadas al módulo.
+
+---
+
+## Question No. 208
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cómo mostrarías valores retornados de un módulo hijo en la salida CLI de Terraform?
+
+**Opciones:**
+- A) Declarar el output en la configuración raíz
+- B) Declarar el output en el módulo hijo
+- C) Declarar el output en la configuración raíz y el módulo hijo
+- D) Ninguna de las anteriores
+
+**Respuesta Correcta:** C
+
+**Explicación:** Los outputs de módulo deben declararse en el módulo hijo, y los outputs de nivel raíz pueden referenciarlos para visualización CLI.
+
+---
+
+## Question No. 209
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Has usado Terraform para desplegar una máquina virtual y una base de datos. Quieres reemplazar esta instancia de máquina virtual con una idéntica sin afectar la base de datos. ¿Cuál es la mejor forma de lograr esto usando Terraform?
+
+**Opciones:**
+- A) Usar el comando terraform state rm para quitar la VM del archivo de estado
+- B) Usar el comando terraform taint dirigido a las VMs, luego ejecutar terraform plan y terraform apply
+- C) Usar el comando terraform apply dirigido solo a los recursos VM
+- D) Borrar los recursos VM de Terraform del código, luego ejecutar terraform plan y terraform apply
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform taint` marca un recurso para destrucción y recreación, permitiendo reemplazo limpio sin afectar otros recursos.
+
+---
+
+## Question No. 210
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Debes inicializar un backend de Terraform antes de que pueda ser configurado.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform init` debe ejecutarse para configurar e inicializar el backend antes de su uso.
+
+---
+
+## Question No. 211
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál es un beneficio clave del archivo de estado de Terraform?
+
+**Opciones:**
+- A) Un archivo de estado puede programar tareas recurrentes de infraestructura
+- B) Un archivo de estado es la fuente de verdad para recursos provisionados con Terraform
+- C) Un archivo de estado es la fuente de verdad para recursos provisionados con una consola cloud pública
+- D) Un archivo de estado es el estado deseado expresado por los archivos de código Terraform
+
+**Respuesta Correcta:** B
+
+**Explicación:** El archivo de estado mapea código Terraform a recursos provisionados reales, sirviendo como el registro autoritativo.
+
+---
+
+## Question No. 212
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Agregas un recurso nuevo a una configuración Terraform existente, pero no actualizas la restricción de versión en la configuración. Los recursos existentes y nuevos usan el mismo provider. El directorio de trabajo contiene un archivo .terraform.lock.hcl. ¿Cómo elegirá Terraform qué versión del provider usar?
+
+**Opciones:**
+- A) Terraform usará la versión registrada en tu archivo de lock
+- B) Terraform usará la última versión del provider para el recurso nuevo y la versión registrada en el lock file para gestionar recursos existentes
+- C) Terraform verificará tu archivo de estado para determinar la versión del provider
+- D) Terraform usará la última versión disponible del provider en el momento que provisiones tu recurso nuevo
+
+**Respuesta Correcta:** A
+
+**Explicación:** El archivo de lock asegura versiones consistentes de provider en todos los recursos; Terraform usa la versión bloqueada para recursos existentes y nuevos.
+
+---
+
+## Question No. 213
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Cuando usas un backend remoto o integración con Terraform Cloud, ¿dónde guarda Terraform el estado de los recursos?
+
+**Opciones:**
+- A) En una variable de entorno
+- B) En el disco
+- C) En el backend remoto o Terraform Cloud
+- D) En memoria
+
+**Respuesta Correcta:** C
+
+**Explicación:** Los backends remotos y Terraform Cloud gestionan el estado en su propio almacenamiento, no localmente.
+
+---
+
+## Question No. 214
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Si un equipo DevOps adopta AWS CloudFormation como su método estandarizado para provisionar recursos de nube pública, ¿cuál de los siguientes escenarios plantea un desafío para este equipo?
+
+**Opciones:**
+- A) Se pide al equipo que gestione una nueva pila de aplicación construida sobre servicios nativos de AWS
+- B) La organización decide expandirse a Azure y quiere desplegar nueva infraestructura
+- C) Se pide al equipo que construya una base de código reutilizable que pueda desplegar recursos en cualquier región de AWS
+- D) Se encarga al equipo DevOps automatizar aprovisionamiento manual basado en consola web
+
+**Respuesta Correcta:** B
+
+**Explicación:** CloudFormation es específico de AWS; escenarios multi-cloud (ej. expandir a Azure) requieren herramientas IaC diferentes u enfoques alternativos.
+
+---
+
+## Question No. 215
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál comando te permite experimentar con expresiones terraform?
+
+**Opciones:**
+- A) Terraform console
+- B) Terraform validate
+- C) Terraform env
+- D) Terraform test
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform console` proporciona un REPL interactivo para evaluar y probar expresiones Terraform.
+
+---
+
+## Question No. 216
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Selecciona el comando que no causa que Terraform actualice su estado.
+
+**Opciones:**
+- A) Terraform destroy
+- B) Terraform apply
+- C) Terraform plan
+- D) Terraform state list
+
+**Respuesta Correcta:** D
+
+**Explicación:** `terraform state list` es una operación de solo lectura que no consulta estado remoto; no dispara actualización.
+
+---
+
+## Question No. 217
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿De dónde NO puede Terraform cargar un provider?
+
+**Opciones:**
+- A) Directorio de plugins
+- B) Caché de plugin de provider
+- C) Distribución oficial de HashiCorp en releases.hashicorp.com
+- D) Código fuente
+
+**Respuesta Correcta:** D
+
+**Explicación:** Terraform carga binarios de provider compilados, no código fuente; el código fuente debe compilarse primero.
+
+---
+
+## Question No. 218
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Dónde almacena el backend local de Terraform su estado?
+
+**Opciones:**
+- A) En el archivo terraform
+- B) En el directorio /tmp
+- C) En el archivo terraform.tfstate
+- D) En el archivo terraform.state del usuario
+
+**Respuesta Correcta:** C
+
+**Explicación:** El backend local almacena estado en el archivo `terraform.tfstate` en el directorio de trabajo.
+
+---
+
+## Question No. 219
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Estás usando un módulo de networking en tu configuración Terraform con etiqueta de nombre my-network. En tu configuración principal tienes el siguiente código: Cuando ejecutas terraform validate, obtienes un error. ¿Qué debes hacer para recuperar exitosamente este valor de tu módulo de networking?
+
+**Opciones:**
+- A) Cambiar el valor de referencia a my-network.outputs.vnet_id
+- B) Definir el atributo vnet_id como una variable en el módulo de networking
+- C) Definir el atributo vnet_id como un output en el módulo de networking
+- D) Cambiar el valor de referencia a module.my.network.outputs.vnet_id
+
+**Respuesta Correcta:** C
+
+**Explicación:** Los outputs de módulo deben declararse en el módulo hijo antes de poder ser referenciados en la configuración raíz.
+
+---
+
+## Question No. 220
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué tipo de bloque se usa para construir una colección de bloques de configuración anidados?
+
+**Opciones:**
+- A) Dynamic
+- B) For_each
+- C) Nesting
+- D) repeated
+
+**Respuesta Correcta:** A
+
+**Explicación:** Los bloques `dynamic` generan bloques anidados dinámicamente basándose en valores de entrada o colecciones.
+
+---
+
+## Question No. 221
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Debes inicializar tu directorio de trabajo antes de ejecutar terraform validate.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform validate` puede ejecutarse sin inicialización; solo verifica sintaxis y estructura de configuración.
 
 ## Question No. 201
 
