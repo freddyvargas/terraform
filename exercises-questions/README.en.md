@@ -6,7 +6,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 
 <table>
 <tr>
-<td valign="top" width="20%">
+<td valign="top" width="16%">
 <a href="#question-no-2">Question No. 2</a><br>
 <a href="#question-no-3">Question No. 3</a><br>
 <a href="#question-no-4">Question No. 4</a><br>
@@ -58,7 +58,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-50">Question No. 50</a><br>
 <a href="#question-no-51">Question No. 51</a>
 </td>
-<td valign="top" width="20%">
+<td valign="top" width="16%">
 <a href="#question-no-52">Question No. 52</a><br>
 <a href="#question-no-53">Question No. 53</a><br>
 <a href="#question-no-54">Question No. 54</a><br>
@@ -110,7 +110,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-100">Question No. 100</a><br>
 <a href="#question-no-101">Question No. 101</a>
 </td>
-<td valign="top" width="20%">
+<td valign="top" width="16%">
 <a href="#question-no-102">Question No. 102</a><br>
 <a href="#question-no-103">Question No. 103</a><br>
 <a href="#question-no-104">Question No. 104</a><br>
@@ -162,7 +162,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-150">Question No. 150</a><br>
 <a href="#question-no-151">Question No. 151</a>
 </td>
-<td valign="top" width="20%">
+<td valign="top" width="16%">
 <a href="#question-no-152">Question No. 152</a><br>
 <a href="#question-no-153">Question No. 153</a><br>
 <a href="#question-no-154">Question No. 154</a><br>
@@ -214,7 +214,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-200">Question No. 200</a><br>
 <a href="#question-no-201">Question No. 201</a>
 </td>
-<td valign="top" width="20%">
+<td valign="top" width="16%">
 <a href="#question-no-202">Question No. 202</a><br>
 <a href="#question-no-203">Question No. 203</a><br>
 <a href="#question-no-204">Question No. 204</a><br>
@@ -264,7 +264,9 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-248">Question No. 248</a><br>
 <a href="#question-no-249">Question No. 249</a><br>
 <a href="#question-no-250">Question No. 250</a><br>
-<a href="#question-no-251">Question No. 251</a><br>
+<a href="#question-no-251">Question No. 251</a>
+</td>
+<td valign="top" width="16%">
 <a href="#question-no-252">Question No. 252</a><br>
 <a href="#question-no-253">Question No. 253</a><br>
 <a href="#question-no-254">Question No. 254</a><br>
@@ -274,7 +276,27 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-258">Question No. 258</a><br>
 <a href="#question-no-259">Question No. 259</a><br>
 <a href="#question-no-260">Question No. 260</a><br>
-<a href="#question-no-261">Question No. 261</a>
+<a href="#question-no-261">Question No. 261</a><br>
+<a href="#question-no-262">Question No. 262</a><br>
+<a href="#question-no-263">Question No. 263</a><br>
+<a href="#question-no-264">Question No. 264</a><br>
+<a href="#question-no-265">Question No. 265</a><br>
+<a href="#question-no-266">Question No. 266</a><br>
+<a href="#question-no-267">Question No. 267</a><br>
+<a href="#question-no-268">Question No. 268</a><br>
+<a href="#question-no-269">Question No. 269</a><br>
+<a href="#question-no-270">Question No. 270</a><br>
+<a href="#question-no-271">Question No. 271</a><br>
+<a href="#question-no-272">Question No. 272</a><br>
+<a href="#question-no-273">Question No. 273</a><br>
+<a href="#question-no-274">Question No. 274</a><br>
+<a href="#question-no-275">Question No. 275</a><br>
+<a href="#question-no-276">Question No. 276</a><br>
+<a href="#question-no-277">Question No. 277</a><br>
+<a href="#question-no-278">Question No. 278</a><br>
+<a href="#question-no-279">Question No. 279</a><br>
+<a href="#question-no-280">Question No. 280</a><br>
+<a href="#question-no-281">Question No. 281</a>
 </td>
 </tr>
 </table>
@@ -6404,3 +6426,361 @@ Option B is incorrect: `.terraform` may contain plugins/modules but is not the p
 Option C is incorrect: The saved/previewed plan is an input artifact, not the end-state target.
 
 Option E is incorrect: Terraform source code is not modified by apply.
+
+---
+
+## Question No. 262
+
+**Question Type:** Single Choice
+
+**Question:** What is the workflow for deploying new infrastructure with Terraform?
+
+**Options:**
+- A) Write Terraform configuration, run terraform init to initialize the working directory or workspace, and run terraform apply
+- B) Write Terraform configuration, run terraform show to view proposed changes, and terraform apply to create new infrastructure
+- C) Write Terraform configuration, run terraform apply to create infrastructure, use terraform validate to confirm Terraform deployed resources correctly
+- D) Write Terraform configuration, run terraform plan to initialize the working directory or workspace, and terraform apply to create the infrastructure
+
+**Correct Answer:** A
+
+**Explanation:** The standard Terraform workflow is: write configuration → `terraform init` to initialize → `terraform plan` to preview → `terraform apply` to deploy.
+
+---
+
+## Question No. 263
+
+**Question Type:** Single Choice
+
+**Question:** When do changes invoked by terraform apply take effect?
+
+**Options:**
+- A) After Terraform has updated the state file
+- B) Once the resource provider has fulfilled the request
+- C) Immediately
+- D) None of the above are correct
+
+**Correct Answer:** B
+
+**Explanation:** Changes take effect once the resource provider (e.g., AWS, Azure) has fulfilled the request and created or modified the actual infrastructure.
+
+---
+
+## Question No. 264
+
+**Question Type:** Single Choice
+
+**Question:** You have never used Terraform before and would like to test it out using a shared team account for a cloud provider. The shared team account already contains 15 virtual machines (VMs). You develop a Terraform configuration containing one VM, perform terraform apply, and see that your VM was created successfully. What should you do to delete the newly-created VM with Terraform?
+
+**Options:**
+- A) The Terraform state file contains all 16 VMs in the team account. Execute terraform destroy and select the newly-created VM.
+- B) Delete the Terraform state file and execute terraform apply.
+- C) The Terraform state file only contains the one new VM. Execute terraform destroy.
+- D) Delete the VM using the cloud provider console and terraform apply to apply the changes to the Terraform state file.
+
+**Correct Answer:** C
+
+**Explanation:** Terraform's state file only tracks resources managed by Terraform. Since only one VM was created with this configuration, `terraform destroy` will only remove that one VM.
+
+---
+
+## Question No. 265
+
+**Question Type:** Single Choice
+
+**Question:** What is the Terraform style convention for indenting a nesting level compared to the one above it?
+
+**Options:**
+- A) With a tab
+- B) With two spaces
+- C) With four spaces
+- D) With three spaces
+
+**Correct Answer:** B
+
+**Explanation:** The Terraform style convention is to use two spaces for each nesting level, as enforced by `terraform fmt`.
+
+---
+
+## Question No. 266
+
+**Question Type:** Single Choice
+
+**Question:** What kind of configuration block will create an infrastructure object with settings specified within the block?
+
+**Options:**
+- A) provider
+- B) state
+- C) data
+- D) resource
+
+**Correct Answer:** D
+
+**Explanation:** The `resource` block is used to define and create infrastructure objects. `data` blocks read existing infrastructure, and `provider` blocks configure providers.
+
+---
+
+## Question No. 267
+
+**Question Type:** Single Choice
+
+**Question:** Which command should you run to check if all code in a Terraform configuration that references multiple modules is properly formatted without making changes?
+
+**Options:**
+- A) terraform fmt -write-false
+- B) terraform fmt -list -recursive
+- C) terraform fmt -check -recursive
+- D) terraform fmt -check
+
+**Correct Answer:** C
+
+**Explanation:** `terraform fmt -check` verifies formatting without making changes, and `-recursive` ensures all modules in subdirectories are also checked.
+
+---
+
+## Question No. 268
+
+**Question Type:** Single Choice
+
+**Question:** How would you reference the volume IDs associated with the ebs_block_device blocks in this configuration?
+
+**Options:**
+- A) aws_instance.example.ebs_block_device[sda2,sda3].volume_id
+- B) aws_Instance.example.ebs_block_device.[*].volume_id
+- C) aws_Instance.example.ebs_block_device.volume_ids
+- D) aws_instance.example-ebs_block_device.*.volume_id
+
+**Correct Answer:** B
+
+**Explanation:** The splat expression `[*]` is used to reference all instances of a repeated nested block and extract a specific attribute from each.
+
+---
+
+## Question No. 269
+
+**Question Type:** Single Choice
+
+**Question:** You are making changes to existing Terraform code to add some new infrastructure. When is the best time to run terraform validate?
+
+**Options:**
+- A) After you run terraform apply so you can validate your infrastructure
+- B) Before you run terraform apply so you can validate your provider credentials
+- C) Before you run terraform plan so you can validate your code syntax
+- D) After you run terraform plan so you can validate that your state file is consistent with your infrastructure
+
+**Correct Answer:** C
+
+**Explanation:** `terraform validate` checks syntax and internal consistency of configuration files. Running it before `terraform plan` catches errors early without making any API calls.
+
+---
+
+## Question No. 270
+
+**Question Type:** Single Choice
+
+**Question:** As a member of an operations team that uses infrastructure as code (IaC) practices, you are tasked with making a change to an infrastructure stack running in a public cloud. Which pattern would follow IaC best practices for making a change?
+
+**Options:**
+- A) Make the change via the public cloud API endpoint
+- B) Clone the repository containing your infrastructure code and then run the code
+- C) Use the public cloud console to make the change after a database record has been approved
+- D) Make the change programmatically via the public cloud CLI
+- E) Submit a pull request and wait for an approved merge of the proposed changes
+
+**Correct Answer:** E
+
+**Explanation:** IaC best practices require all changes to go through version control with peer review via pull requests, ensuring auditability, approval workflows, and reproducibility.
+
+---
+
+## Question No. 271
+
+**Question Type:** Single Choice
+
+**Question:** You must use different Terraform commands depending on the cloud provider you use.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Terraform commands are cloud-agnostic. The same commands (`init`, `plan`, `apply`, `destroy`) work regardless of which cloud provider is configured.
+
+---
+
+## Question No. 272
+
+**Question Type:** Single Choice
+
+**Question:** What information does the public Terraform Module Registry automatically expose about published modules?
+
+**Options:**
+- A) Required input variables
+- B) Optional inputs variables and default values
+- C) Outputs
+- D) All of the above
+- E) None of the above
+
+**Correct Answer:** D
+
+**Explanation:** The public Terraform Module Registry automatically parses and exposes all module metadata including required inputs, optional inputs with defaults, and outputs.
+
+---
+
+## Question No. 273
+
+**Question Type:** Single Choice
+
+**Question:** As a developer, you want to ensure your plugins are up to date with the latest versions. Which Terraform command should you use?
+
+**Options:**
+- A) terraform refresh -upgrade
+- B) terraform apply -upgrade
+- C) terraform init -upgrade
+- D) terraform providers -upgrade
+
+**Correct Answer:** C
+
+**Explanation:** `terraform init -upgrade` upgrades all providers and modules to the latest version that satisfies the version constraints in the configuration.
+
+---
+
+## Question No. 274
+
+**Question Type:** Single Choice
+
+**Question:** You have deployed a new webapp with a public IP address on a cloud provider. However, you did not create any outputs for your code. What is the best method to quickly find the IP address of the resource you deployed?
+
+**Options:**
+- A) In a new folder, use the terraform_remote_state data source to load in the state file, then write an output for each resource that you find the state file
+- B) Run terraform state list to find the name of the resource, then terraform state show to find the attributes including public IP address
+- C) Run terraform output ip_address to view the result
+- D) Run terraform destroy then terraform apply and look for the IP address in stdout
+
+**Correct Answer:** B
+
+**Explanation:** `terraform state list` shows all managed resources, and `terraform state show <resource>` displays all attributes including the public IP address without needing defined outputs.
+
+---
+
+## Question No. 275
+
+**Question Type:** Single Choice
+
+**Question:** Your DevOps team is currently using the local backend for your Terraform configuration. You would like to move to a remote backend to store the state file in a central location. Which of the following backends would not work?
+
+**Options:**
+- A) Artifactory
+- B) Amazon S3
+- C) Terraform Cloud
+- D) Git
+
+**Correct Answer:** D
+
+**Explanation:** Git is not a supported Terraform backend. Supported remote backends include S3, Terraform Cloud, Consul, Artifactory, Azure Blob Storage, and others.
+
+---
+
+## Question No. 276
+
+**Question Type:** Single Choice
+
+**Question:** You decide to move a Terraform state file to Amazon S3 from another location. You write the code below into a file called backend.tf. Which command will migrate your current state file to the new S3 remote backend?
+
+**Options:**
+- A) terraform state
+- B) terraform init
+- C) terraform push
+- D) terraform refresh
+
+**Correct Answer:** B
+
+**Explanation:** `terraform init` detects the backend configuration change and automatically prompts to migrate the existing state to the new backend.
+
+---
+
+## Question No. 277
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following is not a valid Terraform variable type?
+
+**Options:**
+- A) list
+- B) array
+- C) map
+- D) string
+
+**Correct Answer:** B
+
+**Explanation:** `array` is not a valid Terraform type. Valid types include string, number, bool, list, set, map, object, and tuple.
+
+---
+
+## Question No. 278
+
+**Question Type:** Single Choice
+
+**Question:** What does Terraform not reference when running a terraform apply -refresh-only?
+
+**Options:**
+- A) State file
+- B) Credentials
+- C) Cloud provider
+- D) Terraform resource definitions in configuration files
+
+**Correct Answer:** D
+
+**Explanation:** `terraform apply -refresh-only` updates the state file by querying the actual infrastructure, but does not reference or apply resource definitions from configuration files.
+
+---
+
+## Question No. 279
+
+**Question Type:** Single Choice
+
+**Question:** Module variable assignments are inherited from the parent module and you do not need to explicitly set them.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Module variables are not automatically inherited. Each variable must be explicitly passed when calling a module using the `module` block arguments.
+
+---
+
+## Question No. 280
+
+**Question Type:** Single Choice
+
+**Question:** Why does this backend configuration not follow best practices?
+
+**Options:**
+- A) An alias meta-argument should be included in backend blocks whenever possible
+- B) You should use the local enhanced storage backend whenever possible
+- C) You should not store credentials in Terraform configuration
+- D) The backend configuration should contain multiple credentials so that more than one user can execute terraform plan and terraform apply
+
+**Correct Answer:** C
+
+**Explanation:** Hardcoding credentials in Terraform configuration is a security risk. Credentials should be provided via environment variables, IAM roles, or partial configuration.
+
+---
+
+## Question No. 281
+
+**Question Type:** Single Choice
+
+**Question:** What does Terraform use the .terraform.lock.hcl file for?
+
+**Options:**
+- A) There is no such file
+- B) Tracking specific provider dependencies
+- C) Preventing Terraform runs from occurring
+- D) Storing references to workspaces which are locked
+
+**Correct Answer:** B
+
+**Explanation:** The `.terraform.lock.hcl` file records the exact provider versions selected during `terraform init`, ensuring consistent provider versions across all team members and CI environments.
