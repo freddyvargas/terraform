@@ -254,7 +254,27 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-238">Question No. 238</a><br>
 <a href="#question-no-239">Question No. 239</a><br>
 <a href="#question-no-240">Question No. 240</a><br>
-<a href="#question-no-241">Question No. 241</a>
+<a href="#question-no-241">Question No. 241</a><br>
+<a href="#question-no-242">Question No. 242</a><br>
+<a href="#question-no-243">Question No. 243</a><br>
+<a href="#question-no-244">Question No. 244</a><br>
+<a href="#question-no-245">Question No. 245</a><br>
+<a href="#question-no-246">Question No. 246</a><br>
+<a href="#question-no-247">Question No. 247</a><br>
+<a href="#question-no-248">Question No. 248</a><br>
+<a href="#question-no-249">Question No. 249</a><br>
+<a href="#question-no-250">Question No. 250</a><br>
+<a href="#question-no-251">Question No. 251</a><br>
+<a href="#question-no-252">Question No. 252</a><br>
+<a href="#question-no-253">Question No. 253</a><br>
+<a href="#question-no-254">Question No. 254</a><br>
+<a href="#question-no-255">Question No. 255</a><br>
+<a href="#question-no-256">Question No. 256</a><br>
+<a href="#question-no-257">Question No. 257</a><br>
+<a href="#question-no-258">Question No. 258</a><br>
+<a href="#question-no-259">Question No. 259</a><br>
+<a href="#question-no-260">Question No. 260</a><br>
+<a href="#question-no-261">Question No. 261</a>
 </td>
 </tr>
 </table>
@@ -6030,6 +6050,354 @@ Option E is incorrect: Workspaces are exactly designed for this use case.
 **Correct Answer:** A
 
 **Explanation:** Variable names and their resolved values are stored in the state file for reference and reuse.
+
+---
+
+## Question No. 242
+
+**Question Type:** Single Choice
+
+**Question:** When using multiple configuration of the same Terraform provider, what meta-argument must you include in any non-default provider configurations?
+
+**Options:**
+- A) Alias
+- B) Id
+- C) Depends_on
+- D) name
+
+**Correct Answer:** A
+
+**Explanation:** The `alias` meta-argument is required to define and reference multiple provider configurations for the same provider.
+
+---
+
+## Question No. 243
+
+**Question Type:** Single Choice
+
+**Question:** A Terraform provider is NOT responsible for:
+
+**Options:**
+- A) Exposing resources and data sources based on an API
+- B) Managing actions to take based on resources differences
+- C) Understanding API interactions with some service
+- D) Provisioning infrastructure in multiple regions
+
+**Correct Answer:** B
+
+**Explanation:** Terraform core is responsible for managing actions based on resource differences. Providers expose resources and interact with APIs, but don't determine the plan logic.
+
+---
+
+## Question No. 244
+
+**Question Type:** Single Choice
+
+**Question:** In a Terraform Cloud workspace linked to a version control repository speculative plan run start automatically commit changes to version control.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Speculative plan runs in Terraform Cloud do not automatically commit changes to version control; they only preview changes.
+
+---
+
+## Question No. 245
+
+**Question Type:** Single Choice
+
+**Question:** Which command add existing resources into Terraform state?
+
+**Options:**
+- A) Terraform init
+- B) Terraform plan
+- C) Terraform refresh
+- D) Terraform import
+- E) All of these
+
+**Correct Answer:** D
+
+**Explanation:** `terraform import` is the specific command used to add existing infrastructure resources into Terraform state management.
+
+---
+
+## Question No. 246
+
+**Question Type:** Single Choice
+
+**Question:** How does the Terraform cloud integration differ from other state backends such as S3, Consul, etc?
+
+**Options:**
+- A) It can execute Terraform runs on dedicated infrastructure in Terraform Cloud
+- B) It doesn't show the output of a terraform apply locally
+- C) It is only arable lo paying customers
+- D) All of the above
+
+**Correct Answer:** A
+
+**Explanation:** Terraform Cloud's primary differentiator is that it executes Terraform operations on Terraform Cloud's managed infrastructure rather than locally.
+
+---
+
+## Question No. 247
+
+**Question Type:** Single Choice
+
+**Question:** Setting the TF_LOG environment variable to DEBUG causes debug messages to be logged into stdout.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** Setting `TF_LOG=DEBUG` enables debug-level logging output to stdout, providing detailed diagnostic information about Terraform operations.
+
+---
+
+## Question No. 248
+
+**Question Type:** Multiple Choice
+
+**Question:** Which of these ate features of Terraform Cloud? Choose two correct answers.
+
+**Options:**
+- A) Automated infrastructure deployment visualization
+- B) Automatic backups
+- C) A web-based user interface (UI)
+- D) Remote state storage
+
+**Correct Answer:** C, D
+
+**Explanation:** Terraform Cloud provides a web-based UI for managing workspaces and configurations, plus remote state storage. It does not provide automated backups or deployment visualization.
+
+---
+
+## Question No. 249
+
+**Question Type:** Single Choice
+
+**Question:** You cannot install third party plugins using terraform init.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** `terraform init` automatically downloads and installs required providers and plugins based on the configuration.
+
+---
+
+## Question No. 250
+
+**Question Type:** Single Choice
+
+**Question:** Only the user that generated a plan may apply it.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Any user with appropriate permissions can apply an execution plan; there is no restriction based on who created the plan.
+
+---
+
+## Question No. 251
+
+**Question Type:** Single Choice
+
+**Question:** You can reference a resource created with for_each using a Splat ( * ) expression.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Splat expressions (`[*]`) work with `for_each` differently than with `count`. For `for_each`, you reference resources directly without splat syntax.
+
+---
+
+## Question No. 252
+
+**Question Type:** Single Choice
+
+**Question:** When you use a remote backend that needs authentication, HashiCorp recommends that you:
+
+**Options:**
+- A) Write the authentication credentials in the Terraform configuration files
+- B) Keep the Terraform configuration files in a secret store
+- C) Push your Terraform configuration to an encrypted git repository
+- D) Use partial configuration to load the authentication credentials outside of the Terraform code
+
+**Correct Answer:** D
+
+**Explanation:** HashiCorp recommends using partial configuration to keep sensitive authentication credentials outside of Terraform code files for better security practices.
+
+---
+
+## Question No. 253
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following statements about Terraform modules is not true?
+
+**Options:**
+- A) Modules can call other modules
+- B) A module is a container for one or more resources
+- C) Modules must be publicly accessible
+- D) You can call the same module multiple times
+
+**Correct Answer:** C
+
+**Explanation:** Modules do not need to be publicly accessible; they can be private, local, or in private registries.
+
+---
+
+## Question No. 254
+
+**Question Type:** Single Choice
+
+**Question:** You want to define a single input variable to capture configuration values for a server. The values must represent memory as a number, and the server name as a string. Which variable type could you use for this input?
+
+**Options:**
+- A) List
+- B) Object
+- C) Map
+- D) Terraform does not support complex input variables of different types
+
+**Correct Answer:** B
+
+**Explanation:** The `object` type allows you to define input variables with mixed attribute types, supporting both numbers and strings in a single variable.
+
+---
+
+## Question No. 255
+
+**Question Type:** Single Choice
+
+**Question:** ________ backends support state locking.
+
+**Options:**
+- A) All
+- B) No
+- C) Some
+- D) Only local
+
+**Correct Answer:** C
+
+**Explanation:** Some backends like Terraform Cloud, S3, and Consul support state locking, while others like local file backends do not.
+
+---
+
+## Question No. 256
+
+**Question Type:** Single Choice
+
+**Question:** It is best practice to store secret data in the same version control repository as your Terraform configuration.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Sensitive data should never be stored in version control repositories; use environment variables, secret managers, or other secure methods.
+
+---
+
+## Question No. 257
+
+**Question Type:** Multiple Choice
+
+**Question:** You have declared a variable called var.list which is a list of objects that all have an attribute id . Which options will produce a list of the IDs? Choose two correct answers.
+
+**Options:**
+- A) [ var.list [ * ] , id ]
+- B) [ for o in var.list : o.Id ]
+- C) var.list[*].id
+- D) { for o in var.list : o => o.id }
+
+**Correct Answer:** A, C
+
+**Explanation:** Both splat syntax `var.list[*].id` and bracket notation `[ var.list [ * ] , id ]` correctly extract the id attribute from each object in the list.
+
+---
+
+## Question No. 258
+
+**Question Type:** Single Choice
+
+**Question:** How does Terraform manage most dependencies between resources?
+
+**Options:**
+- A) Terraform will automatically manage most resource dependencies
+- B) Using the depends_on parameter
+- C) By defining dependencies as modules and including them in a particular order
+- D) The order that resources appear in Terraform configuration indicates dependencies
+
+**Correct Answer:** A
+
+**Explanation:** Terraform automatically builds a dependency graph by analyzing resource references, eliminating the need for manual dependency specification in most cases.
+
+---
+
+## Question No. 259
+
+**Question Type:** Single Choice
+
+**Question:** Which backend does the Terraform CLI use by default?
+
+**Options:**
+- A) Depends on the cloud provider configured
+- B) HTTP
+- C) Remote
+- D) Terraform Cloud
+- E) Local
+
+**Correct Answer:** E
+
+**Explanation:** The local backend is Terraform's default state storage mechanism, storing state in a local `terraform.tfstate` file.
+
+---
+
+## Question No. 260
+
+**Question Type:** Single Choice
+
+**Question:** What is one disadvantage of using dynamic blocks in Terraform?
+
+**Options:**
+- A) Dynamic blocks can construct repeatable nested blocks
+- B) Terraform will run more slowly
+- C) They cannot be used to loop through a list of values
+- D) They make configuration harder to read and understand
+
+**Correct Answer:** D
+
+**Explanation:** Dynamic blocks, while powerful, can make Terraform configurations more complex and harder to understand compared to static block definitions.
+
+---
+
+## Question No. 261
+
+**Question Type:** Single Choice
+
+**Question:** You can develop a custom provider to manage its resources using Terraform.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** Terraform SDK allows developers to create custom providers to manage resources from any system or service.
 
 Option B is incorrect: `.terraform` may contain plugins/modules but is not the primary change target after plan approval.
 

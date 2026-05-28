@@ -254,7 +254,27 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-238">Question No. 238</a><br>
 <a href="#question-no-239">Question No. 239</a><br>
 <a href="#question-no-240">Question No. 240</a><br>
-<a href="#question-no-241">Question No. 241</a>
+<a href="#question-no-241">Question No. 241</a><br>
+<a href="#question-no-242">Question No. 242</a><br>
+<a href="#question-no-243">Question No. 243</a><br>
+<a href="#question-no-244">Question No. 244</a><br>
+<a href="#question-no-245">Question No. 245</a><br>
+<a href="#question-no-246">Question No. 246</a><br>
+<a href="#question-no-247">Question No. 247</a><br>
+<a href="#question-no-248">Question No. 248</a><br>
+<a href="#question-no-249">Question No. 249</a><br>
+<a href="#question-no-250">Question No. 250</a><br>
+<a href="#question-no-251">Question No. 251</a><br>
+<a href="#question-no-252">Question No. 252</a><br>
+<a href="#question-no-253">Question No. 253</a><br>
+<a href="#question-no-254">Question No. 254</a><br>
+<a href="#question-no-255">Question No. 255</a><br>
+<a href="#question-no-256">Question No. 256</a><br>
+<a href="#question-no-257">Question No. 257</a><br>
+<a href="#question-no-258">Question No. 258</a><br>
+<a href="#question-no-259">Question No. 259</a><br>
+<a href="#question-no-260">Question No. 260</a><br>
+<a href="#question-no-261">Question No. 261</a>
 </td>
 </tr>
 </table>
@@ -6007,6 +6027,354 @@ Opción E es incorrecta: Workspaces sí cubre este caso.
 **Respuesta Correcta:** A
 
 **Explicación:** Los nombres de variables y sus valores resueltos se almacenan en el archivo de estado para referencia y reutilización.
+
+---
+
+## Question No. 242
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Al usar múltiples configuraciones del mismo provider de Terraform, ¿qué meta-argumento debes incluir en cualquier configuración de provider no predeterminada?
+
+**Opciones:**
+- A) Alias
+- B) Id
+- C) Depends_on
+- D) name
+
+**Respuesta Correcta:** A
+
+**Explicación:** El meta-argumento `alias` es requerido para definir y referenciar múltiples configuraciones de provider para el mismo provider.
+
+---
+
+## Question No. 243
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Un provider de Terraform NO es responsable de:
+
+**Opciones:**
+- A) Exponer recursos y fuentes de datos basados en una API
+- B) Gestionar acciones a tomar basadas en diferencias de recursos
+- C) Entender interacciones de API con algún servicio
+- D) Aprovisionando infraestructura en múltiples regiones
+
+**Respuesta Correcta:** B
+
+**Explicación:** El núcleo de Terraform es responsable de gestionar acciones basadas en diferencias de recursos. Los providers exponen recursos e interactúan con APIs, pero no determinan la lógica del plan.
+
+---
+
+## Question No. 244
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** En un workspace de Terraform Cloud vinculado a un repositorio de control de versiones, la ejecución de un plan especulativo inicia automáticamente cambios de commit al control de versiones.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Las ejecuciones de plan especulativo en Terraform Cloud no confirman automáticamente cambios al control de versiones; solo previsualizan cambios.
+
+---
+
+## Question No. 245
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué comando agrega recursos existentes al estado de Terraform?
+
+**Opciones:**
+- A) Terraform init
+- B) Terraform plan
+- C) Terraform refresh
+- D) Terraform import
+- E) Todos estos
+
+**Respuesta Correcta:** D
+
+**Explicación:** `terraform import` es el comando específico utilizado para agregar recursos de infraestructura existentes al estado de Terraform.
+
+---
+
+## Question No. 246
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cómo difiere la integración de Terraform Cloud de otros backends de estado como S3, Consul, etc?
+
+**Opciones:**
+- A) Puede ejecutar ejecuciones de Terraform en infraestructura dedicada en Terraform Cloud
+- B) No muestra la salida de un apply de terraform localmente
+- C) Solo es arable para clientes pagos
+- D) Todas las anteriores
+
+**Respuesta Correcta:** A
+
+**Explicación:** El diferenciador principal de Terraform Cloud es que ejecuta operaciones de Terraform en infraestructura gestionada por Terraform Cloud en lugar de localmente.
+
+---
+
+## Question No. 247
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Establecer la variable de entorno TF_LOG a DEBUG hace que los mensajes de depuración se registren en stdout.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** Establecer `TF_LOG=DEBUG` habilita el registro de nivel de depuración en stdout, proporcionando información de diagnóstico detallada sobre operaciones de Terraform.
+
+---
+
+## Question No. 248
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Cuáles de estos son características de Terraform Cloud? Elige dos respuestas correctas.
+
+**Opciones:**
+- A) Visualización automatizada de despliegue de infraestructura
+- B) Copias de seguridad automáticas
+- C) Una interfaz de usuario basada en web (UI)
+- D) Almacenamiento de estado remoto
+
+**Respuesta Correcta:** C, D
+
+**Explicación:** Terraform Cloud proporciona una UI basada en web para gestionar workspaces y configuraciones, más almacenamiento de estado remoto. No proporciona copias de seguridad automáticas o visualización de despliegue.
+
+---
+
+## Question No. 249
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** No puedes instalar plugins de terceros usando terraform init.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform init` descarga e instala automáticamente los providers requeridos y plugins basados en la configuración.
+
+---
+
+## Question No. 250
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Solo el usuario que generó un plan puede aplicarlo.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Cualquier usuario con permisos apropiados puede aplicar un plan de ejecución; no hay restricción basada en quién creó el plan.
+
+---
+
+## Question No. 251
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Puedes referenciar un recurso creado con for_each usando una expresión Splat ( * ).
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Las expresiones splat (`[*]`) funcionan de manera diferente con `for_each` que con `count`. Para `for_each`, referencias recursos directamente sin sintaxis splat.
+
+---
+
+## Question No. 252
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Cuando usas un backend remoto que necesita autenticación, HashiCorp recomienda que:
+
+**Opciones:**
+- A) Escribas las credenciales de autenticación en los archivos de configuración de Terraform
+- B) Mantengas los archivos de configuración de Terraform en un almacén secreto
+- C) Envíes tu configuración de Terraform a un repositorio git encriptado
+- D) Uses configuración parcial para cargar las credenciales de autenticación fuera del código de Terraform
+
+**Respuesta Correcta:** D
+
+**Explicación:** HashiCorp recomienda usar configuración parcial para mantener credenciales de autenticación sensibles fuera de los archivos de código de Terraform para mejores prácticas de seguridad.
+
+---
+
+## Question No. 253
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál de las siguientes afirmaciones sobre módulos de Terraform NO es verdadera?
+
+**Opciones:**
+- A) Los módulos pueden llamar a otros módulos
+- B) Un módulo es un contenedor para uno o más recursos
+- C) Los módulos deben ser accesibles públicamente
+- D) Puedes llamar al mismo módulo múltiples veces
+
+**Respuesta Correcta:** C
+
+**Explicación:** Los módulos no necesitan ser accesibles públicamente; pueden ser privados, locales, o en registros privados.
+
+---
+
+## Question No. 254
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Quieres definir una única variable de entrada para capturar valores de configuración para un servidor. Los valores deben representar memoria como número, y el nombre del servidor como string. ¿Qué tipo de variable podrías usar para esta entrada?
+
+**Opciones:**
+- A) List
+- B) Object
+- C) Map
+- D) Terraform no soporta variables de entrada complejas de diferentes tipos
+
+**Respuesta Correcta:** B
+
+**Explicación:** El tipo `object` te permite definir variables de entrada con tipos de atributos mixtos, soportando números y strings en una única variable.
+
+---
+
+## Question No. 255
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ________ backends soportan bloqueo de estado.
+
+**Opciones:**
+- A) Todos
+- B) Ninguno
+- C) Algunos
+- D) Solo local
+
+**Respuesta Correcta:** C
+
+**Explicación:** Algunos backends como Terraform Cloud, S3 y Consul soportan bloqueo de estado, mientras que otros como backends de archivo local no lo hacen.
+
+---
+
+## Question No. 256
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Es mejor práctica almacenar datos secretos en el mismo repositorio de control de versiones que tu configuración de Terraform.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Los datos sensibles nunca deben almacenarse en repositorios de control de versiones; usa variables de entorno, gestores de secretos u otros métodos seguros.
+
+---
+
+## Question No. 257
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** Has declarado una variable llamada var.list que es una lista de objetos que todos tienen un atributo id. ¿Cuáles opciones producirán una lista de los IDs? Elige dos respuestas correctas.
+
+**Opciones:**
+- A) [ var.list [ * ] , id ]
+- B) [ for o in var.list : o.Id ]
+- C) var.list[*].id
+- D) { for o in var.list : o => o.id }
+
+**Respuesta Correcta:** A, C
+
+**Explicación:** Tanto la sintaxis splat `var.list[*].id` como la notación de paréntesis `[ var.list [ * ] , id ]` extraen correctamente el atributo id de cada objeto en la lista.
+
+---
+
+## Question No. 258
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cómo gestiona Terraform la mayoría de dependencias entre recursos?
+
+**Opciones:**
+- A) Terraform gestionará automáticamente la mayoría de dependencias de recursos
+- B) Usando el parámetro depends_on
+- C) Al definir dependencias como módulos e incluirlos en un orden particular
+- D) El orden en que los recursos aparecen en la configuración de Terraform indica dependencias
+
+**Respuesta Correcta:** A
+
+**Explicación:** Terraform construye automáticamente un gráfico de dependencias analizando referencias de recursos, eliminando la necesidad de especificación manual de dependencias en la mayoría de casos.
+
+---
+
+## Question No. 259
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué backend usa la CLI de Terraform por defecto?
+
+**Opciones:**
+- A) Depende del proveedor de nube configurado
+- B) HTTP
+- C) Remote
+- D) Terraform Cloud
+- E) Local
+
+**Respuesta Correcta:** E
+
+**Explicación:** El backend local es el mecanismo de almacenamiento de estado predeterminado de Terraform, almacenando estado en un archivo local `terraform.tfstate`.
+
+---
+
+## Question No. 260
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál es una desventaja del uso de bloques dinámicos en Terraform?
+
+**Opciones:**
+- A) Los bloques dinámicos pueden construir bloques anidados repetibles
+- B) Terraform se ejecutará más lentamente
+- C) No pueden usarse para iterar a través de una lista de valores
+- D) Hacen que la configuración sea más difícil de leer y entender
+
+**Respuesta Correcta:** D
+
+**Explicación:** Los bloques dinámicos, aunque poderosos, pueden hacer configuraciones de Terraform más complejas y difíciles de entender comparadas con definiciones de bloques estáticos.
+
+---
+
+## Question No. 261
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Puedes desarrollar un provider personalizado para gestionar sus recursos usando Terraform.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** El SDK de Terraform permite a los desarrolladores crear providers personalizados para gestionar recursos de cualquier sistema o servicio.
 
 ## Question No. 201
 
