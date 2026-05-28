@@ -315,7 +315,8 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-297">Question No. 297</a><br>
 <a href="#question-no-298">Question No. 298</a><br>
 <a href="#question-no-299">Question No. 299</a><br>
-<a href="#question-no-300">Question No. 300</a>
+<a href="#question-no-300">Question No. 300</a><br>
+<a href="#question-no-301">Question No. 301</a>
 </td>
 </tr>
 </table>
@@ -7132,3 +7133,19 @@ Opción E es incorrecta: Apply no modifica el código fuente Terraform.
 **Respuesta Correcta:** B
 
 **Explicación:** Cada provider requiere su propio bloque `provider` de nivel superior. Los múltiples providers se soportan declarando bloques `provider "nombre" {}` separados en el nivel raíz de la configuración.
+
+---
+
+## Question No. 301
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** La versión del módulo es requerida para referenciar un módulo en el Registro de Módulos de Terraform.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** La versión del módulo no es requerida al referenciar un módulo del Registro de Módulos de Terraform. Si bien especificar una restricción de versión es muy recomendable para uso en producción, omitirla es válido y Terraform usará la versión más reciente.

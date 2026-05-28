@@ -315,7 +315,8 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-297">Question No. 297</a><br>
 <a href="#question-no-298">Question No. 298</a><br>
 <a href="#question-no-299">Question No. 299</a><br>
-<a href="#question-no-300">Question No. 300</a>
+<a href="#question-no-300">Question No. 300</a><br>
+<a href="#question-no-301">Question No. 301</a>
 </td>
 </tr>
 </table>
@@ -7136,3 +7137,19 @@ Option E is incorrect: Terraform source code is not modified by apply.
 **Correct Answer:** B
 
 **Explanation:** Each provider requires its own top-level `provider` block. Multiple providers are supported by declaring separate `provider "name" {}` blocks at the root level of the configuration.
+
+---
+
+## Question No. 301
+
+**Question Type:** Single Choice
+
+**Question:** Module version is required to reference a module on the Terraform Module Registry.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Module version is not required when referencing a module from the Terraform Module Registry. While specifying a version constraint is strongly recommended for production use, omitting it is valid and Terraform will use the latest version.
