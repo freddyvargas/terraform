@@ -296,7 +296,26 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-278">Question No. 278</a><br>
 <a href="#question-no-279">Question No. 279</a><br>
 <a href="#question-no-280">Question No. 280</a><br>
-<a href="#question-no-281">Question No. 281</a>
+<a href="#question-no-281">Question No. 281</a><br>
+<a href="#question-no-282">Question No. 282</a><br>
+<a href="#question-no-283">Question No. 283</a><br>
+<a href="#question-no-284">Question No. 284</a><br>
+<a href="#question-no-285">Question No. 285</a><br>
+<a href="#question-no-286">Question No. 286</a><br>
+<a href="#question-no-287">Question No. 287</a><br>
+<a href="#question-no-288">Question No. 288</a><br>
+<a href="#question-no-289">Question No. 289</a><br>
+<a href="#question-no-290">Question No. 290</a><br>
+<a href="#question-no-291">Question No. 291</a><br>
+<a href="#question-no-292">Question No. 292</a><br>
+<a href="#question-no-293">Question No. 293</a><br>
+<a href="#question-no-294">Question No. 294</a><br>
+<a href="#question-no-295">Question No. 295</a><br>
+<a href="#question-no-296">Question No. 296</a><br>
+<a href="#question-no-297">Question No. 297</a><br>
+<a href="#question-no-298">Question No. 298</a><br>
+<a href="#question-no-299">Question No. 299</a><br>
+<a href="#question-no-300">Question No. 300</a>
 </td>
 </tr>
 </table>
@@ -6780,3 +6799,336 @@ Opción E es incorrecta: Apply no modifica el código fuente Terraform.
 **Respuesta Correcta:** B
 
 **Explicación:** El archivo `.terraform.lock.hcl` registra las versiones exactas de providers seleccionadas durante `terraform init`, garantizando versiones consistentes de providers en todos los miembros del equipo y entornos CI.
+
+---
+
+## Question No. 282
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Una vez que configuras un nuevo backend de Terraform con un bloque de código terraform, ¿qué comando(s) deberías usar para migrar el archivo de estado?
+
+**Opciones:**
+- A) terraform destroy, luego terraform apply
+- B) terraform init
+- C) terraform push
+- D) terraform apply
+
+**Respuesta Correcta:** B
+
+**Explicación:** Ejecutar `terraform init` después de configurar un nuevo backend detecta el cambio y te solicita migrar el estado existente a la nueva ubicación del backend.
+
+---
+
+## Question No. 283
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Si actualizas la restricción de versión en tu configuración de Terraform, Terraform actualizará tu archivo de bloqueo la próxima vez que ejecutes terraform init.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Actualizar las restricciones de versión por sí solo no actualiza el archivo de bloqueo. Debes ejecutar `terraform init -upgrade` para actualizar `.terraform.lock.hcl` con las nuevas restricciones.
+
+---
+
+## Question No. 284
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Tu equipo de seguridad escaneó algunos workspaces de Terraform y encontró secretos almacenados en texto plano en los archivos de estado. ¿Cómo puedes proteger esos datos?
+
+**Opciones:**
+- A) Editar tu archivo de estado para eliminar los datos sensibles
+- B) Siempre almacenar tus secretos en un archivo secrets.tfvars
+- C) Eliminar el archivo de estado cada vez que ejecutes Terraform
+- D) Almacenar el estado en un backend encriptado
+
+**Respuesta Correcta:** D
+
+**Explicación:** Usar un backend remoto encriptado (por ejemplo, Terraform Cloud, S3 con SSE) garantiza que los archivos de estado estén encriptados en reposo, protegiendo los datos sensibles almacenados en el estado.
+
+---
+
+## Question No. 285
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Las variables declaradas dentro de un módulo son accesibles fuera del módulo.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Las variables de módulo tienen alcance dentro del módulo. Para exponer valores fuera de un módulo, debes declarar valores `output` que el módulo llamador pueda referenciar.
+
+---
+
+## Question No. 286
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuándo deberías escribir archivos de configuración de Terraform para infraestructura existente que quieres empezar a gestionar con Terraform?
+
+**Opciones:**
+- A) Puedes importar infraestructura sin código de Terraform correspondiente
+- B) Terraform generará los archivos de configuración correspondientes por ti
+- C) Antes de ejecutar terraform import
+- D) Después de ejecutar terraform import
+
+**Respuesta Correcta:** C
+
+**Explicación:** Debes escribir la configuración de Terraform (bloques resource) antes de ejecutar `terraform import`. El comando import mapea el recurso existente a la configuración que has escrito.
+
+---
+
+## Question No. 287
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Estás construyendo un pipeline de CI/CD y necesitas inyectar variables sensibles en tu ejecución de Terraform. ¿Cómo puedes hacerlo de forma segura?
+
+**Opciones:**
+- A) Copiar las variables sensibles en tu código de Terraform
+- B) Almacenar las variables sensibles en un archivo secure_varS.tf
+- C) Almacenar las variables sensibles como texto plano en un repositorio de código fuente
+- D) Pasar variables a Terraform con un flag -var
+
+**Respuesta Correcta:** D
+
+**Explicación:** Pasar variables sensibles mediante el flag `-var` en tiempo de ejecución (inyectadas por el sistema CI/CD desde un almacén de secretos) las mantiene fuera del código fuente y de los archivos de configuración.
+
+---
+
+## Question No. 288
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cómo puedes activar una ejecución en un workspace de Terraform Cloud que está conectado a un repositorio de Sistema de Control de Versiones (VCS)?
+
+**Opciones:**
+- A) Solo los propietarios de la organización de Terraform Cloud pueden establecer variables de workspace en workspaces conectados a VCS
+- B) Hacer un commit de un cambio al directorio de trabajo y rama del VCS a la que está conectado el workspace de Terraform Cloud
+- C) Solo los propietarios de la organización de Terraform Cloud pueden aprobar planes en workspaces conectados a VCS
+- D) Solo los miembros de una organización VCS pueden abrir un pull request contra repositorios que están conectados a workspaces de Terraform Cloud
+
+**Respuesta Correcta:** B
+
+**Explicación:** Hacer un commit de un cambio a la rama monitoreada en el repositorio VCS activa automáticamente una nueva ejecución de Terraform Cloud mediante la integración de webhook VCS.
+
+---
+
+## Question No. 289
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué almacena el backend 'local' predeterminado de Terraform?
+
+**Opciones:**
+- A) Archivos tfplan
+- B) Archivo de estado
+- C) Plugins de provider
+- D) Binario de Terraform
+
+**Respuesta Correcta:** B
+
+**Explicación:** El backend local almacena el archivo de estado de Terraform (`terraform.tfstate`) en el sistema de archivos local en el directorio de trabajo.
+
+---
+
+## Question No. 290
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál de los siguientes no es una función de cadena válida en Terraform?
+
+**Opciones:**
+- A) chomp
+- B) join
+- C) slice
+- D) split
+
+**Respuesta Correcta:** C
+
+**Explicación:** `slice` es una función de colección que opera en listas, no una función de cadena. Las funciones de cadena válidas incluyen `chomp`, `join`, `split`, `format`, `trim` y otras.
+
+---
+
+## Question No. 291
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué característica impide que múltiples usuarios operen en el estado de Terraform al mismo tiempo?
+
+**Opciones:**
+- A) Bloqueo de estado
+- B) Control de versiones
+- C) Restricciones de provider
+- D) Backends remotos
+
+**Respuesta Correcta:** A
+
+**Explicación:** El bloqueo de estado previene operaciones concurrentes bloqueando el archivo de estado cuando hay una operación de Terraform en progreso, previniendo conflictos y corrupción.
+
+---
+
+## Question No. 292
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Los providers de Terraform siempre se instalan desde Internet.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Los providers también pueden instalarse desde espejos de sistema de archivos locales, registros privados o espejos de red — no exclusivamente desde internet público.
+
+---
+
+## Question No. 293
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Fuera del bloque required_providers, las configuraciones de Terraform siempre se refieren a los providers por sus nombres locales.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** Dentro de una configuración de Terraform, los providers siempre se referencian por su nombre local (definido en `required_providers`) fuera del propio bloque `required_providers`.
+
+---
+
+## Question No. 294
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Cuáles de las siguientes son ventajas de usar infraestructura como código (IaC) en lugar de aprovisionar con una interfaz gráfica de usuario (GUI)? Elige dos respuestas correctas.
+
+**Opciones:**
+- A) Te permite versionar, reutilizar y compartir la configuración de infraestructura
+- B) Aprovisiona los mismos recursos a un costo menor
+- C) Asegura tus credenciales
+- D) Reduce el riesgo de error del operador
+- E) Previene modificaciones manuales a tus recursos
+
+**Respuesta Correcta:** A, D
+
+**Explicación:** IaC habilita el control de versiones, reutilización y compartición de configuraciones (A), y reduce el error humano/operador mediante la automatización y repetibilidad (D).
+
+---
+
+## Question No. 295
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** Has aprovisionado algunas máquinas virtuales (VMs) en Google Cloud Platform (GCP) usando la herramienta de línea de comandos gcloud. Sin embargo, estás estandarizando con Terraform y quieres gestionar estas VMs con Terraform. ¿Cuáles son las dos cosas que debes hacer para lograrlo? Elige dos respuestas correctas.
+
+**Opciones:**
+- A) Ejecutar el comando terraform import-gcp
+- B) Escribir la configuración de Terraform para las VMs existentes
+- C) Usar el comando terraform import para las VMs existentes
+- D) Aprovisionar nuevas VMs usando Terraform con los mismos nombres de VM
+
+**Respuesta Correcta:** B, C
+
+**Explicación:** Para traer infraestructura existente bajo gestión de Terraform debes: (B) escribir la configuración del recurso Terraform que coincida con los recursos existentes, y (C) ejecutar `terraform import` para mapearlos al estado.
+
+---
+
+## Question No. 296
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuándo aplica Sentinel la lógica de políticas durante una ejecución de Terraform Cloud?
+
+**Opciones:**
+- A) Antes de la fase de plan
+- B) Durante la fase de plan
+- C) Antes de la fase de apply
+- D) Después de la fase de apply
+
+**Respuesta Correcta:** C
+
+**Explicación:** Las políticas de Sentinel se ejecutan después de que se genera el plan y antes de la fase de apply, actuando como una compuerta de política como código para permitir o denegar cambios de infraestructura.
+
+---
+
+## Question No. 297
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Un desarrollador accidentalmente lanzó una VM (máquina virtual) fuera del flujo de trabajo de Terraform y terminó con dos servidores con el mismo nombre. No saben qué VM gestiona Terraform pero tienen una lista de todos los IDs de VM activos. ¿Cuál de los siguientes métodos podrías usar para descubrir qué instancia gestiona Terraform?
+
+**Opciones:**
+- A) Ejecutar terraform state list para encontrar los nombres de todas las VMs, luego ejecutar terraform state show para cada una para encontrar qué ID de VM gestiona Terraform
+- B) Actualizar el código para incluir outputs para el ID de todas las VMs, luego ejecutar terraform plan para ver los outputs
+- C) Ejecutar terraform taint/code en todas las VMs para recrearlas
+- D) Usar terraform refresh/code para averiguar qué IDs ya son parte del estado
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform state list` revela los nombres de recursos gestionados, y `terraform state show` muestra los atributos específicos (incluyendo ID) que Terraform rastrea para cada recurso.
+
+---
+
+## Question No. 298
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué comando debes ejecutar primero antes de realizar más operaciones de Terraform en un directorio de trabajo?
+
+**Opciones:**
+- A) terraform import
+- B) terraform workspace
+- C) terraform plan
+- D) terraform init
+
+**Respuesta Correcta:** D
+
+**Explicación:** `terraform init` debe ejecutarse primero en cualquier directorio de trabajo para inicializar el backend, descargar providers y configurar módulos antes de cualquier otra operación de Terraform.
+
+---
+
+## Question No. 299
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** terraform validate confirma que tu infraestructura coincide con el archivo de estado de Terraform.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform validate` solo verifica la sintaxis y consistencia interna de los archivos de configuración de Terraform. No verifica el estado de la infraestructura ni realiza llamadas API.
+
+---
+
+## Question No. 300
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Estás creando una configuración de Terraform que necesita hacer uso de múltiples providers, uno para AWS y uno para Datadog. ¿Cuál de los siguientes bloques de provider te permitiría hacer esto?
+
+**Opciones:**
+- A) Un único bloque `terraform {}` que contiene tanto `provider "aws" {}` como `provider "datadog" {}` anidados dentro
+- B) Dos bloques `provider` separados de nivel superior: `provider "aws" {}` y `provider "datadog" {}`
+- C) Dos bloques `provider` separados de nivel superior con formato alineado
+- D) Un único bloque `provider {}` con tanto `"aws" {}` como `"datadog" {}` anidados dentro
+
+**Respuesta Correcta:** B
+
+**Explicación:** Cada provider requiere su propio bloque `provider` de nivel superior. Los múltiples providers se soportan declarando bloques `provider "nombre" {}` separados en el nivel raíz de la configuración.

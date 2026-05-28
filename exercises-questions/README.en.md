@@ -296,7 +296,26 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-278">Question No. 278</a><br>
 <a href="#question-no-279">Question No. 279</a><br>
 <a href="#question-no-280">Question No. 280</a><br>
-<a href="#question-no-281">Question No. 281</a>
+<a href="#question-no-281">Question No. 281</a><br>
+<a href="#question-no-282">Question No. 282</a><br>
+<a href="#question-no-283">Question No. 283</a><br>
+<a href="#question-no-284">Question No. 284</a><br>
+<a href="#question-no-285">Question No. 285</a><br>
+<a href="#question-no-286">Question No. 286</a><br>
+<a href="#question-no-287">Question No. 287</a><br>
+<a href="#question-no-288">Question No. 288</a><br>
+<a href="#question-no-289">Question No. 289</a><br>
+<a href="#question-no-290">Question No. 290</a><br>
+<a href="#question-no-291">Question No. 291</a><br>
+<a href="#question-no-292">Question No. 292</a><br>
+<a href="#question-no-293">Question No. 293</a><br>
+<a href="#question-no-294">Question No. 294</a><br>
+<a href="#question-no-295">Question No. 295</a><br>
+<a href="#question-no-296">Question No. 296</a><br>
+<a href="#question-no-297">Question No. 297</a><br>
+<a href="#question-no-298">Question No. 298</a><br>
+<a href="#question-no-299">Question No. 299</a><br>
+<a href="#question-no-300">Question No. 300</a>
 </td>
 </tr>
 </table>
@@ -6784,3 +6803,336 @@ Option E is incorrect: Terraform source code is not modified by apply.
 **Correct Answer:** B
 
 **Explanation:** The `.terraform.lock.hcl` file records the exact provider versions selected during `terraform init`, ensuring consistent provider versions across all team members and CI environments.
+
+---
+
+## Question No. 282
+
+**Question Type:** Single Choice
+
+**Question:** Once you configure a new Terraform backend with a terraform code block, which command(s) should you use to migrate the state file?
+
+**Options:**
+- A) terraform destroy, then terraform apply
+- B) terraform init
+- C) terraform push
+- D) terraform apply
+
+**Correct Answer:** B
+
+**Explanation:** Running `terraform init` after configuring a new backend detects the change and prompts you to migrate the existing state to the new backend location.
+
+---
+
+## Question No. 283
+
+**Question Type:** Single Choice
+
+**Question:** If you update the version constraint in your Terraform configuration, Terraform will update your lock file the next time you run terraform init.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Updating version constraints alone does not update the lock file. You must run `terraform init -upgrade` to update `.terraform.lock.hcl` to reflect new constraints.
+
+---
+
+## Question No. 284
+
+**Question Type:** Single Choice
+
+**Question:** Your security team scanned some Terraform workspaces and found secrets stored in plaintext in state files. How can you protect that data?
+
+**Options:**
+- A) Edit your state file to scrub out the sensitive data
+- B) Always store your secrets in a secrets.tfvars file
+- C) Delete the state file every time you run Terraform
+- D) Store the state in an encrypted backend
+
+**Correct Answer:** D
+
+**Explanation:** Using an encrypted remote backend (e.g., Terraform Cloud, S3 with SSE) ensures state files are encrypted at rest, protecting sensitive data stored in state.
+
+---
+
+## Question No. 285
+
+**Question Type:** Single Choice
+
+**Question:** Variables declared within a module are accessible outside of the module.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Module variables are scoped to the module. To expose values outside a module, you must declare `output` values that the calling module can reference.
+
+---
+
+## Question No. 286
+
+**Question Type:** Single Choice
+
+**Question:** When should you write Terraform configuration files for existing infrastructure that you want to start managing with Terraform?
+
+**Options:**
+- A) You can import infrastructure without corresponding Terraform code
+- B) Terraform will generate the corresponding configuration files for you
+- C) Before you run terraform import
+- D) After you run terraform import
+
+**Correct Answer:** C
+
+**Explanation:** You must write the Terraform configuration (resource blocks) before running `terraform import`. The import command maps the existing resource to the configuration you've written.
+
+---
+
+## Question No. 287
+
+**Question Type:** Single Choice
+
+**Question:** You're building a CI/CD (continuous integration/continuous delivery) pipeline and need to inject sensitive variables into your Terraform run. How can you do this safely?
+
+**Options:**
+- A) Copy the sensitive variables into your Terraform code
+- B) Store the sensitive variables in a secure_varS.tf file
+- C) Store the sensitive variables as plain text in a source code repository
+- D) Pass variables to Terraform with a -var flag
+
+**Correct Answer:** D
+
+**Explanation:** Passing sensitive variables via the `-var` flag at runtime (injected by the CI/CD system from a secret store) keeps them out of source code and configuration files.
+
+---
+
+## Question No. 288
+
+**Question Type:** Single Choice
+
+**Question:** How can you trigger a run in a Terraform Cloud workspace that is connected to a Version Control System (VCS) repository?
+
+**Options:**
+- A) Only Terraform Cloud organization owners can set workspace variables on VCS connected workspaces
+- B) Commit a change to the VCS working directory and branch that the Terraform Cloud workspace is connected to
+- C) Only Terraform Cloud organization owners can approve plans in VCS connected workspaces
+- D) Only members of a VCS organization can open a pull request against repositories that are connected to Terraform Cloud workspaces
+
+**Correct Answer:** B
+
+**Explanation:** Committing a change to the monitored branch in the VCS repository automatically triggers a new Terraform Cloud run via the VCS webhook integration.
+
+---
+
+## Question No. 289
+
+**Question Type:** Single Choice
+
+**Question:** What does the default 'local' Terraform backend store?
+
+**Options:**
+- A) tfplan files
+- B) State file
+- C) Provider plugins
+- D) Terraform binary
+
+**Correct Answer:** B
+
+**Explanation:** The local backend stores the Terraform state file (`terraform.tfstate`) on the local filesystem in the working directory.
+
+---
+
+## Question No. 290
+
+**Question Type:** Single Choice
+
+**Question:** Which of the following is not a valid string function in Terraform?
+
+**Options:**
+- A) chomp
+- B) join
+- C) slice
+- D) split
+
+**Correct Answer:** C
+
+**Explanation:** `slice` is a collection function that works on lists, not a string function. Valid string functions include `chomp`, `join`, `split`, `format`, `trim`, and others.
+
+---
+
+## Question No. 291
+
+**Question Type:** Single Choice
+
+**Question:** What feature stops multiple users from operating on the Terraform state at the same time?
+
+**Options:**
+- A) State locking
+- B) Version control
+- C) Provider constraints
+- D) Remote backends
+
+**Correct Answer:** A
+
+**Explanation:** State locking prevents concurrent operations by locking the state file when a Terraform operation is in progress, preventing conflicts and corruption.
+
+---
+
+## Question No. 292
+
+**Question Type:** Single Choice
+
+**Question:** Terraform providers are always installed from the Internet.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** Providers can also be installed from local filesystem mirrors, private registries, or network mirrors — not exclusively from the public internet.
+
+---
+
+## Question No. 293
+
+**Question Type:** Single Choice
+
+**Question:** Outside of the required_providers block, Terraform configurations always refer to providers by their local names.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** Within a Terraform configuration, providers are always referenced by their local name (defined in `required_providers`) outside of the `required_providers` block itself.
+
+---
+
+## Question No. 294
+
+**Question Type:** Multiple Choice
+
+**Question:** Which of the following are advantages of using infrastructure as code (IaC) instead of provisioning with a graphical user interface (GUI)? Choose two correct answers.
+
+**Options:**
+- A) Lets you version, reuse, and share infrastructure configuration
+- B) Provisions the same resources at a lower cost
+- C) Secures your credentials
+- D) Reduces risk of operator error
+- E) Prevents manual modifications to your resources
+
+**Correct Answer:** A, D
+
+**Explanation:** IaC enables version control, reuse, and sharing of configurations (A), and reduces human/operator error through automation and repeatability (D). Cost, credential security, and preventing manual changes are not inherent IaC advantages.
+
+---
+
+## Question No. 295
+
+**Question Type:** Multiple Choice
+
+**Question:** You have provisioned some virtual machines (VMs) on Google Cloud Platform (GCP) using the gcloud command line tool. However, you are standardizing with Terraform and want to manage these VMs using Terraform instead. What are the two things you must do to achieve this? Choose two correct answers.
+
+**Options:**
+- A) Run the terraform import-gcp command
+- B) Write Terraform configuration for the existing VMs
+- C) Use the terraform import command for the existing VMs
+- D) Provision new VMs using Terraform with the same VM names
+
+**Correct Answer:** B, C
+
+**Explanation:** To bring existing infrastructure under Terraform management you must: (B) write the Terraform resource configuration matching the existing resources, and (C) run `terraform import` to map them to state.
+
+---
+
+## Question No. 296
+
+**Question Type:** Single Choice
+
+**Question:** When does Sentinel enforce policy logic during a Terraform Cloud run?
+
+**Options:**
+- A) Before the plan phase
+- B) During the plan phase
+- C) Before the apply phase
+- D) After the apply phase
+
+**Correct Answer:** C
+
+**Explanation:** Sentinel policies run after the plan is generated and before the apply phase, acting as a policy-as-code gate to allow or deny infrastructure changes.
+
+---
+
+## Question No. 297
+
+**Question Type:** Single Choice
+
+**Question:** A developer accidentally launched a VM (virtual machine) outside of the Terraform workflow and ended up with two servers with the same name. They don't know which VM Terraform manages but do have a list of all active VM IDs. Which of the following methods could you use to discover which instance Terraform manages?
+
+**Options:**
+- A) Run terraform state list to find the names of all VMs, then run terraform state show for each of them to find which VM ID Terraform manages
+- B) Update the code to include outputs for the ID of all VMs, then run terraform plan to view the outputs
+- C) Run terraform taint/code on all the VMs to recreate them
+- D) Use terraform refresh/code to find out which IDs are already part of state
+
+**Correct Answer:** A
+
+**Explanation:** `terraform state list` reveals managed resource names, and `terraform state show` displays the specific attributes (including ID) Terraform tracks for each resource.
+
+---
+
+## Question No. 298
+
+**Question Type:** Single Choice
+
+**Question:** Which command must you first run before performing further Terraform operations in a working directory?
+
+**Options:**
+- A) terraform import
+- B) terraform workspace
+- C) terraform plan
+- D) terraform init
+
+**Correct Answer:** D
+
+**Explanation:** `terraform init` must be run first in any working directory to initialize the backend, download providers, and set up modules before any other Terraform operations.
+
+---
+
+## Question No. 299
+
+**Question Type:** Single Choice
+
+**Question:** terraform validate confirms that your infrastructure matches the Terraform state file.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** `terraform validate` only checks the syntax and internal consistency of Terraform configuration files. It does not check infrastructure state or make any API calls.
+
+---
+
+## Question No. 300
+
+**Question Type:** Single Choice
+
+**Question:** You are creating a Terraform configuration which needs to make use of multiple providers, one for AWS and one for Datadog. Which of the following provider blocks would allow you to do this?
+
+**Options:**
+- A) A single `terraform {}` block containing both `provider "aws" {}` and `provider "datadog" {}` nested inside
+- B) Two separate top-level `provider` blocks: `provider "aws" {}` and `provider "datadog" {}`
+- C) Two separate top-level `provider` blocks with aligned formatting
+- D) A single `provider {}` block with both `"aws" {}` and `"datadog" {}` nested inside
+
+**Correct Answer:** B
+
+**Explanation:** Each provider requires its own top-level `provider` block. Multiple providers are supported by declaring separate `provider "name" {}` blocks at the root level of the configuration.
