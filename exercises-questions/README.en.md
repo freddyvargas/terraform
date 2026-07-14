@@ -6,6 +6,9 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 
 <table>
 <tr>
+<td colspan="6"><strong>Section 1 — Questions 2 to 301</strong></td>
+</tr>
+<tr>
 <td valign="top" width="16%">
 <a href="#question-no-2">Question No. 2</a><br>
 <a href="#question-no-3">Question No. 3</a><br>
@@ -317,6 +320,15 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-299">Question No. 299</a><br>
 <a href="#question-no-300">Question No. 300</a><br>
 <a href="#question-no-301">Question No. 301</a>
+</td>
+</tr>
+<tr>
+<td colspan="6"><strong>Section 2 — Questions 302 to 321</strong></td>
+</tr>
+<tr>
+<td valign="top" width="16%">
+<a href="#question-no-302">Question No. 302</a><br>
+<a href="#question-no-303">Question No. 303</a><br>
 </td>
 </tr>
 </table>
@@ -7153,3 +7165,48 @@ Option E is incorrect: Terraform source code is not modified by apply.
 **Correct Answer:** B
 
 **Explanation:** Module version is not required when referencing a module from the Terraform Module Registry. While specifying a version constraint is strongly recommended for production use, omitting it is valid and Terraform will use the latest version.
+
+---
+
+## Question No. 302
+
+**Question Type:** Single Choice
+
+**Question:** terraform destroy is the only way to remove infrastructure with Terraform.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** `terraform destroy` is not the only way to remove infrastructure with Terraform. You can also remove resources by deleting their resource blocks from the configuration and running `terraform apply`, which will plan and execute the destruction of any resources that are no longer declared. Other methods include `terraform destroy -target=<resource>` to destroy a specific resource, or `terraform state rm` to remove a resource from the state file without affecting the actual infrastructure.
+
+**Explanation:**
+
+Option A is incorrect: While `terraform destroy` is a common and direct way to tear down all managed infrastructure, it is not the only mechanism available. Terraform provides multiple paths to remove infrastructure depending on the use case.
+
+Option B is correct: Removing resource blocks from the configuration and running `terraform apply` achieves the same result of destroying those resources. Additionally, targeted destruction and state manipulation commands provide further options for selective removal.
+
+---
+
+## Question No. 303
+
+**Question Type:** Single Choice
+
+**Question:** How can you enable verbose logging to troubleshoot Terraform?
+
+**Options:**
+- A) Set the log level command-line flag.
+- B) Set the TF_LOG environment variable.
+- C) Set the log level in your terraform block.
+
+**Correct Answer:** B
+
+**Explanation:** Terraform uses the `TF_LOG` environment variable to enable detailed logging. You can set it to one of the following log levels: `TRACE`, `DEBUG`, `INFO`, `WARN`, or `ERROR`. For example, running `export TF_LOG=DEBUG` before executing Terraform commands will produce verbose output useful for troubleshooting. To persist logs to a file, the `TF_LOG_PATH` environment variable can be used alongside `TF_LOG`.
+
+**Explanation:**
+
+Option A is incorrect: Terraform does not support a command-line flag such as `--log-level` or similar to control logging verbosity. All logging configuration is done through environment variables.
+
+Option C is incorrect: The `terraform {}` block in your configuration is used to declare required providers, backend configuration, and required Terraform version. It does not support any log level setting.

@@ -6,6 +6,9 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 
 <table>
 <tr>
+<td colspan="6"><strong>Sección 1 — Preguntas 2 a 301</strong></td>
+</tr>
+<tr>
 <td valign="top" width="16%">
 <a href="#question-no-2">Question No. 2</a><br>
 <a href="#question-no-3">Question No. 3</a><br>
@@ -317,6 +320,15 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-299">Question No. 299</a><br>
 <a href="#question-no-300">Question No. 300</a><br>
 <a href="#question-no-301">Question No. 301</a>
+</td>
+</tr>
+<tr>
+<td colspan="6"><strong>Sección 2 — Preguntas 302 a 321</strong></td>
+</tr>
+<tr>
+<td valign="top" width="16%">
+<a href="#question-no-302">Question No. 302</a><br>
+<a href="#question-no-303">Question No. 303</a><br>
 </td>
 </tr>
 </table>
@@ -7149,3 +7161,48 @@ Opción E es incorrecta: Apply no modifica el código fuente Terraform.
 **Respuesta Correcta:** B
 
 **Explicación:** La versión del módulo no es requerida al referenciar un módulo del Registro de Módulos de Terraform. Si bien especificar una restricción de versión es muy recomendable para uso en producción, omitirla es válido y Terraform usará la versión más reciente.
+
+---
+
+## Question No. 302
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** terraform destroy es la única manera de eliminar infraestructura con Terraform.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform destroy` no es la única manera de eliminar infraestructura con Terraform. También puedes eliminar recursos borrando sus bloques de recurso de la configuración y ejecutando `terraform apply`, lo cual planificará y ejecutará la destrucción de cualquier recurso que ya no esté declarado. Otros métodos incluyen `terraform destroy -target=<recurso>` para destruir un recurso específico, o `terraform state rm` para eliminar un recurso del archivo de estado sin afectar la infraestructura real.
+
+**Explicación:**
+
+Opción A es incorrecta: Si bien `terraform destroy` es una forma común y directa de eliminar toda la infraestructura gestionada, no es el único mecanismo disponible. Terraform proporciona múltiples caminos para eliminar infraestructura dependiendo del caso de uso.
+
+Opción B es correcta: Eliminar los bloques de recurso de la configuración y ejecutar `terraform apply` logra el mismo resultado de destruir esos recursos. Adicionalmente, la destrucción con objetivo específico y los comandos de manipulación de estado ofrecen opciones adicionales para la eliminación selectiva.
+
+---
+
+## Question No. 303
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cómo puedes habilitar el registro detallado (verbose logging) para solucionar problemas en Terraform?
+
+**Opciones:**
+- A) Establecer el indicador de nivel de registro en la línea de comandos.
+- B) Establecer la variable de entorno TF_LOG.
+- C) Establecer el nivel de registro en tu bloque terraform.
+
+**Respuesta Correcta:** B
+
+**Explicación:** Terraform utiliza la variable de entorno `TF_LOG` para habilitar el registro detallado. Puedes establecerla en uno de los siguientes niveles: `TRACE`, `DEBUG`, `INFO`, `WARN` o `ERROR`. Por ejemplo, ejecutar `export TF_LOG=DEBUG` antes de los comandos de Terraform producirá una salida detallada útil para solucionar problemas. Para persistir los registros en un archivo, se puede usar la variable `TF_LOG_PATH` junto con `TF_LOG`.
+
+**Explicación:**
+
+Opción A es incorrecta: Terraform no admite un indicador de línea de comandos como `--log-level` o similar para controlar la verbosidad del registro. Toda la configuración de registro se realiza mediante variables de entorno.
+
+Opción C es incorrecta: El bloque `terraform {}` en tu configuración se usa para declarar los providers requeridos, la configuración del backend y la versión requerida de Terraform. No admite ninguna configuración de nivel de registro.
