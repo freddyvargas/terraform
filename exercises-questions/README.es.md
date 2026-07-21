@@ -329,6 +329,8 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <td valign="top" width="16%">
 <a href="#question-no-302">Question No. 302</a><br>
 <a href="#question-no-303">Question No. 303</a><br>
+<a href="#question-no-304">Question No. 304</a><br>
+<a href="#question-no-305">Question No. 305</a><br>
 </td>
 </tr>
 </table>
@@ -7206,3 +7208,68 @@ Opción B es correcta: Eliminar los bloques de recurso de la configuración y ej
 Opción A es incorrecta: Terraform no admite un indicador de línea de comandos como `--log-level` o similar para controlar la verbosidad del registro. Toda la configuración de registro se realiza mediante variables de entorno.
 
 Opción C es incorrecta: El bloque `terraform {}` en tu configuración se usa para declarar los providers requeridos, la configuración del backend y la versión requerida de Terraform. No admite ninguna configuración de nivel de registro.
+
+---
+
+## Question No. 304
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué tipo de información proporciona Terraform Registry sobre los módulos que aloja?
+
+**Opciones:**
+- A) Variables de entrada requeridas
+- B) Salidas
+- C) Variables de entrada opcionales y valores por defecto
+- D) Todas las anteriores
+
+**Respuesta Correcta:** D
+
+**Explicación:** Las páginas de módulos en Terraform Registry documentan en detalle la interfaz del módulo. Incluyen las variables de entrada requeridas, las variables de entrada opcionales con sus valores por defecto y las salidas que el módulo expone. Como las tres categorías están disponibles en la documentación del módulo, la respuesta más completa y correcta es la opción D.
+
+**Explicación:**
+
+Opción A es incorrecta: Las variables requeridas sí se muestran, pero la opción es incompleta porque el registry también muestra entradas opcionales y salidas.
+
+Opción B es incorrecta: Las salidas sí se muestran, pero esto representa solo una parte de la información del módulo publicada en el registry.
+
+Opción C es incorrecta: Las entradas opcionales y sus valores por defecto sí aparecen, pero la opción omite otra información documentada como entradas requeridas y salidas.
+
+---
+
+## Question No. 305
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** El siguiente exhibit muestra parte de una configuración de Terraform que te han pedido actualizar. El nombre de la Azure Virtual Network debe establecerse con el nombre del resource group seguido de un guion y la palabra vnet.
+
+Exhibit:
+```
+data "azurerm_resource_group" "example" {
+  name = var.resource_group_name
+}
+
+resource "azurerm_virtual_network" "example" {
+  name = ____________________
+}
+```
+
+¿Qué expresión cumple este requisito?
+
+**Opciones:**
+- A) `${data.azurerm_resource_group.example.name}-vnet`
+- B) `concat(data.azurerm_resource_group.example.name, '-', 'vnet')`
+- C) `join('-', var.resource_group_name, 'vnet')`
+- D) `${azurerm_resource_group.example.name}-vnet`
+
+**Respuesta Correcta:** A
+
+**Explicación:** La opción A construye correctamente el nombre de la red virtual tomando el nombre del resource group desde el data source y agregando `-vnet`. La expresión referencia el bloque existente `data.azurerm_resource_group.example.name`, que es exactamente el valor solicitado en el requerimiento.
+
+**Explicación:**
+
+Opción B es incorrecta: `concat` está pensado para concatenar listas, no para construir una cadena a partir de valores escalares de tipo string en esa forma.
+
+Opción C es incorrecta: `join` espera un separador y una lista de strings, pero esta opción pasa argumentos separados y además usa `var.resource_group_name` en lugar del valor leído desde el data source `data.azurerm_resource_group.example` mostrado en el exhibit.
+
+Opción D es incorrecta: Hace referencia a `azurerm_resource_group.example.name`, pero el exhibit define un data source llamado `data.azurerm_resource_group.example`, no un bloque resource llamado `azurerm_resource_group.example`.

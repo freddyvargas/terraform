@@ -329,6 +329,8 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <td valign="top" width="16%">
 <a href="#question-no-302">Question No. 302</a><br>
 <a href="#question-no-303">Question No. 303</a><br>
+<a href="#question-no-304">Question No. 304</a><br>
+<a href="#question-no-305">Question No. 305</a><br>
 </td>
 </tr>
 </table>
@@ -7210,3 +7212,68 @@ Option B is correct: Removing resource blocks from the configuration and running
 Option A is incorrect: Terraform does not support a command-line flag such as `--log-level` or similar to control logging verbosity. All logging configuration is done through environment variables.
 
 Option C is incorrect: The `terraform {}` block in your configuration is used to declare required providers, backend configuration, and required Terraform version. It does not support any log level setting.
+
+---
+
+## Question No. 304
+
+**Question Type:** Single Choice
+
+**Question:** Which type of information does the Terraform Registry provide about the modules it hosts?
+
+**Options:**
+- A) Required input variables
+- B) Outputs
+- C) Optional input variables and default values
+- D) All of these are provided
+
+**Correct Answer:** D
+
+**Explanation:** Terraform Registry module pages document the module interface in detail. They list required input variables, optional input variables including default values, and outputs exported by the module. Because all three categories are available in the registry documentation for modules, the most complete and correct answer is option D.
+
+**Explanation:**
+
+Option A is incorrect: Required input variables are indeed shown, but this option is incomplete because the registry also shows optional inputs and outputs.
+
+Option B is incorrect: Outputs are shown, but this is only one part of the module information presented by the registry.
+
+Option C is incorrect: Optional inputs and defaults are shown, but this still omits other documented information such as required inputs and outputs.
+
+---
+
+## Question No. 305
+
+**Question Type:** Single Choice
+
+**Question:** The exhibit below shows part of a Terraform configuration you have been asked to update. The name of the Azure Virtual Network should be set to the name of the resource group followed by a dash and the word vnet.
+
+Exhibit:
+```
+data "azurerm_resource_group" "example" {
+  name = var.resource_group_name
+}
+
+resource "azurerm_virtual_network" "example" {
+  name = ____________________
+}
+```
+
+Which expression fulfills this requirement?
+
+**Options:**
+- A) `${data.azurerm_resource_group.example.name}-vnet`
+- B) `concat(data.azurerm_resource_group.example.name, '-', 'vnet')`
+- C) `join('-', var.resource_group_name, 'vnet')`
+- D) `${azurerm_resource_group.example.name}-vnet`
+
+**Correct Answer:** A
+
+**Explanation:** Option A correctly builds the virtual network name by taking the resource group name from the data source and appending `-vnet`. The expression references the existing data block `data.azurerm_resource_group.example.name`, which is exactly the value requested in the requirement.
+
+**Explanation:**
+
+Option B is incorrect: `concat` is intended for concatenating lists, not for building a string from scalar string values in this form.
+
+Option C is incorrect: `join` expects a separator and a list of strings, but this option passes separate string arguments and also uses `var.resource_group_name` instead of the value read from the `data.azurerm_resource_group.example` data source shown in the exhibit.
+
+Option D is incorrect: It references `azurerm_resource_group.example.name`, but the exhibit defines a data source named `data.azurerm_resource_group.example`, not a resource block named `azurerm_resource_group.example`.
