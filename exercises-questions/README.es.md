@@ -337,6 +337,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-309">Question No. 309</a><br>
 <a href="#question-no-310">Question No. 310</a><br>
 <a href="#question-no-311">Question No. 311</a><br>
+<a href="#question-no-312">Question No. 312</a><br>
 </td>
 </tr>
 </table>
@@ -7424,3 +7425,29 @@ Opción A es incorrecta: `terraform validate` no evalúa valores de variables ni
 Opción B es incorrecta: Aunque `terraform init` es necesario antes de la mayoría de los comandos, `terraform validate` puede ejecutarse incluso en un directorio no inicializado con una verificación limitada, y el escenario indica que sí devolvió un mensaje de éxito, por lo que la inicialización no es la causa aquí.
 
 Opción D es incorrecta: `terraform validate` no interactúa con el backend ni con el estado, por lo que la configuración del backend remoto no es relevante para explicar por qué pasó la validación.
+
+---
+
+## Question No. 312
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cómo puedes configurar un workspace de Terraform para almacenar su estado de forma remota?
+
+**Opciones:**
+- A) Agregar un bloque `cloud` dentro del bloque `terraform`.
+- B) Agregar un bloque `backend` dentro del bloque `terraform`.
+- C) Configurar la variable de entorno `TERRAFORM_CLOUD`.
+- D) Configurar la variable de entorno `TERRAFORM_BACKEND`.
+
+**Respuesta Correcta:** B
+
+**Explicación:** Terraform almacena el estado de forma remota configurando un backend dentro del bloque `terraform`. Al definir un bloque `backend` (por ejemplo `s3`, `azurerm`, `gcs` o `remote`), Terraform sabe dónde guardar el archivo de estado fuera del disco local.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: Un bloque `cloud` es específico de la integración con HCP Terraform/Terraform Cloud, mientras que el estado remoto en Terraform, en general, se configura mediante la declaración de un backend.
+
+Opción C es incorrecta: `TERRAFORM_CLOUD` no es una variable de entorno estándar de Terraform para configurar el almacenamiento del estado.
+
+Opción D es incorrecta: `TERRAFORM_BACKEND` no es una variable de entorno válida de Terraform para configurar backends.

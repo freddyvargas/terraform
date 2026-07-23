@@ -337,6 +337,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-309">Question No. 309</a><br>
 <a href="#question-no-310">Question No. 310</a><br>
 <a href="#question-no-311">Question No. 311</a><br>
+<a href="#question-no-312">Question No. 312</a><br>
 </td>
 </tr>
 </table>
@@ -7428,3 +7429,29 @@ Option A is incorrect: `terraform validate` does not evaluate variable values or
 Option B is incorrect: Although `terraform init` is required before most commands, `terraform validate` can still run in an uninitialized directory with a limited check, and the scenario states it did return a success message, so initialization is not the cause here.
 
 Option D is incorrect: `terraform validate` does not interact with the backend or state at all, so remote backend configuration is irrelevant to why it passed.
+
+---
+
+## Question No. 312
+
+**Question Type:** Single Choice
+
+**Question:** How can you configure a Terraform workspace to store its state remotely?
+
+**Options:**
+- A) Add a `cloud` block inside the `terraform` block.
+- B) Add a `backend` block inside the `terraform` block.
+- C) Set the `TERRAFORM_CLOUD` environment variable.
+- D) Set the `TERRAFORM_BACKEND` environment variable.
+
+**Correct Answer:** B
+
+**Explanation:** Terraform stores state remotely by configuring a backend in the `terraform` block. Defining a `backend` block (for example `s3`, `azurerm`, `gcs`, or `remote`) tells Terraform where the state file must be kept outside local disk.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: A `cloud` block is specific to HCP Terraform/Terraform Cloud integration, while remote state in Terraform in general is configured through a backend declaration.
+
+Option C is incorrect: `TERRAFORM_CLOUD` is not a standard Terraform environment variable to configure state storage.
+
+Option D is incorrect: `TERRAFORM_BACKEND` is not a valid Terraform environment variable for backend configuration.
