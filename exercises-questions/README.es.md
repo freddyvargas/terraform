@@ -345,6 +345,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-317">Question No. 317</a><br>
 <a href="#question-no-318">Question No. 318</a><br>
 <a href="#question-no-319">Question No. 319</a><br>
+<a href="#question-no-320">Question No. 320</a><br>
 </td>
 </tr>
 </table>
@@ -7641,3 +7642,29 @@ Opción B es incorrecta: Realizar cambios a través de la consola de la nube pú
 Opción C es incorrecta: Usar el endpoint de la API de la nube pública directamente también genera desvío y omite el control de versiones, la revisión de código y el pipeline automatizado gestionado por HCP Terraform.
 
 Opción D es incorrecta: Ejecutar la herramienta CLI de la nube pública directamente tiene los mismos problemas que las opciones B y C: el cambio no se rastrea en control de versiones, no se revisa y no se aplica a través del flujo de trabajo controlado de HCP Terraform.
+
+## Question No. 320
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cómo puedes configurar un workspace de Terraform para almacenar su estado de forma remota?
+
+**Opciones:**
+- A) Agregar un bloque `cloud` dentro del bloque `terraform`.
+- B) Agregar un bloque `backend` dentro del bloque `terraform`.
+- C) Establecer la variable de entorno `TERAFORM_CLOUD`.
+- D) Establecer la variable de entorno `TERRAFORM_BACKEND`.
+
+**Respuesta Correcta:** B
+
+**Explicación:** Para configurar un workspace de Terraform para almacenar su estado de forma remota, se agrega un bloque `backend` dentro del bloque `terraform` en la configuración. El bloque `backend` especifica el tipo de backend remoto (como S3, Azure Blob Storage, Google Cloud Storage o Terraform Cloud) junto con los parámetros de conexión necesarios. Cuando Terraform se inicializa (`terraform init`), lee la configuración del backend y migra el estado a la ubicación remota especificada, lo que permite la colaboración, el bloqueo de estado y el almacenamiento seguro.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: El bloque `cloud` dentro del bloque `terraform` se usa específicamente para integrarse con HCP Terraform (antes Terraform Cloud), no como mecanismo general para configurar cualquier backend remoto. Aunque sí habilita el estado remoto en ese contexto específico, la respuesta estándar y de aplicación general para la configuración de estado remoto es el bloque `backend`.
+
+Opción C es incorrecta: `TERAFORM_CLOUD` no es una variable de entorno reconocida por Terraform (nótese el error tipográfico). Incluso la variable válida `TF_CLOUD` aplica únicamente a HCP Terraform y no configura backends remotos arbitrarios.
+
+Opción D es incorrecta: `TERRAFORM_BACKEND` no es una variable de entorno válida de Terraform. No existe ninguna variable de entorno con ese nombre que configure el comportamiento del backend.
+
+---

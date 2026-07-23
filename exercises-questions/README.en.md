@@ -345,6 +345,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-317">Question No. 317</a><br>
 <a href="#question-no-318">Question No. 318</a><br>
 <a href="#question-no-319">Question No. 319</a><br>
+<a href="#question-no-320">Question No. 320</a><br>
 </td>
 </tr>
 </table>
@@ -7645,3 +7646,29 @@ Option B is incorrect: Making changes through the public cloud console (ClickOps
 Option C is incorrect: Using the public cloud API endpoint directly also creates drift and bypasses version control, code review, and the automated pipeline managed by HCP Terraform.
 
 Option D is incorrect: Running the public cloud CLI tool directly suffers from the same problems as options B and C: the change is not tracked in version control, not reviewed, and not applied through the controlled HCP Terraform workflow.
+
+## Question No. 320
+
+**Question Type:** Single Choice
+
+**Question:** How can you configure a Terraform workspace to store its state remotely?
+
+**Options:**
+- A) Add a cloud block inside the terraform block.
+- B) Add a backend block inside the terraform block.
+- C) Set the TERAFORM_CLOUD environment variable.
+- D) Set the TERRAFORM_BACKEND environment variable.
+
+**Correct Answer:** B
+
+**Explanation:** To configure a Terraform workspace to store its state remotely, you add a `backend` block inside the `terraform` block in your configuration. The backend block specifies the remote backend type (such as S3, Azure Blob Storage, Google Cloud Storage, or Terraform Cloud) along with the required connection settings. When Terraform initializes (`terraform init`), it reads the backend configuration and migrates the state to the specified remote location, enabling collaboration, state locking, and secure storage.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: A `cloud` block inside the `terraform` block is used specifically to integrate with HCP Terraform (formerly Terraform Cloud), not as a general mechanism to configure any remote backend. While it does enable remote state in that specific context, the standard and broadly applicable answer for remote state configuration is the `backend` block.
+
+Option C is incorrect: `TERAFORM_CLOUD` is not a recognized Terraform environment variable (note the typo). Even the valid variable `TF_CLOUD` is only applicable to HCP Terraform and does not configure arbitrary remote backends.
+
+Option D is incorrect: `TERRAFORM_BACKEND` is not a valid Terraform environment variable. There is no environment variable with this name that configures backend behavior.
+
+---
