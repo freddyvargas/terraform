@@ -341,6 +341,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-313">Question No. 313</a><br>
 <a href="#question-no-314">Question No. 314</a><br>
 <a href="#question-no-315">Question No. 315</a><br>
+<a href="#question-no-316">Question No. 316</a><br>
 </td>
 </tr>
 </table>
@@ -7542,3 +7543,29 @@ Option A is incorrect: `terraform test` is a separate CLI testing workflow and i
 Option C is incorrect: Cost estimation belongs to the plan/run workflow in HCP Terraform, not to periodic workspace health assessments.
 
 Option E is incorrect: Sentinel policy checks run during Terraform runs as governance gates around plan/apply, not during workspace health assessments.
+
+---
+
+## Question No. 316
+
+**Question Type:** Single Choice
+
+**Question:** When should you use the `terraform force-unlock` command?
+
+**Options:**
+- A) When `terraform apply` has failed due to a state lock.
+- B) When you have a high-priority change.
+- C) When automatic unlocking has failed.
+- D) When you see a status message stating that Terraform cannot acquire the lock.
+
+**Correct Answer:** C
+
+**Explanation:** Use `terraform force-unlock` only to manually remove a stale state lock when Terraform's normal automatic unlocking did not succeed. This command should be used carefully and only after confirming that no other Terraform operation is still running, because removing an active lock can corrupt state or allow conflicting changes.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: A failed `terraform apply` does not automatically mean you should force-unlock. You should first confirm whether the lock is still valid or whether another process is still operating on the state.
+
+Option B is incorrect: The urgency of a change is not a valid reason to bypass Terraform's state locking protections.
+
+Option D is incorrect: A lock acquisition error by itself does not mean the lock is stale. It may simply indicate that another legitimate Terraform operation is currently holding the lock.

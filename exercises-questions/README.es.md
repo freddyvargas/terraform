@@ -341,6 +341,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-313">Question No. 313</a><br>
 <a href="#question-no-314">Question No. 314</a><br>
 <a href="#question-no-315">Question No. 315</a><br>
+<a href="#question-no-316">Question No. 316</a><br>
 </td>
 </tr>
 </table>
@@ -7538,3 +7539,29 @@ Opción A es incorrecta: `terraform test` es un flujo de pruebas independiente d
 Opción C es incorrecta: La estimación de costos pertenece al flujo de plan/run en HCP Terraform, no a las evaluaciones periódicas de salud del workspace.
 
 Opción E es incorrecta: Las políticas de Sentinel se evalúan durante las ejecuciones de Terraform como compuertas de gobernanza alrededor de plan/apply, no durante las evaluaciones de salud del workspace.
+
+---
+
+## Question No. 316
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuándo debes usar el comando `terraform force-unlock`?
+
+**Opciones:**
+- A) Cuando `terraform apply` ha fallado debido a un bloqueo del estado.
+- B) Cuando tienes un cambio de alta prioridad.
+- C) Cuando el desbloqueo automático ha fallado.
+- D) Cuando ves un mensaje de estado indicando que Terraform no puede adquirir el bloqueo.
+
+**Respuesta Correcta:** C
+
+**Explicación:** Debes usar `terraform force-unlock` solo para eliminar manualmente un bloqueo de estado obsoleto cuando el desbloqueo automático normal de Terraform no funcionó. Este comando debe usarse con cuidado y únicamente después de confirmar que no hay otra operación de Terraform todavía en ejecución, porque quitar un bloqueo activo puede corromper el estado o permitir cambios en conflicto.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: Que `terraform apply` falle no significa automáticamente que debas forzar el desbloqueo. Primero debes confirmar si el bloqueo sigue siendo válido o si todavía hay otro proceso operando sobre el estado.
+
+Opción B es incorrecta: La urgencia de un cambio no es una razón válida para saltarse las protecciones de bloqueo de estado de Terraform.
+
+Opción D es incorrecta: Un error al adquirir el bloqueo, por sí solo, no significa que el bloqueo esté obsoleto. Puede simplemente indicar que otra operación legítima de Terraform tiene actualmente el bloqueo.
