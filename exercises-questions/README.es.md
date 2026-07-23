@@ -7568,6 +7568,8 @@ Opción B es incorrecta: La urgencia de un cambio no es una razón válida para 
 
 Opción D es incorrecta: Un error al adquirir el bloqueo, por sí solo, no significa que el bloqueo esté obsoleto. Puede simplemente indicar que otra operación legítima de Terraform tiene actualmente el bloqueo.
 
+---
+
 ## Question No. 317
 
 **Tipo de Pregunta:** Opción Única

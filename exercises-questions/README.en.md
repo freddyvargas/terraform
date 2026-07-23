@@ -7572,6 +7572,8 @@ Option B is incorrect: The urgency of a change is not a valid reason to bypass T
 
 Option D is incorrect: A lock acquisition error by itself does not mean the lock is stale. It may simply indicate that another legitimate Terraform operation is currently holding the lock.
 
+---
+
 ## Question No. 317
 
 **Question Type:** Single Choice
