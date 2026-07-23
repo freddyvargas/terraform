@@ -335,6 +335,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-307">Question No. 307</a><br>
 <a href="#question-no-308">Question No. 308</a><br>
 <a href="#question-no-309">Question No. 309</a><br>
+<a href="#question-no-310">Question No. 310</a><br>
 </td>
 </tr>
 </table>
@@ -7370,3 +7371,29 @@ Opción A es incorrecta: Solo es una línea de instrucción y no representa una 
 Opción B es incorrecta: `terraform state pull` solo lee y muestra el archivo de estado actual; no importa recursos no administrados.
 
 Opción E es incorrecta: `terraform apply -refresh-only` solo actualiza el estado de recursos ya administrados y no comienza a administrar recursos que aún no han sido importados.
+
+---
+
+## Question No. 310
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué comando debes ejecutar antes de ejecutar un plan o apply por primera vez?
+
+**Opciones:**
+- A) terraform init
+- B) terraform workspace
+- C) terraform validate
+- D) terraform import
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform init` debe ejecutarse antes que cualquier otro comando del flujo de trabajo (`plan`, `apply`, etc.) en un directorio de trabajo nuevo o recién clonado. Descarga e instala los plugins de proveedores requeridos, inicializa el backend y configura el directorio `.terraform` local del que dependen los comandos posteriores.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: `terraform workspace` se usa para administrar espacios de trabajo de Terraform y no puede usarse para inicializar un directorio de trabajo ni instalar proveedores.
+
+Opción C es incorrecta: `terraform validate` verifica la corrección sintáctica y semántica de los archivos de configuración, pero requiere que el directorio ya esté inicializado con `terraform init` previamente.
+
+Opción D es incorrecta: `terraform import` se usa para traer infraestructura existente bajo la administración de Terraform, pero también requiere que el directorio de trabajo esté inicializado previamente.

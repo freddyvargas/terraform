@@ -335,6 +335,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-307">Question No. 307</a><br>
 <a href="#question-no-308">Question No. 308</a><br>
 <a href="#question-no-309">Question No. 309</a><br>
+<a href="#question-no-310">Question No. 310</a><br>
 </td>
 </tr>
 </table>
@@ -7374,3 +7375,29 @@ Option A is incorrect: It is only an instruction line and does not represent a T
 Option B is incorrect: `terraform state pull` only reads and outputs the current state file; it does not import unmanaged resources.
 
 Option E is incorrect: `terraform apply -refresh-only` only updates state from already managed resources and does not start managing resources that are not yet imported.
+
+---
+
+## Question No. 310
+
+**Question Type:** Single Choice
+
+**Question:** Which command must you run before you run a plan or apply for the first time?
+
+**Options:**
+- A) terraform init
+- B) terraform workspace
+- C) terraform validate
+- D) terraform import
+
+**Correct Answer:** A
+
+**Explanation:** `terraform init` must be run before any other workflow commands (`plan`, `apply`, etc.) in a new or freshly cloned working directory. It downloads and installs the required provider plugins, initializes the backend, and sets up the local `.terraform` directory that subsequent commands depend on.
+
+**Incorrect options explanation:**
+
+Option B is incorrect: `terraform workspace` is used to manage Terraform workspaces and cannot be used to initialize a working directory or install providers.
+
+Option C is incorrect: `terraform validate` checks the syntactic and semantic correctness of the configuration files, but it requires the directory to already be initialized with `terraform init` first.
+
+Option D is incorrect: `terraform import` is used to bring existing infrastructure under Terraform management, but it also requires the working directory to be initialized beforehand.
