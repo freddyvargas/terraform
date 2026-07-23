@@ -336,6 +336,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-308">Question No. 308</a><br>
 <a href="#question-no-309">Question No. 309</a><br>
 <a href="#question-no-310">Question No. 310</a><br>
+<a href="#question-no-311">Question No. 311</a><br>
 </td>
 </tr>
 </table>
@@ -7401,3 +7402,29 @@ Option B is incorrect: `terraform workspace` is used to manage Terraform workspa
 Option C is incorrect: `terraform validate` checks the syntactic and semantic correctness of the configuration files, but it requires the directory to already be initialized with `terraform init` first.
 
 Option D is incorrect: `terraform import` is used to bring existing infrastructure under Terraform management, but it also requires the working directory to be initialized beforehand.
+
+---
+
+## Question No. 311
+
+**Question Type:** Single Choice
+
+**Question:** After creating a new Terraform configuration, your configuration passes `terraform validate` but returns an "Access Denied" error from the cloud provider when running `terraform plan`. Why did `terraform validate` not catch this issue?
+
+**Options:**
+- A) Variables are only applied and validated during terraform plan, so terraform validate assumed defaults and returned a success message.
+- B) The working directory was not initialized, so the cloud provider plugin was unavailable when running the terraform validate command.
+- C) terraform validate only checks whether a configuration is syntactically correct and internally consistent, and it does not communicate with providers.
+- D) The remote backend was not configured, so terraform validate could not load the state and detect the missing credentials.
+
+**Correct Answer:** C
+
+**Explanation:** `terraform validate` performs a purely static analysis of the configuration files. It checks for syntax errors, invalid references, and internal consistency but does not initialize or communicate with any provider. Because it never contacts the cloud provider, it cannot detect authentication or authorization errors such as "Access Denied". Those errors only surface during `terraform plan` or `terraform apply`, which make real API calls to the provider.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: `terraform validate` does not evaluate variable values or run a plan; it performs a syntax and consistency check only.
+
+Option B is incorrect: Although `terraform init` is required before most commands, `terraform validate` can still run in an uninitialized directory with a limited check, and the scenario states it did return a success message, so initialization is not the cause here.
+
+Option D is incorrect: `terraform validate` does not interact with the backend or state at all, so remote backend configuration is irrelevant to why it passed.

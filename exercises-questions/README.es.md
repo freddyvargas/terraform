@@ -336,6 +336,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-308">Question No. 308</a><br>
 <a href="#question-no-309">Question No. 309</a><br>
 <a href="#question-no-310">Question No. 310</a><br>
+<a href="#question-no-311">Question No. 311</a><br>
 </td>
 </tr>
 </table>
@@ -7397,3 +7398,29 @@ Opción B es incorrecta: `terraform workspace` se usa para administrar espacios 
 Opción C es incorrecta: `terraform validate` verifica la corrección sintáctica y semántica de los archivos de configuración, pero requiere que el directorio ya esté inicializado con `terraform init` previamente.
 
 Opción D es incorrecta: `terraform import` se usa para traer infraestructura existente bajo la administración de Terraform, pero también requiere que el directorio de trabajo esté inicializado previamente.
+
+---
+
+## Question No. 311
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Después de crear una nueva configuración de Terraform, tu configuración pasa `terraform validate` pero devuelve un error "Access Denied" del proveedor de nube al ejecutar `terraform plan`. ¿Por qué `terraform validate` no detectó este problema?
+
+**Opciones:**
+- A) Las variables solo se aplican y validan durante terraform plan, por lo que terraform validate asumió valores predeterminados y devolvió un mensaje de éxito.
+- B) El directorio de trabajo no estaba inicializado, por lo que el plugin del proveedor de nube no estaba disponible al ejecutar el comando terraform validate.
+- C) terraform validate solo verifica si una configuración es sintácticamente correcta e internamente consistente, y no se comunica con los proveedores.
+- D) El backend remoto no estaba configurado, por lo que terraform validate no pudo cargar el estado y detectar las credenciales faltantes.
+
+**Respuesta Correcta:** C
+
+**Explicación:** `terraform validate` realiza un análisis estático de los archivos de configuración. Verifica errores de sintaxis, referencias inválidas y consistencia interna, pero no inicializa ni se comunica con ningún proveedor. Como nunca contacta al proveedor de nube, no puede detectar errores de autenticación o autorización como "Access Denied". Esos errores solo aparecen durante `terraform plan` o `terraform apply`, que sí realizan llamadas reales a la API del proveedor.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: `terraform validate` no evalúa valores de variables ni ejecuta un plan; solo realiza una verificación de sintaxis y consistencia.
+
+Opción B es incorrecta: Aunque `terraform init` es necesario antes de la mayoría de los comandos, `terraform validate` puede ejecutarse incluso en un directorio no inicializado con una verificación limitada, y el escenario indica que sí devolvió un mensaje de éxito, por lo que la inicialización no es la causa aquí.
+
+Opción D es incorrecta: `terraform validate` no interactúa con el backend ni con el estado, por lo que la configuración del backend remoto no es relevante para explicar por qué pasó la validación.
