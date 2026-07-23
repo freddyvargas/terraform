@@ -340,6 +340,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-312">Question No. 312</a><br>
 <a href="#question-no-313">Question No. 313</a><br>
 <a href="#question-no-314">Question No. 314</a><br>
+<a href="#question-no-315">Question No. 315</a><br>
 </td>
 </tr>
 </table>
@@ -7514,3 +7515,30 @@ Option B is incorrect: `terraform modules` is not a valid Terraform CLI command.
 Option C is incorrect: `terraform plan` generates an execution plan but does not download or install module sources. It relies on modules already fetched by `terraform init`.
 
 Option D is incorrect: `terraform apply` applies the changes described by a plan but also does not handle module installation. Module fetching is exclusively the responsibility of `terraform init`.
+
+---
+
+## Question No. 315
+
+**Question Type:** Multiple Choice
+
+**Question:** Which of the following does HCP Terraform perform during a health assessment for a workspace?
+
+**Options:**
+- A) Terraform test execution
+- B) Check block validation
+- C) Infrastructure cost estimation
+- D) Resource drift detection
+- E) Sentinel policy checks
+
+**Correct Answer:** B, D
+
+**Explanation:** HCP Terraform workspace health assessments focus on the ongoing health of already-managed infrastructure. They evaluate `check` blocks as part of continuous validation and also detect resource drift by comparing real infrastructure with Terraform state and configuration. These assessments are meant to surface operational issues and out-of-band changes, not to execute the full run workflow.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: `terraform test` is a separate CLI testing workflow and is not executed automatically as part of workspace health assessments.
+
+Option C is incorrect: Cost estimation belongs to the plan/run workflow in HCP Terraform, not to periodic workspace health assessments.
+
+Option E is incorrect: Sentinel policy checks run during Terraform runs as governance gates around plan/apply, not during workspace health assessments.

@@ -340,6 +340,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-312">Question No. 312</a><br>
 <a href="#question-no-313">Question No. 313</a><br>
 <a href="#question-no-314">Question No. 314</a><br>
+<a href="#question-no-315">Question No. 315</a><br>
 </td>
 </tr>
 </table>
@@ -7510,3 +7511,30 @@ Opción B es incorrecta: `terraform modules` no es un comando válido de la CLI 
 Opción C es incorrecta: `terraform plan` genera un plan de ejecución pero no descarga ni instala fuentes de módulos. Depende de los módulos ya obtenidos por `terraform init`.
 
 Opción D es incorrecta: `terraform apply` aplica los cambios descritos por un plan, pero tampoco gestiona la instalación de módulos. La obtención de módulos es responsabilidad exclusiva de `terraform init`.
+
+---
+
+## Question No. 315
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Cuál de las siguientes acciones realiza HCP Terraform durante una evaluación de salud de un workspace?
+
+**Opciones:**
+- A) Ejecución de `terraform test`
+- B) Validación de bloques `check`
+- C) Estimación de costos de infraestructura
+- D) Detección de drift de recursos
+- E) Verificaciones de políticas Sentinel
+
+**Respuesta Correcta:** B, D
+
+**Explicación:** Las evaluaciones de salud de un workspace en HCP Terraform se enfocan en la salud continua de infraestructura que ya está siendo administrada. Evalúan los bloques `check` como parte de la validación continua y también detectan drift de recursos comparando la infraestructura real con el estado y la configuración de Terraform. Estas evaluaciones sirven para detectar problemas operativos y cambios hechos por fuera de Terraform, no para ejecutar todo el flujo normal de runs.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: `terraform test` es un flujo de pruebas independiente de la CLI y no se ejecuta automáticamente como parte de las evaluaciones de salud del workspace.
+
+Opción C es incorrecta: La estimación de costos pertenece al flujo de plan/run en HCP Terraform, no a las evaluaciones periódicas de salud del workspace.
+
+Opción E es incorrecta: Las políticas de Sentinel se evalúan durante las ejecuciones de Terraform como compuertas de gobernanza alrededor de plan/apply, no durante las evaluaciones de salud del workspace.
