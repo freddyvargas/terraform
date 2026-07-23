@@ -7436,22 +7436,22 @@ Option D is incorrect: `terraform validate` does not interact with the backend o
 
 **Question Type:** Single Choice
 
-**Question:** How can you configure a Terraform workspace to store its state remotely?
+**Question:** A resource block is shown in the Exhibit space of this page. What is the provider for this resource?
 
 **Options:**
-- A) Add a `cloud` block inside the `terraform` block.
-- B) Add a `backend` block inside the `terraform` block.
-- C) Set the `TERRAFORM_CLOUD` environment variable.
-- D) Set the `TERRAFORM_BACKEND` environment variable.
+- A) test
+- B) vpc
+- C) aws
+- D) main
 
-**Correct Answer:** B
+**Correct Answer:** C
 
-**Explanation:** Terraform stores state remotely by configuring a backend in the `terraform` block. Defining a `backend` block (for example `s3`, `azurerm`, `gcs`, or `remote`) tells Terraform where the state file must be kept outside local disk.
+**Explanation:** In a Terraform resource block such as `resource "aws_vpc" "main"`, the provider is identified by the provider prefix in the resource type. Here, `aws_vpc` starts with `aws`, so the provider is `aws`. The remaining part of the type (`vpc`) describes the resource kind, while the final label (`main`) is only the local name of the resource instance inside the configuration.
 
 **Incorrect options explanation:**
 
-Option A is incorrect: A `cloud` block is specific to HCP Terraform/Terraform Cloud integration, while remote state in Terraform in general is configured through a backend declaration.
+Option A is incorrect: `test` is not the provider name in the resource block structure. If it appears in the exhibit, it would be interpreted as a value or label, not the provider namespace.
 
-Option C is incorrect: `TERRAFORM_CLOUD` is not a standard Terraform environment variable to configure state storage.
+Option B is incorrect: `vpc` represents the resource type or kind within the AWS provider, not the provider itself. In `aws_vpc`, the provider prefix is `aws`.
 
-Option D is incorrect: `TERRAFORM_BACKEND` is not a valid Terraform environment variable for backend configuration.
+Option D is incorrect: `main` is typically the local name given to the resource block instance. It helps reference the resource in the configuration, but it is not the provider.

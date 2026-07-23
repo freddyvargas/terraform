@@ -7432,22 +7432,22 @@ Opción D es incorrecta: `terraform validate` no interactúa con el backend ni c
 
 **Tipo de Pregunta:** Opción Única
 
-**Pregunta:** ¿Cómo puedes configurar un workspace de Terraform para almacenar su estado de forma remota?
+**Pregunta:** Se muestra un bloque `resource` en el espacio de Exhibit de esta página. ¿Cuál es el provider de este recurso?
 
 **Opciones:**
-- A) Agregar un bloque `cloud` dentro del bloque `terraform`.
-- B) Agregar un bloque `backend` dentro del bloque `terraform`.
-- C) Configurar la variable de entorno `TERRAFORM_CLOUD`.
-- D) Configurar la variable de entorno `TERRAFORM_BACKEND`.
+- A) test
+- B) vpc
+- C) aws
+- D) main
 
-**Respuesta Correcta:** B
+**Respuesta Correcta:** C
 
-**Explicación:** Terraform almacena el estado de forma remota configurando un backend dentro del bloque `terraform`. Al definir un bloque `backend` (por ejemplo `s3`, `azurerm`, `gcs` o `remote`), Terraform sabe dónde guardar el archivo de estado fuera del disco local.
+**Explicación:** En un bloque de recurso de Terraform como `resource "aws_vpc" "main"`, el provider se identifica por el prefijo del tipo de recurso. Aquí, `aws_vpc` comienza con `aws`, por lo que el provider es `aws`. La parte restante del tipo (`vpc`) describe la clase de recurso, mientras que la etiqueta final (`main`) es solo el nombre local de esa instancia del recurso dentro de la configuración.
 
 **Explicación de opciones incorrectas:**
 
-Opción A es incorrecta: Un bloque `cloud` es específico de la integración con HCP Terraform/Terraform Cloud, mientras que el estado remoto en Terraform, en general, se configura mediante la declaración de un backend.
+Opción A es incorrecta: `test` no es el nombre del provider en la estructura de un bloque `resource`. Si aparece en el exhibit, se interpretaría como un valor o una etiqueta, no como el namespace del provider.
 
-Opción C es incorrecta: `TERRAFORM_CLOUD` no es una variable de entorno estándar de Terraform para configurar el almacenamiento del estado.
+Opción B es incorrecta: `vpc` representa el tipo o clase de recurso dentro del provider AWS, no el provider en sí. En `aws_vpc`, el prefijo del provider es `aws`.
 
-Opción D es incorrecta: `TERRAFORM_BACKEND` no es una variable de entorno válida de Terraform para configurar backends.
+Opción D es incorrecta: `main` normalmente es el nombre local asignado a la instancia del bloque de recurso. Sirve para referenciar el recurso en la configuración, pero no es el provider.
