@@ -334,6 +334,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-306">Question No. 306</a><br>
 <a href="#question-no-307">Question No. 307</a><br>
 <a href="#question-no-308">Question No. 308</a><br>
+<a href="#question-no-309">Question No. 309</a><br>
 </td>
 </tr>
 </table>
@@ -352,7 +353,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 
 **Explicación:** La forma más sencilla y eficiente de asignar un nombre a una expresión para reutilizarla múltiples veces dentro de un mismo módulo es mediante el uso de valores locales (locals). Los locals funcionan como constantes o variables temporales dentro de la configuración, permitiendo combinar valores de diferentes fuentes (como un recurso random_id y una variable de entrada) en una sola expresión centralizada. Esto mejora la legibilidad y evita la duplicación de código, facilitando el mantenimiento si la lógica de esa cadena de texto llega a cambiar en el futuro.
 
-**Explicación:**
+**Explicación de opciones incorrectas:**
 
 Opción A es incorrecta: Aunque los módulos permiten la reutilización de configuraciones completas, utilizarlos solo para combinar dos valores simples dentro de un mismo archivo resultaría en una sobreingeniería innecesaria y compleja para el objetivo planteado.
 
@@ -7342,3 +7343,30 @@ Opción B es incorrecta: `sensitive = true` no evita que se guarde en el estado;
 **Explicación de opciones incorrectas:**
 
 Opción B es incorrecta: La instalación de plugins/proveedores es una de las responsabilidades principales de `terraform init`, no de `plan` ni de `apply`.
+
+---
+
+## Question No. 309
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** Aprovisionaste máquinas virtuales (VMs) en Google Cloud Platform usando la herramienta de línea de comandos `gcloud`. ¿Qué se debe hacer para administrar esas VMs con Terraform en su lugar? (Selecciona las 2 respuestas correctas.)
+
+**Opciones:**
+- A) Selecciona las dos respuestas correctas a continuación.
+- B) Ejecutar `terraform state pull`.
+- C) Agregar un bloque `import` en la configuración.
+- D) Agregar un bloque `resource` para la VM existente.
+- E) Ejecutar `terraform apply -refresh-only`.
+
+**Respuesta Correcta:** C, D
+
+**Explicación:** Para que Terraform administre VMs existentes creadas fuera de Terraform, debes definir el bloque `resource` correspondiente en la configuración e importar la infraestructura existente al estado de Terraform. Un bloque `import` es la forma declarativa de realizar esa importación en los flujos actuales de Terraform.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: Solo es una línea de instrucción y no representa una acción de Terraform.
+
+Opción B es incorrecta: `terraform state pull` solo lee y muestra el archivo de estado actual; no importa recursos no administrados.
+
+Opción E es incorrecta: `terraform apply -refresh-only` solo actualiza el estado de recursos ya administrados y no comienza a administrar recursos que aún no han sido importados.

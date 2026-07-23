@@ -334,6 +334,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-306">Question No. 306</a><br>
 <a href="#question-no-307">Question No. 307</a><br>
 <a href="#question-no-308">Question No. 308</a><br>
+<a href="#question-no-309">Question No. 309</a><br>
 </td>
 </tr>
 </table>
@@ -352,7 +353,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 
 **Explanation:** The simplest and most efficient way to assign a name to an expression for reusing it multiple times within the same module is by using local values (locals). Locals function as constants or temporary variables within the configuration, allowing you to combine values from different sources (such as a random_id resource and an input variable) in a single centralized expression. This improves readability and avoids code duplication, making maintenance easier if the logic of that text string changes in the future.
 
-**Explanation:**
+**Incorrect options explanation:**
 
 Option A is incorrect: Although modules allow the reuse of complete configurations, using them just to combine two simple values within the same file would result in unnecessary and complex over-engineering for the stated objective.
 
@@ -7346,3 +7347,30 @@ Option B is incorrect: `sensitive = true` does not prevent storage in state; it 
 **Incorrect options explanation:**
 
 Option B is incorrect: Plugin/provider installation is one of the core responsibilities of `terraform init`, not `plan` or `apply`.
+
+---
+
+## Question No. 309
+
+**Question Type:** Multiple Choice
+
+**Question:** You provisioned virtual machines (VMs) on Google Cloud Platform using the gcloud command-line tool. What must be done to manage these VMs using Terraform instead? (Pick the 2 correct responses.)
+
+**Options:**
+- A) Pick the two correct responses below.
+- B) Run `terraform state pull`.
+- C) Add an import block to the configuration.
+- D) Add a resource block for the existing VM.
+- E) Run `terraform apply -refresh-only`.
+
+**Correct Answer:** C, D
+
+**Explanation:** To bring existing VMs created outside Terraform under Terraform management, you must define the corresponding `resource` block in configuration and import the existing infrastructure into Terraform state. Using an `import` block is the declarative way to perform that import in current Terraform workflows.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: It is only an instruction line and does not represent a Terraform action.
+
+Option B is incorrect: `terraform state pull` only reads and outputs the current state file; it does not import unmanaged resources.
+
+Option E is incorrect: `terraform apply -refresh-only` only updates state from already managed resources and does not start managing resources that are not yet imported.
