@@ -331,6 +331,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-303">Question No. 303</a><br>
 <a href="#question-no-304">Question No. 304</a><br>
 <a href="#question-no-305">Question No. 305</a><br>
+<a href="#question-no-306">Question No. 306</a><br>
 </td>
 </tr>
 </table>
@@ -7277,3 +7278,29 @@ Option B is incorrect: `concat` is intended for concatenating lists, not for bui
 Option C is incorrect: `join` expects a separator and a list of strings, but this option passes separate string arguments and also uses `var.resource_group_name` instead of the value read from the `data.azurerm_resource_group.example` data source shown in the exhibit.
 
 Option D is incorrect: It references `azurerm_resource_group.example.name`, but the exhibit defines a data source named `data.azurerm_resource_group.example`, not a resource block named `azurerm_resource_group.example`.
+
+---
+
+## Question No. 306
+
+**Question Type:** Single Choice
+
+**Question:** Which is a recommended way to share Terraform state across teams?
+
+**Options:**
+- A) Use a remote state backend.
+- B) No additional configuration is recommended.
+- C) Store the `terraform.tfstate` file in version control.
+- D) Store the `terraform.tfstate` file in HashiCorp Vault.
+
+**Correct Answer:** A
+
+**Explanation:** A remote state backend is the recommended approach for team collaboration because it centralizes state, supports safe concurrent workflows (often through state locking), and reduces the risk of drift and accidental overwrites from local state files.
+
+**Explanation:**
+
+Option B is incorrect: Team usage generally does require additional configuration, especially remote shared state, to avoid conflicting local state files.
+
+Option C is incorrect: Storing `terraform.tfstate` in version control is discouraged because state can contain sensitive data and does not provide safe locking/concurrency controls.
+
+Option D is incorrect: HashiCorp Vault is primarily for secrets management, not as a standard Terraform state backend for collaborative state operations.
