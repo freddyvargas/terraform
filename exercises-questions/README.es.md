@@ -343,6 +343,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-315">Question No. 315</a><br>
 <a href="#question-no-316">Question No. 316</a><br>
 <a href="#question-no-317">Question No. 317</a><br>
+<a href="#question-no-318">Question No. 318</a><br>
 </td>
 </tr>
 </table>
@@ -7590,3 +7591,23 @@ Opción B es incorrecta: El estado de Terraform no captura las variables de ento
 Opción C es incorrecta: Aunque un archivo de estado puede editarse manualmente en teoría, esa no es la razón por la que se trata como sensible. Las ediciones manuales son desaconsejadas y peligrosas, pero la preocupación por la sensibilidad reside en los secretos que puede contener.
 
 Opción D es incorrecta: El estado de Terraform no registra información personal sobre los usuarios. Rastrea atributos de recursos, metadatos y dependencias de la infraestructura que gestiona.
+
+---
+
+## Question No. 318
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Cuando falla la aserción de un bloque `check`, Terraform bloquea la ejecución de la operación actual.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** Cuando falla una aserción dentro de un bloque `check`, Terraform no detiene `terraform plan` ni `terraform apply`. Terraform informa el fallo como una advertencia y continúa con la operación actual. Si necesitas que una condición fallida bloquee la ejecución, debes usar mecanismos como validación de variables, precondiciones o poscondiciones en lugar de un bloque `check`.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: Los bloques `check` están diseñados intencionalmente para no bloquear. Su propósito es mostrar advertencias sobre el estado o las expectativas sin impedir que Terraform continúe la operación.

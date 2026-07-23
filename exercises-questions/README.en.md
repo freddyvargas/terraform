@@ -343,6 +343,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-315">Question No. 315</a><br>
 <a href="#question-no-316">Question No. 316</a><br>
 <a href="#question-no-317">Question No. 317</a><br>
+<a href="#question-no-318">Question No. 318</a><br>
 </td>
 </tr>
 </table>
@@ -7594,3 +7595,23 @@ Option B is incorrect: Terraform state does not capture environment variables fr
 Option C is incorrect: While a state file can technically be edited manually, this is not the reason it is treated as sensitive. Manual edits are discouraged and dangerous, but the sensitivity concern is about the secrets it may contain.
 
 Option D is incorrect: Terraform state does not record personal information about users. It tracks resource attributes, metadata, and dependencies of the infrastructure it manages.
+
+---
+
+## Question No. 318
+
+**Question Type:** Single Choice
+
+**Question:** When a check block's assertion fails, Terraform blocks the current operation from executing.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** A failed assertion in a `check` block does not stop `terraform plan` or `terraform apply`. Terraform reports the failed check as a warning and continues the current operation. If you need a failing condition to block execution, you should use constructs such as variable validation, preconditions, or postconditions instead of a `check` block.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: `check` blocks are intentionally non-blocking. Their purpose is to surface warnings about health or expectations without preventing Terraform from continuing the operation.
