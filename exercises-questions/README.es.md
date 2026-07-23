@@ -339,6 +339,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-311">Question No. 311</a><br>
 <a href="#question-no-312">Question No. 312</a><br>
 <a href="#question-no-313">Question No. 313</a><br>
+<a href="#question-no-314">Question No. 314</a><br>
 </td>
 </tr>
 </table>
@@ -7483,3 +7484,29 @@ Opción B es incorrecta: Terraform necesita autenticarse con el provider para le
 Opción C es incorrecta: Terraform parte del snapshot de estado actual y lo actualiza según lo que detecta remotamente.
 
 Opción D es incorrecta: Las respuestas de la API del provider son precisamente la base para detectar cambios fuera de Terraform y refrescar el estado.
+
+---
+
+## Question No. 314
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Tu configuración contiene un bloque `module` que referencia un módulo del Registro de Terraform y establece el argumento `version` en 1.0. Acabas de publicar una nueva versión del módulo y actualizaste tu configuración para apuntar a la versión 1.1. ¿Qué comando debe ejecutarse para instalar la nueva versión?
+
+**Opciones:**
+- A) terraform init
+- B) terraform modules
+- C) terraform plan
+- D) terraform apply
+
+**Respuesta Correcta:** A
+
+**Explicación:** Cuando actualizas el argumento `version` de un módulo en tu configuración, Terraform no descarga automáticamente la nueva versión. Debes ejecutar `terraform init` (o `terraform init -upgrade`) para que Terraform obtenga e instale la versión actualizada del módulo en el directorio `.terraform`. Hasta que se ejecute `init`, los comandos `plan` o `apply` seguirán utilizando la versión descargada anteriormente.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: `terraform modules` no es un comando válido de la CLI de Terraform. No existe tal subcomando en las herramientas de Terraform.
+
+Opción C es incorrecta: `terraform plan` genera un plan de ejecución pero no descarga ni instala fuentes de módulos. Depende de los módulos ya obtenidos por `terraform init`.
+
+Opción D es incorrecta: `terraform apply` aplica los cambios descritos por un plan, pero tampoco gestiona la instalación de módulos. La obtención de módulos es responsabilidad exclusiva de `terraform init`.

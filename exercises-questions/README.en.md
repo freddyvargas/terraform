@@ -339,6 +339,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-311">Question No. 311</a><br>
 <a href="#question-no-312">Question No. 312</a><br>
 <a href="#question-no-313">Question No. 313</a><br>
+<a href="#question-no-314">Question No. 314</a><br>
 </td>
 </tr>
 </table>
@@ -7487,3 +7488,29 @@ Option B is incorrect: Terraform must authenticate with the provider to read cur
 Option C is incorrect: Terraform starts from the current state snapshot and updates it based on what it reads remotely.
 
 Option D is incorrect: Provider API responses are exactly what Terraform uses to detect out-of-band changes and refresh the state.
+
+---
+
+## Question No. 314
+
+**Question Type:** Single Choice
+
+**Question:** Your configuration contains a module block that references a module from the Terraform Registry and sets the version argument to 1.0. You just published a new version of the module and updated your configuration to point to version 1.1. Which command must be run to install the new version?
+
+**Options:**
+- A) terraform init
+- B) terraform modules
+- C) terraform plan
+- D) terraform apply
+
+**Correct Answer:** A
+
+**Explanation:** When you update the `version` argument of a module source in your configuration, Terraform does not automatically download the new version. You must run `terraform init` (or `terraform init -upgrade`) to instruct Terraform to fetch and install the updated module version into the `.terraform` directory. Until `init` is run, subsequent `plan` or `apply` commands will still use the previously downloaded version.
+
+**Incorrect options explanation:**
+
+Option B is incorrect: `terraform modules` is not a valid Terraform CLI command. There is no such subcommand in the Terraform toolchain.
+
+Option C is incorrect: `terraform plan` generates an execution plan but does not download or install module sources. It relies on modules already fetched by `terraform init`.
+
+Option D is incorrect: `terraform apply` applies the changes described by a plan but also does not handle module installation. Module fetching is exclusively the responsibility of `terraform init`.
