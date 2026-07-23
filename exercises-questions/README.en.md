@@ -342,6 +342,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-314">Question No. 314</a><br>
 <a href="#question-no-315">Question No. 315</a><br>
 <a href="#question-no-316">Question No. 316</a><br>
+<a href="#question-no-317">Question No. 317</a><br>
 </td>
 </tr>
 </table>
@@ -7569,3 +7570,27 @@ Option A is incorrect: A failed `terraform apply` does not automatically mean yo
 Option B is incorrect: The urgency of a change is not a valid reason to bypass Terraform's state locking protections.
 
 Option D is incorrect: A lock acquisition error by itself does not mean the lock is stale. It may simply indicate that another legitimate Terraform operation is currently holding the lock.
+
+## Question No. 317
+
+**Question Type:** Single Choice
+
+**Question:** Why is it important to treat your Terraform state file as sensitive?
+
+**Options:**
+- A) It can contain information such as resource passwords and keys.
+- B) It stores all environment variables from the machine that created it.
+- C) It can be manually edited to change deployed resources.
+- D) It contains personal information about the last user to update it.
+
+**Correct Answer:** A
+
+**Explanation:** Terraform state files can store sensitive data in plain text, including resource attributes such as passwords, private keys, connection strings, and other secrets that were passed during provisioning. Because of this, state files must be protected with proper access controls, encryption at rest, and secure remote backends (e.g., Terraform Cloud, S3 with server-side encryption) to prevent unauthorized access to sensitive infrastructure details.
+
+**Incorrect options explanation:**
+
+Option B is incorrect: Terraform state does not capture environment variables from the machine that ran the apply. It records the state of managed infrastructure resources, not the host environment.
+
+Option C is incorrect: While a state file can technically be edited manually, this is not the reason it is treated as sensitive. Manual edits are discouraged and dangerous, but the sensitivity concern is about the secrets it may contain.
+
+Option D is incorrect: Terraform state does not record personal information about users. It tracks resource attributes, metadata, and dependencies of the infrastructure it manages.

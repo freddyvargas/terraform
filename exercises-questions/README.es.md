@@ -342,6 +342,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-314">Question No. 314</a><br>
 <a href="#question-no-315">Question No. 315</a><br>
 <a href="#question-no-316">Question No. 316</a><br>
+<a href="#question-no-317">Question No. 317</a><br>
 </td>
 </tr>
 </table>
@@ -7565,3 +7566,27 @@ Opción A es incorrecta: Que `terraform apply` falle no significa automáticamen
 Opción B es incorrecta: La urgencia de un cambio no es una razón válida para saltarse las protecciones de bloqueo de estado de Terraform.
 
 Opción D es incorrecta: Un error al adquirir el bloqueo, por sí solo, no significa que el bloqueo esté obsoleto. Puede simplemente indicar que otra operación legítima de Terraform tiene actualmente el bloqueo.
+
+## Question No. 317
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Por qué es importante tratar tu archivo de estado de Terraform como sensible?
+
+**Opciones:**
+- A) Puede contener información como contraseñas y claves de recursos.
+- B) Almacena todas las variables de entorno de la máquina que lo creó.
+- C) Puede editarse manualmente para cambiar los recursos desplegados.
+- D) Contiene información personal sobre el último usuario que lo actualizó.
+
+**Respuesta Correcta:** A
+
+**Explicación:** Los archivos de estado de Terraform pueden almacenar datos sensibles en texto plano, incluidos atributos de recursos como contraseñas, claves privadas, cadenas de conexión y otros secretos que se proporcionaron durante el aprovisionamiento. Por esta razón, los archivos de estado deben protegerse con controles de acceso adecuados, cifrado en reposo y backends remotos seguros (por ejemplo, Terraform Cloud, S3 con cifrado del lado del servidor) para evitar el acceso no autorizado a detalles sensibles de la infraestructura.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: El estado de Terraform no captura las variables de entorno de la máquina que ejecutó el apply. Registra el estado de los recursos de infraestructura gestionados, no el entorno del sistema anfitrión.
+
+Opción C es incorrecta: Aunque un archivo de estado puede editarse manualmente en teoría, esa no es la razón por la que se trata como sensible. Las ediciones manuales son desaconsejadas y peligrosas, pero la preocupación por la sensibilidad reside en los secretos que puede contener.
+
+Opción D es incorrecta: El estado de Terraform no registra información personal sobre los usuarios. Rastrea atributos de recursos, metadatos y dependencias de la infraestructura que gestiona.
