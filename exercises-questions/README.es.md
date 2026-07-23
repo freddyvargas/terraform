@@ -331,6 +331,9 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-303">Question No. 303</a><br>
 <a href="#question-no-304">Question No. 304</a><br>
 <a href="#question-no-305">Question No. 305</a><br>
+<a href="#question-no-306">Question No. 306</a><br>
+<a href="#question-no-307">Question No. 307</a><br>
+<a href="#question-no-308">Question No. 308</a><br>
 </td>
 </tr>
 </table>
@@ -7273,3 +7276,69 @@ Opción B es incorrecta: `concat` está pensado para concatenar listas, no para 
 Opción C es incorrecta: `join` espera un separador y una lista de strings, pero esta opción pasa argumentos separados y además usa `var.resource_group_name` en lugar del valor leído desde el data source `data.azurerm_resource_group.example` mostrado en el exhibit.
 
 Opción D es incorrecta: Hace referencia a `azurerm_resource_group.example.name`, pero el exhibit define un data source llamado `data.azurerm_resource_group.example`, no un bloque resource llamado `azurerm_resource_group.example`.
+
+---
+
+## Question No. 306
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál es una forma recomendada de compartir el estado de Terraform entre equipos?
+
+**Opciones:**
+- A) Usar un backend de estado remoto.
+- B) No se recomienda ninguna configuración adicional.
+- C) Guardar el archivo `terraform.tfstate` en control de versiones.
+- D) Guardar el archivo `terraform.tfstate` en HashiCorp Vault.
+
+**Respuesta Correcta:** A
+
+**Explicación:** Un backend de estado remoto es el enfoque recomendado para colaboración entre equipos porque centraliza el estado, permite flujos concurrentes más seguros (normalmente con bloqueo de estado) y reduce el riesgo de drift y sobrescrituras accidentales desde estados locales.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: En trabajo en equipo sí se requiere configuración adicional, especialmente estado remoto compartido, para evitar conflictos entre archivos de estado locales.
+
+Opción C es incorrecta: Guardar `terraform.tfstate` en control de versiones no se recomienda porque el estado puede contener datos sensibles y no ofrece controles seguros de bloqueo/concurrencia.
+
+Opción D es incorrecta: HashiCorp Vault está orientado principalmente a gestión de secretos, no a funcionar como backend estándar de estado de Terraform para operaciones colaborativas de estado.
+
+---
+
+## Question No. 307
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Terraform almacena el valor de una salida en su archivo de estado, incluso si el argumento `sensitive` está establecido en `true`.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** Marcar una salida como `sensitive = true` solo oculta el valor en la salida normal de la CLI y en algunas interfaces. Terraform igual conserva el valor real en el archivo de estado porque el estado debe mantener los datos reales para seguir recursos y dependencias.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: `sensitive = true` no evita que se guarde en el estado; controla la visibilidad, no la persistencia.
+
+---
+
+## Question No. 308
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Puedes instalar plugins community y partner usando `terraform init`.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform init` inicializa el directorio de trabajo e instala los plugins de proveedores requeridos por la configuración. Eso incluye proveedores community y partner disponibles en el Terraform Registry o en las fuentes de proveedor configuradas.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: La instalación de plugins/proveedores es una de las responsabilidades principales de `terraform init`, no de `plan` ni de `apply`.
