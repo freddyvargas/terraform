@@ -333,6 +333,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-305">Question No. 305</a><br>
 <a href="#question-no-306">Question No. 306</a><br>
 <a href="#question-no-307">Question No. 307</a><br>
+<a href="#question-no-308">Question No. 308</a><br>
 </td>
 </tr>
 </table>
@@ -7325,3 +7326,23 @@ Option D is incorrect: HashiCorp Vault is primarily for secrets management, not 
 **Incorrect options explanation:**
 
 Option B is incorrect: `sensitive = true` does not prevent storage in state; it controls visibility, not persistence.
+
+---
+
+## Question No. 308
+
+**Question Type:** Single Choice
+
+**Question:** You can install community and partner plugins using `terraform init`.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** `terraform init` initializes the working directory and installs the required provider plugins declared in the configuration. That includes community and partner providers available through the Terraform Registry or configured provider sources.
+
+**Incorrect options explanation:**
+
+Option B is incorrect: Plugin/provider installation is one of the core responsibilities of `terraform init`, not `plan` or `apply`.
