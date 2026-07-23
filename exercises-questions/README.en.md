@@ -338,6 +338,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-310">Question No. 310</a><br>
 <a href="#question-no-311">Question No. 311</a><br>
 <a href="#question-no-312">Question No. 312</a><br>
+<a href="#question-no-313">Question No. 313</a><br>
 </td>
 </tr>
 </table>
@@ -7460,3 +7461,29 @@ Option A is incorrect: `test` is not the provider name in the resource block str
 Option B is incorrect: `vpc` represents the resource type or kind within the AWS provider, not the provider itself. In `aws_vpc`, the provider prefix is `aws`.
 
 Option D is incorrect: `main` is typically the local name given to the resource block instance. It helps reference the resource in the configuration, but it is not the provider.
+
+---
+
+## Question No. 313
+
+**Question Type:** Single Choice
+
+**Question:** When you run `terraform apply -refresh-only`, which of the following is not consulted by Terraform to update the state file?
+
+**Options:**
+- A) Terraform configuration files defining the resources.
+- B) Authentication credentials for the provider.
+- C) The most recent state file.
+- D) The actual infrastructure as reported by the provider API.
+
+**Correct Answer:** A
+
+**Explanation:** In `-refresh-only` mode, Terraform updates state by reconciling existing state with real-world infrastructure data returned by provider APIs. To do that, it uses the current state and valid provider authentication. Resource-defining configuration files are not the source of truth for these refresh updates themselves, so they are not what Terraform consults to discover real infrastructure state changes.
+
+**Incorrect options explanation:**
+
+Option B is incorrect: Terraform must authenticate with the provider to read current remote object data during refresh.
+
+Option C is incorrect: Terraform starts from the current state snapshot and updates it based on what it reads remotely.
+
+Option D is incorrect: Provider API responses are exactly what Terraform uses to detect out-of-band changes and refresh the state.

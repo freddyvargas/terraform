@@ -338,6 +338,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-310">Question No. 310</a><br>
 <a href="#question-no-311">Question No. 311</a><br>
 <a href="#question-no-312">Question No. 312</a><br>
+<a href="#question-no-313">Question No. 313</a><br>
 </td>
 </tr>
 </table>
@@ -7456,3 +7457,29 @@ Opción A es incorrecta: `test` no es el nombre del provider en la estructura de
 Opción B es incorrecta: `vpc` representa el tipo o clase de recurso dentro del provider AWS, no el provider en sí. En `aws_vpc`, el prefijo del provider es `aws`.
 
 Opción D es incorrecta: `main` normalmente es el nombre local asignado a la instancia del bloque de recurso. Sirve para referenciar el recurso en la configuración, pero no es el provider.
+
+---
+
+## Question No. 313
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Cuando ejecutas `terraform apply -refresh-only`, ¿cuál de las siguientes opciones no consulta Terraform para actualizar el archivo de estado?
+
+**Opciones:**
+- A) Los archivos de configuración de Terraform que definen los recursos.
+- B) Las credenciales de autenticación del provider.
+- C) El archivo de estado más reciente.
+- D) La infraestructura real reportada por la API del provider.
+
+**Respuesta Correcta:** A
+
+**Explicación:** En modo `-refresh-only`, Terraform actualiza el estado conciliando el estado existente con la información real de la infraestructura obtenida desde las APIs del provider. Para eso usa el estado actual y credenciales válidas del provider. Los archivos de configuración que definen recursos no son la fuente que Terraform consulta para descubrir los cambios reales de infraestructura durante el refresh.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: Terraform necesita autenticarse con el provider para leer los datos actuales de los objetos remotos durante el refresh.
+
+Opción C es incorrecta: Terraform parte del snapshot de estado actual y lo actualiza según lo que detecta remotamente.
+
+Opción D es incorrecta: Las respuestas de la API del provider son precisamente la base para detectar cambios fuera de Terraform y refrescar el estado.
