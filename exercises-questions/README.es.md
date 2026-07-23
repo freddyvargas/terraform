@@ -344,6 +344,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-316">Question No. 316</a><br>
 <a href="#question-no-317">Question No. 317</a><br>
 <a href="#question-no-318">Question No. 318</a><br>
+<a href="#question-no-319">Question No. 319</a><br>
 </td>
 </tr>
 </table>
@@ -7613,3 +7614,30 @@ Opción D es incorrecta: El estado de Terraform no registra información persona
 **Explicación de opciones incorrectas:**
 
 Opción A es incorrecta: Los bloques `check` están diseñados intencionalmente para no bloquear. Su propósito es mostrar advertencias sobre el estado o las expectativas sin impedir que Terraform continúe la operación.
+
+## Question No. 319
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Tu equipo usa HCP Terraform para gestionar infraestructura. Necesitas hacer un cambio en una pila de infraestructura que se ejecuta en una nube pública. ¿Qué patrón sigue las mejores prácticas de Infraestructura como Código (IaC) para realizar el cambio?
+
+**Opciones:**
+- A) Clonar el repositorio que contiene el código de infraestructura y luego ejecutar el código.
+- B) Usar la consola de la nube pública para realizar el cambio.
+- C) Realizar el cambio a través del endpoint de la API de la nube pública.
+- D) Ejecutar la herramienta CLI de la nube pública para realizar el cambio.
+- E) Enviar un pull request y esperar la aprobación del merge del cambio.
+
+**Respuesta Correcta:** E
+
+**Explicación:** Las mejores prácticas de Infraestructura como Código (IaC) exigen que todos los cambios de infraestructura estén bajo control de versiones, sean revisados por pares y aprobados antes de ser aplicados. Enviar un pull request (PR) y esperar la aprobación del merge garantiza que el cambio pase por un flujo de revisión y aprobación adecuado antes de que HCP Terraform lo aplique. Este enfoque, comúnmente conocido como GitOps, mantiene el repositorio de código como la única fuente de verdad, proporciona un historial de auditoría completo y evita que cambios no revisados lleguen a producción.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: Clonar el repositorio y ejecutar el código localmente omite el proceso de revisión y aprobación. Los cambios deben pasar por el flujo de trabajo de PR en lugar de aplicarse directamente desde una copia local.
+
+Opción B es incorrecta: Realizar cambios a través de la consola de la nube pública (ClickOps) crea desvío de configuración (*configuration drift*): la infraestructura en vivo diverge del código almacenado en control de versiones. Esto viola un principio fundamental de IaC: el estado de la infraestructura siempre debe coincidir con su definición en código.
+
+Opción C es incorrecta: Usar el endpoint de la API de la nube pública directamente también genera desvío y omite el control de versiones, la revisión de código y el pipeline automatizado gestionado por HCP Terraform.
+
+Opción D es incorrecta: Ejecutar la herramienta CLI de la nube pública directamente tiene los mismos problemas que las opciones B y C: el cambio no se rastrea en control de versiones, no se revisa y no se aplica a través del flujo de trabajo controlado de HCP Terraform.

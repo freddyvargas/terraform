@@ -344,6 +344,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-316">Question No. 316</a><br>
 <a href="#question-no-317">Question No. 317</a><br>
 <a href="#question-no-318">Question No. 318</a><br>
+<a href="#question-no-319">Question No. 319</a><br>
 </td>
 </tr>
 </table>
@@ -7617,3 +7618,30 @@ Option D is incorrect: Terraform state does not record personal information abou
 **Incorrect options explanation:**
 
 Option A is incorrect: `check` blocks are intentionally non-blocking. Their purpose is to surface warnings about health or expectations without preventing Terraform from continuing the operation.
+
+## Question No. 319
+
+**Question Type:** Single Choice
+
+**Question:** Your team uses HCP Terraform to manage infrastructure. You need to make a change to an infrastructure stack running in a public cloud. Which pattern follows Infrastructure as Code best practices for making the change?
+
+**Options:**
+- A) Clone the repository containing your infrastructure code, and then run the code.
+- B) Use the public cloud console to make the change.
+- C) Make the change through the public cloud API endpoint.
+- D) Run the public cloud CLI tool to make the change.
+- E) Submit a pull request and wait for an approved merge of the change.
+
+**Correct Answer:** E
+
+**Explanation:** Infrastructure as Code (IaC) best practices require that all infrastructure changes be version-controlled, peer-reviewed, and approved before being applied. Submitting a pull request (PR) and waiting for an approved merge ensures the change goes through a proper review and approval workflow before HCP Terraform applies it. This approach, commonly known as GitOps, keeps the code repository as the single source of truth, provides a full audit trail, and prevents unreviewed changes from reaching production.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: Cloning the repository and running the code locally bypasses the review and approval process. Changes should go through a PR workflow rather than being applied directly from a local clone.
+
+Option B is incorrect: Making changes through the public cloud console (ClickOps) creates configuration drift — the live infrastructure diverges from the code stored in version control. This violates a fundamental IaC principle that infrastructure state must always match its code definition.
+
+Option C is incorrect: Using the public cloud API endpoint directly also creates drift and bypasses version control, code review, and the automated pipeline managed by HCP Terraform.
+
+Option D is incorrect: Running the public cloud CLI tool directly suffers from the same problems as options B and C: the change is not tracked in version control, not reviewed, and not applied through the controlled HCP Terraform workflow.
