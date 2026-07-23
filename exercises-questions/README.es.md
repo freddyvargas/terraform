@@ -7434,6 +7434,11 @@ Opción D es incorrecta: `terraform validate` no interactúa con el backend ni c
 
 **Pregunta:** Se muestra un bloque `resource` en el espacio de Exhibit de esta página. ¿Cuál es el provider de este recurso?
 
+**Exhibit:**
+```hcl
+resource "aws_vpc" "main" {}
+```
+
 **Opciones:**
 - A) test
 - B) vpc
