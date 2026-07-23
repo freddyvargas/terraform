@@ -7293,7 +7293,7 @@ Opción D es incorrecta: Hace referencia a `azurerm_resource_group.example.name`
 
 **Explicación:** Un backend de estado remoto es el enfoque recomendado para colaboración entre equipos porque centraliza el estado, permite flujos concurrentes más seguros (normalmente con bloqueo de estado) y reduce el riesgo de drift y sobrescrituras accidentales desde estados locales.
 
-**Explicación:**
+**Explicación de opciones incorrectas:**
 
 Opción B es incorrecta: En trabajo en equipo sí se requiere configuración adicional, especialmente estado remoto compartido, para evitar conflictos entre archivos de estado locales.
 

@@ -7297,7 +7297,7 @@ Option D is incorrect: It references `azurerm_resource_group.example.name`, but 
 
 **Explanation:** A remote state backend is the recommended approach for team collaboration because it centralizes state, supports safe concurrent workflows (often through state locking), and reduces the risk of drift and accidental overwrites from local state files.
 
-**Explanation:**
+**Incorrect options explanation:**
 
 Option B is incorrect: Team usage generally does require additional configuration, especially remote shared state, to avoid conflicting local state files.
 
