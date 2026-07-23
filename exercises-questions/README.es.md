@@ -332,6 +332,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-304">Question No. 304</a><br>
 <a href="#question-no-305">Question No. 305</a><br>
 <a href="#question-no-306">Question No. 306</a><br>
+<a href="#question-no-307">Question No. 307</a><br>
 </td>
 </tr>
 </table>
@@ -7300,3 +7301,23 @@ Opción B es incorrecta: En trabajo en equipo sí se requiere configuración adi
 Opción C es incorrecta: Guardar `terraform.tfstate` en control de versiones no se recomienda porque el estado puede contener datos sensibles y no ofrece controles seguros de bloqueo/concurrencia.
 
 Opción D es incorrecta: HashiCorp Vault está orientado principalmente a gestión de secretos, no a funcionar como backend estándar de estado de Terraform para operaciones colaborativas de estado.
+
+---
+
+## Question No. 307
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Terraform almacena el valor de una salida en su archivo de estado, incluso si el argumento `sensitive` está establecido en `true`.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** Marcar una salida como `sensitive = true` solo oculta el valor en la salida normal de la CLI y en algunas interfaces. Terraform igual conserva el valor real en el archivo de estado porque el estado debe mantener los datos reales para seguir recursos y dependencias.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: `sensitive = true` no evita que se guarde en el estado; controla la visibilidad, no la persistencia.

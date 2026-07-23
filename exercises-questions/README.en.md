@@ -332,6 +332,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-304">Question No. 304</a><br>
 <a href="#question-no-305">Question No. 305</a><br>
 <a href="#question-no-306">Question No. 306</a><br>
+<a href="#question-no-307">Question No. 307</a><br>
 </td>
 </tr>
 </table>
@@ -7304,3 +7305,23 @@ Option B is incorrect: Team usage generally does require additional configuratio
 Option C is incorrect: Storing `terraform.tfstate` in version control is discouraged because state can contain sensitive data and does not provide safe locking/concurrency controls.
 
 Option D is incorrect: HashiCorp Vault is primarily for secrets management, not as a standard Terraform state backend for collaborative state operations.
+
+---
+
+## Question No. 307
+
+**Question Type:** Single Choice
+
+**Question:** Terraform stores the value of an output in its state file, even if the `sensitive` argument is set to `true`.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** Marking an output as `sensitive = true` only hides the value from normal CLI display and some UI outputs. Terraform still keeps the real value in the state file because state must retain actual data to track resources and dependencies.
+
+**Incorrect options explanation:**
+
+Option B is incorrect: `sensitive = true` does not prevent storage in state; it controls visibility, not persistence.
