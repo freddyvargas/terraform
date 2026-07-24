@@ -323,7 +323,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Sección 2 — Preguntas 302 a 323</strong></td>
+<td colspan="6"><strong>Sección 2 — Preguntas 302 a 324</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -349,6 +349,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-321">Question No. 321</a><br>
 <a href="#question-no-322">Question No. 322</a><br>
 <a href="#question-no-323">Question No. 323</a><br>
+<a href="#question-no-324">Question No. 324</a><br>
 </td>
 </tr>
 </table>
@@ -7775,5 +7776,31 @@ Opción A es incorrecta: `TF_VAR_log` no es una variable de registro de Terrafor
 Opción B es incorrecta: `TF_LOG_PATH` especifica la **ruta del archivo** donde Terraform debe escribir su salida de registros. **No** habilita el registro por sí sola; únicamente redirige la salida de registros a un archivo. `TF_LOG` debe estar configurado con un nivel de registro válido para que ocurra cualquier registro; `TF_LOG_PATH` por sí sola no produce ninguna salida adicional.
 
 Opción D es incorrecta: Terraform no tiene una opción de "registro detallado" a nivel de proveedor dentro de los archivos `.tf`. El registro de diagnóstico se controla exclusivamente mediante variables de entorno (`TF_LOG` y opcionalmente `TF_LOG_PATH`), no a través de bloques de configuración.
+
+---
+
+## Question No. 324
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿`terraform init` crea un archivo `main.tf` de ejemplo en el directorio actual?
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** B
+
+**Explicación:** `terraform init` **no** crea un archivo `main.tf` de ejemplo en el directorio actual. Su propósito es inicializar un directorio de trabajo que contiene archivos de configuración de Terraform, realizando las siguientes tareas:
+
+- Descargar e instalar los plugins de proveedor referenciados en tu configuración.
+- Configurar el backend para almacenar el estado de Terraform.
+- Descargar los módulos referenciados.
+
+El comando asume que los archivos de configuración `.tf` ya existen en el directorio de trabajo. No genera ni crea archivos de configuración de ejemplo. Si deseas crear una nueva configuración, debes crear los archivos `.tf` manualmente o usar una herramienta/plantilla.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: `terraform init` no crea ningún archivo `.tf`, incluyendo `main.tf`. Solo prepara el directorio de trabajo descargando proveedores, configurando el backend e instalando módulos basándose en los archivos de configuración existentes.
 
 ---

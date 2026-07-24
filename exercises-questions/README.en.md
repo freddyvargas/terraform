@@ -323,7 +323,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Section 2 — Questions 302 to 323</strong></td>
+<td colspan="6"><strong>Section 2 — Questions 302 to 324</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -349,6 +349,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-321">Question No. 321</a><br>
 <a href="#question-no-322">Question No. 322</a><br>
 <a href="#question-no-323">Question No. 323</a><br>
+<a href="#question-no-324">Question No. 324</a><br>
 </td>
 </tr>
 </table>
@@ -7779,5 +7780,31 @@ Option A is incorrect: `TF_VAR_log` is not a Terraform logging variable. The `TF
 Option B is incorrect: `TF_LOG_PATH` specifies the **file path** where Terraform should write its log output. It does **not** enable logging by itself — it only redirects log output to a file. `TF_LOG` must be set to a valid log level for any logging to occur; `TF_LOG_PATH` alone produces no additional output.
 
 Option D is incorrect: Terraform does not have a provider-level "verbose logging" configuration option inside `.tf` files. Diagnostic logging is controlled exclusively through environment variables (`TF_LOG` and optionally `TF_LOG_PATH`), not through configuration blocks.
+
+---
+
+## Question No. 324
+
+**Question Type:** Single Choice
+
+**Question:** Does terraform init create an example main.tf file in the current directory?
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** B
+
+**Explanation:** `terraform init` does **not** create an example `main.tf` file in the current directory. Its purpose is to initialize a working directory containing Terraform configuration files by performing the following tasks:
+
+- Downloading and installing provider plugins referenced in your configuration.
+- Setting up the backend for storing Terraform state.
+- Downloading any referenced modules.
+
+The command assumes that `.tf` configuration files already exist in the working directory. It does not generate or scaffold any example configuration files. If you want to create a new configuration, you must create the `.tf` files manually or use a tool/template.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: `terraform init` does not create any `.tf` files, including `main.tf`. It only prepares the working directory by downloading providers, configuring the backend, and installing modules based on existing configuration files.
 
 ---
