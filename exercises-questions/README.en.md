@@ -323,7 +323,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Section 2 — Questions 302 to 322</strong></td>
+<td colspan="6"><strong>Section 2 — Questions 302 to 323</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -348,6 +348,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-320">Question No. 320</a><br>
 <a href="#question-no-321">Question No. 321</a><br>
 <a href="#question-no-322">Question No. 322</a><br>
+<a href="#question-no-323">Question No. 323</a><br>
 </td>
 </tr>
 </table>
@@ -7738,5 +7739,45 @@ Option B is incorrect: Terraform does not require you to specify the path to a `
 Option D is incorrect: The database platform and version are not part of the `import` block. That information is managed through the resource block's attributes (e.g., `engine` and `engine_version`) and is reconciled by Terraform during plan/apply after the import.
 
 Option E is incorrect: The connection string is not a field in the `import` block. Connection details are provider-level configuration (credentials, endpoints) and are not embedded in the import block itself.
+
+---
+
+## Question No. 323
+
+**Question Type:** Single Choice
+
+**Question:** You need to determine from which paths Terraform is loading the providers referenced in your *.tf files. How can you enable additional logging to see this information?
+
+**Options:**
+- A) Set the environment variable TF_VAR_log=TRACE.
+- B) Set the environment variable TF_LOG_PATH.
+- C) Set the environment variable TF_LOG=TRACE.
+- D) Set verbose logging for each provider in your Terraform configuration.
+
+**Correct Answer:** C
+
+**Explanation:** Setting the environment variable `TF_LOG=TRACE` enables Terraform's most detailed level of logging. At the TRACE level, Terraform outputs a large amount of debug information including the exact file system paths from which provider plugins are being loaded. This is the standard mechanism Terraform provides for enabling additional diagnostic logging.
+
+Example (Linux/macOS):
+```bash
+export TF_LOG=TRACE
+terraform init
+```
+
+Example (Windows PowerShell):
+```powershell
+$env:TF_LOG = "TRACE"
+terraform init
+```
+
+The available log levels in increasing verbosity are: `ERROR`, `WARN`, `INFO`, `DEBUG`, `TRACE`.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: `TF_VAR_log` is not a Terraform logging variable. The `TF_VAR_` prefix is reserved for passing input variable values to a Terraform configuration (e.g., `TF_VAR_region=us-east-1`), not for controlling log output.
+
+Option B is incorrect: `TF_LOG_PATH` specifies the **file path** where Terraform should write its log output. It does **not** enable logging by itself — it only redirects log output to a file. `TF_LOG` must be set to a valid log level for any logging to occur; `TF_LOG_PATH` alone produces no additional output.
+
+Option D is incorrect: Terraform does not have a provider-level "verbose logging" configuration option inside `.tf` files. Diagnostic logging is controlled exclusively through environment variables (`TF_LOG` and optionally `TF_LOG_PATH`), not through configuration blocks.
 
 ---

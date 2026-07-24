@@ -323,7 +323,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Sección 2 — Preguntas 302 a 322</strong></td>
+<td colspan="6"><strong>Sección 2 — Preguntas 302 a 323</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -348,6 +348,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-320">Question No. 320</a><br>
 <a href="#question-no-321">Question No. 321</a><br>
 <a href="#question-no-322">Question No. 322</a><br>
+<a href="#question-no-323">Question No. 323</a><br>
 </td>
 </tr>
 </table>
@@ -7734,5 +7735,45 @@ Opción B es incorrecta: Terraform no requiere que especifiques la ruta a un arc
 Opción D es incorrecta: La plataforma y la versión de la base de datos no forman parte del bloque `import`. Esa información se gestiona mediante los atributos del bloque de recursos (por ejemplo, `engine` y `engine_version`) y es reconciliada por Terraform durante el plan/apply después de la importación.
 
 Opción E es incorrecta: La cadena de conexión no es un campo del bloque `import`. Los detalles de conexión son configuración a nivel de proveedor (credenciales, endpoints) y no se incluyen dentro del bloque `import`.
+
+---
+
+## Question No. 323
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Necesitas determinar desde qué rutas Terraform está cargando los proveedores referenciados en tus archivos *.tf. ¿Cómo puedes habilitar el registro adicional para ver esta información?
+
+**Opciones:**
+- A) Establecer la variable de entorno TF_VAR_log=TRACE.
+- B) Establecer la variable de entorno TF_LOG_PATH.
+- C) Establecer la variable de entorno TF_LOG=TRACE.
+- D) Configurar el registro detallado (verbose logging) para cada proveedor en tu configuración de Terraform.
+
+**Respuesta Correcta:** C
+
+**Explicación:** Establecer la variable de entorno `TF_LOG=TRACE` habilita el nivel de registro más detallado de Terraform. En el nivel TRACE, Terraform emite una gran cantidad de información de diagnóstico, incluidas las rutas exactas del sistema de archivos desde las cuales se están cargando los plugins de proveedor. Este es el mecanismo estándar que provee Terraform para habilitar el registro de diagnóstico adicional.
+
+Ejemplo (Linux/macOS):
+```bash
+export TF_LOG=TRACE
+terraform init
+```
+
+Ejemplo (Windows PowerShell):
+```powershell
+$env:TF_LOG = "TRACE"
+terraform init
+```
+
+Los niveles de registro disponibles en orden creciente de detalle son: `ERROR`, `WARN`, `INFO`, `DEBUG`, `TRACE`.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: `TF_VAR_log` no es una variable de registro de Terraform. El prefijo `TF_VAR_` está reservado para pasar valores de variables de entrada a una configuración de Terraform (por ejemplo, `TF_VAR_region=us-east-1`), no para controlar la salida de registros.
+
+Opción B es incorrecta: `TF_LOG_PATH` especifica la **ruta del archivo** donde Terraform debe escribir su salida de registros. **No** habilita el registro por sí sola; únicamente redirige la salida de registros a un archivo. `TF_LOG` debe estar configurado con un nivel de registro válido para que ocurra cualquier registro; `TF_LOG_PATH` por sí sola no produce ninguna salida adicional.
+
+Opción D es incorrecta: Terraform no tiene una opción de "registro detallado" a nivel de proveedor dentro de los archivos `.tf`. El registro de diagnóstico se controla exclusivamente mediante variables de entorno (`TF_LOG` y opcionalmente `TF_LOG_PATH`), no a través de bloques de configuración.
 
 ---
