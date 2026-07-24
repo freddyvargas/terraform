@@ -323,7 +323,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Sección 2 — Preguntas 302 a 321</strong></td>
+<td colspan="6"><strong>Sección 2 — Preguntas 302 a 322</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -347,6 +347,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-319">Question No. 319</a><br>
 <a href="#question-no-320">Question No. 320</a><br>
 <a href="#question-no-321">Question No. 321</a><br>
+<a href="#question-no-322">Question No. 322</a><br>
 </td>
 </tr>
 </table>
@@ -7693,5 +7694,45 @@ Opción A es incorrecta como respuesta: La reutilización de código **sí** es 
 Opción B es incorrecta como respuesta: La automatización **sí** es un beneficio de IaC. IaC permite automatizar completamente el aprovisionamiento y la gestión de infraestructura, reduciendo el esfuerzo manual y los errores humanos.
 
 Opción D es incorrecta como respuesta: El versionamiento **sí** es un beneficio de IaC. El código de infraestructura puede almacenarse en sistemas de control de versiones (como Git), lo que permite el seguimiento de cambios, las reversiones, las auditorías y la colaboración en equipo.
+
+---
+
+## Question No. 322
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** Deseas incorporar una base de datos existente bajo la gestión de Terraform. ¿Qué información se requiere para crear un nuevo bloque `import` para la base de datos?
+
+Selecciona las 2 respuestas correctas:
+
+**Opciones:**
+- A) La dirección del recurso destino del bloque que gestionará la base de datos.
+- B) La ruta al archivo `.tf` que contiene el bloque de recursos de la base de datos.
+- C) El ID asociado con la base de datos actual en el proveedor de nube.
+- D) La plataforma y versión de la base de datos que está ejecutando el recurso existente.
+- E) La cadena de conexión que Terraform usará para conectarse y gestionar la base de datos.
+
+**Respuesta Correcta:** A, C
+
+**Explicación:** Un bloque `import` en Terraform requiere exactamente dos piezas de información:
+
+1. **`to`** — la dirección del recurso destino (por ejemplo, `aws_db_instance.mi_db`). Esto le indica a Terraform qué bloque de recursos en tu configuración gestionará la infraestructura importada.
+2. **`id`** — el identificador único del recurso existente en el proveedor de nube (por ejemplo, un ARN, un ID de recurso o un nombre). Esto le indica a Terraform qué objeto real debe vincular al bloque de recursos.
+
+Ejemplo:
+```hcl
+import {
+  to = aws_db_instance.mi_db
+  id = "mi-identificador-de-db-existente"
+}
+```
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: Terraform no requiere que especifiques la ruta a un archivo `.tf` al escribir un bloque `import`. Terraform descubre automáticamente todos los archivos `.tf` dentro del directorio de trabajo durante `terraform init` / `terraform plan`.
+
+Opción D es incorrecta: La plataforma y la versión de la base de datos no forman parte del bloque `import`. Esa información se gestiona mediante los atributos del bloque de recursos (por ejemplo, `engine` y `engine_version`) y es reconciliada por Terraform durante el plan/apply después de la importación.
+
+Opción E es incorrecta: La cadena de conexión no es un campo del bloque `import`. Los detalles de conexión son configuración a nivel de proveedor (credenciales, endpoints) y no se incluyen dentro del bloque `import`.
 
 ---

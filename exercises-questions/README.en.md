@@ -323,7 +323,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Section 2 — Questions 302 to 321</strong></td>
+<td colspan="6"><strong>Section 2 — Questions 302 to 322</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -347,6 +347,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-319">Question No. 319</a><br>
 <a href="#question-no-320">Question No. 320</a><br>
 <a href="#question-no-321">Question No. 321</a><br>
+<a href="#question-no-322">Question No. 322</a><br>
 </td>
 </tr>
 </table>
@@ -7697,5 +7698,45 @@ Option A is incorrect as an answer: Reusability of code **is** a benefit of IaC.
 Option B is incorrect as an answer: Automation **is** a benefit of IaC. IaC enables infrastructure provisioning and management to be fully automated, reducing manual effort and human error.
 
 Option D is incorrect as an answer: Versioning **is** a benefit of IaC. Infrastructure code can be stored in version control systems (like Git), enabling change tracking, rollbacks, audits, and team collaboration.
+
+---
+
+## Question No. 322
+
+**Question Type:** Multiple Choice
+
+**Question:** You want to bring an existing database under Terraform management. What information is required to create a new import block for the database?
+
+Pick the 2 correct responses below:
+
+**Options:**
+- A) The destination resource address of the block that will manage the database.
+- B) The path to the .tf file that contains the database resource block.
+- C) The ID associated with the current database on the cloud provider.
+- D) The database platform and version that the existing resource is running.
+- E) The connection string that Terraform will use to connect and manage the database.
+
+**Correct Answer:** A, C
+
+**Explanation:** An `import` block in Terraform requires exactly two pieces of information:
+
+1. **`to`** — the destination resource address (e.g., `aws_db_instance.my_db`). This tells Terraform which resource block in your configuration will manage the imported infrastructure.
+2. **`id`** — the cloud provider's unique identifier for the existing resource (e.g., an ARN, resource ID, or name). This tells Terraform which real-world object to bind to the resource block.
+
+Example:
+```hcl
+import {
+  to = aws_db_instance.my_db
+  id = "my-existing-db-identifier"
+}
+```
+
+**Incorrect options explanation:**
+
+Option B is incorrect: Terraform does not require you to specify the path to a `.tf` file when writing an `import` block. Terraform automatically discovers all `.tf` files within the working directory during `terraform init` / `terraform plan`.
+
+Option D is incorrect: The database platform and version are not part of the `import` block. That information is managed through the resource block's attributes (e.g., `engine` and `engine_version`) and is reconciled by Terraform during plan/apply after the import.
+
+Option E is incorrect: The connection string is not a field in the `import` block. Connection details are provider-level configuration (credentials, endpoints) and are not embedded in the import block itself.
 
 ---
