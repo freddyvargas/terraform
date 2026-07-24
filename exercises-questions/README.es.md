@@ -346,6 +346,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-318">Question No. 318</a><br>
 <a href="#question-no-319">Question No. 319</a><br>
 <a href="#question-no-320">Question No. 320</a><br>
+<a href="#question-no-321">Question No. 321</a><br>
 </td>
 </tr>
 </table>
@@ -7666,5 +7667,31 @@ Opción A es incorrecta: El bloque `cloud` dentro del bloque `terraform` se usa 
 Opción C es incorrecta: `TERAFORM_CLOUD` no es una variable de entorno reconocida por Terraform (nótese el error tipográfico). Incluso la variable válida `TF_CLOUD` aplica únicamente a HCP Terraform y no configura backends remotos arbitrarios.
 
 Opción D es incorrecta: `TERRAFORM_BACKEND` no es una variable de entorno válida de Terraform. No existe ninguna variable de entorno con ese nombre que configure el comportamiento del backend.
+
+---
+
+## Question No. 321
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál NO es un beneficio de adoptar IaC (Infrastructure as Code)?
+
+**Opciones:**
+- A) Reutilización de código
+- B) Automatización
+- C) Una interfaz gráfica de usuario (GUI)
+- D) Versionamiento
+
+**Respuesta Correcta:** C
+
+**Explicación:** IaC (Infrastructure as Code) proporciona varios beneficios clave, entre ellos la reutilización de código (A), la automatización (B) y el versionamiento (D). Sin embargo, una interfaz gráfica de usuario (GUI) **no** es un beneficio de IaC; de hecho, IaC se aleja precisamente de las interacciones manuales basadas en GUI para adoptar procesos automatizados y dirigidos por código. Herramientas como Terraform se operan principalmente a través de la línea de comandos o pipelines de CI/CD, no mediante interfaces gráficas. Requerir una GUI contradice los principios fundamentales de IaC.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta como respuesta: La reutilización de código **sí** es un beneficio de IaC. Es posible escribir módulos y configuraciones reutilizables que pueden compartirse entre equipos y proyectos, evitando la duplicación e inconsistencias.
+
+Opción B es incorrecta como respuesta: La automatización **sí** es un beneficio de IaC. IaC permite automatizar completamente el aprovisionamiento y la gestión de infraestructura, reduciendo el esfuerzo manual y los errores humanos.
+
+Opción D es incorrecta como respuesta: El versionamiento **sí** es un beneficio de IaC. El código de infraestructura puede almacenarse en sistemas de control de versiones (como Git), lo que permite el seguimiento de cambios, las reversiones, las auditorías y la colaboración en equipo.
 
 ---

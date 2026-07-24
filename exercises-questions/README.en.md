@@ -346,6 +346,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-318">Question No. 318</a><br>
 <a href="#question-no-319">Question No. 319</a><br>
 <a href="#question-no-320">Question No. 320</a><br>
+<a href="#question-no-321">Question No. 321</a><br>
 </td>
 </tr>
 </table>
@@ -7670,5 +7671,31 @@ Option A is incorrect: A `cloud` block inside the `terraform` block is used spec
 Option C is incorrect: `TERAFORM_CLOUD` is not a recognized Terraform environment variable (note the typo). Even the valid variable `TF_CLOUD` is only applicable to HCP Terraform and does not configure arbitrary remote backends.
 
 Option D is incorrect: `TERRAFORM_BACKEND` is not a valid Terraform environment variable. There is no environment variable with this name that configures backend behavior.
+
+---
+
+## Question No. 321
+
+**Question Type:** Single Choice
+
+**Question:** Which is not a benefit of adopting IaC (Infrastructure as Code)?
+
+**Options:**
+- A) Reusability of code
+- B) Automation
+- C) A GUI (Graphical User Interface)
+- D) Versioning
+
+**Correct Answer:** C
+
+**Explanation:** IaC (Infrastructure as Code) provides several key benefits, including reusability of code (A), automation (B), and versioning (D). However, a GUI (Graphical User Interface) is **not** a benefit of IaC — in fact, IaC moves away from manual GUI-based interactions toward code-driven, automated processes. Tools like Terraform are operated primarily through the command line or CI/CD pipelines, not through graphical interfaces. Requiring a GUI would contradict the core principles of IaC.
+
+**Incorrect options explanation:**
+
+Option A is incorrect as an answer: Reusability of code **is** a benefit of IaC. You can write reusable modules and configurations that can be shared across teams and projects, avoiding duplication and inconsistency.
+
+Option B is incorrect as an answer: Automation **is** a benefit of IaC. IaC enables infrastructure provisioning and management to be fully automated, reducing manual effort and human error.
+
+Option D is incorrect as an answer: Versioning **is** a benefit of IaC. Infrastructure code can be stored in version control systems (like Git), enabling change tracking, rollbacks, audits, and team collaboration.
 
 ---
