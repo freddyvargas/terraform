@@ -323,7 +323,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Sección 2 — Preguntas 302 a 325</strong></td>
+<td colspan="6"><strong>Sección 2 — Preguntas 302 a 326</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -351,6 +351,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-323">Question No. 323</a><br>
 <a href="#question-no-324">Question No. 324</a><br>
 <a href="#question-no-325">Question No. 325</a><br>
+<a href="#question-no-326">Question No. 326</a><br>
 </td>
 </tr>
 </table>
@@ -7828,5 +7829,33 @@ Opción A es incorrecta: `terraform init` no crea ningún archivo `.tf`, incluye
 Opción A es incorrecta: Guardar secretos en texto plano en una unidad compartida es inseguro y aumenta el riesgo de acceso no autorizado.
 
 Opción C es incorrecta: Versionar archivos `terraform.tfvars` con secretos en el control de versiones está desaconsejado porque los secretos pueden quedar en texto plano y trazables de forma permanente en el historial de Git.
+
+---
+
+## Question No. 326
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Administras dos workspaces en tu organización de HCP Terraform. El primer workspace administra la configuración de red. El segundo workspace administra los recursos de cómputo y obtiene valores del workspace de red.
+
+¿Qué funcionalidad de HCP Terraform te permite ejecutar una operación de apply en el workspace de cómputo cada vez que actualizas el workspace de red?
+
+**Opciones:**
+- A) Run triggers
+- B) Policy
+- C) Run tasks
+- D) Projects
+
+**Respuesta Correcta:** A
+
+**Explicación:** Los run triggers están diseñados para encolar automáticamente ejecuciones en workspaces dependientes cuando un workspace de origen completa un apply y actualiza salidas/estado compartido. En este escenario, el workspace de cómputo depende de valores del workspace de red, por lo que configurar un run trigger desde red hacia cómputo es la funcionalidad que garantiza que cómputo se aplique después de las actualizaciones de red.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: Las policies aplican reglas de gobierno sobre las ejecuciones, pero no orquestan la ejecución entre workspaces dependientes.
+
+Opción C es incorrecta: Los run tasks integran verificaciones/acciones externas en etapas específicas de una ejecución, pero no disparan automáticamente applies en otro workspace cuando cambia uno.
+
+Opción D es incorrecta: Projects ayuda a organizar workspaces y gestionar permisos a un nivel más alto, pero no proporciona orquestación de ejecuciones entre workspaces.
 
 ---

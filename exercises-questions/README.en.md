@@ -323,7 +323,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Section 2 — Questions 302 to 325</strong></td>
+<td colspan="6"><strong>Section 2 — Questions 302 to 326</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -351,6 +351,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-323">Question No. 323</a><br>
 <a href="#question-no-324">Question No. 324</a><br>
 <a href="#question-no-325">Question No. 325</a><br>
+<a href="#question-no-326">Question No. 326</a><br>
 </td>
 </tr>
 </table>
@@ -7832,5 +7833,33 @@ Option A is incorrect: `terraform init` does not create any `.tf` files, includi
 Option A is incorrect: Storing secrets in plaintext on a shared drive is insecure and increases the risk of unauthorized access.
 
 Option C is incorrect: Committing `terraform.tfvars` files with secrets into version control is discouraged because secrets may be stored in plaintext and become permanently traceable in Git history.
+
+---
+
+## Question No. 326
+
+**Question Type:** Single Choice
+
+**Question:** You manage two workspaces in your HCP Terraform organization. The first workspace manages your network configuration. The second workspace manages your compute resources and retrieves values from the networking workspace.
+
+What HCP Terraform feature lets you run an apply operation on the compute workspace every time you update the networking workspace?
+
+**Options:**
+- A) Run triggers
+- B) Policy
+- C) Run tasks
+- D) Projects
+
+**Correct Answer:** A
+
+**Explanation:** Run triggers are designed to automatically queue runs in downstream workspaces when a source workspace completes an apply and updates shared outputs/state. In this scenario, the compute workspace depends on values from the networking workspace, so configuring a run trigger from networking to compute is the feature that ensures compute is applied after networking updates.
+
+**Incorrect options explanation:**
+
+Option B is incorrect: Policies enforce governance rules on runs, but they do not orchestrate dependent workspace execution.
+
+Option C is incorrect: Run tasks integrate external checks/actions at specific stages of a run, but they do not automatically trigger applies in another workspace when one workspace changes.
+
+Option D is incorrect: Projects help organize workspaces and manage permissions at a higher level, but they do not provide cross-workspace run orchestration.
 
 ---
