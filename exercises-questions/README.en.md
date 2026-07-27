@@ -7846,10 +7846,10 @@ Option C is incorrect: Committing `terraform.tfvars` files with secrets into ver
 What HCP Terraform feature lets you run an apply operation on the compute workspace every time you update the networking workspace?
 
 **Options:**
-- A) Run triggers
-- B) Policy
-- C) Run tasks
-- D) Projects
+- A) `Run triggers`
+- B) `Policy`
+- C) `Run tasks`
+- D) `Projects`
 
 **Correct Answer:** A
 

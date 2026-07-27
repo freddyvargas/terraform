@@ -7842,10 +7842,10 @@ Opción C es incorrecta: Versionar archivos `terraform.tfvars` con secretos en e
 ¿Qué funcionalidad de HCP Terraform te permite ejecutar una operación de apply en el workspace de cómputo cada vez que actualizas el workspace de red?
 
 **Opciones:**
-- A) Run triggers
-- B) Policy
-- C) Run tasks
-- D) Projects
+- A) `Run triggers`
+- B) `Policy`
+- C) `Run tasks`
+- D) `Projects`
 
 **Respuesta Correcta:** A
 
