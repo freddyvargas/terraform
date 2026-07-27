@@ -357,6 +357,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-329">Question No. 329</a><br>
 <a href="#question-no-330">Question No. 330</a><br>
 <a href="#question-no-331">Question No. 331</a><br>
+<a href="#question-no-332">Question No. 332</a><br>
 </td>
 </tr>
 </table>
@@ -8038,5 +8039,31 @@ Opción B es incorrecta: `terraform console` es un evaluador de expresiones de s
 Opción C es incorrecta: Editar manualmente el archivo `terraform.tfstate` no está soportado, es propenso a errores y está totalmente desaconsejado. Terraform puede sobrescribir o rechazar un archivo de estado editado manualmente.
 
 Opción D es incorrecta: Renombrar recursos en la consola del proveedor cloud no actualiza el estado de Terraform. Terraform seguiría viendo una discrepancia y planificaría un ciclo de destrucción/recreación.
+
+---
+
+## Question No. 332
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Acabas de escalar tu infraestructura de VMs y te das cuenta de que configuraste la variable `count` con un valor incorrecto. Corriges el valor y guardas el cambio. ¿Qué debes hacer a continuación para que tu infraestructura coincida con tu configuración?
+
+**Opciones:**
+- A) Reinicializar porque tu configuración ha cambiado.
+- B) Inspeccionar todos los outputs de Terraform para asegurarte de que son correctos.
+- C) Inspeccionar tu estado de Terraform porque deseas cambiarlo.
+- D) Ejecutar terraform apply y confirmar los cambios planificados.
+
+**Respuesta Correcta:** D
+
+**Explicación:** Después de corregir el valor de la variable `count` en tu configuración, el siguiente paso obligatorio es ejecutar `terraform apply`. Terraform generará un plan que mostrará los cambios necesarios (escalar el número de instancias de VM hacia arriba o hacia abajo) y te pedirá confirmación. Una vez confirmado, actualiza la infraestructura real para que coincida con la nueva configuración. Este flujo de trabajo edición → apply es el ciclo de vida estándar de Terraform para cualquier cambio de configuración.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: `terraform init` (reinicializar) es necesario cuando agregas o cambias fuentes de proveedores o módulos, no cuando actualizas valores de variables. Los proveedores y módulos existentes ya están instalados.
+
+Opción B es incorrecta: Inspeccionar los outputs de Terraform muestra los valores computados después de un apply; no cambia la infraestructura. Revisar los outputs es útil después de un apply, no antes.
+
+Opción C es incorrecta: Inspeccionar el estado con `terraform state list` o `terraform show` es una operación de solo lectura. Te indica lo que Terraform conoce actualmente sobre la infraestructura, pero no altera nada ni alinea la infraestructura con la nueva configuración.
 
 ---

@@ -357,6 +357,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-329">Question No. 329</a><br>
 <a href="#question-no-330">Question No. 330</a><br>
 <a href="#question-no-331">Question No. 331</a><br>
+<a href="#question-no-332">Question No. 332</a><br>
 </td>
 </tr>
 </table>
@@ -8042,5 +8043,31 @@ Option B is incorrect: `terraform console` is a read-only expression evaluator f
 Option C is incorrect: Manually editing the `terraform.tfstate` file is unsupported, error-prone, and strongly discouraged. Terraform may overwrite or reject a hand-edited state file.
 
 Option D is incorrect: Renaming resources in the cloud provider's console does not update Terraform's state. Terraform would still see a mismatch and plan a destroy/recreate cycle.
+
+---
+
+## Question No. 332
+
+**Question Type:** Single Choice
+
+**Question:** You just scaled your VM infrastructure and realize you set the count variable to the wrong value. You correct the value and save your change. What must you do next to make your infrastructure match your configuration?
+
+**Options:**
+- A) Reinitialize because your configuration has changed.
+- B) Inspect all Terraform outputs to make sure they are correct.
+- C) Inspect your Terraform state because you want to change it.
+- D) Run terraform apply and confirm the planned changes.
+
+**Correct Answer:** D
+
+**Explanation:** After correcting the `count` variable value in your configuration, the next required step is to run `terraform apply`. Terraform will generate a plan showing the changes needed (scaling the number of VM instances up or down) and prompt you to confirm. Once confirmed, it updates the real infrastructure to match the new configuration. This edit → apply workflow is the standard Terraform lifecycle for any configuration change.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: `terraform init` (reinitialize) is required when you add or change provider/module sources, not when you update variable values. The existing providers and modules are already installed.
+
+Option B is incorrect: Inspecting Terraform outputs shows computed values after apply; it does not change infrastructure. Reviewing outputs is useful after an apply, not before.
+
+Option C is incorrect: Inspecting the state with `terraform state list` or `terraform show` is a read-only operation. It tells you what Terraform currently knows about the infrastructure but does not alter anything or bring infrastructure in line with the new configuration.
 
 ---
