@@ -356,6 +356,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-328">Question No. 328</a><br>
 <a href="#question-no-329">Question No. 329</a><br>
 <a href="#question-no-330">Question No. 330</a><br>
+<a href="#question-no-331">Question No. 331</a><br>
 </td>
 </tr>
 </table>
@@ -8015,5 +8016,31 @@ Option A is incorrect: State drift is detected during planning/refresh operation
 Option B is incorrect: HCL accepts tabs and spaces for indentation; tabs are not a validation error by themselves.
 
 Option D is incorrect: A missing required variable declaration can produce a validation error, so at least one option does return an error.
+
+---
+
+## Question No. 331
+
+**Question Type:** Single Choice
+
+**Question:** You've just finished refactoring part of your Terraform workspace's configuration to use a module to manage some of your resources. When you plan your changes, you notice that Terraform will destroy and recreate the affected resources. Doing so could cause unintended downtime in the application your workspace manages. What supported approach should you take to complete the refactor without destroying and recreating your resources?
+
+**Options:**
+- A) Add moved blocks to your configuration to let Terraform know the new resource addresses for the affected resources.
+- B) Run the terraform console command to edit your workspace's state and update the resource names.
+- C) Manually edit your terraform.tfstate file and update the resource names.
+- D) Open your cloud provider's console and rename the affected resources.
+
+**Correct Answer:** A
+
+**Explanation:** Terraform supports `moved` blocks, which allow you to declare that a resource has been renamed or moved to a different address (for example, into a module). When Terraform processes a `moved` block, it updates the state to reflect the new address without destroying and recreating the resource, preventing downtime.
+
+**Incorrect options explanation:**
+
+Option B is incorrect: `terraform console` is a read-only expression evaluator for inspecting values; it cannot edit workspace state or rename resources in state.
+
+Option C is incorrect: Manually editing the `terraform.tfstate` file is unsupported, error-prone, and strongly discouraged. Terraform may overwrite or reject a hand-edited state file.
+
+Option D is incorrect: Renaming resources in the cloud provider's console does not update Terraform's state. Terraform would still see a mismatch and plan a destroy/recreate cycle.
 
 ---

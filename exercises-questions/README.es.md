@@ -356,6 +356,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-328">Question No. 328</a><br>
 <a href="#question-no-329">Question No. 329</a><br>
 <a href="#question-no-330">Question No. 330</a><br>
+<a href="#question-no-331">Question No. 331</a><br>
 </td>
 </tr>
 </table>
@@ -8011,5 +8012,31 @@ Opción A es incorrecta: El drift de estado se detecta durante operaciones de pl
 Opción B es incorrecta: HCL acepta tabulaciones y espacios para la indentación; usar tabulaciones no genera por sí solo un error de validación.
 
 Opción D es incorrecta: La ausencia de una declaración de variable requerida sí puede producir un error de validación, por lo que al menos una opción sí devuelve error.
+
+---
+
+## Question No. 331
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Acabas de terminar de refactorizar parte de la configuración de tu workspace de Terraform para usar un módulo que gestione algunos de tus recursos. Cuando planificas los cambios, notas que Terraform destruirá y recreará los recursos afectados. Hacerlo podría causar un tiempo de inactividad no deseado en la aplicación que gestiona tu workspace. ¿Qué enfoque soportado debes adoptar para completar la refactorización sin destruir y recrear tus recursos?
+
+**Opciones:**
+- A) Agregar bloques `moved` a tu configuración para que Terraform conozca las nuevas direcciones de recursos para los recursos afectados.
+- B) Ejecutar el comando terraform console para editar el estado de tu workspace y actualizar los nombres de los recursos.
+- C) Editar manualmente tu archivo terraform.tfstate y actualizar los nombres de los recursos.
+- D) Abrir la consola de tu proveedor cloud y renombrar los recursos afectados.
+
+**Respuesta Correcta:** A
+
+**Explicación:** Terraform soporta los bloques `moved`, que permiten declarar que un recurso ha sido renombrado o movido a una dirección diferente (por ejemplo, dentro de un módulo). Cuando Terraform procesa un bloque `moved`, actualiza el estado para reflejar la nueva dirección sin destruir ni recrear el recurso, evitando así el tiempo de inactividad.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: `terraform console` es un evaluador de expresiones de solo lectura para inspeccionar valores; no puede editar el estado del workspace ni renombrar recursos en el estado.
+
+Opción C es incorrecta: Editar manualmente el archivo `terraform.tfstate` no está soportado, es propenso a errores y está totalmente desaconsejado. Terraform puede sobrescribir o rechazar un archivo de estado editado manualmente.
+
+Opción D es incorrecta: Renombrar recursos en la consola del proveedor cloud no actualiza el estado de Terraform. Terraform seguiría viendo una discrepancia y planificaría un ciclo de destrucción/recreación.
 
 ---
