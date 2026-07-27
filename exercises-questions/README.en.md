@@ -350,6 +350,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-322">Question No. 322</a><br>
 <a href="#question-no-323">Question No. 323</a><br>
 <a href="#question-no-324">Question No. 324</a><br>
+<a href="#question-no-325">Question No. 325</a><br>
 </td>
 </tr>
 </table>
@@ -7806,5 +7807,30 @@ The command assumes that `.tf` configuration files already exist in the working 
 **Incorrect options explanation:**
 
 Option A is incorrect: `terraform init` does not create any `.tf` files, including `main.tf`. It only prepares the working directory by downloading providers, configuring the backend, and installing modules based on existing configuration files.
+
+---
+
+## Question No. 325
+
+**Question Type:** Multiple Choice
+
+**Question:** Where does HashiCorp recommend you store API tokens and other secrets within your team's Terraform workspaces?
+
+**Options:**
+- A) In a plaintext document on a shared drive.
+- B) In HashiCorp Vault.
+- C) In a `terraform.tfvars` file, checked into your version control system.
+- D) In an environment variable and referenced with `TF_VAR_variablename`.
+- E) In an HCP Terraform variable, with the sensitive option checked.
+
+**Correct Answer:** B, D, E
+
+**Explanation:** HashiCorp recommends storing secrets in systems and mechanisms designed for secure secret handling. In Terraform workflows, this includes using HashiCorp Vault, using environment variables for runtime injection, and using sensitive variables in HCP Terraform so values are masked in UI and logs. These methods reduce secret exposure and align with IaC security best practices.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: Storing secrets in plaintext on a shared drive is insecure and increases the risk of unauthorized access.
+
+Option C is incorrect: Committing `terraform.tfvars` files with secrets into version control is discouraged because secrets may be stored in plaintext and become permanently traceable in Git history.
 
 ---

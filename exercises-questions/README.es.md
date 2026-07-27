@@ -350,6 +350,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-322">Question No. 322</a><br>
 <a href="#question-no-323">Question No. 323</a><br>
 <a href="#question-no-324">Question No. 324</a><br>
+<a href="#question-no-325">Question No. 325</a><br>
 </td>
 </tr>
 </table>
@@ -7802,5 +7803,30 @@ El comando asume que los archivos de configuración `.tf` ya existen en el direc
 **Explicación de opciones incorrectas:**
 
 Opción A es incorrecta: `terraform init` no crea ningún archivo `.tf`, incluyendo `main.tf`. Solo prepara el directorio de trabajo descargando proveedores, configurando el backend e instalando módulos basándose en los archivos de configuración existentes.
+
+---
+
+## Question No. 325
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Dónde recomienda HashiCorp almacenar los tokens de API y otros secretos dentro de los workspaces de Terraform de tu equipo?
+
+**Opciones:**
+- A) En un documento en texto plano en una unidad compartida.
+- B) En HashiCorp Vault.
+- C) En un archivo `terraform.tfvars`, versionado en tu sistema de control de versiones.
+- D) En una variable de entorno y referenciada con `TF_VAR_variablename`.
+- E) En una variable de HCP Terraform con la opción de sensible activada.
+
+**Respuesta Correcta:** B, D, E
+
+**Explicación:** HashiCorp recomienda almacenar secretos en mecanismos diseñados para una gestión segura. En flujos de Terraform, esto incluye usar HashiCorp Vault, usar variables de entorno para inyectar valores en tiempo de ejecución y usar variables sensibles en HCP Terraform para ocultar valores en la UI y en los logs. Estos enfoques reducen la exposición de secretos y se alinean con las mejores prácticas de seguridad en IaC.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: Guardar secretos en texto plano en una unidad compartida es inseguro y aumenta el riesgo de acceso no autorizado.
+
+Opción C es incorrecta: Versionar archivos `terraform.tfvars` con secretos en el control de versiones está desaconsejado porque los secretos pueden quedar en texto plano y trazables de forma permanente en el historial de Git.
 
 ---
