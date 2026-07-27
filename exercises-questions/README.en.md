@@ -323,7 +323,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Section 2 — Questions 302 to 329</strong></td>
+<td colspan="6"><strong>Section 2 — Questions 302 to 330</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -355,6 +355,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-327">Question No. 327</a><br>
 <a href="#question-no-328">Question No. 328</a><br>
 <a href="#question-no-329">Question No. 329</a><br>
+<a href="#question-no-330">Question No. 330</a><br>
 </td>
 </tr>
 </table>
@@ -7988,5 +7989,31 @@ Option C is incorrect: Passing a saved plan file to `terraform apply` is optiona
 Option D is incorrect: By default, `terraform apply` **does** refresh the state to compare the real infrastructure against what is recorded. You must explicitly pass `-refresh=false` to skip this step.
 
 Option E is incorrect: You can restrict the operation to specific resources by using the `-target` flag (for example, `terraform apply -target=aws_instance.example`), although this is generally discouraged for routine use.
+
+---
+
+## Question No. 330
+
+**Question Type:** Single Choice
+
+**Question:** Which syntax check returns an error when you run `terraform validate`?
+
+**Options:**
+- A) The state file does not match the current infrastructure.
+- B) The code contains tabs for indentation instead of spaces.
+- C) There is a missing variable block.
+- D) None of these will return an error.
+
+**Correct Answer:** C
+
+**Explanation:** `terraform validate` checks whether the configuration is syntactically valid and internally consistent. If the configuration references an input variable that is not declared, Terraform raises a validation error for the undeclared variable.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: State drift is detected during planning/refresh operations, not by `terraform validate`.
+
+Option B is incorrect: HCL accepts tabs and spaces for indentation; tabs are not a validation error by themselves.
+
+Option D is incorrect: A missing required variable declaration can produce a validation error, so at least one option does return an error.
 
 ---

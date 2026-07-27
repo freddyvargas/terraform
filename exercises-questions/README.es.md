@@ -323,7 +323,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Sección 2 — Preguntas 302 a 329</strong></td>
+<td colspan="6"><strong>Sección 2 — Preguntas 302 a 330</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -355,6 +355,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-327">Question No. 327</a><br>
 <a href="#question-no-328">Question No. 328</a><br>
 <a href="#question-no-329">Question No. 329</a><br>
+<a href="#question-no-330">Question No. 330</a><br>
 </td>
 </tr>
 </table>
@@ -7984,5 +7985,31 @@ Opción C es incorrecta: Pasar un archivo de plan guardado a `terraform apply` e
 Opción D es incorrecta: Por defecto, `terraform apply` **sí** actualiza el estado para comparar la infraestructura real con lo que está registrado. Debes pasar explícitamente `-refresh=false` para omitir este paso.
 
 Opción E es incorrecta: Puedes restringir la operación a recursos específicos usando la bandera `-target` (por ejemplo, `terraform apply -target=aws_instance.example`), aunque generalmente se desaconseja su uso rutinario.
+
+---
+
+## Question No. 330
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué verificación de sintaxis devuelve un error cuando ejecutas `terraform validate`?
+
+**Opciones:**
+- A) El archivo de estado no coincide con la infraestructura actual.
+- B) El código contiene tabulaciones para la indentación en lugar de espacios.
+- C) Falta un bloque de variable.
+- D) Ninguna de estas devolverá un error.
+
+**Respuesta Correcta:** C
+
+**Explicación:** `terraform validate` comprueba que la configuración sea sintácticamente válida y coherente internamente. Si la configuración referencia una variable de entrada que no está declarada, Terraform devuelve un error de validación por variable no declarada.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: El drift de estado se detecta durante operaciones de planificación/refresh, no con `terraform validate`.
+
+Opción B es incorrecta: HCL acepta tabulaciones y espacios para la indentación; usar tabulaciones no genera por sí solo un error de validación.
+
+Opción D es incorrecta: La ausencia de una declaración de variable requerida sí puede producir un error de validación, por lo que al menos una opción sí devuelve error.
 
 ---
