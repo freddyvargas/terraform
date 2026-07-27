@@ -7881,10 +7881,40 @@ provider "aws" {
 ¿Qué cambio se requiere para que esta configuración funcione correctamente para un despliegue multi-región?
 
 **Opciones:**
-- A) Agregar un `alias` a una configuración del proveedor y referenciar ese proveedor con alias en los recursos que deban usar la segunda región.
-- B) Colocar ambas regiones en un solo argumento `region` como una lista.
-- C) Agregar `count = 2` al bloque del proveedor y asignar regiones por índice.
-- D) Dejar ambos bloques del proveedor tal como están porque Terraform los trata automáticamente como dos proveedores por defecto válidos.
+- A)
+```hcl
+provider "aws" {
+  region = "us-east-1"
+}
+
+provider "aws" {
+  alias  = "west"
+  region = "us-west-2"
+}
+```
+- B)
+```hcl
+resource "aws_instance" "example-us-west-2" {
+  ami           = data.aws_ami.ubuntu.id
+  instance_type = "t3.micro"
+}
+```
+- C)
+```hcl
+provider "aws" {
+  region = "us-east-1"
+}
+
+provider "aws" "west" {
+  region = "us-west-2"
+}
+```
+- D)
+```hcl
+provider "aws_west" {
+  region = "us-west-2"
+}
+```
 
 **Respuesta Correcta:** A
 
