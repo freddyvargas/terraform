@@ -323,7 +323,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Sección 2 — Preguntas 302 a 324</strong></td>
+<td colspan="6"><strong>Sección 2 — Preguntas 302 a 325</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -7657,7 +7657,7 @@ Opción D es incorrecta: Ejecutar la herramienta CLI de la nube pública directa
 **Opciones:**
 - A) Agregar un bloque `cloud` dentro del bloque `terraform`.
 - B) Agregar un bloque `backend` dentro del bloque `terraform`.
-- C) Establecer la variable de entorno `TERAFORM_CLOUD`.
+- C) Establecer la variable de entorno `TERRAFORM_CLOUD`.
 - D) Establecer la variable de entorno `TERRAFORM_BACKEND`.
 
 **Respuesta Correcta:** B
@@ -7668,7 +7668,7 @@ Opción D es incorrecta: Ejecutar la herramienta CLI de la nube pública directa
 
 Opción A es incorrecta: El bloque `cloud` dentro del bloque `terraform` se usa específicamente para integrarse con HCP Terraform (antes Terraform Cloud), no como mecanismo general para configurar cualquier backend remoto. Aunque sí habilita el estado remoto en ese contexto específico, la respuesta estándar y de aplicación general para la configuración de estado remoto es el bloque `backend`.
 
-Opción C es incorrecta: `TERAFORM_CLOUD` no es una variable de entorno reconocida por Terraform (nótese el error tipográfico). Incluso la variable válida `TF_CLOUD` aplica únicamente a HCP Terraform y no configura backends remotos arbitrarios.
+Opción C es incorrecta: `TERRAFORM_CLOUD` no es una variable de entorno reconocida por Terraform. Incluso la variable válida `TF_CLOUD` aplica únicamente a HCP Terraform y no configura backends remotos arbitrarios.
 
 Opción D es incorrecta: `TERRAFORM_BACKEND` no es una variable de entorno válida de Terraform. No existe ninguna variable de entorno con ese nombre que configure el comportamiento del backend.
 

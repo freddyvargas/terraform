@@ -323,7 +323,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Section 2 — Questions 302 to 324</strong></td>
+<td colspan="6"><strong>Section 2 — Questions 302 to 325</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -7661,7 +7661,7 @@ Option D is incorrect: Running the public cloud CLI tool directly suffers from t
 **Options:**
 - A) Add a cloud block inside the terraform block.
 - B) Add a backend block inside the terraform block.
-- C) Set the TERAFORM_CLOUD environment variable.
+- C) Set the TERRAFORM_CLOUD environment variable.
 - D) Set the TERRAFORM_BACKEND environment variable.
 
 **Correct Answer:** B
@@ -7672,7 +7672,7 @@ Option D is incorrect: Running the public cloud CLI tool directly suffers from t
 
 Option A is incorrect: A `cloud` block inside the `terraform` block is used specifically to integrate with HCP Terraform (formerly Terraform Cloud), not as a general mechanism to configure any remote backend. While it does enable remote state in that specific context, the standard and broadly applicable answer for remote state configuration is the `backend` block.
 
-Option C is incorrect: `TERAFORM_CLOUD` is not a recognized Terraform environment variable (note the typo). Even the valid variable `TF_CLOUD` is only applicable to HCP Terraform and does not configure arbitrary remote backends.
+Option C is incorrect: `TERRAFORM_CLOUD` is not a recognized Terraform environment variable. Even the valid variable `TF_CLOUD` is only applicable to HCP Terraform and does not configure arbitrary remote backends.
 
 Option D is incorrect: `TERRAFORM_BACKEND` is not a valid Terraform environment variable. There is no environment variable with this name that configures backend behavior.
 
