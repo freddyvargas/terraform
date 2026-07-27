@@ -323,7 +323,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Sección 2 — Preguntas 302 a 327</strong></td>
+<td colspan="6"><strong>Sección 2 — Preguntas 302 a 328</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -353,6 +353,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-325">Question No. 325</a><br>
 <a href="#question-no-326">Question No. 326</a><br>
 <a href="#question-no-327">Question No. 327</a><br>
+<a href="#question-no-328">Question No. 328</a><br>
 </td>
 </tr>
 </table>
@@ -7927,5 +7928,33 @@ Opción B es incorrecta: El argumento `region` acepta una sola cadena con la reg
 Opción C es incorrecta: Los bloques de proveedor no soportan `count` para crear múltiples instancias del proveedor por índice.
 
 Opción D es incorrecta: Dos bloques del mismo proveedor sin alias generan conflicto porque Terraform no puede tener dos configuraciones por defecto del mismo proveedor en un mismo módulo.
+
+---
+
+## Question No. 328
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Tu configuración de Terraform gestiona un recurso que requiere máxima disponibilidad. Necesitas actualizar el recurso y, al ejecutar `terraform plan`, Terraform indica que la actualización requiere destruir y recrear el recurso.
+
+¿Qué regla de ciclo de vida (`lifecycle`) puedes agregar al recurso para reducir el tiempo de inactividad y aun así aplicar la actualización?
+
+**Opciones:**
+- A) `prevent_destroy = true`
+- B) `ignore_changes = all`
+- C) `create_before_destroy = true`
+- D) `destroy = false`
+
+**Respuesta Correcta:** C
+
+**Explicación:** El meta-argumento de ciclo de vida `create_before_destroy` le indica a Terraform que aprovisione el recurso de reemplazo **antes** de destruir el existente. Esto significa que el recurso antiguo permanece disponible hasta que el nuevo esté listo, minimizando el tiempo de inactividad durante actualizaciones que requieren destruir y recrear el recurso.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: `prevent_destroy = true` impide que el recurso sea destruido por completo; haría fallar `terraform apply` cada vez que Terraform intente reemplazar el recurso, lo que no resuelve el problema de disponibilidad.
+
+Opción B es incorrecta: `ignore_changes = all` le dice a Terraform que ignore todos los cambios de atributos y nunca actualice el recurso. Esto evita el reemplazo, pero a costa de no aplicar nunca la actualización necesaria.
+
+Opción D es incorrecta: `destroy = false` no es un argumento válido de ciclo de vida en Terraform; no existe en la especificación de Terraform.
 
 ---

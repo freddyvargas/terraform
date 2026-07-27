@@ -323,7 +323,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Section 2 — Questions 302 to 327</strong></td>
+<td colspan="6"><strong>Section 2 — Questions 302 to 328</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -353,6 +353,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-325">Question No. 325</a><br>
 <a href="#question-no-326">Question No. 326</a><br>
 <a href="#question-no-327">Question No. 327</a><br>
+<a href="#question-no-328">Question No. 328</a><br>
 </td>
 </tr>
 </table>
@@ -7931,5 +7932,33 @@ Option B is incorrect: The `region` argument accepts a single region string, not
 Option C is incorrect: Provider blocks do not support `count` for creating multiple provider instances by index.
 
 Option D is incorrect: Two unaliased provider blocks of the same type conflict because Terraform cannot have two default configurations for the same provider in one module.
+
+---
+
+## Question No. 328
+
+**Question Type:** Single Choice
+
+**Question:** Your Terraform configuration manages a resource that requires maximum uptime. You need to update the resource, and when you run `terraform plan`, Terraform indicates that the update requires the resource to be destroyed and recreated.
+
+Which lifecycle rule can you add to the resource to reduce downtime while still applying the update?
+
+**Options:**
+- A) `prevent_destroy = true`
+- B) `ignore_changes = all`
+- C) `create_before_destroy = true`
+- D) `destroy = false`
+
+**Correct Answer:** C
+
+**Explanation:** The `create_before_destroy` lifecycle meta-argument tells Terraform to provision the replacement resource **before** destroying the existing one. This means the old resource remains available until the new one is ready, minimising downtime during updates that require destroy-and-recreate.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: `prevent_destroy = true` prevents the resource from being destroyed at all; it would cause `terraform apply` to fail whenever Terraform tries to replace the resource, which does not solve the uptime problem.
+
+Option B is incorrect: `ignore_changes = all` tells Terraform to ignore all attribute changes and never update the resource. This avoids the replacement but at the cost of never applying the needed update.
+
+Option D is incorrect: `destroy = false` is not a valid lifecycle argument in Terraform; it does not exist in the Terraform specification.
 
 ---
