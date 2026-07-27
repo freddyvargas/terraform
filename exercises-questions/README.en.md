@@ -323,7 +323,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Section 2 — Questions 302 to 326</strong></td>
+<td colspan="6"><strong>Section 2 — Questions 302 to 327</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -352,6 +352,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-324">Question No. 324</a><br>
 <a href="#question-no-325">Question No. 325</a><br>
 <a href="#question-no-326">Question No. 326</a><br>
+<a href="#question-no-327">Question No. 327</a><br>
 </td>
 </tr>
 </table>
@@ -7861,5 +7862,44 @@ Option B is incorrect: Policies enforce governance rules on runs, but they do no
 Option C is incorrect: Run tasks integrate external checks/actions at specific stages of a run, but they do not automatically trigger applies in another workspace when one workspace changes.
 
 Option D is incorrect: Projects help organize workspaces and manage permissions at a higher level, but they do not provide cross-workspace run orchestration.
+
+---
+
+## Question No. 327
+
+**Question Type:** Single Choice
+
+**Question:** You need to deploy resources into two different regions in the same Terraform configuration using the blocks shown in the exhibit below.
+
+Exhibit:
+```
+provider "aws" {
+  region = "us-east-1"
+}
+
+provider "aws" {
+  region = "us-west-2"
+}
+```
+
+What change is required to make this configuration work correctly for multi-region deployment?
+
+**Options:**
+- A) Add an `alias` to one provider configuration and reference that aliased provider in the resources that should use the second region.
+- B) Put both regions into one `region` argument as a list value.
+- C) Add `count = 2` to the provider block and set regions by index.
+- D) Keep both provider blocks as-is because Terraform automatically treats both as valid default providers.
+
+**Correct Answer:** A
+
+**Explanation:** Terraform allows only one default provider configuration per provider type in a module. To use multiple AWS regions in the same configuration, one provider block remains the default and the other must be defined as an aliased provider (for example, `alias = "west"`). Then resources that must be created in that second region explicitly reference it with the `provider` meta-argument (for example, `provider = aws.west`).
+
+**Incorrect options explanation:**
+
+Option B is incorrect: The `region` argument accepts a single region string, not a list of regions.
+
+Option C is incorrect: Provider blocks do not support `count` for creating multiple provider instances by index.
+
+Option D is incorrect: Two unaliased provider blocks of the same type conflict because Terraform cannot have two default configurations for the same provider in one module.
 
 ---

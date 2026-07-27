@@ -323,7 +323,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Sección 2 — Preguntas 302 a 326</strong></td>
+<td colspan="6"><strong>Sección 2 — Preguntas 302 a 327</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -352,6 +352,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-324">Question No. 324</a><br>
 <a href="#question-no-325">Question No. 325</a><br>
 <a href="#question-no-326">Question No. 326</a><br>
+<a href="#question-no-327">Question No. 327</a><br>
 </td>
 </tr>
 </table>
@@ -7857,5 +7858,44 @@ Opción B es incorrecta: Las policies aplican reglas de gobierno sobre las ejecu
 Opción C es incorrecta: Los run tasks integran verificaciones/acciones externas en etapas específicas de una ejecución, pero no disparan automáticamente applies en otro workspace cuando cambia uno.
 
 Opción D es incorrecta: Projects ayuda a organizar workspaces y gestionar permisos a un nivel más alto, pero no proporciona orquestación de ejecuciones entre workspaces.
+
+---
+
+## Question No. 327
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Necesitas desplegar recursos en dos regiones diferentes dentro de la misma configuración de Terraform usando los bloques que se muestran en el exhibit.
+
+Exhibit:
+```
+provider "aws" {
+  region = "us-east-1"
+}
+
+provider "aws" {
+  region = "us-west-2"
+}
+```
+
+¿Qué cambio se requiere para que esta configuración funcione correctamente para un despliegue multi-región?
+
+**Opciones:**
+- A) Agregar un `alias` a una configuración del proveedor y referenciar ese proveedor con alias en los recursos que deban usar la segunda región.
+- B) Colocar ambas regiones en un solo argumento `region` como una lista.
+- C) Agregar `count = 2` al bloque del proveedor y asignar regiones por índice.
+- D) Dejar ambos bloques del proveedor tal como están porque Terraform los trata automáticamente como dos proveedores por defecto válidos.
+
+**Respuesta Correcta:** A
+
+**Explicación:** Terraform solo permite una configuración por defecto por tipo de proveedor dentro de un módulo. Para usar múltiples regiones de AWS en la misma configuración, un bloque de proveedor permanece como predeterminado y el otro debe definirse con alias (por ejemplo, `alias = "west"`). Luego, los recursos que deban crearse en esa segunda región deben referenciar explícitamente ese proveedor usando el meta-argumento `provider` (por ejemplo, `provider = aws.west`).
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: El argumento `region` acepta una sola cadena con la región, no una lista de regiones.
+
+Opción C es incorrecta: Los bloques de proveedor no soportan `count` para crear múltiples instancias del proveedor por índice.
+
+Opción D es incorrecta: Dos bloques del mismo proveedor sin alias generan conflicto porque Terraform no puede tener dos configuraciones por defecto del mismo proveedor en un mismo módulo.
 
 ---
