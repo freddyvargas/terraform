@@ -323,7 +323,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Sección 2 — Preguntas 302 a 328</strong></td>
+<td colspan="6"><strong>Sección 2 — Preguntas 302 a 329</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -354,6 +354,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-326">Question No. 326</a><br>
 <a href="#question-no-327">Question No. 327</a><br>
 <a href="#question-no-328">Question No. 328</a><br>
+<a href="#question-no-329">Question No. 329</a><br>
 </td>
 </tr>
 </table>
@@ -7956,5 +7957,32 @@ Opción A es incorrecta: `prevent_destroy = true` impide que el recurso sea dest
 Opción B es incorrecta: `ignore_changes = all` le dice a Terraform que ignore todos los cambios de atributos y nunca actualice el recurso. Esto evita el reemplazo, pero a costa de no aplicar nunca la actualización necesaria.
 
 Opción D es incorrecta: `destroy = false` no es un argumento válido de ciclo de vida en Terraform; no existe en la especificación de Terraform.
+
+---
+
+## Question No. 329
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Cuáles afirmaciones son verdaderas sobre `terraform apply`? (Elige DOS respuestas correctas)
+
+**Opciones:**
+- A) Dependiendo de la especificación del proveedor, Terraform puede necesitar destruir y recrear tus recursos de infraestructura.
+- B) Solo opera sobre la infraestructura definida en el directorio de trabajo actual o workspace.
+- C) Debes pasar la salida de un comando `terraform plan` como entrada.
+- D) Por defecto, no actualiza tu archivo de estado para reflejar la configuración actual de la infraestructura.
+- E) No puedes apuntar a recursos específicos para la operación.
+
+**Respuesta Correcta:** A, B
+
+**Explicación:** `terraform apply` lee los archivos de configuración de Terraform en el directorio de trabajo actual (o el workspace seleccionado) y aplica los cambios necesarios para alcanzar el estado deseado. Algunos cambios en atributos de recursos requieren que el recurso existente sea destruido y se cree uno nuevo en su lugar; si ese reemplazo es necesario depende de cómo el proveedor haya implementado ese atributo en particular.
+
+**Explicación de opciones incorrectas:**
+
+Opción C es incorrecta: Pasar un archivo de plan guardado a `terraform apply` es opcional. Cuando no se proporciona un archivo de plan, Terraform realiza automáticamente una nueva fase de planificación y solicita confirmación antes de aplicar.
+
+Opción D es incorrecta: Por defecto, `terraform apply` **sí** actualiza el estado para comparar la infraestructura real con lo que está registrado. Debes pasar explícitamente `-refresh=false` para omitir este paso.
+
+Opción E es incorrecta: Puedes restringir la operación a recursos específicos usando la bandera `-target` (por ejemplo, `terraform apply -target=aws_instance.example`), aunque generalmente se desaconseja su uso rutinario.
 
 ---

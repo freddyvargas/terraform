@@ -323,7 +323,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Section 2 — Questions 302 to 328</strong></td>
+<td colspan="6"><strong>Section 2 — Questions 302 to 329</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -354,6 +354,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-326">Question No. 326</a><br>
 <a href="#question-no-327">Question No. 327</a><br>
 <a href="#question-no-328">Question No. 328</a><br>
+<a href="#question-no-329">Question No. 329</a><br>
 </td>
 </tr>
 </table>
@@ -7960,5 +7961,32 @@ Option A is incorrect: `prevent_destroy = true` prevents the resource from being
 Option B is incorrect: `ignore_changes = all` tells Terraform to ignore all attribute changes and never update the resource. This avoids the replacement but at the cost of never applying the needed update.
 
 Option D is incorrect: `destroy = false` is not a valid lifecycle argument in Terraform; it does not exist in the Terraform specification.
+
+---
+
+## Question No. 329
+
+**Question Type:** Multiple Choice
+
+**Question:** Which statements are true about `terraform apply`? (Choose TWO correct answers)
+
+**Options:**
+- A) Depending on the provider specification, Terraform may need to destroy and recreate your infrastructure resources.
+- B) It only operates on infrastructure defined in the current working directory or workspace.
+- C) You must pass the output of a `terraform plan` command to it.
+- D) By default, it does not refresh your state file to reflect the current infrastructure configuration.
+- E) You cannot target specific resources for the operation.
+
+**Correct Answer:** A, B
+
+**Explanation:** `terraform apply` reads the Terraform configuration files in the current working directory (or the workspace selected) and applies the changes needed to reach the desired state. Some resource attribute changes require the existing resource to be destroyed and a new one created in its place; whether that replacement is necessary depends on how the provider has implemented that particular attribute.
+
+**Incorrect options explanation:**
+
+Option C is incorrect: Passing a saved plan file to `terraform apply` is optional. When no plan file is provided, Terraform automatically performs a new plan step and prompts for confirmation before applying.
+
+Option D is incorrect: By default, `terraform apply` **does** refresh the state to compare the real infrastructure against what is recorded. You must explicitly pass `-refresh=false` to skip this step.
+
+Option E is incorrect: You can restrict the operation to specific resources by using the `-target` flag (for example, `terraform apply -target=aws_instance.example`), although this is generally discouraged for routine use.
 
 ---
