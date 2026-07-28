@@ -323,7 +323,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Sección 2 — Preguntas 302 a 336</strong></td>
+<td colspan="6"><strong>Sección 2 — Preguntas 302 a 338</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -362,6 +362,8 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-334">Question No. 334</a><br>
 <a href="#question-no-335">Question No. 335</a><br>
 <a href="#question-no-336">Question No. 336</a><br>
+<a href="#question-no-337">Question No. 337</a><br>
+<a href="#question-no-338">Question No. 338</a><br>
 </td>
 </tr>
 </table>
@@ -8174,5 +8176,64 @@ Opción A es incorrecta: El archivo de estado (`terraform.tfstate`) se almacena 
 Opción B es incorrecta: Terraform no convierte los archivos de configuración en llamadas a la API y los almacena en `.terraform`; los propios proveedores gestionan la comunicación con la API en tiempo de ejecución.
 
 Opción C es incorrecta: Las credenciales del proveedor se gestionan habitualmente mediante variables de entorno o la configuración del proveedor, y los archivos `.tfvars` se almacenan en el directorio de trabajo, no en `.terraform`.
+
+---
+
+## Question No. 337
+
+**Tipo de Pregunta:** Opción Múltiple
+
+**Pregunta:** ¿Cómo mejora el uso de Infrastructure as Code (IaC) la confiabilidad de tu infraestructura?
+
+*Elige las dos respuestas correctas.*
+
+**Opciones:**
+- A) Los cambios propuestos pueden revisarse antes de aplicarse.
+- B) La infraestructura escala automáticamente para satisfacer la demanda.
+- C) No es posible desplegar configuraciones incorrectas.
+- D) Las actualizaciones se despliegan con cero tiempo de inactividad.
+- E) La desviación de configuración se reduce con definiciones declarativas.
+
+**Respuestas Correctas:** A, E
+
+**Explicación:** IaC mejora la confiabilidad de la infraestructura de dos maneras clave señaladas por las opciones correctas:
+
+**Opción A** es correcta: Dado que IaC almacena las definiciones de infraestructura como código (archivos de texto), los cambios pueden pasar por el mismo proceso de revisión por pares que el código de aplicación — pull requests, diffs y aprobaciones — detectando errores de configuración antes de que se apliquen al entorno productivo.
+
+**Opción E** es correcta: IaC utiliza un modelo *declarativo* en el que describes el estado final deseado. Herramientas como Terraform reconcilian continuamente el estado real con el estado declarado, lo que reduce de forma inherente la *desviación de configuración* (configuration drift) — la divergencia gradual entre lo que está en ejecución y lo que se definió originalmente.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: El auto-escalado es una característica de servicios cloud específicos (como AWS Auto Scaling Groups), no una propiedad inherente de IaC. IaC puede *configurar* el auto-escalado, pero no lo proporciona por sí solo.
+
+Opción C es incorrecta: IaC no impide el despliegue de configuraciones incorrectas. Si el código en sí contiene un error, ese error se aplicará. Las revisiones de código y las herramientas de política automatizadas (como Sentinel o OPA) ayudan a detectar errores, pero IaC por sí sola no los bloquea.
+
+Opción D es incorrecta: Los despliegues con cero tiempo de inactividad dependen de estrategias de despliegue (blue/green, rolling updates, etc.) y de la arquitectura de la aplicación, no del uso de IaC en sí.
+
+---
+
+## Question No. 338
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál es el propósito principal de IaC (Infrastructure as Code)?
+
+**Opciones:**
+- A) Aprovisionar infraestructura de forma económica.
+- B) Crear y configurar recursos de manera programática.
+- C) Definir una API independiente del proveedor (vendor-agnostic).
+- D) Definir un pipeline para probar y entregar software.
+
+**Respuesta Correcta:** B
+
+**Explicación:** El propósito principal de IaC es gestionar y aprovisionar infraestructura a través de archivos de configuración legibles por máquina, en lugar de mediante procesos manuales o herramientas de configuración interactivas. Esto significa usar código (por ejemplo, Terraform HCL, CloudFormation YAML) para *crear, configurar y gestionar* recursos cloud u on-premises de forma programática, repetible y automatizada.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: Aunque IaC puede contribuir a la eficiencia de costos gracias a la automatización y la consistencia, la reducción de costos no es su propósito principal.
+
+Opción C es incorrecta: Herramientas de IaC como Terraform sí usan plugins de proveedores que abstraen distintas APIs de fabricantes, pero definir una API independiente del proveedor no es el objetivo de IaC. IaC se centra en describir la configuración de la infraestructura, no en diseñar APIs.
+
+Opción D es incorrecta: Definir pipelines de CI/CD para probar y entregar software es el propósito de herramientas como Jenkins, GitHub Actions o GitLab CI — no de IaC. IaC se enfoca en la capa de infraestructura, no en el pipeline de entrega de aplicaciones.
 
 ---

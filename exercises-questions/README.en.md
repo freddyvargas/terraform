@@ -323,7 +323,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Section 2 — Questions 302 to 336</strong></td>
+<td colspan="6"><strong>Section 2 — Questions 302 to 338</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -362,6 +362,8 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-334">Question No. 334</a><br>
 <a href="#question-no-335">Question No. 335</a><br>
 <a href="#question-no-336">Question No. 336</a><br>
+<a href="#question-no-337">Question No. 337</a><br>
+<a href="#question-no-338">Question No. 338</a><br>
 </td>
 </tr>
 </table>
@@ -8178,5 +8180,64 @@ Option A is incorrect: The state file (`terraform.tfstate`) is stored in the wor
 Option B is incorrect: Terraform does not convert configuration files into API calls and store them in `.terraform`; the providers themselves handle API communication at runtime.
 
 Option C is incorrect: Provider credentials are typically managed through environment variables or provider configuration, and `.tfvars` files are stored in the working directory, not in `.terraform`.
+
+---
+
+## Question No. 337
+
+**Question Type:** Multiple Choice
+
+**Question:** How does the use of Infrastructure as Code (IaC) enhance the reliability of your infrastructure?
+
+*Pick the two correct responses.*
+
+**Options:**
+- A) Proposed changes can be reviewed before being applied.
+- B) Infrastructure is automatically scaled to meet demand.
+- C) Incorrect configurations cannot be deployed.
+- D) Updates are deployed with zero downtime.
+- E) Configuration drift is reduced with declarative definitions.
+
+**Correct Answers:** A, E
+
+**Explanation:** IaC improves infrastructure reliability in two key ways highlighted by the correct options:
+
+**Option A** is correct: Because IaC stores infrastructure definitions as code (text files), changes can go through the same peer review process as application code — pull requests, diffs, and approvals — catching misconfigurations before they are ever applied to a live environment.
+
+**Option E** is correct: IaC uses a *declarative* model in which you describe the desired end state. Tools like Terraform continuously reconcile actual state against the declared state, which inherently reduces *configuration drift* — the gradual divergence between what is running and what was originally intended.
+
+**Incorrect options explanation:**
+
+Option B is incorrect: Auto-scaling is a feature of specific cloud services (e.g., AWS Auto Scaling Groups), not an inherent property of IaC itself. IaC can *configure* auto-scaling, but it does not provide it on its own.
+
+Option C is incorrect: IaC does not prevent the deployment of incorrect configurations. If the code itself contains a mistake, that mistake will be applied. Code reviews and automated policy tools (such as Sentinel or OPA) help catch errors, but IaC alone does not block them.
+
+Option D is incorrect: Zero-downtime deployments depend on deployment strategies (blue/green, rolling updates, etc.) and the architecture of the application, not on the use of IaC per se.
+
+---
+
+## Question No. 338
+
+**Question Type:** Single Choice
+
+**Question:** What is the primary purpose of IaC (Infrastructure as Code)?
+
+**Options:**
+- A) To provision infrastructure cheaply.
+- B) To programmatically create and configure resources.
+- C) To define a vendor-agnostic API.
+- D) To define a pipeline to test and deliver software.
+
+**Correct Answer:** B
+
+**Explanation:** The primary purpose of IaC is to manage and provision infrastructure through machine-readable configuration files rather than through manual processes or interactive configuration tools. This means using code (e.g., Terraform HCL, CloudFormation YAML) to *programmatically create, configure, and manage* cloud or on-premises resources in a repeatable and automated way.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: While IaC can contribute to cost efficiency through automation and consistency, cost reduction is not its primary purpose.
+
+Option C is incorrect: IaC tools like Terraform do use provider plugins that abstract different vendor APIs, but defining a vendor-agnostic API is not what IaC is for. IaC is about describing infrastructure configuration, not designing APIs.
+
+Option D is incorrect: Defining CI/CD pipelines to test and deliver software is the purpose of tools like Jenkins, GitHub Actions, or GitLab CI — not IaC. IaC focuses on the infrastructure layer, not the application delivery pipeline.
 
 ---
