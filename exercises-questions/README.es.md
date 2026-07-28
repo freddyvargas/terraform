@@ -323,7 +323,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Sección 2 — Preguntas 302 a 334</strong></td>
+<td colspan="6"><strong>Sección 2 — Preguntas 302 a 335</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -360,6 +360,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-332">Question No. 332</a><br>
 <a href="#question-no-333">Question No. 333</a><br>
 <a href="#question-no-334">Question No. 334</a><br>
+<a href="#question-no-335">Question No. 335</a><br>
 </td>
 </tr>
 </table>
@@ -8113,5 +8114,38 @@ Opción C es incorrecta: Aunque `version = "3.1.4"` (equivalente a `= 3.1.4`) fi
 **Explicación de opciones incorrectas:**
 
 Opción B es incorrecta: Terraform no puede usar un único proveedor cloud genérico para administrar todas las plataformas. Necesitas el proveedor que corresponda a cada nube objetivo.
+
+---
+
+## Question No. 335
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Tu configuración define el bloque de módulo mostrado en el exhibit. El módulo `web_stack` acepta una variable de entrada llamada `servers`. ¿Cuál de los siguientes cambios al bloque del módulo establece la variable `servers` con el valor `3`?
+
+Exhibit:
+```hcl
+module "web_stack" {
+  source = "./modules/web_stack"
+}
+```
+
+**Opciones:**
+- A) `module 'web_stack' {source = './modules/web_stack'var.servers = 3}`
+- B) `module 'web_stack' {source = './modules/web_stack'inputs = { servers = 3 }}`
+- C) `module 'web_stack' {source = './modules/web_stack'servers = 3}`
+- D) `module 'web_stack' {source = './modules/web_stack'inputs.servers = 3}`
+
+**Respuesta Correcta:** C
+
+**Explicación:** Las variables de entrada de un módulo se asignan directamente como argumentos dentro del bloque del módulo. Por eso, establecer `servers = 3` dentro del bloque `module "web_stack"` es la forma correcta de pasar ese valor al módulo.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: `var.servers` es la forma de referenciar variables, no de asignar argumentos de módulo en el bloque que invoca al módulo.
+
+Opción B es incorrecta: `inputs` no es un argumento válido de Terraform para pasar variables de entrada a un módulo.
+
+Opción D es incorrecta: `inputs.servers` no es una sintaxis válida para asignar entradas de módulo en Terraform.
 
 ---

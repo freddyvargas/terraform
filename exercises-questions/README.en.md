@@ -323,7 +323,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Section 2 — Questions 302 to 334</strong></td>
+<td colspan="6"><strong>Section 2 — Questions 302 to 335</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -360,6 +360,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-332">Question No. 332</a><br>
 <a href="#question-no-333">Question No. 333</a><br>
 <a href="#question-no-334">Question No. 334</a><br>
+<a href="#question-no-335">Question No. 335</a><br>
 </td>
 </tr>
 </table>
@@ -8117,5 +8118,38 @@ Option C is incorrect: While `version = "3.1.4"` (equivalent to `= 3.1.4`) pins 
 **Incorrect options explanation:**
 
 Option B is incorrect: Terraform cannot use a single generic cloud provider to manage every cloud platform. You need the provider that matches each target cloud.
+
+---
+
+## Question No. 335
+
+**Question Type:** Single Choice
+
+**Question:** Your configuration defines the module block shown in the exhibit. The `web_stack` module accepts an input variable named `servers`. Which of the following changes to the module block sets the `servers` variable to the value of `3`?
+
+Exhibit:
+```hcl
+module "web_stack" {
+  source = "./modules/web_stack"
+}
+```
+
+**Options:**
+- A) `module 'web_stack' {source = './modules/web_stack'var.servers = 3}`
+- B) `module 'web_stack' {source = './modules/web_stack'inputs = { servers = 3 }}`
+- C) `module 'web_stack' {source = './modules/web_stack'servers = 3}`
+- D) `module 'web_stack' {source = './modules/web_stack'inputs.servers = 3}`
+
+**Correct Answer:** C
+
+**Explanation:** Module input variables are assigned directly as arguments inside the module block. Therefore, setting `servers = 3` in the `module "web_stack"` block is the correct way to pass the value to the module.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: `var.servers` is how variables are referenced, not how module arguments are assigned in the calling module block.
+
+Option B is incorrect: `inputs` is not a valid Terraform argument for passing module input variables.
+
+Option D is incorrect: `inputs.servers` is not valid syntax for module input assignment in Terraform.
 
 ---
