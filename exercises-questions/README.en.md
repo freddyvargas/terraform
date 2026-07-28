@@ -323,7 +323,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Section 2 — Questions 302 to 330</strong></td>
+<td colspan="6"><strong>Section 2 — Questions 302 to 334</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">

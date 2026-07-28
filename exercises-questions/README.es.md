@@ -323,7 +323,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Sección 2 — Preguntas 302 a 330</strong></td>
+<td colspan="6"><strong>Sección 2 — Preguntas 302 a 334</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
