@@ -359,6 +359,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-331">Question No. 331</a><br>
 <a href="#question-no-332">Question No. 332</a><br>
 <a href="#question-no-333">Question No. 333</a><br>
+<a href="#question-no-334">Question No. 334</a><br>
 </td>
 </tr>
 </table>
@@ -8092,5 +8093,25 @@ Opción A es incorrecta: `version = "< 3.2"` permitiría cualquier versión infe
 Opción B es incorrecta: `version = ">= 3.1.5"` permitiría cualquier versión desde 3.1.5 en adelante, incluidas versiones mayores futuras que podrían contener cambios incompatibles.
 
 Opción C es incorrecta: Aunque `version = "3.1.4"` (equivalente a `= 3.1.4`) fija la versión exacta e impide técnicamente cualquier versión más nueva, también bloquea correcciones de parches beneficiosas. La restricción pesimista `~>` es el enfoque idiomático y recomendado en Terraform para este escenario.
+
+---
+
+## Question No. 334
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Terraform requiere usar un proveedor diferente para cada proveedor cloud donde quieras desplegar recursos.
+
+**Opciones:**
+- A) Verdadero
+- B) Falso
+
+**Respuesta Correcta:** A
+
+**Explicación:** Los proveedores son plugins de Terraform que conectan recursos y data sources con la API de una plataforma específica. Como cada nube tiene APIs y modelos de recursos distintos, Terraform usa un proveedor dedicado para cada plataforma (por ejemplo, `hashicorp/aws` para AWS y `hashicorp/azurerm` para Azure). Por eso, cuando despliegas en distintas nubes, debes configurar el/los proveedor(es) correspondiente(s) para cada una.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: Terraform no puede usar un único proveedor cloud genérico para administrar todas las plataformas. Necesitas el proveedor que corresponda a cada nube objetivo.
 
 ---

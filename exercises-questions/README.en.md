@@ -359,6 +359,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-331">Question No. 331</a><br>
 <a href="#question-no-332">Question No. 332</a><br>
 <a href="#question-no-333">Question No. 333</a><br>
+<a href="#question-no-334">Question No. 334</a><br>
 </td>
 </tr>
 </table>
@@ -8096,5 +8097,25 @@ Option A is incorrect: `version = "< 3.2"` would allow any version below 3.2, in
 Option B is incorrect: `version = ">= 3.1.5"` would allow any version from 3.1.5 onward, including future major versions that could contain breaking changes.
 
 Option C is incorrect: While `version = "3.1.4"` (equivalent to `= 3.1.4`) pins the exact version and would technically prevent any newer version, it also prevents beneficial patch fixes. The pessimistic constraint `~>` is the idiomatic and recommended Terraform approach for this scenario.
+
+---
+
+## Question No. 334
+
+**Question Type:** Single Choice
+
+**Question:** Terraform requires using a different provider for each cloud provider where you want to deploy resources.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** Providers are Terraform plugins that map Terraform resources and data sources to a specific platform API. Because each cloud has different APIs and resource models, Terraform uses a dedicated provider for each cloud platform (for example, `hashicorp/aws` for AWS and `hashicorp/azurerm` for Azure). So when deploying resources across different clouds, you must configure the corresponding provider(s) for each one.
+
+**Incorrect options explanation:**
+
+Option B is incorrect: Terraform cannot use a single generic cloud provider to manage every cloud platform. You need the provider that matches each target cloud.
 
 ---
