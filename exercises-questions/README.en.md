@@ -358,6 +358,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-330">Question No. 330</a><br>
 <a href="#question-no-331">Question No. 331</a><br>
 <a href="#question-no-332">Question No. 332</a><br>
+<a href="#question-no-333">Question No. 333</a><br>
 </td>
 </tr>
 </table>
@@ -8069,5 +8070,31 @@ Option A is incorrect: `terraform init` (reinitialize) is required when you add 
 Option B is incorrect: Inspecting Terraform outputs shows computed values after apply; it does not change infrastructure. Reviewing outputs is useful after an apply, not before.
 
 Option C is incorrect: Inspecting the state with `terraform state list` or `terraform show` is a read-only operation. It tells you what Terraform currently knows about the infrastructure but does not alter anything or bring infrastructure in line with the new configuration.
+
+---
+
+## Question No. 333
+
+**Question Type:** Single Choice
+
+**Question:** Your team is using version 3.1.4 of a module from the public Terraform Registry, and they are worried about possible breaking changes in future versions of the module. Which version argument should you add to the module block to prevent newer versions from being used?
+
+**Options:**
+- A) version = '< 3.2'
+- B) version = '>= 3.1.5'
+- C) version = '3.1.4'
+- D) version = '~> 3.1.4'
+
+**Correct Answer:** D
+
+**Explanation:** The `~>` operator is Terraform's *pessimistic constraint operator*. `version = "~> 3.1.4"` means `>= 3.1.4, < 3.2.0`, allowing only patch-level updates within the 3.1.x series while preventing any minor or major version bump that could introduce breaking changes. This is the recommended pattern in the Terraform documentation for locking a module to a compatible release series.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: `version = "< 3.2"` would allow any version below 3.2, including versions lower than the currently used 3.1.4, and would not prevent a downgrade.
+
+Option B is incorrect: `version = ">= 3.1.5"` would allow any version from 3.1.5 onward, including future major versions that could contain breaking changes.
+
+Option C is incorrect: While `version = "3.1.4"` (equivalent to `= 3.1.4`) pins the exact version and would technically prevent any newer version, it also prevents beneficial patch fixes. The pessimistic constraint `~>` is the idiomatic and recommended Terraform approach for this scenario.
 
 ---

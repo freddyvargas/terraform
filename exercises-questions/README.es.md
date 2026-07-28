@@ -358,6 +358,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-330">Question No. 330</a><br>
 <a href="#question-no-331">Question No. 331</a><br>
 <a href="#question-no-332">Question No. 332</a><br>
+<a href="#question-no-333">Question No. 333</a><br>
 </td>
 </tr>
 </table>
@@ -8065,5 +8066,31 @@ Opción A es incorrecta: `terraform init` (reinicializar) es necesario cuando ag
 Opción B es incorrecta: Inspeccionar los outputs de Terraform muestra los valores computados después de un apply; no cambia la infraestructura. Revisar los outputs es útil después de un apply, no antes.
 
 Opción C es incorrecta: Inspeccionar el estado con `terraform state list` o `terraform show` es una operación de solo lectura. Te indica lo que Terraform conoce actualmente sobre la infraestructura, pero no altera nada ni alinea la infraestructura con la nueva configuración.
+
+---
+
+## Question No. 333
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Tu equipo está usando la versión 3.1.4 de un módulo del Terraform Registry público y les preocupan los posibles cambios que rompan la compatibilidad en versiones futuras del módulo. ¿Qué argumento de versión debes añadir al bloque del módulo para evitar que se usen versiones más nuevas?
+
+**Opciones:**
+- A) version = '< 3.2'
+- B) version = '>= 3.1.5'
+- C) version = '3.1.4'
+- D) version = '~> 3.1.4'
+
+**Respuesta Correcta:** D
+
+**Explicación:** El operador `~>` es el *operador de restricción pesimista* de Terraform. `version = "~> 3.1.4"` significa `>= 3.1.4, < 3.2.0`, lo que permite únicamente actualizaciones a nivel de parche dentro de la serie 3.1.x, mientras impide cualquier salto de versión menor o mayor que pudiera introducir cambios incompatibles. Este es el patrón recomendado en la documentación de Terraform para anclar un módulo a una serie de versiones compatible.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: `version = "< 3.2"` permitiría cualquier versión inferior a 3.2, incluyendo versiones menores a la 3.1.4 actualmente en uso, y no impediría una degradación.
+
+Opción B es incorrecta: `version = ">= 3.1.5"` permitiría cualquier versión desde 3.1.5 en adelante, incluidas versiones mayores futuras que podrían contener cambios incompatibles.
+
+Opción C es incorrecta: Aunque `version = "3.1.4"` (equivalente a `= 3.1.4`) fija la versión exacta e impide técnicamente cualquier versión más nueva, también bloquea correcciones de parches beneficiosas. La restricción pesimista `~>` es el enfoque idiomático y recomendado en Terraform para este escenario.
 
 ---
