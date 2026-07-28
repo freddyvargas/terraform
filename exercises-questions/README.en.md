@@ -323,7 +323,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Section 2 — Questions 302 to 335</strong></td>
+<td colspan="6"><strong>Section 2 — Questions 302 to 336</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -361,6 +361,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-333">Question No. 333</a><br>
 <a href="#question-no-334">Question No. 334</a><br>
 <a href="#question-no-335">Question No. 335</a><br>
+<a href="#question-no-336">Question No. 336</a><br>
 </td>
 </tr>
 </table>
@@ -8151,5 +8152,31 @@ Option A is incorrect: `var.servers` is how variables are referenced, not how mo
 Option B is incorrect: `inputs` is not a valid Terraform argument for passing module input variables.
 
 Option D is incorrect: `inputs.servers` is not valid syntax for module input assignment in Terraform.
+
+---
+
+## Question No. 336
+
+**Question Type:** Single Choice
+
+**Question:** What is the purpose of the `.terraform` directory in a Terraform workspace?
+
+**Options:**
+- A) The directory is where Terraform creates and maintains the state file to track the underlying resources it creates and manages.
+- B) The directory is used to convert and store Terraform configuration files into API calls to communicate with the targeted platform.
+- C) The directory contains the provider credentials and the `.tfvars` files to prevent them from being committed to version control by accident.
+- D) The directory contains plugins and modules that Terraform downloads during initialization, along with other important information.
+
+**Correct Answer:** D
+
+**Explanation:** The `.terraform` directory is created by `terraform init` and contains provider plugins, downloaded modules, and other initialization data required by Terraform to execute plans and applies. It should generally be excluded from version control (e.g., via `.gitignore`).
+
+**Incorrect options explanation:**
+
+Option A is incorrect: The state file (`terraform.tfstate`) is stored in the working directory (or a remote backend), not inside the `.terraform` directory.
+
+Option B is incorrect: Terraform does not convert configuration files into API calls and store them in `.terraform`; the providers themselves handle API communication at runtime.
+
+Option C is incorrect: Provider credentials are typically managed through environment variables or provider configuration, and `.tfvars` files are stored in the working directory, not in `.terraform`.
 
 ---

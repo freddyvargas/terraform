@@ -323,7 +323,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 </td>
 </tr>
 <tr>
-<td colspan="6"><strong>Sección 2 — Preguntas 302 a 335</strong></td>
+<td colspan="6"><strong>Sección 2 — Preguntas 302 a 336</strong></td>
 </tr>
 <tr>
 <td valign="top" width="16%">
@@ -361,6 +361,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-333">Question No. 333</a><br>
 <a href="#question-no-334">Question No. 334</a><br>
 <a href="#question-no-335">Question No. 335</a><br>
+<a href="#question-no-336">Question No. 336</a><br>
 </td>
 </tr>
 </table>
@@ -8147,5 +8148,31 @@ Opción A es incorrecta: `var.servers` es la forma de referenciar variables, no 
 Opción B es incorrecta: `inputs` no es un argumento válido de Terraform para pasar variables de entrada a un módulo.
 
 Opción D es incorrecta: `inputs.servers` no es una sintaxis válida para asignar entradas de módulo en Terraform.
+
+---
+
+## Question No. 336
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál es el propósito del directorio `.terraform` en un workspace de Terraform?
+
+**Opciones:**
+- A) El directorio es donde Terraform crea y mantiene el archivo de estado para rastrear los recursos subyacentes que crea y gestiona.
+- B) El directorio se utiliza para convertir y almacenar los archivos de configuración de Terraform en llamadas a la API para comunicarse con la plataforma objetivo.
+- C) El directorio contiene las credenciales del proveedor y los archivos `.tfvars` para evitar que se confirmen accidentalmente en el control de versiones.
+- D) El directorio contiene los plugins y módulos que Terraform descarga durante la inicialización, junto con otra información importante.
+
+**Respuesta Correcta:** D
+
+**Explicación:** El directorio `.terraform` es creado por `terraform init` y contiene los plugins de proveedores, los módulos descargados y otros datos de inicialización que Terraform necesita para ejecutar planes y aplicaciones. En general debe excluirse del control de versiones (por ejemplo, mediante `.gitignore`).
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: El archivo de estado (`terraform.tfstate`) se almacena en el directorio de trabajo (o en un backend remoto), no dentro del directorio `.terraform`.
+
+Opción B es incorrecta: Terraform no convierte los archivos de configuración en llamadas a la API y los almacena en `.terraform`; los propios proveedores gestionan la comunicación con la API en tiempo de ejecución.
+
+Opción C es incorrecta: Las credenciales del proveedor se gestionan habitualmente mediante variables de entorno o la configuración del proveedor, y los archivos `.tfvars` se almacenan en el directorio de trabajo, no en `.terraform`.
 
 ---
