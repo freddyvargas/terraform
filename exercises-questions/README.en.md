@@ -364,6 +364,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-336">Question No. 336</a><br>
 <a href="#question-no-337">Question No. 337</a><br>
 <a href="#question-no-338">Question No. 338</a><br>
+<a href="#question-no-339">Question No. 339</a><br>
 </td>
 </tr>
 </table>
@@ -8239,5 +8240,31 @@ Option A is incorrect: While IaC can contribute to cost efficiency through autom
 Option C is incorrect: IaC tools like Terraform do use provider plugins that abstract different vendor APIs, but defining a vendor-agnostic API is not what IaC is for. IaC is about describing infrastructure configuration, not designing APIs.
 
 Option D is incorrect: Defining CI/CD pipelines to test and deliver software is the purpose of tools like Jenkins, GitHub Actions, or GitLab CI — not IaC. IaC focuses on the infrastructure layer, not the application delivery pipeline.
+
+---
+
+## Question No. 339
+
+**Question Type:** Single Choice
+
+**Question:** What is the purpose of state locking in a remote backend?
+
+**Options:**
+- A) Encrypts the state in the remote backend.
+- B) Requires every instance of Terraform to use the same provider version.
+- C) Creates a backup of the state file in a secure location.
+- D) Ensures only one instance of Terraform can modify the state at a time.
+
+**Correct Answer:** D
+
+**Explanation:** State locking prevents concurrent writes to the same Terraform state. In a remote backend, this avoids race conditions and state corruption by allowing only one Terraform operation to acquire the lock and update state at a time.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: Encryption at rest is a separate backend/storage capability and not the purpose of state locking.
+
+Option B is incorrect: Provider version consistency is handled through version constraints and lock files, not through state locking.
+
+Option C is incorrect: Backups and versioning may be provided by the backend storage, but state locking specifically controls concurrent access.
 
 ---

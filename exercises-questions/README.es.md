@@ -364,6 +364,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-336">Question No. 336</a><br>
 <a href="#question-no-337">Question No. 337</a><br>
 <a href="#question-no-338">Question No. 338</a><br>
+<a href="#question-no-339">Question No. 339</a><br>
 </td>
 </tr>
 </table>
@@ -8235,5 +8236,31 @@ Opción A es incorrecta: Aunque IaC puede contribuir a la eficiencia de costos g
 Opción C es incorrecta: Herramientas de IaC como Terraform sí usan plugins de proveedores que abstraen distintas APIs de fabricantes, pero definir una API independiente del proveedor no es el objetivo de IaC. IaC se centra en describir la configuración de la infraestructura, no en diseñar APIs.
 
 Opción D es incorrecta: Definir pipelines de CI/CD para probar y entregar software es el propósito de herramientas como Jenkins, GitHub Actions o GitLab CI — no de IaC. IaC se enfoca en la capa de infraestructura, no en el pipeline de entrega de aplicaciones.
+
+---
+
+## Question No. 339
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Cuál es el propósito del bloqueo de estado en un backend remoto?
+
+**Opciones:**
+- A) Cifra el estado en el backend remoto.
+- B) Requiere que cada instancia de Terraform use la misma versión del proveedor.
+- C) Crea una copia de seguridad del archivo de estado en una ubicación segura.
+- D) Garantiza que solo una instancia de Terraform pueda modificar el estado a la vez.
+
+**Respuesta Correcta:** D
+
+**Explicación:** El bloqueo de estado evita escrituras concurrentes sobre el mismo estado de Terraform. En un backend remoto, esto previene condiciones de carrera y corrupción del estado al permitir que solo una operación de Terraform adquiera el bloqueo y actualice el estado a la vez.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: El cifrado en reposo es una capacidad separada del backend/almacenamiento y no el propósito del bloqueo de estado.
+
+Opción B es incorrecta: La consistencia de versiones del proveedor se gestiona con restricciones de versión y archivos de bloqueo, no con bloqueo de estado.
+
+Opción C es incorrecta: Las copias de seguridad y el versionado pueden ser provistos por el almacenamiento del backend, pero el bloqueo de estado controla específicamente el acceso concurrente.
 
 ---
