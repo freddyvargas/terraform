@@ -366,6 +366,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-338">Question No. 338</a><br>
 <a href="#question-no-339">Question No. 339</a><br>
 <a href="#question-no-340">Question No. 340</a><br>
+<a href="#question-no-341">Question No. 341</a><br>
 </td>
 </tr>
 </table>
@@ -8283,5 +8284,38 @@ Opción C es incorrecta: Las copias de seguridad y el versionado pueden ser prov
 **Explicación de opciones incorrectas:**
 
 Opción B es incorrecta: `terraform fmt` sí estandariza los archivos de configuración. Es un comando integrado de Terraform diseñado específicamente para este propósito, garantizando un formato consistente entre equipos y proyectos.
+
+---
+
+## Question No. 341
+
+**Tipo de Pregunta:** Opción Única
+
+**Exhibit:**
+```hcl
+provider "aws" { region = "us-east-1" }
+
+provider "aws" { region = "us-west-2" }
+```
+
+**Pregunta:** Necesitas desplegar recursos en dos regiones de AWS diferentes usando la misma configuración de Terraform, con los bloques de proveedor mostrados en el exhibit. ¿Qué necesitas agregar a la configuración del proveedor para desplegar un recurso en la región AWS us-west-2?
+
+**Opciones:**
+- A) Agregar un alias al proveedor de us-west-2 (por ejemplo, `alias = "west"`) y establecer `provider = aws.west` en los recursos que deben usar us-west-2.
+- B) Renombrar el bloque de proveedor a `provider "aws" "west" { region = "us-west-2" }`.
+- C) Crear un nuevo proveedor llamado `provider "aws_west" { region = "us-west-2" }`.
+- D) Nada. Terraform decidirá automáticamente qué proveedor usar para cada recurso.
+
+**Respuesta Correcta:** A
+
+**Explicación:** Cuando necesitas usar el mismo proveedor para múltiples regiones (o cuentas) dentro de una misma configuración de Terraform, debes utilizar alias de proveedor. Al agregar `alias = "west"` al segundo bloque de proveedor `aws`, le otorgas un nombre de referencia único (`aws.west`). Cada recurso que deba desplegarse en `us-west-2` debe incluir `provider = aws.west` en su configuración. Sin un alias, Terraform no permite dos bloques del mismo tipo de proveedor, y los recursos no pueden distinguir entre ellos.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: La sintaxis del bloque `provider` en Terraform no admite una segunda etiqueta como nombre. El mecanismo correcto para diferenciar proveedores del mismo tipo es el meta-argumento `alias` dentro del bloque.
+
+Opción C es incorrecta: No se puede inventar un nombre de proveedor personalizado como `aws_west`. Los nombres de proveedor deben coincidir con el proveedor registrado (p. ej., `aws`). Los alias son la forma soportada de manejar múltiples configuraciones del mismo proveedor.
+
+Opción D es incorrecta: Terraform **no** resuelve automáticamente qué instancia del proveedor usar cuando existen múltiples configuraciones del mismo proveedor. Debes especificar explícitamente el alias en cada recurso o módulo que deba usar la instancia no predeterminada del proveedor.
 
 ---

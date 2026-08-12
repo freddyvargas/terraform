@@ -366,6 +366,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-338">Question No. 338</a><br>
 <a href="#question-no-339">Question No. 339</a><br>
 <a href="#question-no-340">Question No. 340</a><br>
+<a href="#question-no-341">Question No. 341</a><br>
 </td>
 </tr>
 </table>
@@ -8287,5 +8288,38 @@ Option C is incorrect: Backups and versioning may be provided by the backend sto
 **Incorrect options explanation:**
 
 Option B is incorrect: `terraform fmt` does indeed standardize configuration files. It is a built-in Terraform command specifically designed for this purpose, ensuring consistent formatting across teams and projects.
+
+---
+
+## Question No. 341
+
+**Question Type:** Single Choice
+
+**Exhibit:**
+```hcl
+provider "aws" { region = "us-east-1" }
+
+provider "aws" { region = "us-west-2" }
+```
+
+**Question:** You need to deploy resources into two different AWS regions in the same Terraform configuration using the provider blocks shown in the exhibit. What do you need to add to the provider configuration to deploy a resource to the us-west-2 AWS region?
+
+**Options:**
+- A) Add an alias to the us-west-2 provider (for example, `alias = "west"`) and set `provider = aws.west` on resources that should use us-west-2.
+- B) Rename the provider block to `provider "aws" "west" { region = "us-west-2" }`.
+- C) Create a new provider named `provider "aws_west" { region = "us-west-2" }`.
+- D) Nothing. Terraform will automatically decide which provider to use for each resource.
+
+**Correct Answer:** A
+
+**Explanation:** When you need to use the same provider for multiple regions (or accounts) within one Terraform configuration, you must use provider aliases. Adding `alias = "west"` to the second `aws` provider block gives it a unique reference name (`aws.west`). Each resource that should be deployed to `us-west-2` must then include `provider = aws.west` in its configuration. Without an alias, Terraform does not allow two provider blocks of the same type, and resources cannot distinguish between them.
+
+**Incorrect options explanation:**
+
+Option B is incorrect: Terraform's provider block syntax does not support a second label as a name. The correct mechanism for differentiating providers of the same type is the `alias` meta-argument inside the block.
+
+Option C is incorrect: You cannot invent a custom provider name like `aws_west`. Provider names must match the registered provider source (e.g., `aws`). Aliases are the supported way to handle multiple configurations of the same provider.
+
+Option D is incorrect: Terraform does **not** automatically resolve which provider instance to use when multiple configurations of the same provider exist. You must explicitly specify the alias on each resource or module that should use the non-default provider instance.
 
 ---
