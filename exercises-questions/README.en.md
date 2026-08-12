@@ -367,6 +367,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-339">Question No. 339</a><br>
 <a href="#question-no-340">Question No. 340</a><br>
 <a href="#question-no-341">Question No. 341</a><br>
+<a href="#question-no-342">Question No. 342</a><br>
 </td>
 </tr>
 </table>
@@ -8321,5 +8322,42 @@ Option B is incorrect: Terraform's provider block syntax does not support a seco
 Option C is incorrect: You cannot invent a custom provider name like `aws_west`. Provider names must match the registered provider source (e.g., `aws`). Aliases are the supported way to handle multiple configurations of the same provider.
 
 Option D is incorrect: Terraform does **not** automatically resolve which provider instance to use when multiple configurations of the same provider exist. You must explicitly specify the alias on each resource or module that should use the non-default provider instance.
+
+---
+
+## Question No. 342
+
+**Question Type:** Multiple Choice (Pick TWO)
+
+**Question:** You are responsible for a set of infrastructure that is managed by two workspaces: `example-network` and `example-compute`. The `example-compute` workspace uses data from output values configured in the `example-network` workspace and must be deployed afterward. Currently, this is a manual process:
+
+1. An operator deploys changes to the `example-network` workspace.
+2. They manually copy the output values from the `example-network` workspace to input variables configured for the `example-compute` workspace.
+3. They deploy the `example-compute` workspace.
+
+Which HCP Terraform features can you use to automate this process? Pick the two correct responses below.
+
+**Options:**
+- A) A health check configured on the `example-network` workspace to create a plan on the `example-compute` workspace when HCP Terraform applies changes to it.
+- B) A health check configured on the `example-compute` workspace to create a plan when HCP Terraform applies changes to the `example-network` workspace.
+- C) A `tfe_outputs` data source configured in the `example-compute` workspace to automatically load output values from the `example-network` workspace.
+- D) A run trigger configured on the `example-network` workspace to automatically plan changes to the `example-compute` workspace after every apply.
+- E) A run trigger configured on the `example-compute` workspace to automatically plan changes after HCP Terraform applies changes to the `example-network` workspace.
+
+**Correct Answer:** C and E
+
+**Explanation:**
+
+**Option C** is correct: The `tfe_outputs` data source (from the `hashicorp/tfe` provider) allows the `example-compute` workspace to directly read output values published by the `example-network` workspace. This eliminates the manual copy step — the outputs are fetched automatically at plan/apply time.
+
+**Option E** is correct: A run trigger is configured on the *downstream* workspace (`example-compute`) and references the *upstream* workspace (`example-network`) as a trigger source. Whenever `example-network` completes an apply, HCP Terraform automatically queues a new plan/apply run in `example-compute`. This removes the need for an operator to manually trigger the downstream deployment.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: Health checks are used to assess the drift status of a workspace against its current state. They do not trigger runs in other workspaces when a workspace completes an apply.
+
+Option B is incorrect: For the same reason as A, health checks do not watch other workspaces for apply events. They verify the health of the workspace they are configured on.
+
+Option D is incorrect: Run triggers are configured on the **downstream** workspace (the one that depends on another), not on the upstream workspace. The `example-compute` workspace should declare `example-network` as its trigger source, not the other way around.
 
 ---

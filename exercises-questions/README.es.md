@@ -367,6 +367,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-339">Question No. 339</a><br>
 <a href="#question-no-340">Question No. 340</a><br>
 <a href="#question-no-341">Question No. 341</a><br>
+<a href="#question-no-342">Question No. 342</a><br>
 </td>
 </tr>
 </table>
@@ -8317,5 +8318,42 @@ Opción B es incorrecta: La sintaxis del bloque `provider` en Terraform no admit
 Opción C es incorrecta: No se puede inventar un nombre de proveedor personalizado como `aws_west`. Los nombres de proveedor deben coincidir con el proveedor registrado (p. ej., `aws`). Los alias son la forma soportada de manejar múltiples configuraciones del mismo proveedor.
 
 Opción D es incorrecta: Terraform **no** resuelve automáticamente qué instancia del proveedor usar cuando existen múltiples configuraciones del mismo proveedor. Debes especificar explícitamente el alias en cada recurso o módulo que deba usar la instancia no predeterminada del proveedor.
+
+---
+
+## Question No. 342
+
+**Tipo de Pregunta:** Opción Múltiple (Elige DOS)
+
+**Pregunta:** Eres responsable de un conjunto de infraestructura gestionada por dos workspaces: `example-network` y `example-compute`. El workspace `example-compute` utiliza datos de los valores de salida configurados en el workspace `example-network` y debe desplegarse después. Actualmente, este es un proceso manual:
+
+1. Un operador despliega cambios en el workspace `example-network`.
+2. Copia manualmente los valores de salida del workspace `example-network` a las variables de entrada configuradas para el workspace `example-compute`.
+3. Despliega el workspace `example-compute`.
+
+¿Qué características de HCP Terraform puedes usar para automatizar este proceso? Elige las dos respuestas correctas.
+
+**Opciones:**
+- A) Un health check configurado en el workspace `example-network` para crear un plan en el workspace `example-compute` cuando HCP Terraform aplique cambios en él.
+- B) Un health check configurado en el workspace `example-compute` para crear un plan cuando HCP Terraform aplique cambios en el workspace `example-network`.
+- C) Un data source `tfe_outputs` configurado en el workspace `example-compute` para cargar automáticamente los valores de salida del workspace `example-network`.
+- D) Un run trigger configurado en el workspace `example-network` para planificar automáticamente los cambios en el workspace `example-compute` después de cada apply.
+- E) Un run trigger configurado en el workspace `example-compute` para planificar automáticamente los cambios después de que HCP Terraform aplique cambios en el workspace `example-network`.
+
+**Respuesta Correcta:** C y E
+
+**Explicación:**
+
+**Opción C** es correcta: El data source `tfe_outputs` (del proveedor `hashicorp/tfe`) permite que el workspace `example-compute` lea directamente los valores de salida publicados por el workspace `example-network`. Esto elimina el paso de copia manual — los outputs se obtienen automáticamente en el momento del plan/apply.
+
+**Opción E** es correcta: Un run trigger se configura en el workspace *aguas abajo* (`example-compute`) y referencia el workspace *aguas arriba* (`example-network`) como fuente del disparador. Cada vez que `example-network` completa un apply, HCP Terraform encola automáticamente una nueva ejecución de plan/apply en `example-compute`. Esto elimina la necesidad de que un operador active manualmente el despliegue del workspace dependiente.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: Los health checks se utilizan para evaluar el estado de deriva de un workspace respecto a su estado actual. No disparan ejecuciones en otros workspaces cuando un workspace completa un apply.
+
+Opción B es incorrecta: Por la misma razón que la opción A, los health checks no observan otros workspaces para detectar eventos de apply. Verifican el estado del workspace en el que están configurados.
+
+Opción D es incorrecta: Los run triggers se configuran en el workspace **aguas abajo** (el que depende de otro), no en el workspace de origen. El workspace `example-compute` debe declarar a `example-network` como su fuente de disparador, no al revés.
 
 ---
