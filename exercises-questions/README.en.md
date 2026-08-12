@@ -365,6 +365,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-337">Question No. 337</a><br>
 <a href="#question-no-338">Question No. 338</a><br>
 <a href="#question-no-339">Question No. 339</a><br>
+<a href="#question-no-340">Question No. 340</a><br>
 </td>
 </tr>
 </table>
@@ -8266,5 +8267,25 @@ Option A is incorrect: Encryption at rest is a separate backend/storage capabili
 Option B is incorrect: Provider version consistency is handled through version constraints and lock files, not through state locking.
 
 Option C is incorrect: Backups and versioning may be provided by the backend storage, but state locking specifically controls concurrent access.
+
+---
+
+## Question No. 340
+
+**Question Type:** Single Choice
+
+**Question:** You can execute `terraform fmt` to standardize all Terraform configurations within the current working directory to Terraform's canonical format and style.
+
+**Options:**
+- A) True
+- B) False
+
+**Correct Answer:** A
+
+**Explanation:** `terraform fmt` rewrites Terraform configuration files in the current working directory to a canonical format and style, following Terraform's style conventions. By default it processes only `.tf` and `.tfvars` files in the current directory; using the `-recursive` flag extends this behavior to all subdirectories as well.
+
+**Incorrect options explanation:**
+
+Option B is incorrect: `terraform fmt` does indeed standardize configuration files. It is a built-in Terraform command specifically designed for this purpose, ensuring consistent formatting across teams and projects.
 
 ---

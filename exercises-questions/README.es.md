@@ -365,6 +365,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-337">Question No. 337</a><br>
 <a href="#question-no-338">Question No. 338</a><br>
 <a href="#question-no-339">Question No. 339</a><br>
+<a href="#question-no-340">Question No. 340</a><br>
 </td>
 </tr>
 </table>
@@ -8262,5 +8263,25 @@ Opción A es incorrecta: El cifrado en reposo es una capacidad separada del back
 Opción B es incorrecta: La consistencia de versiones del proveedor se gestiona con restricciones de versión y archivos de bloqueo, no con bloqueo de estado.
 
 Opción C es incorrecta: Las copias de seguridad y el versionado pueden ser provistos por el almacenamiento del backend, pero el bloqueo de estado controla específicamente el acceso concurrente.
+
+---
+
+## Question No. 340
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Puedes ejecutar `terraform fmt` para estandarizar todas las configuraciones de Terraform dentro del directorio de trabajo actual al formato y estilo canónico de Terraform.
+
+**Opciones:**
+- A) True
+- B) False
+
+**Respuesta Correcta:** A
+
+**Explicación:** `terraform fmt` reescribe los archivos de configuración de Terraform en el directorio de trabajo actual aplicando el formato y estilo canónico, siguiendo las convenciones de estilo de Terraform. Por defecto, procesa únicamente los archivos `.tf` y `.tfvars` del directorio actual; usando el flag `-recursive` extiende este comportamiento a todos los subdirectorios.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: `terraform fmt` sí estandariza los archivos de configuración. Es un comando integrado de Terraform diseñado específicamente para este propósito, garantizando un formato consistente entre equipos y proyectos.
 
 ---
