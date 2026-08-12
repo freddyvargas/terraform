@@ -368,6 +368,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-340">Question No. 340</a><br>
 <a href="#question-no-341">Question No. 341</a><br>
 <a href="#question-no-342">Question No. 342</a><br>
+<a href="#question-no-343">Question No. 343</a><br>
 </td>
 </tr>
 </table>
@@ -8355,5 +8356,31 @@ Opción A es incorrecta: Los health checks se utilizan para evaluar el estado de
 Opción B es incorrecta: Por la misma razón que la opción A, los health checks no observan otros workspaces para detectar eventos de apply. Verifican el estado del workspace en el que están configurados.
 
 Opción D es incorrecta: Los run triggers se configuran en el workspace **aguas abajo** (el que depende de otro), no en el workspace de origen. El workspace `example-compute` debe declarar a `example-network` como su fuente de disparador, no al revés.
+
+---
+
+## Question No. 343
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** ¿Qué situación devolverá un error al ejecutar `terraform validate`?
+
+**Opciones:**
+- A) El archivo de estado no coincide con la infraestructura actual.
+- B) El código contiene tabulaciones para la indentación en lugar de espacios.
+- C) Falta un bloque de variable (variable block).
+- D) Ninguna de estas situaciones devolverá un error.
+
+**Respuesta Correcta:** C
+
+**Explicación:** `terraform validate` solo verifica la corrección sintáctica y la consistencia interna de los archivos de configuración — **no** accede al estado remoto, a las APIs de los proveedores ni a la infraestructura real. Un bloque de variable faltante (es decir, una referencia a una variable que no tiene un bloque `variable` declarado en ninguna parte de la configuración) es un error de consistencia de configuración que Terraform detecta en el momento de la validación, haciendo que el comando devuelva un error.
+
+**Explicación de opciones incorrectas:**
+
+Opción A es incorrecta: `terraform validate` no consulta el archivo de estado ni lo compara con la infraestructura real. La deriva entre el estado y la infraestructura real solo se detecta durante una operación `terraform plan` o `terraform refresh`, no durante la validación.
+
+Opción B es incorrecta: El parser HCL de Terraform acepta tanto tabulaciones como espacios para la indentación. `terraform validate` **no** fallará por el uso de tabulaciones. El comando `terraform fmt` normaliza el formato (convirtiendo tabulaciones en espacios), pero es un comando de estilo, no un validador; mezclar tabulaciones y espacios no provoca un error de validación.
+
+Opción D es incorrecta: La opción C (un bloque de variable faltante) **sí** produce un error de validación, por lo que "ninguna de estas" es incorrecta.
 
 ---

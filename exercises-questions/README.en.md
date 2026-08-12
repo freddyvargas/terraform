@@ -368,6 +368,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-340">Question No. 340</a><br>
 <a href="#question-no-341">Question No. 341</a><br>
 <a href="#question-no-342">Question No. 342</a><br>
+<a href="#question-no-343">Question No. 343</a><br>
 </td>
 </tr>
 </table>
@@ -8359,5 +8360,31 @@ Option A is incorrect: Health checks are used to assess the drift status of a wo
 Option B is incorrect: For the same reason as A, health checks do not watch other workspaces for apply events. They verify the health of the workspace they are configured on.
 
 Option D is incorrect: Run triggers are configured on the **downstream** workspace (the one that depends on another), not on the upstream workspace. The `example-compute` workspace should declare `example-network` as its trigger source, not the other way around.
+
+---
+
+## Question No. 343
+
+**Question Type:** Single Choice
+
+**Question:** Which situation will return an error when you run `terraform validate`?
+
+**Options:**
+- A) The state file does not match the current infrastructure.
+- B) The code contains tabs for indentation instead of spaces.
+- C) There is a missing variable block.
+- D) None of these will return an error.
+
+**Correct Answer:** C
+
+**Explanation:** `terraform validate` checks only the syntactic correctness and internal consistency of the configuration files — it does **not** access any remote state, provider APIs, or real infrastructure. A missing variable block (i.e., a reference to a variable that has no corresponding `variable` block declared anywhere in the configuration) is a configuration consistency error that Terraform detects at validation time, causing the command to return an error.
+
+**Incorrect options explanation:**
+
+Option A is incorrect: `terraform validate` does not consult the state file or compare it against real infrastructure. Drift between the state and actual infrastructure is only surfaced during a `terraform plan` or `terraform refresh` operation, not during validation.
+
+Option B is incorrect: Terraform's HCL parser accepts both tabs and spaces for indentation. `terraform validate` will **not** fail because of tab-based indentation. The `terraform fmt` command normalizes formatting (converting tabs to spaces), but that is a style command, not a validator; mixing tabs and spaces does not cause a validation error.
+
+Option D is incorrect: Option C (a missing variable block) **does** produce a validation error, so "none of these" is wrong.
 
 ---
