@@ -369,6 +369,7 @@ This scenario demonstrates key Terraform concepts from the Certification 004. It
 <a href="#question-no-341">Question No. 341</a><br>
 <a href="#question-no-342">Question No. 342</a><br>
 <a href="#question-no-343">Question No. 343</a><br>
+<a href="#question-no-344">Question No. 344</a><br>
 </td>
 </tr>
 </table>
@@ -8386,5 +8387,31 @@ Option A is incorrect: `terraform validate` does not consult the state file or c
 Option B is incorrect: Terraform's HCL parser accepts both tabs and spaces for indentation. `terraform validate` will **not** fail because of tab-based indentation. The `terraform fmt` command normalizes formatting (converting tabs to spaces), but that is a style command, not a validator; mixing tabs and spaces does not cause a validation error.
 
 Option D is incorrect: Option C (a missing variable block) **does** produce a validation error, so "none of these" is wrong.
+
+---
+
+## Question No. 344
+
+**Question Type:** Single Choice
+
+**Question:** If you don't use the local Terraform backend, where else can Terraform save resource state?
+
+**Options:**
+- A) In a remote location configured in the terraform block, such as HCP Terraform or a cloud storage system.
+- B) In a remote location configured in the -terraformrc file, such as HCP Terraform or a cloud storage system.
+- C) In memory.
+- D) In an environment variable.
+
+**Correct Answer:** A
+
+**Explanation:** Terraform supports multiple backends for storing state. When you do not use the default local backend (which writes `terraform.tfstate` to disk), you can configure a remote backend inside the `terraform {}` block using a `backend` sub-block. Supported remote backends include HCP Terraform (formerly Terraform Cloud), Amazon S3, Azure Blob Storage, Google Cloud Storage, HashiCorp Consul, and others. The backend is always declared inside the `terraform` block in your configuration.
+
+**Incorrect options explanation:**
+
+Option B is incorrect: The `.terraformrc` (or `terraform.rc` on Windows) file is the CLI configuration file used to configure settings such as provider plugin cache directories and credentials helpers. It is **not** used to configure the Terraform state backend.
+
+Option C is incorrect: Terraform does not store state in memory. State must be persisted across runs so that Terraform knows what infrastructure it manages. An in-memory-only store would be lost after every command execution, making it impossible to manage existing infrastructure.
+
+Option D is incorrect: Environment variables in Terraform are used to pass variable values (via `TF_VAR_*`) or configure provider credentials and CLI behavior. State cannot be stored in an environment variable — environment variables are ephemeral by nature and cannot hold persistent state across Terraform operations.
 
 ---

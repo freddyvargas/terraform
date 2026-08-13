@@ -369,6 +369,7 @@ Este escenario demuestra conceptos clave de Terraform de la Certificación 004. 
 <a href="#question-no-341">Question No. 341</a><br>
 <a href="#question-no-342">Question No. 342</a><br>
 <a href="#question-no-343">Question No. 343</a><br>
+<a href="#question-no-344">Question No. 344</a><br>
 </td>
 </tr>
 </table>
@@ -8382,5 +8383,31 @@ Opción A es incorrecta: `terraform validate` no consulta el archivo de estado n
 Opción B es incorrecta: El parser HCL de Terraform acepta tanto tabulaciones como espacios para la indentación. `terraform validate` **no** fallará por el uso de tabulaciones. El comando `terraform fmt` normaliza el formato (convirtiendo tabulaciones en espacios), pero es un comando de estilo, no un validador; mezclar tabulaciones y espacios no provoca un error de validación.
 
 Opción D es incorrecta: La opción C (un bloque de variable faltante) **sí** produce un error de validación, por lo que "ninguna de estas" es incorrecta.
+
+---
+
+## Question No. 344
+
+**Tipo de Pregunta:** Opción Única
+
+**Pregunta:** Si no usas el backend local de Terraform, ¿dónde más puede Terraform guardar el estado de los recursos?
+
+**Opciones:**
+- A) En una ubicación remota configurada en el bloque terraform, como HCP Terraform o un sistema de almacenamiento en la nube.
+- B) En una ubicación remota configurada en el archivo .terraformrc, como HCP Terraform o un sistema de almacenamiento en la nube.
+- C) En memoria.
+- D) En una variable de entorno.
+
+**Respuesta Correcta:** A
+
+**Explicación:** Terraform soporta múltiples backends para almacenar el estado. Cuando no se utiliza el backend local predeterminado (que escribe `terraform.tfstate` en disco), se puede configurar un backend remoto dentro del bloque `terraform {}` usando un sub-bloque `backend`. Los backends remotos admitidos incluyen HCP Terraform (antes Terraform Cloud), Amazon S3, Azure Blob Storage, Google Cloud Storage, HashiCorp Consul, entre otros. El backend siempre se declara dentro del bloque `terraform` en la configuración.
+
+**Explicación de opciones incorrectas:**
+
+Opción B es incorrecta: El archivo `.terraformrc` (o `terraform.rc` en Windows) es el archivo de configuración de la CLI, utilizado para configurar ajustes como el directorio de caché de plugins de proveedores y helpers de credenciales. **No** se utiliza para configurar el backend de estado de Terraform.
+
+Opción C es incorrecta: Terraform no almacena el estado en memoria. El estado debe persistir entre ejecuciones para que Terraform sepa qué infraestructura gestiona. Un almacenamiento solo en memoria se perdería tras cada ejecución del comando, haciendo imposible gestionar la infraestructura existente.
+
+Opción D es incorrecta: Las variables de entorno en Terraform se utilizan para pasar valores de variables (mediante `TF_VAR_*`) o configurar credenciales de proveedores y el comportamiento de la CLI. El estado no puede almacenarse en una variable de entorno — las variables de entorno son efímeras por naturaleza y no pueden mantener estado persistente entre operaciones de Terraform.
 
 ---
